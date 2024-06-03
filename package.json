@@ -1,0 +1,10 @@
+{
+  "name": "transform-ci",
+  "private": true,
+  "scripts": {
+    "tsc": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}

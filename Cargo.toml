@@ -4,3 +4,5 @@ version = "0.0.0"
 edition = "2021"
 
 [dependencies]
+oxc = { path = "../oxc/crates/oxc", features = ["transformer", "codegen"] }
+ignore = "0.4.22"

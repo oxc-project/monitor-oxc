@@ -1,0 +1,102 @@
+name: Transform CI
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+  pull_request:
+    types: [opened, synchronize]
+    paths-ignore:
+      - '**/*.md'
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**/*.md'
+
+jobs:
+  build:
+    name: Build
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: taiki-e/checkout-action@v1
+
+      - name: Checkout oxc
+        uses: actions/checkout@v4
+        with:
+          repository: oxc-project/oxc
+          ref: main
+          path: oxc
+
+      - run: mv oxc ../oxc
+
+      - name: Install Rust
+        uses: Boshen/setup-rust@main
+        with:
+          save-cache: ${{ github.ref_name == 'main' }}
+
+      - name: Build
+        run: cargo build --release
+
+      - name: Upload Binary
+        uses: actions/upload-artifact@v4
+        with:
+          if-no-files-found: error
+          name: transform-ci
+          path: ./target/release/transform-ci
+
+  checkout:
+    name: Read repos.json
+    needs: build
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.setmatrix.outputs.content }}
+    steps:
+      - uses: taiki-e/checkout-action@v1
+      - id: setmatrix
+        uses: jaywcjlove/github-action-read-file@main
+        with:
+          localfile: ./matrix.json
+
+  test:
+    needs: checkout
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJson(needs.checkout.outputs.matrix) }}
+    name: ${{ matrix.repository }}
+    steps:
+      - name: Clone ${{ matrix.repository }}
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.repository }}
+          ref: ${{ matrix.ref }}
+
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: transform-ci
+
+      - name: chmod +x transform-ci
+        run: chmod +x ./transform-ci
+
+      - name: Transform
+        run: ./transform-ci ${{ matrix.transform_directories }}
+
+      - name: Install pnpm
+        run: corepack enable
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          cache: pnpm
+
+      - name: Install packages
+        run: pnpm install
+
+      - name: Check
+        run: ${{ matrix.command }}

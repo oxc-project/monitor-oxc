@@ -1,0 +1,8 @@
+[
+  {
+    "repository": "vuejs/core",
+    "ref": "main",
+    "transform_directories": "packages",
+    "command": "pnpm tsc --build tsconfig.build-browser.json --force --verbose && pnpm tsc --build tsconfig.build-node.json --force --verbose"
+  }
+]
