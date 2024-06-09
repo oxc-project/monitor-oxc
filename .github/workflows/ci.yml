@@ -1,4 +1,4 @@
-name: Transform CI
+name: CI
 
 on:
   workflow_dispatch:
@@ -14,11 +14,17 @@ on:
     paths-ignore:
       - '**/*.md'
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: ${{ github.ref_name != 'main' }}
+
 jobs:
   build:
     name: Build
     timeout-minutes: 10
     runs-on: ubuntu-latest
+    outputs:
+      size: ${{ steps.run.outputs.BINARY_SIZE }}
     steps:
       - name: Checkout Repository
         uses: taiki-e/checkout-action@v1
@@ -39,6 +45,11 @@ jobs:
 
       - name: Build
         run: cargo build --release
+
+      - id: run
+        run: |
+          BINARY_SIZE=$(ls -l ./target/release/transform-ci | awk '{print $5}')
+          echo "BINARY_SIZE=$BINARY_SIZE" >> $GITHUB_OUTPUT
 
       - name: Upload Binary
         uses: actions/upload-artifact@v4
@@ -76,7 +87,7 @@ jobs:
           repository: ${{ matrix.repository }}
           ref: ${{ matrix.ref }}
 
-      - name: Download Artifacts
+      - name: Download Transform Binary
         uses: actions/download-artifact@v4
         with:
           name: transform-ci
@@ -100,3 +111,53 @@ jobs:
 
       - name: Check
         run: ${{ matrix.command }}
+
+  compile-time:
+    name: Compile Time
+    runs-on: ubuntu-latest
+    if: ${{ github.ref_name == 'main' }}
+    outputs:
+      time: ${{ steps.run.outputs.COMPILE_TIME }}
+    steps:
+      - uses: taiki-e/checkout-action@v1
+      - name: Checkout oxc
+        uses: actions/checkout@v4
+        with:
+          repository: oxc-project/oxc
+          ref: main
+          path: oxc
+      - run: mv oxc ../oxc
+      - uses: Boshen/setup-rust@main
+      - run: cargo clean # build from scatch using local system cache to avoid download from crates.io
+      - id: run
+        run: |
+          /usr/bin/time -f "%e" -o output cargo build --release
+          cat output
+          COMPILE_TIME=$(cat output)
+          echo $COMPILE_TIME
+          echo "COMPILE_TIME=$COMPILE_TIME" >> $GITHUB_OUTPUT
+
+  monitor:
+    name: Monitor Metrics
+    needs: [build, compile-time]
+    if: ${{ github.ref_name == 'main' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: taiki-e/checkout-action@v1
+
+      - name: Create Data
+        run: |
+          echo $(jq ".[0].value = ${{ needs.compile-time.outputs.time }}" metrics.json) > data.json
+          echo $(jq ".[1].value = ${{ needs.build.outputs.size }}" data.json) > data.json
+          cat data.json
+
+      - uses: benchmark-action/github-action-benchmark@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          name: Oxc Metrics
+          tool: customSmallerIsBetter
+          output-file-path: data.json
+          gh-pages-branch: gh-pages
+          benchmark-data-dir-path: metrics
+          auto-push: true
+          save-data-file: true

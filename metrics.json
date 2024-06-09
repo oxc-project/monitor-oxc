@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Compile Time",
+        "unit": "Seconds",
+        "value": 0
+    },
+    {
+        "name": "Binary Size",
+        "unit": "Bytes",
+        "value": 0
+    }
+]
