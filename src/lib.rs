@@ -79,13 +79,13 @@ impl Runner {
         let mut program = parser_ret.program;
 
         let options = TransformOptions::default();
-        Transformer::new(&allocator, path, source_type, source_text, &trivias, options)
+        Transformer::new(&allocator, path, source_type, source_text, trivias.clone(), options)
             .build(&mut program)
             .unwrap_or_else(|_| panic!("Expect no transform errors: {path:?}"));
 
         let source_name = path.file_name().unwrap().to_string_lossy();
         let options = CodegenOptions::default();
-        Codegen::<false>::new(&source_name, source_text, options, Default::default())
+        Codegen::<false>::new(&source_name, source_text, trivias, options)
             .build(&program)
             .source_text
     }
