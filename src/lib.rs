@@ -8,7 +8,7 @@ use ignore::Walk;
 
 use oxc::{
     allocator::Allocator,
-    codegen::{Codegen, CodegenOptions},
+    codegen::CodeGenerator,
     parser::Parser,
     span::SourceType,
     transformer::{TransformOptions, Transformer},
@@ -83,10 +83,6 @@ impl Runner {
             .build(&mut program)
             .unwrap_or_else(|_| panic!("Expect no transform errors: {path:?}"));
 
-        let source_name = path.file_name().unwrap().to_string_lossy();
-        let options = CodegenOptions::default();
-        Codegen::<false>::new(&source_name, source_text, trivias, options)
-            .build(&program)
-            .source_text
+        CodeGenerator::new().build(&program).source_text
     }
 }
