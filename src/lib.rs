@@ -80,9 +80,7 @@ impl Runner {
 
         let options = TransformOptions::default();
         Transformer::new(&allocator, path, source_type, source_text, trivias.clone(), options)
-            .build(&mut program)
-            .unwrap_or_else(|_| panic!("Expect no transform errors: {path:?}"));
-
+            .build(&mut program);
         CodeGenerator::new().build(&program).source_text
     }
 }
