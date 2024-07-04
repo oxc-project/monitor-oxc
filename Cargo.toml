@@ -1,11 +1,12 @@
 [package]
-name = "transform-ci"
+name = "monitor-oxc"
 version = "0.0.0"
 edition = "2021"
+publish = false
 
 [dependencies]
 oxc = { path = "../oxc/crates/oxc", features = ["transformer", "codegen"] }
-ignore = "0.4.22"
+walkdir = "2.5.0"
 
 [profile.release]
 opt-level     = 3

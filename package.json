@@ -1,10 +1,14 @@
 {
-  "name": "transform-ci",
+  "name": "monitor-oxc",
   "private": true,
   "scripts": {
-    "tsc": "tsc"
+    "add": "jsr add -D",
+    "test": "node src/main.test.mjs"
   },
   "devDependencies": {
-    "typescript": "^5.4.5"
-  }
+    "@luca/cases": "npm:@jsr/luca__cases@^1.0.0",
+    "jsr": "^0.12.4",
+    "@hono/hono": "npm:@jsr/hono__hono@4.5.0-rc.2"
+  },
+  "packageManager": "pnpm@9.2.0"
 }
