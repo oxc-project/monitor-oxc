@@ -10,9 +10,9 @@ init:
 
 ready:
   cargo check
+  pnpm install
+  cargo run
+  pnpm run test
 
 lint:
   cargo clippy
-
-watch command:
-  cargo watch --no-vcs-ignores -i 'repos' -x '{{command}}'

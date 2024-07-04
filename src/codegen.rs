@@ -47,7 +47,10 @@ impl CodegenRunner {
 
             // Idempotency test
             let source_text3 = self.codegen(path, &source_text2, source_type);
-            assert_eq!(source_text2, source_text3, "Idempotency test failed: {path:?}");
+            if source_text2 != source_text {
+                println!("{}", source_text);
+                panic!("Idempotency test failed: {path:?}");
+            }
 
             // Write js files for runtime test
             if source_type.is_javascript() {
