@@ -46,57 +46,34 @@ jobs:
       - name: Build
         run: cargo build --release
 
-      - id: run
+      - name: export BINARY_SIZE
         run: |
-          BINARY_SIZE=$(ls -l ./target/release/transform-ci | awk '{print $5}')
+          BINARY_SIZE=$(ls -l ./target/release/monitor_oxc | awk '{print $5}')
           echo "BINARY_SIZE=$BINARY_SIZE" >> $GITHUB_OUTPUT
 
       - name: Upload Binary
         uses: actions/upload-artifact@v4
         with:
           if-no-files-found: error
-          name: transform-ci
-          path: ./target/release/transform-ci
-
-  checkout:
-    name: Read repos.json
-    needs: build
-    runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.setmatrix.outputs.content }}
-    steps:
-      - uses: taiki-e/checkout-action@v1
-      - id: setmatrix
-        uses: jaywcjlove/github-action-read-file@main
-        with:
-          localfile: ./matrix.json
+          name: monitor-oxc
+          path: ./target/release/monitor-oxc
 
   test:
-    needs: checkout
+    needs: build
     timeout-minutes: 30
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        include: ${{ fromJson(needs.checkout.outputs.matrix) }}
     name: ${{ matrix.repository }}
     steps:
-      - name: Clone ${{ matrix.repository }}
-        uses: actions/checkout@v4
-        with:
-          repository: ${{ matrix.repository }}
-          ref: ${{ matrix.ref }}
+      - name: Checkout Repository
+        uses: taiki-e/checkout-action@v1
 
-      - name: Download Transform Binary
+      - name: Download Binary
         uses: actions/download-artifact@v4
         with:
-          name: transform-ci
+          name: monitor-oxc
 
-      - name: chmod +x transform-ci
-        run: chmod +x ./transform-ci
-
-      - name: Transform
-        run: ./transform-ci ${{ matrix.transform_directories }}
+      - name: chmod +x monitor-oxc
+        run: chmod +x ./monitor-oxc
 
       - name: Install pnpm
         run: corepack enable
@@ -104,13 +81,17 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
+          node-version-file: .node-version
           cache: pnpm
 
       - name: Install packages
         run: pnpm install
 
-      - name: Check
-        run: ${{ matrix.command }}
+      - name: Run
+        run: ./monitor-oxc
+
+      - name: Test
+        run: pnpm run test
 
   compile-time:
     name: Compile Time
