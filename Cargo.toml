@@ -5,13 +5,18 @@ edition = "2021"
 publish = false
 
 [dependencies]
-oxc = { path = "../oxc/crates/oxc", features = ["transformer", "codegen"] }
+oxc = { path = "../oxc/crates/oxc", features = [
+  "transformer",
+  "codegen",
+] }
+similar = "2.5.0"
+console = "0.15.8"
 walkdir = "2.5.0"
 
 [profile.release]
-opt-level     = 3
-lto           = "fat"
+opt-level = 3
+lto = "fat"
 codegen-units = 1
-strip         = "symbols"
-debug         = false
-panic         = "abort"
+strip = "symbols"
+debug = false
+panic = "abort"
