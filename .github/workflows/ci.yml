@@ -64,7 +64,6 @@ jobs:
     needs: build
     timeout-minutes: 30
     runs-on: ubuntu-latest
-    name: ${{ matrix.repository }}
     steps:
       - name: Checkout Repository
         uses: taiki-e/checkout-action@v1
