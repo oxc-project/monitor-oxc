@@ -1,4 +1,4 @@
-use std::{fs, path::Path};
+use std::{fs, os::unix::process::CommandExt, path::Path, process::Command};
 
 use console::Style;
 use similar::{ChangeTag, TextDiff};
@@ -49,7 +49,13 @@ impl CodegenRunner {
 
     pub fn run(self) {
         self.run_impl(Self::run_codegen);
+        Self::run_runtime_test();
         self.run_impl(Self::run_transform);
+        Self::run_runtime_test();
+    }
+
+    pub fn run_runtime_test() {
+        Command::new("pnpm").arg("test").exec();
     }
 
     pub fn run_impl(&self, func: impl Fn(&CodegenRunner, &Path, SourceType)) {
