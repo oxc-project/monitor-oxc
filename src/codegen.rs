@@ -30,7 +30,9 @@ impl CodegenRunner {
     fn codegen(&self, path: &Path, source_text: &str, source_type: SourceType) -> String {
         let allocator = Allocator::default();
         let ParserReturn { program, errors, trivias, .. } =
-            Parser::new(&allocator, source_text, source_type).parse();
+            Parser::new(&allocator, source_text, source_type)
+                .allow_return_outside_function(true)
+                .parse();
         if !errors.is_empty() {
             for error in errors {
                 println!("{:?}", error.with_source_code(source_text.to_string()));
@@ -59,7 +61,10 @@ impl CodegenRunner {
     }
 
     pub fn run_impl(&self, func: impl Fn(&CodegenRunner, &Path, SourceType)) {
-        for entry in WalkDir::new("node_modules") {
+        for entry in WalkDir::new("node_modules")
+            .into_iter()
+            .filter_entry(|e| !(e.path().is_dir() && e.path().ends_with(".pnpm")))
+        {
             let dir_entry = entry.unwrap();
             let path = dir_entry.path();
             if !path.is_file() {
@@ -128,7 +133,9 @@ impl CodegenRunner {
         let allocator = Allocator::default();
 
         let ParserReturn { mut program, errors, trivias, .. } =
-            Parser::new(&allocator, source_text, source_type).parse();
+            Parser::new(&allocator, source_text, source_type)
+                .allow_return_outside_function(true)
+                .parse();
         if !errors.is_empty() {
             for error in errors {
                 println!("{:?}", error.with_source_code(source_text.to_string()));
