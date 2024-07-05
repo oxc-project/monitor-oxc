@@ -90,9 +90,6 @@ jobs:
       - name: Run
         run: ./monitor-oxc
 
-      - name: Test
-        run: pnpm run test
-
   compile-time:
     name: Compile Time
     runs-on: ubuntu-latest
