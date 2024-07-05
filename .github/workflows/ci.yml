@@ -24,7 +24,7 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     outputs:
-      size: ${{ steps.run.outputs.BINARY_SIZE }}
+      size: ${{ steps.size.outputs.BINARY_SIZE }}
     steps:
       - name: Checkout Repository
         uses: taiki-e/checkout-action@v1
@@ -47,6 +47,7 @@ jobs:
         run: cargo build --release
 
       - name: export BINARY_SIZE
+        id: size
         run: |
           BINARY_SIZE=$(ls -l ./target/release/monitor-oxc | awk '{print $5}')
           echo $BINARY_SIZE
