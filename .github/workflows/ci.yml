@@ -48,7 +48,7 @@ jobs:
 
       - name: export BINARY_SIZE
         run: |
-          BINARY_SIZE=$(ls -l ./target/release/monitor_oxc | awk '{print $5}')
+          BINARY_SIZE=$(ls -l ./target/release/monitor-oxc | awk '{print $5}')
           echo "BINARY_SIZE=$BINARY_SIZE" >> $GITHUB_OUTPUT
 
       - name: Upload Binary
