@@ -6,9 +6,13 @@
     "test": "node src/main.test.mjs"
   },
   "devDependencies": {
+    "@hono/hono": "npm:@jsr/hono__hono@4.5.0-rc.2",
     "@luca/cases": "npm:@jsr/luca__cases@^1.0.0",
+    "@types/node": "^20.14.9",
     "jsr": "^0.12.4",
-    "@hono/hono": "npm:@jsr/hono__hono@4.5.0-rc.2"
+    "jest-diff": "^29.7.0",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.3"
   },
   "packageManager": "pnpm@9.2.0"
 }

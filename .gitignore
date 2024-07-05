@@ -1,3 +1,5 @@
 /target
 /node_modules
 /repos
+**/isolated_declarations/*.ts
+!**/isolated_declarations/tsc.ts
