@@ -49,6 +49,7 @@ jobs:
       - name: export BINARY_SIZE
         run: |
           BINARY_SIZE=$(ls -l ./target/release/monitor-oxc | awk '{print $5}')
+          echo $BINARY_SIZE
           echo "BINARY_SIZE=$BINARY_SIZE" >> $GITHUB_OUTPUT
 
       - name: Upload Binary
@@ -59,6 +60,7 @@ jobs:
           path: ./target/release/monitor-oxc
 
   test:
+    name: Test
     needs: build
     timeout-minutes: 30
     runs-on: ubuntu-latest
