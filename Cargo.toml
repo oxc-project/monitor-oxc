@@ -7,6 +7,8 @@ publish = false
 [dependencies]
 oxc = { path = "../oxc/crates/oxc", features = ["transformer", "codegen"] }
 walkdir = "2.5.0"
+similar = "2.5.0"
+console = "0.15.8"
 
 [profile.release]
 opt-level     = 3
