@@ -9,7 +9,7 @@
     "@hono/hono": "npm:@jsr/hono__hono@4.5.0-rc.2",
     "@luca/cases": "npm:@jsr/luca__cases@^1.0.0",
     "@types/node": "^20.14.9",
-    "jsr": "^0.12.4",
+    "jsr": "^0.13.0",
     "jest-diff": "^29.7.0",
     "tsx": "^4.16.2",
     "typescript": "^5.5.3"
