@@ -21,8 +21,8 @@ importers:
         specifier: ^29.7.0
         version: 29.7.0
       jsr:
-        specifier: ^0.12.4
-        version: 0.12.4
+        specifier: ^0.13.0
+        version: 0.13.0
       tsx:
         specifier: ^4.16.2
         version: 4.16.2
@@ -234,8 +234,8 @@ packages:
     resolution: {integrity: sha512-zrteXnqYxfQh7l5FHyL38jL39di8H8rHoecLH3JNxH3BwOrBsNeabdap5e0I23lD4HHI8W5VFBZqG4Eaq5LNcw==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
 
-  jsr@0.12.4:
-    resolution: {integrity: sha512-ZWDvqQE8014fWz9QBrkiuvRQ8mH97PRD13VIDzoMXDem3ff2S+wfXw+YAvrZE0aKzxh9FuHJX0HQRQ2MUHshig==}
+  jsr@0.13.0:
+    resolution: {integrity: sha512-1Ndg3dpv+zXhg+yVd0n6QtAGsA4A8jkYl1/Do3w53+7mJg361n/ge7GpkNmT/zPxmQtUIxLIKdmHn0CfAkn+Hw==}
     hasBin: true
 
   kolorist@1.8.0:
@@ -424,7 +424,7 @@ snapshots:
 
   jest-get-type@29.6.3: {}
 
-  jsr@0.12.4:
+  jsr@0.13.0:
     dependencies:
       kolorist: 1.8.0
       node-stream-zip: 1.15.0
