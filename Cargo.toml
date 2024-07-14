@@ -5,7 +5,7 @@ edition = "2021"
 publish = false
 
 [[bin]]
-name = "monitor_oxc"
+name = "monitor-oxc"
 path = "src/main.rs"
 test = false
 doctest = false
