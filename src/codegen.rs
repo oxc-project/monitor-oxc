@@ -61,10 +61,8 @@ impl CodegenRunner {
     }
 
     pub fn run_impl(&self, func: impl Fn(&CodegenRunner, &Path, SourceType)) {
-        for entry in WalkDir::new("node_modules")
-            .into_iter()
-            .filter_entry(|e| !(e.path().is_dir() && e.path().ends_with(".pnpm")))
-        {
+        let mut count = 0;
+        for entry in WalkDir::new("node_modules/.pnpm").into_iter() {
             let dir_entry = entry.unwrap();
             let path = dir_entry.path();
             if !path.is_file() {
@@ -73,8 +71,10 @@ impl CodegenRunner {
             let Ok(source_type) = SourceType::from_path(path) else {
                 continue;
             };
-            func(self, path, source_type)
+            func(self, path, source_type);
+            count += 1;
         }
+        println!("Processed {count} files.")
     }
 
     pub fn run_codegen(&self, path: &Path, source_type: SourceType) {
