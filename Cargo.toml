@@ -4,6 +4,16 @@ version = "0.0.0"
 edition = "2021"
 publish = false
 
+[[bin]]
+name = "monitor_oxc"
+path = "src/main.rs"
+test = false
+doctest = false
+
+[lib]
+test = false
+doctest = false
+
 [dependencies]
 oxc = { path = "../oxc/crates/oxc", features = ["transformer", "isolated_declarations", "codegen"] }
 walkdir = "2.5.0"
@@ -14,7 +24,7 @@ ureq    = "2.9.7"
 
 [profile.release]
 opt-level     = 3
-lto           = "fat"
+lto           = "thin" # Faster compile time as extreme speed is not needed.
 codegen-units = 1
 strip         = "symbols"
 debug         = false
