@@ -30,7 +30,7 @@ impl CodegenRunner {
         if source_text.starts_with("// @flow") {
             return;
         }
-        let source_text2 = self.codegen(path, &source_text, *source_type);
+        let source_text2 = self.codegen(path, source_text, *source_type);
         // Idempotency test
         let source_text3 = self.codegen(path, &source_text2, *source_type);
 

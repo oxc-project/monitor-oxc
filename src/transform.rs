@@ -28,7 +28,7 @@ impl TransformRunner {
 
     fn test(&self, source: &Source) {
         let Source { path, source_type, source_text } = source;
-        let source_text2 = self.transform(path, &source_text, *source_type);
+        let source_text2 = self.transform(path, source_text, *source_type);
 
         // Idempotency test
         let source_text3 = self.transform(path, &source_text2, *source_type);
