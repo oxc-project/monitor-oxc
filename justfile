@@ -10,6 +10,7 @@ init:
 
 ready:
   cargo check
+  cargo clippy
   pnpm install
   cargo run
   pnpm run test

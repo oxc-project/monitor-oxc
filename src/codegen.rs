@@ -17,16 +17,16 @@ impl CodegenRunner {
     pub fn run(self, runner: &NodeModulesRunner) -> Result<()> {
         println!("Running Codegen");
         for source in &runner.files {
-            self.test(source)?;
+            Self::test(source)?;
         }
         NodeModulesRunner::run_runtime_test()
     }
 
-    fn test(&self, source: &Source) -> Result<()> {
+    fn test(source: &Source) -> Result<()> {
         let Source { path, source_type, source_text } = source;
-        let source_text2 = self.codegen(path, source_text, *source_type);
+        let source_text2 = Self::codegen(path, source_text, *source_type);
         // Idempotency test
-        let source_text3 = self.codegen(path, &source_text2, *source_type);
+        let source_text3 = Self::codegen(path, &source_text2, *source_type);
 
         if source_text2 != source_text3 {
             NodeModulesRunner::print_diff(&source_text2, &source_text3);
@@ -40,7 +40,7 @@ impl CodegenRunner {
         Ok(())
     }
 
-    fn codegen(&self, path: &Path, source_text: &str, source_type: SourceType) -> String {
+    fn codegen(path: &Path, source_text: &str, source_type: SourceType) -> String {
         let allocator = Allocator::default();
         let ParserReturn { program, errors, trivias, .. } =
             Parser::new(&allocator, source_text, source_type)

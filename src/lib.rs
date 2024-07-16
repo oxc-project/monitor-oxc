@@ -30,7 +30,7 @@ const PATH_IGNORES: &[&str] =
 impl NodeModulesRunner {
     pub fn new() -> Self {
         let mut files = vec![];
-        for entry in WalkDir::new("node_modules/.pnpm").into_iter() {
+        for entry in WalkDir::new("node_modules/.pnpm") {
             let dir_entry = entry.unwrap();
             let path = dir_entry.path();
             if !path.is_file() {
@@ -72,7 +72,7 @@ impl NodeModulesRunner {
                 ChangeTag::Insert => ("+", Style::new().green()),
                 ChangeTag::Equal => continue, // (" ", Style::new()),
             };
-            println!("{}{}", style.apply_to(sign).bold(), style.apply_to(change))
+            println!("{}{}", style.apply_to(sign).bold(), style.apply_to(change));
         }
     }
 }

@@ -18,17 +18,17 @@ impl ManglerRunner {
     pub fn run(self, runner: &NodeModulesRunner) -> Result<()> {
         println!("Running Mangler");
         for source in &runner.files {
-            self.test(source)?;
+            Self::test(source)?;
         }
         NodeModulesRunner::run_runtime_test()
     }
 
-    fn test(&self, source: &Source) -> Result<()> {
+    fn test(source: &Source) -> Result<()> {
         let Source { path, source_type, source_text } = source;
-        let source_text2 = self.mangle(path, source_text, *source_type);
+        let source_text2 = Self::mangle(path, source_text, *source_type);
 
         // Idempotency test
-        let source_text3 = self.mangle(path, &source_text2, *source_type);
+        let source_text3 = Self::mangle(path, &source_text2, *source_type);
         if source_text2 != source_text3 {
             NodeModulesRunner::print_diff(&source_text2, &source_text3);
             anyhow::bail!("Mangler idempotency test failed: {path:?}");
@@ -41,7 +41,7 @@ impl ManglerRunner {
         Ok(())
     }
 
-    fn mangle(&self, path: &Path, source_text: &str, source_type: SourceType) -> String {
+    fn mangle(path: &Path, source_text: &str, source_type: SourceType) -> String {
         let allocator = Allocator::default();
         let ParserReturn { program, errors, trivias, .. } =
             Parser::new(&allocator, source_text, source_type)

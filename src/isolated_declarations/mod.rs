@@ -17,13 +17,13 @@ pub fn current_dir() -> PathBuf {
 }
 
 pub fn test_isolated_declarations() {
-    FILES.iter().for_each(|url| {
+    for url in FILES {
         let (path, original) = get_source_text(url).expect("Failed to download file");
         write_file("input.ts", &original);
         let dts = transform(&path, &original);
         write_file("output.d.ts", &dts);
         compare_with_tsc();
-    })
+    }
 }
 
 fn compare_with_tsc() {
@@ -63,10 +63,10 @@ fn get_source_text(lib: &str) -> Result<(String, String), String> {
     let file = current_dir().join(filename);
 
     if let Ok(code) = std::fs::read_to_string(&file) {
-        println!("[{filename}] - using [{}]", filename);
+        println!("[{filename}] - using [{filename}]");
         Ok((filename.to_string(), code))
     } else {
-        println!("[{filename}] - Downloading [{lib}] to [{}]", filename);
+        println!("[{filename}] - Downloading [{lib}] to [{filename}]");
         match get(lib).call() {
             Ok(response) => {
                 let mut reader = response.into_reader();

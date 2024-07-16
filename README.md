@@ -9,7 +9,7 @@
 
 * Test against vue
 
-## Top 100 npm packages (goal is all 5000+ packages from [npm-rank](https://github.com/LeoDog896/npm-rank)
+## Top 100 npm packages (goal is all 5000+ packages from [npm-rank](https://github.com/LeoDog896/npm-rank))
 
 
 For all js / ts files in `node_modules`:
