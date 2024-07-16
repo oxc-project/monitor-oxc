@@ -2,10 +2,12 @@
 
 pub mod codegen;
 pub mod isolated_declarations;
+pub mod mangler;
 pub mod transform;
 
-use std::{fs, os::unix::process::CommandExt, path::PathBuf, process::Command};
+use std::{fs, path::PathBuf, process::Command};
 
+use anyhow::{Context, Result};
 use console::Style;
 use similar::{ChangeTag, TextDiff};
 use walkdir::WalkDir;
@@ -41,14 +43,25 @@ impl NodeModulesRunner {
                 continue;
             };
             let source_text = fs::read_to_string(path).unwrap();
+            if source_text.starts_with("// @flow") {
+                continue;
+            }
             files.push(Source { path: path.to_path_buf(), source_type, source_text });
         }
         println!("Collected {} files.", files.len());
         Self { files }
     }
 
-    pub fn run_runtime_test() {
-        Command::new("pnpm").arg("test").exec();
+    pub fn recover(self) {
+        for source in self.files {
+            fs::write(source.path, source.source_text).unwrap();
+        }
+    }
+
+    pub fn run_runtime_test() -> Result<()> {
+        println!("pnpm test");
+        Command::new("pnpm").arg("test").status().context("pnpm test failed")?;
+        Ok(())
     }
 
     pub fn print_diff(origin_string: &str, expected_string: &str) {

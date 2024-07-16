@@ -5,17 +5,18 @@ use anyhow::Result;
 use oxc::{
     allocator::Allocator,
     codegen::{CodeGenerator, CommentOptions},
+    mangler::ManglerBuilder,
     parser::{Parser, ParserReturn},
     span::SourceType,
 };
 
 use crate::{NodeModulesRunner, Source};
 
-pub struct CodegenRunner;
+pub struct ManglerRunner;
 
-impl CodegenRunner {
+impl ManglerRunner {
     pub fn run(self, runner: &NodeModulesRunner) -> Result<()> {
-        println!("Running Codegen");
+        println!("Running Mangler");
         for source in &runner.files {
             self.test(source)?;
         }
@@ -24,13 +25,13 @@ impl CodegenRunner {
 
     fn test(&self, source: &Source) -> Result<()> {
         let Source { path, source_type, source_text } = source;
-        let source_text2 = self.codegen(path, source_text, *source_type);
-        // Idempotency test
-        let source_text3 = self.codegen(path, &source_text2, *source_type);
+        let source_text2 = self.mangle(path, source_text, *source_type);
 
+        // Idempotency test
+        let source_text3 = self.mangle(path, &source_text2, *source_type);
         if source_text2 != source_text3 {
             NodeModulesRunner::print_diff(&source_text2, &source_text3);
-            anyhow::bail!("Codegen idempotency test failed: {path:?}");
+            anyhow::bail!("Mangler idempotency test failed: {path:?}");
         }
 
         // Write js files for runtime test
@@ -40,7 +41,7 @@ impl CodegenRunner {
         Ok(())
     }
 
-    fn codegen(&self, path: &Path, source_text: &str, source_type: SourceType) -> String {
+    fn mangle(&self, path: &Path, source_text: &str, source_type: SourceType) -> String {
         let allocator = Allocator::default();
         let ParserReturn { program, errors, trivias, .. } =
             Parser::new(&allocator, source_text, source_type)
@@ -52,12 +53,14 @@ impl CodegenRunner {
             }
             panic!("Expect no parse errors: {path:?}");
         }
+        let mangler = ManglerBuilder.build(&program);
         CodeGenerator::new()
             .enable_comment(
                 source_text,
                 trivias,
                 CommentOptions { preserve_annotate_comments: true },
             )
+            .with_mangler(Some(mangler))
             .build(&program)
             .source_text
     }

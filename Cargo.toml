@@ -15,12 +15,13 @@ test = false
 doctest = false
 
 [dependencies]
-oxc = { path = "../oxc/crates/oxc", features = ["transformer", "isolated_declarations", "codegen"] }
+oxc = { path = "../oxc/crates/oxc", features = ["transformer", "isolated_declarations", "codegen", "minifier"] }
 walkdir = "2.5.0"
 similar = "2.5.0"
 console = "0.15.8"
 url     = "2.5.2"
 ureq    = "2.9.7"
+anyhow  = "1"
 
 [profile.release]
 opt-level     = 3

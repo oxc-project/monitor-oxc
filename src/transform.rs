@@ -1,6 +1,6 @@
 use std::{fs, path::Path};
 
-use crate::{NodeModulesRunner, Source};
+use anyhow::Result;
 
 use oxc::{
     allocator::Allocator,
@@ -10,32 +10,29 @@ use oxc::{
     transformer::{TransformOptions, Transformer},
 };
 
-pub struct TransformRunner {
-    runner: NodeModulesRunner,
-}
+use crate::{NodeModulesRunner, Source};
+
+pub struct TransformRunner;
 
 impl TransformRunner {
-    pub fn new() -> Self {
-        Self { runner: NodeModulesRunner::new() }
-    }
-
-    pub fn run(self) {
-        for source in &self.runner.files {
-            self.test(source);
+    pub fn run(self, runner: &NodeModulesRunner) -> Result<()> {
+        println!("Running Codegen");
+        for source in &runner.files {
+            self.test(source)?;
         }
-        NodeModulesRunner::run_runtime_test();
+        NodeModulesRunner::run_runtime_test()
     }
 
-    fn test(&self, source: &Source) {
+    fn test(&self, source: &Source) -> Result<()> {
         let Source { path, source_type, source_text } = source;
-        let source_text2 = self.transform(path, source_text, *source_type);
+        let source_text2 = self.transform(path, source_text, *source_type)?;
 
         // Idempotency test
-        let source_text3 = self.transform(path, &source_text2, *source_type);
+        let source_text3 = self.transform(path, &source_text2, *source_type)?;
 
         if source_text2 != source_text3 {
             NodeModulesRunner::print_diff(&source_text2, &source_text3);
-            panic!("Transform idempotency test failed: {path:?}");
+            anyhow::bail!("Transform idempotency test failed: {path:?}");
         }
 
         // Write js files for runtime test
@@ -54,6 +51,7 @@ impl TransformRunner {
                 // Maybe .d.ts file
             }
         }
+        Ok(())
     }
 
     pub fn transform(
@@ -61,7 +59,7 @@ impl TransformRunner {
         source_path: &Path,
         source_text: &str,
         source_type: SourceType,
-    ) -> String {
+    ) -> Result<String> {
         let allocator = Allocator::default();
 
         let ParserReturn { mut program, errors, trivias, .. } =
@@ -72,7 +70,7 @@ impl TransformRunner {
             for error in errors {
                 println!("{:?}", error.with_source_code(source_text.to_string()));
             }
-            panic!("Expect no parse errors: {source_path:?}");
+            anyhow::bail!("Expect no parse errors: {source_path:?}");
         }
 
         Transformer::new(
@@ -94,6 +92,6 @@ impl TransformRunner {
             .build(&program)
             .source_text;
 
-        source.replace(".mts", "").replace(".cts", "").replace(".ts", "")
+        Ok(source)
     }
 }
