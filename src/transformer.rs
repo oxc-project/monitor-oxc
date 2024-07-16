@@ -16,7 +16,7 @@ pub struct TransformRunner;
 
 impl TransformRunner {
     pub fn run(self, runner: &NodeModulesRunner) -> Result<()> {
-        println!("Running Codegen");
+        println!("Running Transformer");
         for source in &runner.files {
             self.test(source)?;
         }
