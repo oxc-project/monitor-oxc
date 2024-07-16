@@ -65,32 +65,33 @@ jobs:
     needs: build
     timeout-minutes: 30
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - command: codegen
+          - command: transformer
+          - command: mangler
+          - command: id
     steps:
-      - name: Checkout Repository
-        uses: taiki-e/checkout-action@v1
+      - uses: taiki-e/checkout-action@v1
 
-      - name: Download Binary
-        uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v4
         with:
           name: monitor-oxc
 
-      - name: chmod +x monitor-oxc
-        run: chmod +x ./monitor-oxc
+      - run: chmod +x ./monitor-oxc
 
-      - name: Install pnpm
-        run: corepack enable
+      - run: corepack enable
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version-file: .node-version
           cache: pnpm
 
-      - name: Install packages
-        run: pnpm install
+      - run: pnpm install
 
-      - name: Run
-        run: ./monitor-oxc
+      - run: ./monitor-oxc ${{ matrix.command }}
 
   compile-time:
     name: Compile Time

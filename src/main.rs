@@ -17,7 +17,7 @@ fn main() -> Result<()> {
     let result = match task {
         "codegen" => CodegenRunner.run(&node_modules_runner),
         "transformer" => TransformRunner.run(&node_modules_runner),
-        "mangle" => ManglerRunner.run(&node_modules_runner),
+        "mangler" => ManglerRunner.run(&node_modules_runner),
         "id" => {
             test_isolated_declarations();
             Ok(())
