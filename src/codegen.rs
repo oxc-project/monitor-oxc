@@ -79,6 +79,9 @@ impl CodegenRunner {
 
     pub fn run_codegen(&self, path: &Path, source_type: SourceType) {
         let source_text = fs::read_to_string(path).unwrap();
+        if source_text.starts_with("// @flow") {
+            return;
+        }
         let source_text2 = self.codegen(path, &source_text, source_type);
         // Idempotency test
         let source_text3 = self.codegen(path, &source_text2, source_type);
