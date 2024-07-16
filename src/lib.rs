@@ -3,7 +3,7 @@
 pub mod codegen;
 pub mod isolated_declarations;
 pub mod mangler;
-pub mod transform;
+pub mod transformer;
 
 use std::{fs, path::PathBuf, process::Command};
 
