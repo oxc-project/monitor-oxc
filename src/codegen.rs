@@ -68,6 +68,9 @@ impl CodegenRunner {
             if !path.is_file() {
                 continue;
             }
+            if path.starts_with("node_modules/.pnpm/node-domexception@1.0.0/node_modules/node-domexception/.history") {
+                continue
+            }
             let Ok(source_type) = SourceType::from_path(path) else {
                 continue;
             };
