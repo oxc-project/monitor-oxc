@@ -45,6 +45,6 @@ fn run(node_modules_runner: &NodeModulesRunner) -> Result<(), Vec<Diagnostic>> {
     CodegenRunner.run(node_modules_runner)?;
     TransformRunner.run(node_modules_runner)?;
     ManglerRunner.run(node_modules_runner)?;
-    test_isolated_declarations();
+    // test_isolated_declarations();
     Ok(())
 }

@@ -42,21 +42,9 @@ impl TransformRunner {
         }
 
         // Write js files for runtime test
-        if source_type.is_javascript() {
-            let path = ["js", "mjs", "cjs"].iter().find_map(|ext| {
-                let new_path = path.with_extension(ext);
-                if new_path.is_file() {
-                    Some(new_path)
-                } else {
-                    None
-                }
-            });
-            if let Some(path) = path {
-                fs::write(path, source_text3).unwrap();
-            } else {
-                // Maybe .d.ts file
-            }
-        }
+        let new_extension = path.extension().unwrap().to_string_lossy().replace('t', "j");
+        let new_path = path.with_extension(new_extension);
+        fs::write(new_path, source_text3).unwrap();
         Ok(())
     }
 

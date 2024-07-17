@@ -47,6 +47,9 @@ impl NodeModulesRunner {
             let Ok(source_type) = SourceType::from_path(path) else {
                 continue;
             };
+            if source_type.is_typescript_definition() {
+                continue;
+            }
             let source_text = fs::read_to_string(path).unwrap();
             if source_text.starts_with("// @flow") {
                 continue;
