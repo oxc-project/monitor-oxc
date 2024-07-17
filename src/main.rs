@@ -27,9 +27,10 @@ fn main() -> ExitCode {
     };
 
     if let Err(diagnostics) = result {
-        for diagnostic in diagnostics {
+        for diagnostic in &diagnostics {
             println!("{}\n{:?}\n{}", diagnostic.case, diagnostic.path, diagnostic.message);
         }
+        println!("{} Failed.", diagnostics.len());
         node_modules_runner.recover();
         return ExitCode::FAILURE;
     }
