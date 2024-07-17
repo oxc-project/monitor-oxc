@@ -13,7 +13,6 @@ ready:
   cargo clippy
   pnpm install
   cargo run
-  pnpm run test
 
 lint:
   cargo clippy

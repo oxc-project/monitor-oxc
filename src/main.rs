@@ -1,12 +1,13 @@
-use anyhow::Result;
+use std::process::ExitCode;
+
 use pico_args::Arguments;
 
 use monitor_oxc::{
     codegen::CodegenRunner, isolated_declarations::test_isolated_declarations,
-    mangler::ManglerRunner, transformer::TransformRunner, NodeModulesRunner,
+    mangler::ManglerRunner, transformer::TransformRunner, Diagnostic, NodeModulesRunner,
 };
 
-fn main() -> Result<()> {
+fn main() -> ExitCode {
     let mut args = Arguments::from_env();
 
     let command = args.subcommand().expect("subcommand");
@@ -25,13 +26,18 @@ fn main() -> Result<()> {
         _ => run(&node_modules_runner),
     };
 
-    if result.is_err() {
+    if let Err(diagnostics) = result {
+        for diagnostic in diagnostics {
+            println!("{}\n{:?}\n{}", diagnostic.case, diagnostic.path, diagnostic.message);
+        }
         node_modules_runner.recover();
+        return ExitCode::FAILURE;
     }
-    result
+
+    ExitCode::SUCCESS
 }
 
-fn run(node_modules_runner: &NodeModulesRunner) -> Result<()> {
+fn run(node_modules_runner: &NodeModulesRunner) -> Result<(), Vec<Diagnostic>> {
     CodegenRunner.run(node_modules_runner)?;
     TransformRunner.run(node_modules_runner)?;
     ManglerRunner.run(node_modules_runner)?;

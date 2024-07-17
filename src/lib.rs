@@ -14,6 +14,12 @@ use walkdir::WalkDir;
 
 use oxc::span::SourceType;
 
+pub struct Diagnostic {
+    pub case: &'static str,
+    pub path: PathBuf,
+    pub message: String,
+}
+
 pub struct Source {
     pub path: PathBuf,
     pub source_type: SourceType,
@@ -64,15 +70,21 @@ impl NodeModulesRunner {
         Ok(())
     }
 
-    pub fn print_diff(origin_string: &str, expected_string: &str) {
+    pub fn print_diff(origin_string: &str, expected_string: &str) -> String {
         let diff = TextDiff::from_lines(expected_string, origin_string);
+        let mut output = String::new();
         for change in diff.iter_all_changes() {
             let (sign, style) = match change.tag() {
                 ChangeTag::Delete => ("-", Style::new().red()),
                 ChangeTag::Insert => ("+", Style::new().green()),
                 ChangeTag::Equal => continue, // (" ", Style::new()),
             };
-            println!("{}{}", style.apply_to(sign).bold(), style.apply_to(change));
+            output.push_str(&format!(
+                "{}{}\n",
+                style.apply_to(sign).bold(),
+                style.apply_to(change)
+            ));
         }
+        output
     }
 }
