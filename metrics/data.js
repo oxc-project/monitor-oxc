@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1721202045518,
+  "lastUpdate": 1721206867392,
   "repoUrl": "https://github.com/oxc-project/monitor-oxc",
   "entries": {
     "Oxc Metrics": [
@@ -1969,6 +1969,40 @@ window.BENCHMARK_DATA = {
           {
             "name": "Binary Size",
             "value": 3816072,
+            "unit": "Bytes"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "boshenc@gmail.com",
+            "name": "Boshen",
+            "username": "Boshen"
+          },
+          "committer": {
+            "email": "boshenc@gmail.com",
+            "name": "Boshen",
+            "username": "Boshen"
+          },
+          "distinct": true,
+          "id": "ca6b15ae5de6a2f3b2e61d42785090ecabdc23d4",
+          "message": "return proper error for pnpm test failure",
+          "timestamp": "2024-07-17T16:59:15+08:00",
+          "tree_id": "6bd78a60421bf9cd1953784cf4aa20609d7b100f",
+          "url": "https://github.com/oxc-project/monitor-oxc/commit/ca6b15ae5de6a2f3b2e61d42785090ecabdc23d4"
+        },
+        "date": 1721206867096,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Compile Time",
+            "value": 47.91,
+            "unit": "Seconds"
+          },
+          {
+            "name": "Binary Size",
+            "value": 3795592,
             "unit": "Bytes"
           }
         ]
