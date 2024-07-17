@@ -7,7 +7,6 @@ pub mod transformer;
 
 use std::{fs, path::PathBuf, process::Command};
 
-use anyhow::{Context, Result};
 use console::Style;
 use similar::{ChangeTag, TextDiff};
 use walkdir::WalkDir;
@@ -64,9 +63,15 @@ impl NodeModulesRunner {
         }
     }
 
-    pub fn run_runtime_test() -> Result<()> {
+    pub fn run_runtime_test() -> Result<(), Vec<Diagnostic>> {
         println!("pnpm test");
-        Command::new("pnpm").arg("test").status().context("pnpm test failed")?;
+        if let Err(err) = Command::new("pnpm").arg("test").status() {
+            return Err(vec![Diagnostic {
+                case: "pnpm test",
+                path: PathBuf::new(),
+                message: err.to_string(),
+            }]);
+        }
         Ok(())
     }
 

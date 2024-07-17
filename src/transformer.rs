@@ -1,7 +1,5 @@
 use std::{fs, path::Path};
 
-use anyhow::Result;
-
 use oxc::{
     allocator::Allocator,
     codegen::{CodeGenerator, CommentOptions},
@@ -25,7 +23,7 @@ impl TransformRunner {
         if !diagnostics.is_empty() {
             return Err(diagnostics);
         }
-        NodeModulesRunner::run_runtime_test().map_err(|_| vec![])
+        NodeModulesRunner::run_runtime_test()
     }
 
     fn test(source: &Source) -> Result<(), Diagnostic> {
