@@ -38,7 +38,7 @@ impl ManglerRunner {
             return Err(Diagnostic {
                 case: "Mangler idempotency",
                 path: path.clone(),
-                message: NodeModulesRunner::print_diff(&source_text2, &source_text3),
+                message: String::new(),
             });
         }
 
