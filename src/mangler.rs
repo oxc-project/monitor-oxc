@@ -36,7 +36,7 @@ impl ManglerRunner {
         let source_text3 = Self::mangle(path, &source_text2, *source_type)?;
         if source_text2 != source_text3 {
             return Err(Diagnostic {
-                case: "Codegen idempotency",
+                case: "Mangler idempotency",
                 path: path.clone(),
                 message: NodeModulesRunner::print_diff(&source_text2, &source_text3),
             });
@@ -66,7 +66,7 @@ impl ManglerRunner {
                 .collect::<Vec<_>>()
                 .join("\n");
             return Err(Diagnostic {
-                case: "Codegen Parse Error",
+                case: "Mangler Parse Error",
                 path: path.to_path_buf(),
                 message,
             });
