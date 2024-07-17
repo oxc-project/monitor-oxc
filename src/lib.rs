@@ -79,11 +79,7 @@ impl NodeModulesRunner {
                 ChangeTag::Insert => ("+", Style::new().green()),
                 ChangeTag::Equal => continue, // (" ", Style::new()),
             };
-            output.push_str(&format!(
-                "{}{}\n",
-                style.apply_to(sign).bold(),
-                style.apply_to(change)
-            ));
+            output.push_str(&format!("{}{}", style.apply_to(sign).bold(), style.apply_to(change)));
         }
         output
     }
