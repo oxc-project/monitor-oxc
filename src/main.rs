@@ -26,16 +26,19 @@ fn main() -> ExitCode {
         _ => run(&node_modules_runner),
     };
 
-    if let Err(diagnostics) = result {
+    let exit_code = if let Err(diagnostics) = result {
         for diagnostic in &diagnostics {
             println!("{}\n{:?}\n{}", diagnostic.case, diagnostic.path, diagnostic.message);
         }
         println!("{} Failed.", diagnostics.len());
-        node_modules_runner.recover();
-        return ExitCode::FAILURE;
-    }
+        ExitCode::FAILURE
+    } else {
+        ExitCode::SUCCESS
+    };
 
-    ExitCode::SUCCESS
+    node_modules_runner.recover();
+
+    exit_code
 }
 
 fn run(node_modules_runner: &NodeModulesRunner) -> Result<(), Vec<Diagnostic>> {
