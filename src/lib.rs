@@ -21,6 +21,7 @@ use oxc::span::SourceType;
 use case::Case;
 use driver::Driver;
 
+#[derive(Debug)]
 pub struct Diagnostic {
     pub case: &'static str,
     pub path: PathBuf,
@@ -86,7 +87,7 @@ impl NodeModulesRunner {
         Ok(())
     }
 
-    pub fn run_case(&self, case: &dyn Case) -> Result<(), Vec<Diagnostic>> {
+    fn run_case(&self, case: &dyn Case) -> Result<(), Vec<Diagnostic>> {
         println!("Running {}", case.name());
         let diagnostics = self
             .files
@@ -101,14 +102,24 @@ impl NodeModulesRunner {
 
     fn runtime_test() -> Result<(), Vec<Diagnostic>> {
         println!("pnpm test");
-        if let Err(err) = Command::new("pnpm").arg("test").status() {
-            return Err(vec![Diagnostic {
+        match Command::new("pnpm").arg("test").status() {
+            Ok(exit_status) => {
+                if exit_status.code().is_some_and(|code| code == 0) {
+                    Ok(())
+                } else {
+                    Err(vec![Diagnostic {
+                        case: "pnpm test",
+                        path: PathBuf::new(),
+                        message: "pnpm failed".to_string(),
+                    }])
+                }
+            }
+            Err(err) => Err(vec![Diagnostic {
                 case: "pnpm test",
                 path: PathBuf::new(),
                 message: err.to_string(),
-            }]);
+            }]),
         }
-        Ok(())
     }
 
     pub fn print_diff(origin_string: &str, expected_string: &str) -> String {
