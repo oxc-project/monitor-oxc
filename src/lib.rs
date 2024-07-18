@@ -1,19 +1,16 @@
 #![allow(clippy::new_without_default)]
 
-mod case;
 pub mod codegen;
 pub mod compressor;
-mod driver;
 pub mod isolated_declarations;
 pub mod mangler;
 pub mod remove_whitespace;
 pub mod transformer;
 
-use std::{
-    fs,
-    path::{Path, PathBuf},
-    process::Command,
-};
+mod case;
+mod driver;
+
+use std::{fs, path::PathBuf, process::Command};
 
 use console::Style;
 use similar::{ChangeTag, TextDiff};
@@ -21,8 +18,8 @@ use walkdir::WalkDir;
 
 use oxc::span::SourceType;
 
-pub use case::Case;
-pub use driver::Driver;
+use case::Case;
+use driver::Driver;
 
 pub struct Diagnostic {
     pub case: &'static str,
