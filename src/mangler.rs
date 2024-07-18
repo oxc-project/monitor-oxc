@@ -19,22 +19,10 @@ impl ManglerRunner {
     }
 
     fn test(source: &Source) -> Result<(), Diagnostic> {
-        let Source { path, source_type, source_text } = source;
-        let source_text2 = Self::mangle(path, source_text, *source_type)?;
-
-        // Idempotency test
-        let source_text3 = Self::mangle(path, &source_text2, *source_type)?;
-        if source_text2 != source_text3 {
-            return Err(Diagnostic {
-                case: "Mangler idempotency",
-                path: path.clone(),
-                message: String::new(),
-            });
-        }
-
+        let source_text = NodeModulesRunner::idempotency_test("mangler", source, Self::mangle)?;
         // Write js files for runtime test
-        if source_type.is_javascript() {
-            fs::write(path, source_text3).unwrap();
+        if source.source_type.is_javascript() {
+            fs::write(&source.path, source_text).unwrap();
         }
         Ok(())
     }

@@ -5,7 +5,11 @@ pub mod isolated_declarations;
 pub mod mangler;
 pub mod transformer;
 
-use std::{fs, path::PathBuf, process::Command};
+use std::{
+    fs,
+    path::{Path, PathBuf},
+    process::Command,
+};
 
 use console::Style;
 use similar::{ChangeTag, TextDiff};
@@ -91,6 +95,27 @@ impl NodeModulesRunner {
             }]);
         }
         Ok(())
+    }
+
+    pub fn idempotency_test<F>(
+        case: &'static str,
+        source: &Source,
+        f: F,
+    ) -> Result<String, Diagnostic>
+    where
+        F: Fn(&Path, &str, SourceType) -> Result<String, Diagnostic>,
+    {
+        let Source { path, source_type, source_text } = source;
+        let source_text2 = f(path, source_text, *source_type)?;
+        let source_text3 = f(path, &source_text2, *source_type)?;
+        if source_text2 != source_text3 {
+            return Err(Diagnostic {
+                case,
+                path: path.clone(),
+                message: NodeModulesRunner::print_diff(&source_text2, &source_text3),
+            });
+        }
+        Ok(source_text3)
     }
 
     pub fn print_diff(origin_string: &str, expected_string: &str) -> String {
