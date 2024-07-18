@@ -1,31 +1,21 @@
-use std::{fs, path::Path};
+use std::path::{Path, PathBuf};
 
 use oxc::span::SourceType;
 
-use crate::{Diagnostic, Driver, NodeModulesRunner, Source};
+use crate::{Case, Driver};
 
 pub struct RemoveWhitespaceRunner;
 
-impl RemoveWhitespaceRunner {
-    pub fn run(runner: &NodeModulesRunner) -> Result<(), Vec<Diagnostic>> {
-        println!("Running Remove Whitespace");
-        runner.run(Self::test)
+impl Case for RemoveWhitespaceRunner {
+    fn name(&self) -> &'static str {
+        "RemoveWhitespace"
     }
 
-    fn test(source: &Source) -> Result<(), Diagnostic> {
-        let source_text = NodeModulesRunner::idempotency_test("codegen", source, Self::codegen)?;
-        // Write js files for runtime test
-        if source.source_type.is_javascript() {
-            fs::write(&source.path, source_text).unwrap();
-        }
-        Ok(())
+    fn save_file(&self, path: &Path, source_type: SourceType) -> Option<PathBuf> {
+        source_type.is_javascript().then(|| path.to_path_buf())
     }
 
-    fn codegen(
-        source_path: &Path,
-        source_text: &str,
-        source_type: SourceType,
-    ) -> Result<String, Diagnostic> {
-        Driver::default().with_remove_whitespace().run(source_path, source_text, source_type)
+    fn driver(&self) -> Driver {
+        Driver::default().with_remove_whitespace()
     }
 }

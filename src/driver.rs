@@ -12,6 +12,7 @@ use oxc::{
 
 use crate::Diagnostic;
 
+#[allow(clippy::struct_excessive_bools)]
 #[derive(Default)]
 pub struct Driver {
     transform: bool,

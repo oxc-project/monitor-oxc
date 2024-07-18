@@ -1,5 +1,6 @@
 #![allow(clippy::new_without_default)]
 
+mod case;
 pub mod codegen;
 pub mod compressor;
 mod driver;
@@ -20,6 +21,7 @@ use walkdir::WalkDir;
 
 use oxc::span::SourceType;
 
+pub use case::Case;
 pub use driver::Driver;
 
 pub struct Diagnostic {
@@ -36,6 +38,7 @@ pub struct Source {
 
 pub struct NodeModulesRunner {
     pub files: Vec<Source>,
+    pub cases: Vec<Box<dyn Case>>,
 }
 
 const PATH_IGNORES: &[&str] =
@@ -66,7 +69,11 @@ impl NodeModulesRunner {
             files.push(Source { path: path.to_path_buf(), source_type, source_text });
         }
         println!("Collected {} files.", files.len());
-        Self { files }
+        Self { files, cases: vec![] }
+    }
+
+    pub fn add_case(&mut self, case: Box<dyn Case>) {
+        self.cases.push(case);
     }
 
     pub fn recover(self) {
@@ -75,14 +82,19 @@ impl NodeModulesRunner {
         }
     }
 
-    pub fn run<F>(&self, f: F) -> Result<(), Vec<Diagnostic>>
-    where
-        F: Fn(&Source) -> Result<(), Diagnostic>,
-    {
+    pub fn run_all(&self) -> Result<(), Vec<Diagnostic>> {
+        for case in &self.cases {
+            self.run_case(&**case)?;
+        }
+        Ok(())
+    }
+
+    pub fn run_case(&self, case: &dyn Case) -> Result<(), Vec<Diagnostic>> {
+        println!("Running {}", case.name());
         let diagnostics = self
             .files
             .iter()
-            .filter_map(|source| if let Err(d) = f(source) { Some(d) } else { None })
+            .filter_map(|source| if let Err(d) = case.test(source) { Some(d) } else { None })
             .collect::<Vec<_>>();
         if !diagnostics.is_empty() {
             return Err(diagnostics);
@@ -100,27 +112,6 @@ impl NodeModulesRunner {
             }]);
         }
         Ok(())
-    }
-
-    pub fn idempotency_test<F>(
-        case: &'static str,
-        source: &Source,
-        f: F,
-    ) -> Result<String, Diagnostic>
-    where
-        F: Fn(&Path, &str, SourceType) -> Result<String, Diagnostic>,
-    {
-        let Source { path, source_type, source_text } = source;
-        let source_text2 = f(path, source_text, *source_type)?;
-        let source_text3 = f(path, &source_text2, *source_type)?;
-        if source_text2 != source_text3 {
-            return Err(Diagnostic {
-                case,
-                path: path.clone(),
-                message: NodeModulesRunner::print_diff(&source_text2, &source_text3),
-            });
-        }
-        Ok(source_text3)
     }
 
     pub fn print_diff(origin_string: &str, expected_string: &str) -> String {
