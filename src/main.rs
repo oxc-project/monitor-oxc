@@ -28,12 +28,12 @@ fn main() -> ExitCode {
         node_modules_runner.add_case(Box::new(TransformerRunner));
     }
 
-    if matches!(task, "mangle" | "default") {
-        node_modules_runner.add_case(Box::new(RemoveWhitespaceRunner));
+    if matches!(task, "mangler" | "default") {
+        node_modules_runner.add_case(Box::new(ManglerRunner));
     }
 
     if matches!(task, "whitespace" | "default") {
-        node_modules_runner.add_case(Box::new(ManglerRunner));
+        node_modules_runner.add_case(Box::new(RemoveWhitespaceRunner));
     }
 
     if matches!(task, "id" | "default") {
