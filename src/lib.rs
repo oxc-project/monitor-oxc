@@ -1,6 +1,7 @@
 #![allow(clippy::new_without_default)]
 
 pub mod codegen;
+pub mod compressor;
 mod driver;
 pub mod isolated_declarations;
 pub mod mangler;

@@ -3,9 +3,10 @@ use std::process::ExitCode;
 use pico_args::Arguments;
 
 use monitor_oxc::{
-    codegen::CodegenRunner, isolated_declarations::test_isolated_declarations,
-    mangler::ManglerRunner, remove_whitespace::RemoveWhitespaceRunner,
-    transformer::TransformRunner, Diagnostic, NodeModulesRunner,
+    codegen::CodegenRunner, compressor::CompressorRunner,
+    isolated_declarations::test_isolated_declarations, mangler::ManglerRunner,
+    remove_whitespace::RemoveWhitespaceRunner, transformer::TransformRunner, Diagnostic,
+    NodeModulesRunner,
 };
 
 fn main() -> ExitCode {
@@ -21,6 +22,7 @@ fn main() -> ExitCode {
         "transformer" => TransformRunner::run(&node_modules_runner),
         "mangler" => ManglerRunner::run(&node_modules_runner),
         "whitespace" => RemoveWhitespaceRunner::run(&node_modules_runner),
+        "compress" => CompressorRunner::run(&node_modules_runner),
         "id" => {
             test_isolated_declarations();
             Ok(())
@@ -48,6 +50,7 @@ fn run(node_modules_runner: &NodeModulesRunner) -> Result<(), Vec<Diagnostic>> {
     TransformRunner::run(node_modules_runner)?;
     ManglerRunner::run(node_modules_runner)?;
     RemoveWhitespaceRunner::run(node_modules_runner)?;
+    CompressorRunner::run(node_modules_runner)?;
     // test_isolated_declarations();
     Ok(())
 }

@@ -4,6 +4,7 @@ use oxc::{
     allocator::Allocator,
     codegen::{CodeGenerator, CommentOptions, WhitespaceRemover},
     mangler::ManglerBuilder,
+    minifier::{CompressOptions, Compressor},
     parser::{Parser, ParserReturn},
     span::SourceType,
     transformer::{TransformOptions, Transformer},
@@ -14,6 +15,7 @@ use crate::Diagnostic;
 #[derive(Default)]
 pub struct Driver {
     transform: bool,
+    compress: bool,
     mangle: bool,
     remove_whitespace: bool,
 }
@@ -22,6 +24,12 @@ impl Driver {
     #[must_use]
     pub fn with_transform(mut self) -> Self {
         self.transform = true;
+        self
+    }
+
+    #[must_use]
+    pub fn with_compress(mut self) -> Self {
+        self.compress = true;
         self
     }
 
@@ -68,6 +76,10 @@ impl Driver {
                 TransformOptions::default(),
             )
             .build(&mut program);
+        }
+
+        if self.compress {
+            Compressor::new(&allocator, CompressOptions::default()).build(&mut program);
         }
 
         let mangler = self.mangle.then(|| ManglerBuilder::default().debug(true).build(&program));
