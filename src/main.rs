@@ -4,7 +4,8 @@ use pico_args::Arguments;
 
 use monitor_oxc::{
     codegen::CodegenRunner, isolated_declarations::test_isolated_declarations,
-    mangler::ManglerRunner, transformer::TransformRunner, Diagnostic, NodeModulesRunner,
+    mangler::ManglerRunner, remove_whitespace::RemoveWhitespaceRunner,
+    transformer::TransformRunner, Diagnostic, NodeModulesRunner,
 };
 
 fn main() -> ExitCode {
@@ -19,6 +20,7 @@ fn main() -> ExitCode {
         "codegen" => CodegenRunner::run(&node_modules_runner),
         "transformer" => TransformRunner::run(&node_modules_runner),
         "mangler" => ManglerRunner::run(&node_modules_runner),
+        "whitespace" => RemoveWhitespaceRunner::run(&node_modules_runner),
         "id" => {
             test_isolated_declarations();
             Ok(())
@@ -45,6 +47,7 @@ fn run(node_modules_runner: &NodeModulesRunner) -> Result<(), Vec<Diagnostic>> {
     CodegenRunner::run(node_modules_runner)?;
     TransformRunner::run(node_modules_runner)?;
     ManglerRunner::run(node_modules_runner)?;
+    RemoveWhitespaceRunner::run(node_modules_runner)?;
     // test_isolated_declarations();
     Ok(())
 }

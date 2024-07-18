@@ -2,7 +2,7 @@ use std::path::Path;
 
 use oxc::{
     allocator::Allocator,
-    codegen::{CodeGenerator, CommentOptions},
+    codegen::{CodeGenerator, CommentOptions, WhitespaceRemover},
     mangler::ManglerBuilder,
     parser::{Parser, ParserReturn},
     span::SourceType,
@@ -15,6 +15,7 @@ use crate::Diagnostic;
 pub struct Driver {
     transform: bool,
     mangle: bool,
+    remove_whitespace: bool,
 }
 
 impl Driver {
@@ -27,6 +28,12 @@ impl Driver {
     #[must_use]
     pub fn with_mangle(mut self) -> Self {
         self.transform = true;
+        self
+    }
+
+    #[must_use]
+    pub fn with_remove_whitespace(mut self) -> Self {
+        self.remove_whitespace = true;
         self
     }
 
@@ -65,15 +72,17 @@ impl Driver {
 
         let mangler = self.mangle.then(|| ManglerBuilder::default().debug(true).build(&program));
 
-        let source = CodeGenerator::new()
-            .enable_comment(
-                source_text,
-                trivias,
-                CommentOptions { preserve_annotate_comments: true },
-            )
-            .with_mangler(mangler)
-            .build(&program)
-            .source_text;
+        let comment_options = CommentOptions { preserve_annotate_comments: true };
+
+        let source = if self.remove_whitespace {
+            WhitespaceRemover::new().with_mangler(mangler).build(&program).source_text
+        } else {
+            CodeGenerator::new()
+                .enable_comment(source_text, trivias, comment_options)
+                .with_mangler(mangler)
+                .build(&program)
+                .source_text
+        };
 
         Ok(source)
     }

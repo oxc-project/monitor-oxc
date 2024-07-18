@@ -4,6 +4,7 @@ pub mod codegen;
 mod driver;
 pub mod isolated_declarations;
 pub mod mangler;
+pub mod remove_whitespace;
 pub mod transformer;
 
 use std::{
