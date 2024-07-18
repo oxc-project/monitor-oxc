@@ -1,13 +1,8 @@
 use std::{fs, path::Path};
 
-use oxc::{
-    allocator::Allocator,
-    codegen::{CodeGenerator, CommentOptions},
-    parser::{Parser, ParserReturn},
-    span::SourceType,
-};
+use oxc::span::SourceType;
 
-use crate::{Diagnostic, NodeModulesRunner, Source};
+use crate::{Diagnostic, Driver, NodeModulesRunner, Source};
 
 pub struct CodegenRunner;
 
@@ -27,34 +22,10 @@ impl CodegenRunner {
     }
 
     fn codegen(
-        path: &Path,
+        source_path: &Path,
         source_text: &str,
         source_type: SourceType,
     ) -> Result<String, Diagnostic> {
-        let allocator = Allocator::default();
-        let ParserReturn { program, errors, trivias, .. } =
-            Parser::new(&allocator, source_text, source_type)
-                .allow_return_outside_function(true)
-                .parse();
-        if !errors.is_empty() {
-            let message = errors
-                .into_iter()
-                .map(|e| e.with_source_code(source_text.to_string()).to_string())
-                .collect::<Vec<_>>()
-                .join("\n");
-            return Err(Diagnostic {
-                case: "Codegen Parse Error",
-                path: path.to_path_buf(),
-                message,
-            });
-        }
-        Ok(CodeGenerator::new()
-            .enable_comment(
-                source_text,
-                trivias,
-                CommentOptions { preserve_annotate_comments: true },
-            )
-            .build(&program)
-            .source_text)
+        Driver::default().run(source_path, source_text, source_type)
     }
 }

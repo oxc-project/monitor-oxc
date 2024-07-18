@@ -1,6 +1,7 @@
 #![allow(clippy::new_without_default)]
 
 pub mod codegen;
+mod driver;
 pub mod isolated_declarations;
 pub mod mangler;
 pub mod transformer;
@@ -16,6 +17,8 @@ use similar::{ChangeTag, TextDiff};
 use walkdir::WalkDir;
 
 use oxc::span::SourceType;
+
+pub use driver::Driver;
 
 pub struct Diagnostic {
     pub case: &'static str,
