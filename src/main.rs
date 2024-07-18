@@ -16,9 +16,9 @@ fn main() -> ExitCode {
     let node_modules_runner = NodeModulesRunner::new();
 
     let result = match task {
-        "codegen" => CodegenRunner.run(&node_modules_runner),
-        "transformer" => TransformRunner.run(&node_modules_runner),
-        "mangler" => ManglerRunner.run(&node_modules_runner),
+        "codegen" => CodegenRunner::run(&node_modules_runner),
+        "transformer" => TransformRunner::run(&node_modules_runner),
+        "mangler" => ManglerRunner::run(&node_modules_runner),
         "id" => {
             test_isolated_declarations();
             Ok(())
@@ -42,9 +42,9 @@ fn main() -> ExitCode {
 }
 
 fn run(node_modules_runner: &NodeModulesRunner) -> Result<(), Vec<Diagnostic>> {
-    CodegenRunner.run(node_modules_runner)?;
-    TransformRunner.run(node_modules_runner)?;
-    ManglerRunner.run(node_modules_runner)?;
+    CodegenRunner::run(node_modules_runner)?;
+    TransformRunner::run(node_modules_runner)?;
+    ManglerRunner::run(node_modules_runner)?;
     // test_isolated_declarations();
     Ok(())
 }

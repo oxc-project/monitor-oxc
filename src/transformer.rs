@@ -13,17 +13,9 @@ use crate::{Diagnostic, NodeModulesRunner, Source};
 pub struct TransformRunner;
 
 impl TransformRunner {
-    pub fn run(self, runner: &NodeModulesRunner) -> Result<(), Vec<Diagnostic>> {
+    pub fn run(runner: &NodeModulesRunner) -> Result<(), Vec<Diagnostic>> {
         println!("Running Transformer");
-        let diagnostics = runner
-            .files
-            .iter()
-            .filter_map(|source| if let Err(d) = Self::test(source) { Some(d) } else { None })
-            .collect::<Vec<_>>();
-        if !diagnostics.is_empty() {
-            return Err(diagnostics);
-        }
-        NodeModulesRunner::run_runtime_test()
+        runner.run(Self::test)
     }
 
     fn test(source: &Source) -> Result<(), Diagnostic> {

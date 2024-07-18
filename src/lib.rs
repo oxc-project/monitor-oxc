@@ -66,6 +66,21 @@ impl NodeModulesRunner {
         }
     }
 
+    pub fn run<F>(&self, f: F) -> Result<(), Vec<Diagnostic>>
+    where
+        F: Fn(&Source) -> Result<(), Diagnostic>,
+    {
+        let diagnostics = self
+            .files
+            .iter()
+            .filter_map(|source| if let Err(d) = f(source) { Some(d) } else { None })
+            .collect::<Vec<_>>();
+        if !diagnostics.is_empty() {
+            return Err(diagnostics);
+        }
+        Self::run_runtime_test()
+    }
+
     pub fn run_runtime_test() -> Result<(), Vec<Diagnostic>> {
         println!("pnpm test");
         if let Err(err) = Command::new("pnpm").arg("test").status() {
