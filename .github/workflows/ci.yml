@@ -70,8 +70,10 @@ jobs:
       matrix:
         include:
           - command: codegen
-          - command: transformer
-          - command: mangler
+          - command: compress
+          - command: transform
+          - command: mangle
+          - command: whitespace
           - command: id
     steps:
       - uses: taiki-e/checkout-action@v1
