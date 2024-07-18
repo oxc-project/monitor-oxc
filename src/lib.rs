@@ -78,10 +78,10 @@ impl NodeModulesRunner {
         if !diagnostics.is_empty() {
             return Err(diagnostics);
         }
-        Self::run_runtime_test()
+        Self::runtime_test()
     }
 
-    pub fn run_runtime_test() -> Result<(), Vec<Diagnostic>> {
+    fn runtime_test() -> Result<(), Vec<Diagnostic>> {
         println!("pnpm test");
         if let Err(err) = Command::new("pnpm").arg("test").status() {
             return Err(vec![Diagnostic {
