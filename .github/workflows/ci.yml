@@ -3,7 +3,7 @@ name: CI
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 */3 * * *" # Every 3 hours.
   pull_request:
     types: [opened, synchronize]
     paths-ignore:
@@ -13,6 +13,12 @@ on:
       - main
     paths-ignore:
       - '**/*.md'
+  workflow_dispatch:
+    inputs:
+      ref:
+        required: false
+        type: string
+        default: 'main'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
@@ -29,11 +35,11 @@ jobs:
       - name: Checkout Repository
         uses: taiki-e/checkout-action@v1
 
-      - name: Checkout oxc
+      - name: Checkout oxc (${{ inputs.ref }})
         uses: actions/checkout@v4
         with:
           repository: oxc-project/oxc
-          ref: main
+          ref: ${{ inputs.ref }}
           path: oxc
 
       - run: mv oxc ../oxc
