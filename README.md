@@ -36,3 +36,10 @@ For all js / ts files in `node_modules`:
 * mangle and override all js files
 * run `./src/main.test.mjs`
 
+
+## Developement
+
+```
+rm -rf node_modules && pnpm i
+cargo run --release
+```
