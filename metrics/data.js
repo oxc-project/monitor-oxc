@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1722007145816,
+  "lastUpdate": 1722018167124,
   "repoUrl": "https://github.com/oxc-project/monitor-oxc",
   "entries": {
     "Oxc Metrics": [
@@ -4128,6 +4128,38 @@ window.BENCHMARK_DATA = {
           {
             "name": "Compile Time",
             "value": 52.63,
+            "unit": "Seconds"
+          },
+          {
+            "name": "Binary Size",
+            "value": 4053640,
+            "unit": "Bytes"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "renovate[bot]",
+            "username": "renovate[bot]",
+            "email": "29139614+renovate[bot]@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "7ac93ec0156e97bad3675fe89774fc524b2ad776",
+          "message": "chore(deps): update dependency node to v20.16.0 (#18)",
+          "timestamp": "2024-07-25T07:50:26Z",
+          "url": "https://github.com/oxc-project/monitor-oxc/commit/7ac93ec0156e97bad3675fe89774fc524b2ad776"
+        },
+        "date": 1722018166725,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Compile Time",
+            "value": 50.67,
             "unit": "Seconds"
           },
           {
