@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1722429280292,
+  "lastUpdate": 1722439145104,
   "repoUrl": "https://github.com/oxc-project/monitor-oxc",
   "entries": {
     "Oxc Metrics": [
@@ -5476,6 +5476,38 @@ window.BENCHMARK_DATA = {
           {
             "name": "Compile Time",
             "value": 49.49,
+            "unit": "Seconds"
+          },
+          {
+            "name": "Binary Size",
+            "value": 4053640,
+            "unit": "Bytes"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "renovate[bot]",
+            "username": "renovate[bot]",
+            "email": "29139614+renovate[bot]@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "bd6350e5e72d5af92b7e566a0a99fd7fb7bbec48",
+          "message": "chore(deps): update dependency tsx to v4.16.3 (#19)",
+          "timestamp": "2024-07-31T09:22:31Z",
+          "url": "https://github.com/oxc-project/monitor-oxc/commit/bd6350e5e72d5af92b7e566a0a99fd7fb7bbec48"
+        },
+        "date": 1722439144472,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Compile Time",
+            "value": 49.94,
             "unit": "Seconds"
           },
           {
