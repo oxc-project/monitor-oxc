@@ -32,8 +32,7 @@ jobs:
     outputs:
       size: ${{ steps.size.outputs.BINARY_SIZE }}
     steps:
-      - name: Checkout Repository
-        uses: taiki-e/checkout-action@v1
+      - uses: taiki-e/checkout-action@v1
 
       - name: Checkout oxc (${{ inputs.ref }})
         uses: actions/checkout@v4
@@ -44,13 +43,13 @@ jobs:
 
       - run: mv oxc ../oxc
 
-      - name: Install Rust
-        uses: Boshen/setup-rust@main
+      - uses: Boshen/setup-rust@main
         with:
           save-cache: ${{ github.ref_name == 'main' }}
 
-      - name: Build
-        run: cargo build --release
+      - run: cargo build --release
+        env:
+          RUSTFLAGS: "-C debug-assertions=true"
 
       - name: export BINARY_SIZE
         id: size
