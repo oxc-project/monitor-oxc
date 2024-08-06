@@ -13,7 +13,7 @@ pub trait Case {
     fn save_file(&self, path: &Path, source_type: SourceType) -> Option<PathBuf>;
 
     fn test(&self, source: &Source) -> Result<(), Diagnostic> {
-        let source_text = self.idempotency_test("codegen", source)?;
+        let source_text = self.idempotency_test(source)?;
         // Write js files for runtime test
         if let Some(path) = self.save_file(&source.path, source.source_type) {
             fs::write(path, source_text).unwrap();
@@ -23,13 +23,13 @@ pub trait Case {
 
     fn driver(&self) -> Driver;
 
-    fn idempotency_test(&self, case: &'static str, source: &Source) -> Result<String, Diagnostic> {
+    fn idempotency_test(&self, source: &Source) -> Result<String, Diagnostic> {
         let Source { path, source_type, source_text } = source;
         let source_text2 = self.driver().run(path, source_text, *source_type)?;
         let source_text3 = self.driver().run(path, &source_text2, *source_type)?;
         if source_text2 != source_text3 {
             return Err(Diagnostic {
-                case,
+                case: self.name(),
                 path: path.clone(),
                 message: NodeModulesRunner::print_diff(&source_text2, &source_text3),
             });
