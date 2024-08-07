@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1723047059286,
+  "lastUpdate": 1723055060551,
   "repoUrl": "https://github.com/oxc-project/monitor-oxc",
   "entries": {
     "Oxc Metrics": [
@@ -7541,6 +7541,38 @@ window.BENCHMARK_DATA = {
           {
             "name": "Binary Size",
             "value": 4676304,
+            "unit": "Bytes"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Boshen",
+            "username": "Boshen",
+            "email": "boshenc@gmail.com"
+          },
+          "committer": {
+            "name": "Boshen",
+            "username": "Boshen",
+            "email": "boshenc@gmail.com"
+          },
+          "id": "5bd2790f694765be2aeda66c221c388103cc8f6c",
+          "message": "fix idempotency_test name",
+          "timestamp": "2024-08-06T06:33:10Z",
+          "url": "https://github.com/oxc-project/monitor-oxc/commit/5bd2790f694765be2aeda66c221c388103cc8f6c"
+        },
+        "date": 1723055059743,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Compile Time",
+            "value": 49.85,
+            "unit": "Seconds"
+          },
+          {
+            "name": "Binary Size",
+            "value": 4680400,
             "unit": "Bytes"
           }
         ]
