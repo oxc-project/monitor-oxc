@@ -6,10 +6,8 @@ use oxc::{
 };
 use ureq::get;
 
-const FILES: &[&str] = &[
-    "https://raw.githubusercontent.com/vuejs/core/refactor/isolated-decl/packages/runtime-core/src/renderer.ts",
-    "https://raw.githubusercontent.com/vuejs/core/refactor/isolated-decl/packages/runtime-core/src/hydration.ts"
-];
+const FILES: &[&str] =
+    &["https://raw.githubusercontent.com/oxc-project/benchmark-files/main/vue-id.ts"];
 
 pub fn current_dir() -> PathBuf {
     let dir = env::current_dir().unwrap();
