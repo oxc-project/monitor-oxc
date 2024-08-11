@@ -1,7 +1,7 @@
 {
   "name": "monitor-oxc",
   "private": true,
-  "packageManager": "pnpm@9.6.0",
+  "packageManager": "pnpm@9.7.0",
   "scripts": {
     "add": "jsr add -D",
     "test": "node src/main.test.mjs"
