@@ -43,3 +43,11 @@ For all js / ts files in `node_modules`:
 rm -rf node_modules && pnpm i
 cargo run --release
 ```
+
+### Add more npm packages
+
+```bash
+wget https://github.com/LeoDog896/npm-rank/releases/download/latest/raw.json
+node npm-rank.js
+# (and copy over the code)
+```
