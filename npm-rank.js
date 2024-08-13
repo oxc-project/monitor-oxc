@@ -1,32 +1,44 @@
-const raw = require('./raw.json');
-const unordered = {};
+const raw = require("./raw.json");
 
-raw.slice(0, 200).map((x) => {
-  unordered[x.name] = "latest"
+const SIZE = 1050;
+
+const ignoreList = [
+  // NO ESM export
+  "babel-runtime", "@babel/runtime", "type-fest", "undici-types", "@testing-library/jest-dom",
+  "assert", "@babel/compat-data", "csstype", "@jest/globals", "source-map-support",
+  "npm", "es-iterator-helpers", "spdx-exceptions", "spdx-license-ids", "yarn",
+  "language-subtag-registry",
+  // crashed vitest
+  "eslint-module-utils", "node-releases",
+  // flow
+  "ast-types-flow",
+];
+
+const data = raw
+  .slice(0, SIZE)
+  .map((data) => data.name)
+  .filter((key) => !key.startsWith("@types/"))
+  .filter((key) => !key.startsWith("@angular/"))
+  .filter((key) => !ignoreList.includes(key))
+  .sort();
+
+const packageJson = {};
+
+data.map((name) => {
+  packageJson[name] = "latest";
 });
 
+// console.log(JSON.stringify(packageJson, null, 2));
 
-const ordered = Object.keys(unordered).sort().reduce(
-  (obj, key) => {
-    obj[key] = unordered[key];
-    return obj;
-  },
-  {}
-);
+const map = new Map();
 
-// console.log(JSON.stringify(ordered, null, 2));
-
-const ignoreList = ["@babel/runtime", "type-fest", "undici-types", "@testing-library/jest-dom"];
-
-Object.keys(ordered)
-  .filter((key) => {
-    return !ignoreList.includes(key) && !key.startsWith("@types")
-  })
-  .forEach((key) => {
+data.forEach((key) => {
   const ns = key.replace(/^@/, "").replace(/\/|-|\./g, "_");
-  console.log(`
-import * as ${ns} from "${key}";
-test("${key}", () => {
-  assert.ok(${ns});
-});`)
-})
+  if (!map.get(ns)) {
+    map.set(ns, key);
+  }
+});
+
+map.forEach((key, ns) => {
+  console.log(`test("${key}", () => import("${key}").then(assert.ok));`);
+});

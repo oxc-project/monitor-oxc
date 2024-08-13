@@ -48,6 +48,6 @@ cargo run --release
 
 ```bash
 wget https://github.com/LeoDog896/npm-rank/releases/download/latest/raw.json
-node npm-rank.js
-# (and copy over the code)
+node npm-rank.js | pbcopy
+# (and paste the code over to package.json and main.test.mjs)
 ```

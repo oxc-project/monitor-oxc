@@ -1,958 +1,999 @@
 import test from "node:test"
 import assert from "node:assert"
 
-import { camelCase } from "@luca/cases"
-test("@luca/cases", () => {
-  assert.equal(camelCase("hello world"), "helloWorld")
-})
-
-import { Hono } from '@hono/hono'
-test("@hono/hono", async () => {
-  const app = new Hono()
-  app.get('/posts', (c) => c.text('Many posts'))
-  const res = await app.request('/posts')
-  assert.equal(res.status, 200)
-  assert.equal(await res.text(), 'Many posts')
-})
-
-// Start of npm packages
-
-import * as babel_core from "@babel/core";
-test("@babel/core", () => {
-  assert.ok(babel_core);
-});
-
-import * as babel_generator from "@babel/generator";
-test("@babel/generator", () => {
-  assert.ok(babel_generator);
-});
-
-import * as babel_parser from "@babel/parser";
-test("@babel/parser", () => {
-  assert.ok(babel_parser);
-});
-
-import * as babel_preset_env from "@babel/preset-env";
-test("@babel/preset-env", () => {
-  assert.ok(babel_preset_env);
-});
-
-import * as testing_library_user_event from "@testing-library/user-event";
-test("@testing-library/user-event", () => {
-  assert.ok(testing_library_user_event);
-});
-
-import * as acorn from "acorn";
-test("acorn", () => {
-  assert.ok(acorn);
-});
-
-import * as acorn_walk from "acorn-walk";
-test("acorn-walk", () => {
-  assert.ok(acorn_walk);
-});
-
-import * as ajv from "ajv";
-test("ajv", () => {
-  assert.ok(ajv);
-});
-
-import * as ansi_escapes from "ansi-escapes";
-test("ansi-escapes", () => {
-  assert.ok(ansi_escapes);
-});
-
-import * as ansi_regex from "ansi-regex";
-test("ansi-regex", () => {
-  assert.ok(ansi_regex);
-});
-
-import * as ansi_styles from "ansi-styles";
-test("ansi-styles", () => {
-  assert.ok(ansi_styles);
-});
-
-import * as arg from "arg";
-test("arg", () => {
-  assert.ok(arg);
-});
-
-import * as argparse from "argparse";
-test("argparse", () => {
-  assert.ok(argparse);
-});
-
-import * as async from "async";
-test("async", () => {
-  assert.ok(async);
-});
-
-import * as autoprefixer from "autoprefixer";
-test("autoprefixer", () => {
-  assert.ok(autoprefixer);
-});
-
-import * as axios from "axios";
-test("axios", () => {
-  assert.ok(axios);
-});
-
-import * as babel_jest from "babel-jest";
-test("babel-jest", () => {
-  assert.ok(babel_jest);
-});
-
-import * as balanced_match from "balanced-match";
-test("balanced-match", () => {
-  assert.ok(balanced_match);
-});
-
-import * as base64_js from "base64-js";
-test("base64-js", () => {
-  assert.ok(base64_js);
-});
-
-import * as brace_expansion from "brace-expansion";
-test("brace-expansion", () => {
-  assert.ok(brace_expansion);
-});
-
-import * as braces from "braces";
-test("braces", () => {
-  assert.ok(braces);
-});
-
-import * as browserslist from "browserslist";
-test("browserslist", () => {
-  assert.ok(browserslist);
-});
-
-import * as buffer from "buffer";
-test("buffer", () => {
-  assert.ok(buffer);
-});
-
-import * as call_bind from "call-bind";
-test("call-bind", () => {
-  assert.ok(call_bind);
-});
-
-import * as camelcase from "camelcase";
-test("camelcase", () => {
-  assert.ok(camelcase);
-});
-
-import * as caniuse_lite from "caniuse-lite";
-test("caniuse-lite", () => {
-  assert.ok(caniuse_lite);
-});
-
-import * as chalk from "chalk";
-test("chalk", () => {
-  assert.ok(chalk);
-});
-
-import * as chokidar from "chokidar";
-test("chokidar", () => {
-  assert.ok(chokidar);
-});
-
-import * as classnames from "classnames";
-test("classnames", () => {
-  assert.ok(classnames);
-});
-
-import * as cliui from "cliui";
-test("cliui", () => {
-  assert.ok(cliui);
-});
-
-import * as clone from "clone";
-test("clone", () => {
-  assert.ok(clone);
-});
-
-import * as clsx from "clsx";
-test("clsx", () => {
-  assert.ok(clsx);
-});
-
-import * as color_convert from "color-convert";
-test("color-convert", () => {
-  assert.ok(color_convert);
-});
-
-import * as color_name from "color-name";
-test("color-name", () => {
-  assert.ok(color_name);
-});
-
-import * as commander from "commander";
-test("commander", () => {
-  assert.ok(commander);
-});
-
-import * as concat_map from "concat-map";
-test("concat-map", () => {
-  assert.ok(concat_map);
-});
-
-import * as convert_source_map from "convert-source-map";
-test("convert-source-map", () => {
-  assert.ok(convert_source_map);
-});
-
-import * as cookie from "cookie";
-test("cookie", () => {
-  assert.ok(cookie);
-});
-
-import * as cors from "cors";
-test("cors", () => {
-  assert.ok(cors);
-});
-
-import * as cosmiconfig from "cosmiconfig";
-test("cosmiconfig", () => {
-  assert.ok(cosmiconfig);
-});
-
-import * as cross_spawn from "cross-spawn";
-test("cross-spawn", () => {
-  assert.ok(cross_spawn);
-});
-
-import * as date_fns from "date-fns";
-test("date-fns", () => {
-  assert.ok(date_fns);
-});
-
-import * as dayjs from "dayjs";
-test("dayjs", () => {
-  assert.ok(dayjs);
-});
-
-import * as debug from "debug";
-test("debug", () => {
-  assert.ok(debug);
-});
-
-import * as deepmerge from "deepmerge";
-test("deepmerge", () => {
-  assert.ok(deepmerge);
-});
-
-import * as diff from "diff";
-test("diff", () => {
-  assert.ok(diff);
-});
-
-import * as doctrine from "doctrine";
-test("doctrine", () => {
-  assert.ok(doctrine);
-});
-
-import * as dotenv from "dotenv";
-test("dotenv", () => {
-  assert.ok(dotenv);
-});
-
-import * as ejs from "ejs";
-test("ejs", () => {
-  assert.ok(ejs);
-});
-
-import * as emoji_regex from "emoji-regex";
-test("emoji-regex", () => {
-  assert.ok(emoji_regex);
-});
-
-import * as esbuild from "esbuild";
-test("esbuild", () => {
-  assert.ok(esbuild);
-});
-
-import * as escalade from "escalade";
-test("escalade", () => {
-  assert.ok(escalade);
-});
-
-import * as escape_string_regexp from "escape-string-regexp";
-test("escape-string-regexp", () => {
-  assert.ok(escape_string_regexp);
-});
-
-import * as eslint from "eslint";
-test("eslint", () => {
-  assert.ok(eslint);
-});
-
-import * as eslint_config_prettier from "eslint-config-prettier";
-test("eslint-config-prettier", () => {
-  assert.ok(eslint_config_prettier);
-});
-
-import * as eslint_plugin_import from "eslint-plugin-import";
-test("eslint-plugin-import", () => {
-  assert.ok(eslint_plugin_import);
-});
-
-import * as eslint_plugin_react from "eslint-plugin-react";
-test("eslint-plugin-react", () => {
-  assert.ok(eslint_plugin_react);
-});
-
-import * as eslint_plugin_react_hooks from "eslint-plugin-react-hooks";
-test("eslint-plugin-react-hooks", () => {
-  assert.ok(eslint_plugin_react_hooks);
-});
-
-import * as eslint_scope from "eslint-scope";
-test("eslint-scope", () => {
-  assert.ok(eslint_scope);
-});
-
-import * as eslint_visitor_keys from "eslint-visitor-keys";
-test("eslint-visitor-keys", () => {
-  assert.ok(eslint_visitor_keys);
-});
-
-import * as estraverse from "estraverse";
-test("estraverse", () => {
-  assert.ok(estraverse);
-});
-
-import * as eventemitter3 from "eventemitter3";
-test("eventemitter3", () => {
-  assert.ok(eventemitter3);
-});
-
-import * as events from "events";
-test("events", () => {
-  assert.ok(events);
-});
-
-import * as execa from "execa";
-test("execa", () => {
-  assert.ok(execa);
-});
-
-import * as express from "express";
-test("express", () => {
-  assert.ok(express);
-});
-
-import * as fast_deep_equal from "fast-deep-equal";
-test("fast-deep-equal", () => {
-  assert.ok(fast_deep_equal);
-});
-
-import * as fast_glob from "fast-glob";
-test("fast-glob", () => {
-  assert.ok(fast_glob);
-});
-
-import * as fill_range from "fill-range";
-test("fill-range", () => {
-  assert.ok(fill_range);
-});
-
-import * as find_up from "find-up";
-test("find-up", () => {
-  assert.ok(find_up);
-});
-
-import * as form_data from "form-data";
-test("form-data", () => {
-  assert.ok(form_data);
-});
-
-import * as fs_extra from "fs-extra";
-test("fs-extra", () => {
-  assert.ok(fs_extra);
-});
-
-import * as function_bind from "function-bind";
-test("function-bind", () => {
-  assert.ok(function_bind);
-});
-
-import * as get_stream from "get-stream";
-test("get-stream", () => {
-  assert.ok(get_stream);
-});
-
-import * as glob from "glob";
-test("glob", () => {
-  assert.ok(glob);
-});
-
-import * as glob_parent from "glob-parent";
-test("glob-parent", () => {
-  assert.ok(glob_parent);
-});
-
-import * as globals from "globals";
-test("globals", () => {
-  assert.ok(globals);
-});
-
-import * as globby from "globby";
-test("globby", () => {
-  assert.ok(globby);
-});
-
-import * as graceful_fs from "graceful-fs";
-test("graceful-fs", () => {
-  assert.ok(graceful_fs);
-});
-
-import * as handlebars from "handlebars";
-test("handlebars", () => {
-  assert.ok(handlebars);
-});
-
-import * as has_flag from "has-flag";
-test("has-flag", () => {
-  assert.ok(has_flag);
-});
-
-import * as hasown from "hasown";
-test("hasown", () => {
-  assert.ok(hasown);
-});
-
-import * as https_proxy_agent from "https-proxy-agent";
-test("https-proxy-agent", () => {
-  assert.ok(https_proxy_agent);
-});
-
-import * as human_signals from "human-signals";
-test("human-signals", () => {
-  assert.ok(human_signals);
-});
-
-import * as iconv_lite from "iconv-lite";
-test("iconv-lite", () => {
-  assert.ok(iconv_lite);
-});
-
-import * as ignore from "ignore";
-test("ignore", () => {
-  assert.ok(ignore);
-});
-
-import * as inherits from "inherits";
-test("inherits", () => {
-  assert.ok(inherits);
-});
-
-import * as ini from "ini";
-test("ini", () => {
-  assert.ok(ini);
-});
-
-import * as inquirer from "inquirer";
-test("inquirer", () => {
-  assert.ok(inquirer);
-});
-
-import * as is_extglob from "is-extglob";
-test("is-extglob", () => {
-  assert.ok(is_extglob);
-});
-
-import * as is_fullwidth_code_point from "is-fullwidth-code-point";
-test("is-fullwidth-code-point", () => {
-  assert.ok(is_fullwidth_code_point);
-});
-
-import * as is_glob from "is-glob";
-test("is-glob", () => {
-  assert.ok(is_glob);
-});
-
-import * as is_stream from "is-stream";
-test("is-stream", () => {
-  assert.ok(is_stream);
-});
-
-import * as isarray from "isarray";
-test("isarray", () => {
-  assert.ok(isarray);
-});
-
-import * as isexe from "isexe";
-test("isexe", () => {
-  assert.ok(isexe);
-});
-
-import * as jest from "jest";
-test("jest", () => {
-  assert.ok(jest);
-});
-
-import * as jquery from "jquery";
-test("jquery", () => {
-  assert.ok(jquery);
-});
-
-import * as js_tokens from "js-tokens";
-test("js-tokens", () => {
-  assert.ok(js_tokens);
-});
-
-import * as js_yaml from "js-yaml";
-test("js-yaml", () => {
-  assert.ok(js_yaml);
-});
-
-import * as jsesc from "jsesc";
-test("jsesc", () => {
-  assert.ok(jsesc);
-});
-
-import * as json_schema_traverse from "json-schema-traverse";
-test("json-schema-traverse", () => {
-  assert.ok(json_schema_traverse);
-});
-
-import * as json5 from "json5";
-test("json5", () => {
-  assert.ok(json5);
-});
-
-import * as jsonfile from "jsonfile";
-test("jsonfile", () => {
-  assert.ok(jsonfile);
-});
-
-import * as jsonwebtoken from "jsonwebtoken";
-test("jsonwebtoken", () => {
-  assert.ok(jsonwebtoken);
-});
-
-import * as locate_path from "locate-path";
-test("locate-path", () => {
-  assert.ok(locate_path);
-});
-
-import * as lodash from "lodash";
-test("lodash", () => {
-  assert.ok(lodash);
-});
-
-import * as lodash_merge from "lodash.merge";
-test("lodash.merge", () => {
-  assert.ok(lodash_merge);
-});
-
-import * as log_symbols from "log-symbols";
-test("log-symbols", () => {
-  assert.ok(log_symbols);
-});
-
-import * as lru_cache from "lru-cache";
-test("lru-cache", () => {
-  assert.ok(lru_cache);
-});
-
-import * as make_dir from "make-dir";
-test("make-dir", () => {
-  assert.ok(make_dir);
-});
-
-import * as micromatch from "micromatch";
-test("micromatch", () => {
-  assert.ok(micromatch);
-});
-
-import * as mime from "mime";
-test("mime", () => {
-  assert.ok(mime);
-});
-
-import * as mime_db from "mime-db";
-test("mime-db", () => {
-  assert.ok(mime_db);
-});
-
-import * as mime_types from "mime-types";
-test("mime-types", () => {
-  assert.ok(mime_types);
-});
-
-import * as minimatch from "minimatch";
-test("minimatch", () => {
-  assert.ok(minimatch);
-});
-
-import * as minimist from "minimist";
-test("minimist", () => {
-  assert.ok(minimist);
-});
-
-import * as minipass from "minipass";
-test("minipass", () => {
-  assert.ok(minipass);
-});
-
-import * as mkdirp from "mkdirp";
-test("mkdirp", () => {
-  assert.ok(mkdirp);
-});
-
-import * as moment from "moment";
-test("moment", () => {
-  assert.ok(moment);
-});
-
-import * as ms from "ms";
-test("ms", () => {
-  assert.ok(ms);
-});
-
-import * as nanoid from "nanoid";
-test("nanoid", () => {
-  assert.ok(nanoid);
-});
-
-import * as next from "next";
-test("next", () => {
-  assert.ok(next);
-});
-
-import * as node_fetch from "node-fetch";
-test("node-fetch", () => {
-  assert.ok(node_fetch);
-});
-
-import * as normalize_path from "normalize-path";
-test("normalize-path", () => {
-  assert.ok(normalize_path);
-});
-
-import * as object_assign from "object-assign";
-test("object-assign", () => {
-  assert.ok(object_assign);
-});
-
-import * as once from "once";
-test("once", () => {
-  assert.ok(once);
-});
-
-import * as onetime from "onetime";
-test("onetime", () => {
-  assert.ok(onetime);
-});
-
-import * as ora from "ora";
-test("ora", () => {
-  assert.ok(ora);
-});
-
-import * as p_limit from "p-limit";
-test("p-limit", () => {
-  assert.ok(p_limit);
-});
-
-import * as p_locate from "p-locate";
-test("p-locate", () => {
-  assert.ok(p_locate);
-});
-
-import * as path_exists from "path-exists";
-test("path-exists", () => {
-  assert.ok(path_exists);
-});
-
-import * as path_key from "path-key";
-test("path-key", () => {
-  assert.ok(path_key);
-});
-
-import * as path_to_regexp from "path-to-regexp";
-test("path-to-regexp", () => {
-  assert.ok(path_to_regexp);
-});
-
-import * as path_type from "path-type";
-test("path-type", () => {
-  assert.ok(path_type);
-});
-
-import * as picocolors from "picocolors";
-test("picocolors", () => {
-  assert.ok(picocolors);
-});
-
-import * as picomatch from "picomatch";
-test("picomatch", () => {
-  assert.ok(picomatch);
-});
-
-import * as pkg_dir from "pkg-dir";
-test("pkg-dir", () => {
-  assert.ok(pkg_dir);
-});
-
-import * as postcss from "postcss";
-test("postcss", () => {
-  assert.ok(postcss);
-});
-
-import * as prettier from "prettier";
-test("prettier", () => {
-  assert.ok(prettier);
-});
-
-import * as pretty_format from "pretty-format";
-test("pretty-format", () => {
-  assert.ok(pretty_format);
-});
-
-import * as prop_types from "prop-types";
-test("prop-types", () => {
-  assert.ok(prop_types);
-});
-
-import * as punycode from "punycode";
-test("punycode", () => {
-  assert.ok(punycode);
-});
-
-import * as qs from "qs";
-test("qs", () => {
-  assert.ok(qs);
-});
-
-import * as react from "react";
-test("react", () => {
-  assert.ok(react);
-});
-
-import * as react_dom from "react-dom";
-test("react-dom", () => {
-  assert.ok(react_dom);
-});
-
-import * as react_is from "react-is";
-test("react-is", () => {
-  assert.ok(react_is);
-});
-
-import * as readable_stream from "readable-stream";
-test("readable-stream", () => {
-  assert.ok(readable_stream);
-});
-
-import * as reflect_metadata from "reflect-metadata";
-test("reflect-metadata", () => {
-  assert.ok(reflect_metadata);
-});
-
-import * as regenerator_runtime from "regenerator-runtime";
-test("regenerator-runtime", () => {
-  assert.ok(regenerator_runtime);
-});
-
-import * as resolve from "resolve";
-test("resolve", () => {
-  assert.ok(resolve);
-});
-
-import * as resolve_from from "resolve-from";
-test("resolve-from", () => {
-  assert.ok(resolve_from);
-});
-
-import * as rimraf from "rimraf";
-test("rimraf", () => {
-  assert.ok(rimraf);
-});
-
-import * as rollup from "rollup";
-test("rollup", () => {
-  assert.ok(rollup);
-});
-
-import * as safe_buffer from "safe-buffer";
-test("safe-buffer", () => {
-  assert.ok(safe_buffer);
-});
-
-import * as scheduler from "scheduler";
-test("scheduler", () => {
-  assert.ok(scheduler);
-});
-
-import * as semver from "semver";
-test("semver", () => {
-  assert.ok(semver);
-});
-
-import * as shebang_command from "shebang-command";
-test("shebang-command", () => {
-  assert.ok(shebang_command);
-});
-
-import * as shebang_regex from "shebang-regex";
-test("shebang-regex", () => {
-  assert.ok(shebang_regex);
-});
-
-import * as signal_exit from "signal-exit";
-test("signal-exit", () => {
-  assert.ok(signal_exit);
-});
-
-import * as slash from "slash";
-test("slash", () => {
-  assert.ok(slash);
-});
-
-import * as source_map_support from "source-map-support";
-test("source-map-support", () => {
-  assert.ok(source_map_support);
-});
-
-import * as sprintf_js from "sprintf-js";
-test("sprintf-js", () => {
-  assert.ok(sprintf_js);
-});
-
-import * as string_width from "string-width";
-test("string-width", () => {
-  assert.ok(string_width);
-});
-
-import * as string_decoder from "string_decoder";
-test("string_decoder", () => {
-  assert.ok(string_decoder);
-});
-
-import * as strip_ansi from "strip-ansi";
-test("strip-ansi", () => {
-  assert.ok(strip_ansi);
-});
-
-import * as strip_bom from "strip-bom";
-test("strip-bom", () => {
-  assert.ok(strip_bom);
-});
-
-import * as strip_json_comments from "strip-json-comments";
-test("strip-json-comments", () => {
-  assert.ok(strip_json_comments);
-});
-
-import * as supports_color from "supports-color";
-test("supports-color", () => {
-  assert.ok(supports_color);
-});
-
-import * as through2 from "through2";
-test("through2", () => {
-  assert.ok(through2);
-});
-
-import * as tmp from "tmp";
-test("tmp", () => {
-  assert.ok(tmp);
-});
-
-import * as ts_node from "ts-node";
-test("ts-node", () => {
-  assert.ok(ts_node);
-});
-
-import * as tslib from "tslib";
-test("tslib", () => {
-  assert.ok(tslib);
-});
-
-import * as typescript from "typescript";
-test("typescript", () => {
-  assert.ok(typescript);
-});
-
-import * as universalify from "universalify";
-test("universalify", () => {
-  assert.ok(universalify);
-});
-
-import * as uuid from "uuid";
-test("uuid", () => {
-  assert.ok(uuid);
-});
-
-import * as vue from "vue";
-test("vue", () => {
-  assert.ok(vue);
-});
-
-import * as webpack from "webpack";
-test("webpack", () => {
-  assert.ok(webpack);
-});
-
-import * as whatwg_url from "whatwg-url";
-test("whatwg-url", () => {
-  assert.ok(whatwg_url);
-});
-
-import * as which from "which";
-test("which", () => {
-  assert.ok(which);
-});
-
-import * as wrap_ansi from "wrap-ansi";
-test("wrap-ansi", () => {
-  assert.ok(wrap_ansi);
-});
-
-import * as wrappy from "wrappy";
-test("wrappy", () => {
-  assert.ok(wrappy);
-});
-
-import * as ws from "ws";
-test("ws", () => {
-  assert.ok(ws);
-});
-
-import * as xml2js from "xml2js";
-test("xml2js", () => {
-  assert.ok(xml2js);
-});
-
-import * as yallist from "yallist";
-test("yallist", () => {
-  assert.ok(yallist);
-});
-
-import * as yaml from "yaml";
-test("yaml", () => {
-  assert.ok(yaml);
-});
-
-import * as yargs from "yargs";
-test("yargs", () => {
-  assert.ok(yargs);
-});
-
-import * as yargs_parser from "yargs-parser";
-test("yargs-parser", () => {
-  assert.ok(yargs_parser);
-});
-
-import * as yocto_queue from "yocto-queue";
-test("yocto-queue", () => {
-  assert.ok(yocto_queue);
-});
-
-import * as zod from "zod";
-test("zod", () => {
-  assert.ok(zod);
-});
+test("@ampproject/remapping", () => import("@ampproject/remapping").then(assert.ok));
+test("@angular-devkit/core", () => import("@angular-devkit/core").then(assert.ok));
+test("@aws-crypto/sha256-browser", () => import("@aws-crypto/sha256-browser").then(assert.ok));
+test("@aws-crypto/sha256-js", () => import("@aws-crypto/sha256-js").then(assert.ok));
+test("@aws-sdk/client-s3", () => import("@aws-sdk/client-s3").then(assert.ok));
+test("@aws-sdk/client-sso-oidc", () => import("@aws-sdk/client-sso-oidc").then(assert.ok));
+test("@aws-sdk/client-sts", () => import("@aws-sdk/client-sts").then(assert.ok));
+test("@aws-sdk/core", () => import("@aws-sdk/core").then(assert.ok));
+test("@aws-sdk/credential-provider-node", () => import("@aws-sdk/credential-provider-node").then(assert.ok));
+test("@aws-sdk/middleware-host-header", () => import("@aws-sdk/middleware-host-header").then(assert.ok));
+test("@aws-sdk/middleware-logger", () => import("@aws-sdk/middleware-logger").then(assert.ok));
+test("@aws-sdk/middleware-recursion-detection", () => import("@aws-sdk/middleware-recursion-detection").then(assert.ok));
+test("@aws-sdk/middleware-user-agent", () => import("@aws-sdk/middleware-user-agent").then(assert.ok));
+test("@aws-sdk/region-config-resolver", () => import("@aws-sdk/region-config-resolver").then(assert.ok));
+test("@aws-sdk/types", () => import("@aws-sdk/types").then(assert.ok));
+test("@aws-sdk/util-endpoints", () => import("@aws-sdk/util-endpoints").then(assert.ok));
+test("@aws-sdk/util-user-agent-browser", () => import("@aws-sdk/util-user-agent-browser").then(assert.ok));
+test("@aws-sdk/util-user-agent-node", () => import("@aws-sdk/util-user-agent-node").then(assert.ok));
+test("@azure/abort-controller", () => import("@azure/abort-controller").then(assert.ok));
+test("@babel/code-frame", () => import("@babel/code-frame").then(assert.ok));
+test("@babel/core", () => import("@babel/core").then(assert.ok));
+test("@babel/eslint-parser", () => import("@babel/eslint-parser").then(assert.ok));
+test("@babel/generator", () => import("@babel/generator").then(assert.ok));
+test("@babel/helper-annotate-as-pure", () => import("@babel/helper-annotate-as-pure").then(assert.ok));
+test("@babel/helper-compilation-targets", () => import("@babel/helper-compilation-targets").then(assert.ok));
+test("@babel/helper-function-name", () => import("@babel/helper-function-name").then(assert.ok));
+test("@babel/helper-module-imports", () => import("@babel/helper-module-imports").then(assert.ok));
+test("@babel/helper-module-transforms", () => import("@babel/helper-module-transforms").then(assert.ok));
+test("@babel/helper-plugin-utils", () => import("@babel/helper-plugin-utils").then(assert.ok));
+test("@babel/helper-simple-access", () => import("@babel/helper-simple-access").then(assert.ok));
+test("@babel/helper-split-export-declaration", () => import("@babel/helper-split-export-declaration").then(assert.ok));
+test("@babel/helper-string-parser", () => import("@babel/helper-string-parser").then(assert.ok));
+test("@babel/helper-validator-identifier", () => import("@babel/helper-validator-identifier").then(assert.ok));
+test("@babel/helper-validator-option", () => import("@babel/helper-validator-option").then(assert.ok));
+test("@babel/helpers", () => import("@babel/helpers").then(assert.ok));
+test("@babel/highlight", () => import("@babel/highlight").then(assert.ok));
+test("@babel/parser", () => import("@babel/parser").then(assert.ok));
+test("@babel/plugin-syntax-async-generators", () => import("@babel/plugin-syntax-async-generators").then(assert.ok));
+test("@babel/plugin-syntax-class-properties", () => import("@babel/plugin-syntax-class-properties").then(assert.ok));
+test("@babel/plugin-syntax-dynamic-import", () => import("@babel/plugin-syntax-dynamic-import").then(assert.ok));
+test("@babel/plugin-syntax-import-meta", () => import("@babel/plugin-syntax-import-meta").then(assert.ok));
+test("@babel/plugin-syntax-jsx", () => import("@babel/plugin-syntax-jsx").then(assert.ok));
+test("@babel/plugin-syntax-object-rest-spread", () => import("@babel/plugin-syntax-object-rest-spread").then(assert.ok));
+test("@babel/plugin-syntax-top-level-await", () => import("@babel/plugin-syntax-top-level-await").then(assert.ok));
+test("@babel/plugin-syntax-typescript", () => import("@babel/plugin-syntax-typescript").then(assert.ok));
+test("@babel/plugin-transform-arrow-functions", () => import("@babel/plugin-transform-arrow-functions").then(assert.ok));
+test("@babel/plugin-transform-async-to-generator", () => import("@babel/plugin-transform-async-to-generator").then(assert.ok));
+test("@babel/plugin-transform-classes", () => import("@babel/plugin-transform-classes").then(assert.ok));
+test("@babel/plugin-transform-destructuring", () => import("@babel/plugin-transform-destructuring").then(assert.ok));
+test("@babel/plugin-transform-member-expression-literals", () => import("@babel/plugin-transform-member-expression-literals").then(assert.ok));
+test("@babel/plugin-transform-modules-commonjs", () => import("@babel/plugin-transform-modules-commonjs").then(assert.ok));
+test("@babel/plugin-transform-parameters", () => import("@babel/plugin-transform-parameters").then(assert.ok));
+test("@babel/plugin-transform-property-literals", () => import("@babel/plugin-transform-property-literals").then(assert.ok));
+test("@babel/plugin-transform-regenerator", () => import("@babel/plugin-transform-regenerator").then(assert.ok));
+test("@babel/plugin-transform-runtime", () => import("@babel/plugin-transform-runtime").then(assert.ok));
+test("@babel/plugin-transform-spread", () => import("@babel/plugin-transform-spread").then(assert.ok));
+test("@babel/plugin-transform-template-literals", () => import("@babel/plugin-transform-template-literals").then(assert.ok));
+test("@babel/plugin-transform-typescript", () => import("@babel/plugin-transform-typescript").then(assert.ok));
+test("@babel/preset-env", () => import("@babel/preset-env").then(assert.ok));
+test("@babel/preset-react", () => import("@babel/preset-react").then(assert.ok));
+test("@babel/preset-typescript", () => import("@babel/preset-typescript").then(assert.ok));
+test("@babel/register", () => import("@babel/register").then(assert.ok));
+test("@babel/template", () => import("@babel/template").then(assert.ok));
+test("@babel/traverse", () => import("@babel/traverse").then(assert.ok));
+test("@babel/types", () => import("@babel/types").then(assert.ok));
+test("@colors/colors", () => import("@colors/colors").then(assert.ok));
+test("@emotion/react", () => import("@emotion/react").then(assert.ok));
+test("@emotion/styled", () => import("@emotion/styled").then(assert.ok));
+test("@eslint-community/eslint-utils", () => import("@eslint-community/eslint-utils").then(assert.ok));
+test("@eslint/eslintrc", () => import("@eslint/eslintrc").then(assert.ok));
+test("@eslint/js", () => import("@eslint/js").then(assert.ok));
+test("@floating-ui/dom", () => import("@floating-ui/dom").then(assert.ok));
+test("@graphql-tools/utils", () => import("@graphql-tools/utils").then(assert.ok));
+test("@grpc/grpc-js", () => import("@grpc/grpc-js").then(assert.ok));
+test("@grpc/proto-loader", () => import("@grpc/proto-loader").then(assert.ok));
+test("@jridgewell/gen-mapping", () => import("@jridgewell/gen-mapping").then(assert.ok));
+test("@jridgewell/resolve-uri", () => import("@jridgewell/resolve-uri").then(assert.ok));
+test("@jridgewell/sourcemap-codec", () => import("@jridgewell/sourcemap-codec").then(assert.ok));
+test("@jridgewell/trace-mapping", () => import("@jridgewell/trace-mapping").then(assert.ok));
+test("@mui/icons-material", () => import("@mui/icons-material").then(assert.ok));
+test("@mui/material", () => import("@mui/material").then(assert.ok));
+test("@nestjs/common", () => import("@nestjs/common").then(assert.ok));
+test("@nodelib/fs.scandir", () => import("@nodelib/fs.scandir").then(assert.ok));
+test("@nodelib/fs.stat", () => import("@nodelib/fs.stat").then(assert.ok));
+test("@nodelib/fs.walk", () => import("@nodelib/fs.walk").then(assert.ok));
+test("@opentelemetry/api", () => import("@opentelemetry/api").then(assert.ok));
+test("@opentelemetry/core", () => import("@opentelemetry/core").then(assert.ok));
+test("@opentelemetry/semantic-conventions", () => import("@opentelemetry/semantic-conventions").then(assert.ok));
+test("@popperjs/core", () => import("@popperjs/core").then(assert.ok));
+test("@radix-ui/react-slot", () => import("@radix-ui/react-slot").then(assert.ok));
+test("@rollup/plugin-node-resolve", () => import("@rollup/plugin-node-resolve").then(assert.ok));
+test("@rollup/pluginutils", () => import("@rollup/pluginutils").then(assert.ok));
+test("@sinclair/typebox", () => import("@sinclair/typebox").then(assert.ok));
+test("@sindresorhus/is", () => import("@sindresorhus/is").then(assert.ok));
+test("@smithy/config-resolver", () => import("@smithy/config-resolver").then(assert.ok));
+test("@smithy/core", () => import("@smithy/core").then(assert.ok));
+test("@smithy/fetch-http-handler", () => import("@smithy/fetch-http-handler").then(assert.ok));
+test("@smithy/hash-node", () => import("@smithy/hash-node").then(assert.ok));
+test("@smithy/invalid-dependency", () => import("@smithy/invalid-dependency").then(assert.ok));
+test("@smithy/middleware-content-length", () => import("@smithy/middleware-content-length").then(assert.ok));
+test("@smithy/middleware-endpoint", () => import("@smithy/middleware-endpoint").then(assert.ok));
+test("@smithy/middleware-retry", () => import("@smithy/middleware-retry").then(assert.ok));
+test("@smithy/middleware-serde", () => import("@smithy/middleware-serde").then(assert.ok));
+test("@smithy/middleware-stack", () => import("@smithy/middleware-stack").then(assert.ok));
+test("@smithy/node-config-provider", () => import("@smithy/node-config-provider").then(assert.ok));
+test("@smithy/node-http-handler", () => import("@smithy/node-http-handler").then(assert.ok));
+test("@smithy/protocol-http", () => import("@smithy/protocol-http").then(assert.ok));
+test("@smithy/smithy-client", () => import("@smithy/smithy-client").then(assert.ok));
+test("@smithy/types", () => import("@smithy/types").then(assert.ok));
+test("@smithy/url-parser", () => import("@smithy/url-parser").then(assert.ok));
+test("@smithy/util-base64", () => import("@smithy/util-base64").then(assert.ok));
+test("@smithy/util-body-length-browser", () => import("@smithy/util-body-length-browser").then(assert.ok));
+test("@smithy/util-body-length-node", () => import("@smithy/util-body-length-node").then(assert.ok));
+test("@smithy/util-defaults-mode-browser", () => import("@smithy/util-defaults-mode-browser").then(assert.ok));
+test("@smithy/util-defaults-mode-node", () => import("@smithy/util-defaults-mode-node").then(assert.ok));
+test("@smithy/util-endpoints", () => import("@smithy/util-endpoints").then(assert.ok));
+test("@smithy/util-middleware", () => import("@smithy/util-middleware").then(assert.ok));
+test("@smithy/util-retry", () => import("@smithy/util-retry").then(assert.ok));
+test("@smithy/util-utf8", () => import("@smithy/util-utf8").then(assert.ok));
+test("@swc/core", () => import("@swc/core").then(assert.ok));
+test("@swc/helpers", () => import("@swc/helpers").then(assert.ok));
+test("@testing-library/dom", () => import("@testing-library/dom").then(assert.ok));
+test("@testing-library/react", () => import("@testing-library/react").then(assert.ok));
+test("@testing-library/user-event", () => import("@testing-library/user-event").then(assert.ok));
+test("@typescript-eslint/eslint-plugin", () => import("@typescript-eslint/eslint-plugin").then(assert.ok));
+test("@typescript-eslint/parser", () => import("@typescript-eslint/parser").then(assert.ok));
+test("@typescript-eslint/scope-manager", () => import("@typescript-eslint/scope-manager").then(assert.ok));
+test("@typescript-eslint/type-utils", () => import("@typescript-eslint/type-utils").then(assert.ok));
+test("@typescript-eslint/types", () => import("@typescript-eslint/types").then(assert.ok));
+test("@typescript-eslint/typescript-estree", () => import("@typescript-eslint/typescript-estree").then(assert.ok));
+test("@typescript-eslint/utils", () => import("@typescript-eslint/utils").then(assert.ok));
+test("@typescript-eslint/visitor-keys", () => import("@typescript-eslint/visitor-keys").then(assert.ok));
+test("@ungap/structured-clone", () => import("@ungap/structured-clone").then(assert.ok));
+test("abbrev", () => import("abbrev").then(assert.ok));
+test("abort-controller", () => import("abort-controller").then(assert.ok));
+test("accepts", () => import("accepts").then(assert.ok));
+test("acorn", () => import("acorn").then(assert.ok));
+test("acorn-jsx", () => import("acorn-jsx").then(assert.ok));
+test("acorn-walk", () => import("acorn-walk").then(assert.ok));
+test("agent-base", () => import("agent-base").then(assert.ok));
+test("aggregate-error", () => import("aggregate-error").then(assert.ok));
+test("ajv", () => import("ajv").then(assert.ok));
+test("ajv-formats", () => import("ajv-formats").then(assert.ok));
+test("ajv-keywords", () => import("ajv-keywords").then(assert.ok));
+test("ansi-colors", () => import("ansi-colors").then(assert.ok));
+test("ansi-escapes", () => import("ansi-escapes").then(assert.ok));
+test("ansi-regex", () => import("ansi-regex").then(assert.ok));
+test("ansi-styles", () => import("ansi-styles").then(assert.ok));
+test("any-promise", () => import("any-promise").then(assert.ok));
+test("anymatch", () => import("anymatch").then(assert.ok));
+test("archiver", () => import("archiver").then(assert.ok));
+test("arg", () => import("arg").then(assert.ok));
+test("argparse", () => import("argparse").then(assert.ok));
+test("aria-query", () => import("aria-query").then(assert.ok));
+test("array-buffer-byte-length", () => import("array-buffer-byte-length").then(assert.ok));
+test("array-includes", () => import("array-includes").then(assert.ok));
+test("array-union", () => import("array-union").then(assert.ok));
+test("array.prototype.findlast", () => import("array.prototype.findlast").then(assert.ok));
+test("array.prototype.findlastindex", () => import("array.prototype.findlastindex").then(assert.ok));
+test("array.prototype.flat", () => import("array.prototype.flat").then(assert.ok));
+test("array.prototype.flatmap", () => import("array.prototype.flatmap").then(assert.ok));
+test("array.prototype.tosorted", () => import("array.prototype.tosorted").then(assert.ok));
+test("arraybuffer.prototype.slice", () => import("arraybuffer.prototype.slice").then(assert.ok));
+test("asap", () => import("asap").then(assert.ok));
+test("astral-regex", () => import("astral-regex").then(assert.ok));
+test("async", () => import("async").then(assert.ok));
+test("asynckit", () => import("asynckit").then(assert.ok));
+test("autoprefixer", () => import("autoprefixer").then(assert.ok));
+test("available-typed-arrays", () => import("available-typed-arrays").then(assert.ok));
+test("aws-sdk", () => import("aws-sdk").then(assert.ok));
+test("axe-core", () => import("axe-core").then(assert.ok));
+test("axios", () => import("axios").then(assert.ok));
+test("axobject-query", () => import("axobject-query").then(assert.ok));
+test("babel-jest", () => import("babel-jest").then(assert.ok));
+test("babel-loader", () => import("babel-loader").then(assert.ok));
+test("babel-plugin-istanbul", () => import("babel-plugin-istanbul").then(assert.ok));
+test("babel-plugin-jest-hoist", () => import("babel-plugin-jest-hoist").then(assert.ok));
+test("babel-plugin-polyfill-corejs2", () => import("babel-plugin-polyfill-corejs2").then(assert.ok));
+test("babel-plugin-polyfill-corejs3", () => import("babel-plugin-polyfill-corejs3").then(assert.ok));
+test("babel-plugin-polyfill-regenerator", () => import("babel-plugin-polyfill-regenerator").then(assert.ok));
+test("babel-preset-current-node-syntax", () => import("babel-preset-current-node-syntax").then(assert.ok));
+test("babel-preset-jest", () => import("babel-preset-jest").then(assert.ok));
+test("balanced-match", () => import("balanced-match").then(assert.ok));
+test("base64-js", () => import("base64-js").then(assert.ok));
+test("big.js", () => import("big.js").then(assert.ok));
+test("bignumber.js", () => import("bignumber.js").then(assert.ok));
+test("binary-extensions", () => import("binary-extensions").then(assert.ok));
+test("bl", () => import("bl").then(assert.ok));
+test("bluebird", () => import("bluebird").then(assert.ok));
+test("bn.js", () => import("bn.js").then(assert.ok));
+test("body-parser", () => import("body-parser").then(assert.ok));
+test("boolbase", () => import("boolbase").then(assert.ok));
+test("bowser", () => import("bowser").then(assert.ok));
+test("brace-expansion", () => import("brace-expansion").then(assert.ok));
+test("braces", () => import("braces").then(assert.ok));
+test("browserslist", () => import("browserslist").then(assert.ok));
+test("bser", () => import("bser").then(assert.ok));
+test("buffer", () => import("buffer").then(assert.ok));
+test("buffer-crc32", () => import("buffer-crc32").then(assert.ok));
+test("buffer-from", () => import("buffer-from").then(assert.ok));
+test("builtin-modules", () => import("builtin-modules").then(assert.ok));
+test("busboy", () => import("busboy").then(assert.ok));
+test("bytes", () => import("bytes").then(assert.ok));
+test("cac", () => import("cac").then(assert.ok));
+test("cacache", () => import("cacache").then(assert.ok));
+test("call-bind", () => import("call-bind").then(assert.ok));
+test("callsites", () => import("callsites").then(assert.ok));
+test("camelcase", () => import("camelcase").then(assert.ok));
+test("caniuse-lite", () => import("caniuse-lite").then(assert.ok));
+test("chai", () => import("chai").then(assert.ok));
+test("chalk", () => import("chalk").then(assert.ok));
+test("change-case", () => import("change-case").then(assert.ok));
+test("char-regex", () => import("char-regex").then(assert.ok));
+test("chardet", () => import("chardet").then(assert.ok));
+test("cheerio", () => import("cheerio").then(assert.ok));
+test("chokidar", () => import("chokidar").then(assert.ok));
+test("chownr", () => import("chownr").then(assert.ok));
+test("chrome-trace-event", () => import("chrome-trace-event").then(assert.ok));
+test("ci-info", () => import("ci-info").then(assert.ok));
+test("cjs-module-lexer", () => import("cjs-module-lexer").then(assert.ok));
+test("classnames", () => import("classnames").then(assert.ok));
+test("clean-stack", () => import("clean-stack").then(assert.ok));
+test("cli-cursor", () => import("cli-cursor").then(assert.ok));
+test("cli-spinners", () => import("cli-spinners").then(assert.ok));
+test("cli-table3", () => import("cli-table3").then(assert.ok));
+test("cli-width", () => import("cli-width").then(assert.ok));
+test("cliui", () => import("cliui").then(assert.ok));
+test("clone", () => import("clone").then(assert.ok));
+test("clone-deep", () => import("clone-deep").then(assert.ok));
+test("clsx", () => import("clsx").then(assert.ok));
+test("co", () => import("co").then(assert.ok));
+test("collect-v8-coverage", () => import("collect-v8-coverage").then(assert.ok));
+test("color", () => import("color").then(assert.ok));
+test("color-convert", () => import("color-convert").then(assert.ok));
+test("color-name", () => import("color-name").then(assert.ok));
+test("colorette", () => import("colorette").then(assert.ok));
+test("colors", () => import("colors").then(assert.ok));
+test("combined-stream", () => import("combined-stream").then(assert.ok));
+test("commander", () => import("commander").then(assert.ok));
+test("common-tags", () => import("common-tags").then(assert.ok));
+test("commondir", () => import("commondir").then(assert.ok));
+test("compression", () => import("compression").then(assert.ok));
+test("concat-map", () => import("concat-map").then(assert.ok));
+test("configstore", () => import("configstore").then(assert.ok));
+test("connect", () => import("connect").then(assert.ok));
+test("connect-history-api-fallback", () => import("connect-history-api-fallback").then(assert.ok));
+test("consola", () => import("consola").then(assert.ok));
+test("content-disposition", () => import("content-disposition").then(assert.ok));
+test("content-type", () => import("content-type").then(assert.ok));
+test("convert-source-map", () => import("convert-source-map").then(assert.ok));
+test("cookie", () => import("cookie").then(assert.ok));
+test("cookie-parser", () => import("cookie-parser").then(assert.ok));
+test("cookie-signature", () => import("cookie-signature").then(assert.ok));
+test("copy-webpack-plugin", () => import("copy-webpack-plugin").then(assert.ok));
+test("core-js", () => import("core-js").then(assert.ok));
+test("core-js-compat", () => import("core-js-compat").then(assert.ok));
+test("core-util-is", () => import("core-util-is").then(assert.ok));
+test("cors", () => import("cors").then(assert.ok));
+test("cosmiconfig", () => import("cosmiconfig").then(assert.ok));
+test("create-require", () => import("create-require").then(assert.ok));
+test("cross-env", () => import("cross-env").then(assert.ok));
+test("cross-fetch", () => import("cross-fetch").then(assert.ok));
+test("cross-spawn", () => import("cross-spawn").then(assert.ok));
+test("crypto-js", () => import("crypto-js").then(assert.ok));
+test("crypto-random-string", () => import("crypto-random-string").then(assert.ok));
+test("css-loader", () => import("css-loader").then(assert.ok));
+test("css-select", () => import("css-select").then(assert.ok));
+test("css-tree", () => import("css-tree").then(assert.ok));
+test("css-what", () => import("css-what").then(assert.ok));
+test("cssesc", () => import("cssesc").then(assert.ok));
+test("cssnano", () => import("cssnano").then(assert.ok));
+test("csso", () => import("csso").then(assert.ok));
+test("cssstyle", () => import("cssstyle").then(assert.ok));
+test("d3", () => import("d3").then(assert.ok));
+test("d3-array", () => import("d3-array").then(assert.ok));
+test("d3-scale", () => import("d3-scale").then(assert.ok));
+test("d3-shape", () => import("d3-shape").then(assert.ok));
+test("data-uri-to-buffer", () => import("data-uri-to-buffer").then(assert.ok));
+test("data-urls", () => import("data-urls").then(assert.ok));
+test("data-view-buffer", () => import("data-view-buffer").then(assert.ok));
+test("data-view-byte-length", () => import("data-view-byte-length").then(assert.ok));
+test("data-view-byte-offset", () => import("data-view-byte-offset").then(assert.ok));
+test("date-fns", () => import("date-fns").then(assert.ok));
+test("dateformat", () => import("dateformat").then(assert.ok));
+test("dayjs", () => import("dayjs").then(assert.ok));
+test("debounce", () => import("debounce").then(assert.ok));
+test("debug", () => import("debug").then(assert.ok));
+test("decamelize", () => import("decamelize").then(assert.ok));
+test("decimal.js", () => import("decimal.js").then(assert.ok));
+test("decompress-response", () => import("decompress-response").then(assert.ok));
+test("dedent", () => import("dedent").then(assert.ok));
+test("deep-eql", () => import("deep-eql").then(assert.ok));
+test("deep-equal", () => import("deep-equal").then(assert.ok));
+test("deep-extend", () => import("deep-extend").then(assert.ok));
+test("deep-is", () => import("deep-is").then(assert.ok));
+test("deepmerge", () => import("deepmerge").then(assert.ok));
+test("defaults", () => import("defaults").then(assert.ok));
+test("define-data-property", () => import("define-data-property").then(assert.ok));
+test("define-lazy-prop", () => import("define-lazy-prop").then(assert.ok));
+test("define-properties", () => import("define-properties").then(assert.ok));
+test("del", () => import("del").then(assert.ok));
+test("delayed-stream", () => import("delayed-stream").then(assert.ok));
+test("depd", () => import("depd").then(assert.ok));
+test("dequal", () => import("dequal").then(assert.ok));
+test("detect-indent", () => import("detect-indent").then(assert.ok));
+test("detect-libc", () => import("detect-libc").then(assert.ok));
+test("detect-newline", () => import("detect-newline").then(assert.ok));
+test("diff", () => import("diff").then(assert.ok));
+test("diff-sequences", () => import("diff-sequences").then(assert.ok));
+test("dir-glob", () => import("dir-glob").then(assert.ok));
+test("doctrine", () => import("doctrine").then(assert.ok));
+test("dom-accessibility-api", () => import("dom-accessibility-api").then(assert.ok));
+test("dom-serializer", () => import("dom-serializer").then(assert.ok));
+test("domelementtype", () => import("domelementtype").then(assert.ok));
+test("domhandler", () => import("domhandler").then(assert.ok));
+test("dompurify", () => import("dompurify").then(assert.ok));
+test("domutils", () => import("domutils").then(assert.ok));
+test("dot-prop", () => import("dot-prop").then(assert.ok));
+test("dotenv", () => import("dotenv").then(assert.ok));
+test("dotenv-expand", () => import("dotenv-expand").then(assert.ok));
+test("duplexer", () => import("duplexer").then(assert.ok));
+test("duplexify", () => import("duplexify").then(assert.ok));
+test("eastasianwidth", () => import("eastasianwidth").then(assert.ok));
+test("ee-first", () => import("ee-first").then(assert.ok));
+test("ejs", () => import("ejs").then(assert.ok));
+test("electron-to-chromium", () => import("electron-to-chromium").then(assert.ok));
+test("elliptic", () => import("elliptic").then(assert.ok));
+test("emittery", () => import("emittery").then(assert.ok));
+test("emoji-regex", () => import("emoji-regex").then(assert.ok));
+test("encodeurl", () => import("encodeurl").then(assert.ok));
+test("encoding", () => import("encoding").then(assert.ok));
+test("end-of-stream", () => import("end-of-stream").then(assert.ok));
+test("enhanced-resolve", () => import("enhanced-resolve").then(assert.ok));
+test("enquirer", () => import("enquirer").then(assert.ok));
+test("entities", () => import("entities").then(assert.ok));
+test("env-paths", () => import("env-paths").then(assert.ok));
+test("envinfo", () => import("envinfo").then(assert.ok));
+test("error-ex", () => import("error-ex").then(assert.ok));
+test("error-stack-parser", () => import("error-stack-parser").then(assert.ok));
+test("es-abstract", () => import("es-abstract").then(assert.ok));
+test("es-define-property", () => import("es-define-property").then(assert.ok));
+test("es-errors", () => import("es-errors").then(assert.ok));
+test("es-get-iterator", () => import("es-get-iterator").then(assert.ok));
+test("es-module-lexer", () => import("es-module-lexer").then(assert.ok));
+test("es-object-atoms", () => import("es-object-atoms").then(assert.ok));
+test("es-set-tostringtag", () => import("es-set-tostringtag").then(assert.ok));
+test("es-shim-unscopables", () => import("es-shim-unscopables").then(assert.ok));
+test("es-to-primitive", () => import("es-to-primitive").then(assert.ok));
+test("es6-promise", () => import("es6-promise").then(assert.ok));
+test("esbuild", () => import("esbuild").then(assert.ok));
+test("escalade", () => import("escalade").then(assert.ok));
+test("escape-html", () => import("escape-html").then(assert.ok));
+test("escape-string-regexp", () => import("escape-string-regexp").then(assert.ok));
+test("eslint", () => import("eslint").then(assert.ok));
+test("eslint-config-airbnb-base", () => import("eslint-config-airbnb-base").then(assert.ok));
+test("eslint-config-prettier", () => import("eslint-config-prettier").then(assert.ok));
+test("eslint-import-resolver-node", () => import("eslint-import-resolver-node").then(assert.ok));
+test("eslint-import-resolver-typescript", () => import("eslint-import-resolver-typescript").then(assert.ok));
+test("eslint-plugin-import", () => import("eslint-plugin-import").then(assert.ok));
+test("eslint-plugin-jest", () => import("eslint-plugin-jest").then(assert.ok));
+test("eslint-plugin-jsx-a11y", () => import("eslint-plugin-jsx-a11y").then(assert.ok));
+test("eslint-plugin-prettier", () => import("eslint-plugin-prettier").then(assert.ok));
+test("eslint-plugin-promise", () => import("eslint-plugin-promise").then(assert.ok));
+test("eslint-plugin-react", () => import("eslint-plugin-react").then(assert.ok));
+test("eslint-plugin-react-hooks", () => import("eslint-plugin-react-hooks").then(assert.ok));
+test("eslint-scope", () => import("eslint-scope").then(assert.ok));
+test("eslint-visitor-keys", () => import("eslint-visitor-keys").then(assert.ok));
+test("espree", () => import("espree").then(assert.ok));
+test("esprima", () => import("esprima").then(assert.ok));
+test("esquery", () => import("esquery").then(assert.ok));
+test("esrecurse", () => import("esrecurse").then(assert.ok));
+test("estraverse", () => import("estraverse").then(assert.ok));
+test("estree-walker", () => import("estree-walker").then(assert.ok));
+test("esutils", () => import("esutils").then(assert.ok));
+test("etag", () => import("etag").then(assert.ok));
+test("event-target-shim", () => import("event-target-shim").then(assert.ok));
+test("eventemitter3", () => import("eventemitter3").then(assert.ok));
+test("events", () => import("events").then(assert.ok));
+test("execa", () => import("execa").then(assert.ok));
+test("exit", () => import("exit").then(assert.ok));
+test("expect", () => import("expect").then(assert.ok));
+test("express", () => import("express").then(assert.ok));
+test("extend", () => import("extend").then(assert.ok));
+test("external-editor", () => import("external-editor").then(assert.ok));
+test("fast-deep-equal", () => import("fast-deep-equal").then(assert.ok));
+test("fast-diff", () => import("fast-diff").then(assert.ok));
+test("fast-glob", () => import("fast-glob").then(assert.ok));
+test("fast-json-stable-stringify", () => import("fast-json-stable-stringify").then(assert.ok));
+test("fast-levenshtein", () => import("fast-levenshtein").then(assert.ok));
+test("fast-xml-parser", () => import("fast-xml-parser").then(assert.ok));
+test("fastq", () => import("fastq").then(assert.ok));
+test("faye-websocket", () => import("faye-websocket").then(assert.ok));
+test("fb-watchman", () => import("fb-watchman").then(assert.ok));
+test("figures", () => import("figures").then(assert.ok));
+test("file-entry-cache", () => import("file-entry-cache").then(assert.ok));
+test("file-loader", () => import("file-loader").then(assert.ok));
+test("file-type", () => import("file-type").then(assert.ok));
+test("filesize", () => import("filesize").then(assert.ok));
+test("fill-range", () => import("fill-range").then(assert.ok));
+test("finalhandler", () => import("finalhandler").then(assert.ok));
+test("find-cache-dir", () => import("find-cache-dir").then(assert.ok));
+test("find-up", () => import("find-up").then(assert.ok));
+test("flat", () => import("flat").then(assert.ok));
+test("flat-cache", () => import("flat-cache").then(assert.ok));
+test("flatted", () => import("flatted").then(assert.ok));
+test("follow-redirects", () => import("follow-redirects").then(assert.ok));
+test("for-each", () => import("for-each").then(assert.ok));
+test("foreground-child", () => import("foreground-child").then(assert.ok));
+test("form-data", () => import("form-data").then(assert.ok));
+test("formidable", () => import("formidable").then(assert.ok));
+test("forwarded", () => import("forwarded").then(assert.ok));
+test("fraction.js", () => import("fraction.js").then(assert.ok));
+test("framer-motion", () => import("framer-motion").then(assert.ok));
+test("fresh", () => import("fresh").then(assert.ok));
+test("fs-extra", () => import("fs-extra").then(assert.ok));
+test("fs-minipass", () => import("fs-minipass").then(assert.ok));
+test("fs.realpath", () => import("fs.realpath").then(assert.ok));
+test("fsevents", () => import("fsevents").then(assert.ok));
+test("function-bind", () => import("function-bind").then(assert.ok));
+test("function.prototype.name", () => import("function.prototype.name").then(assert.ok));
+test("functions-have-names", () => import("functions-have-names").then(assert.ok));
+test("gensync", () => import("gensync").then(assert.ok));
+test("get-caller-file", () => import("get-caller-file").then(assert.ok));
+test("get-intrinsic", () => import("get-intrinsic").then(assert.ok));
+test("get-package-type", () => import("get-package-type").then(assert.ok));
+test("get-port", () => import("get-port").then(assert.ok));
+test("get-stdin", () => import("get-stdin").then(assert.ok));
+test("get-stream", () => import("get-stream").then(assert.ok));
+test("get-symbol-description", () => import("get-symbol-description").then(assert.ok));
+test("get-tsconfig", () => import("get-tsconfig").then(assert.ok));
+test("glob", () => import("glob").then(assert.ok));
+test("glob-parent", () => import("glob-parent").then(assert.ok));
+test("glob-to-regexp", () => import("glob-to-regexp").then(assert.ok));
+test("globals", () => import("globals").then(assert.ok));
+test("globalthis", () => import("globalthis").then(assert.ok));
+test("globby", () => import("globby").then(assert.ok));
+test("google-auth-library", () => import("google-auth-library").then(assert.ok));
+test("gopd", () => import("gopd").then(assert.ok));
+test("got", () => import("got").then(assert.ok));
+test("graceful-fs", () => import("graceful-fs").then(assert.ok));
+test("graphemer", () => import("graphemer").then(assert.ok));
+test("graphql", () => import("graphql").then(assert.ok));
+test("graphql-tag", () => import("graphql-tag").then(assert.ok));
+test("gzip-size", () => import("gzip-size").then(assert.ok));
+test("handlebars", () => import("handlebars").then(assert.ok));
+test("has-bigints", () => import("has-bigints").then(assert.ok));
+test("has-flag", () => import("has-flag").then(assert.ok));
+test("has-property-descriptors", () => import("has-property-descriptors").then(assert.ok));
+test("has-proto", () => import("has-proto").then(assert.ok));
+test("has-symbols", () => import("has-symbols").then(assert.ok));
+test("has-tostringtag", () => import("has-tostringtag").then(assert.ok));
+test("hasown", () => import("hasown").then(assert.ok));
+test("he", () => import("he").then(assert.ok));
+test("highlight.js", () => import("highlight.js").then(assert.ok));
+test("hoist-non-react-statics", () => import("hoist-non-react-statics").then(assert.ok));
+test("hosted-git-info", () => import("hosted-git-info").then(assert.ok));
+test("html-encoding-sniffer", () => import("html-encoding-sniffer").then(assert.ok));
+test("html-entities", () => import("html-entities").then(assert.ok));
+test("html-escaper", () => import("html-escaper").then(assert.ok));
+test("html-webpack-plugin", () => import("html-webpack-plugin").then(assert.ok));
+test("htmlparser2", () => import("htmlparser2").then(assert.ok));
+test("http-cache-semantics", () => import("http-cache-semantics").then(assert.ok));
+test("http-errors", () => import("http-errors").then(assert.ok));
+test("http-proxy", () => import("http-proxy").then(assert.ok));
+test("http-proxy-agent", () => import("http-proxy-agent").then(assert.ok));
+test("http-proxy-middleware", () => import("http-proxy-middleware").then(assert.ok));
+test("https-proxy-agent", () => import("https-proxy-agent").then(assert.ok));
+test("human-signals", () => import("human-signals").then(assert.ok));
+test("husky", () => import("husky").then(assert.ok));
+test("i18next", () => import("i18next").then(assert.ok));
+test("iconv-lite", () => import("iconv-lite").then(assert.ok));
+test("ieee754", () => import("ieee754").then(assert.ok));
+test("ignore", () => import("ignore").then(assert.ok));
+test("image-size", () => import("image-size").then(assert.ok));
+test("immer", () => import("immer").then(assert.ok));
+test("immutable", () => import("immutable").then(assert.ok));
+test("import-fresh", () => import("import-fresh").then(assert.ok));
+test("import-local", () => import("import-local").then(assert.ok));
+test("imurmurhash", () => import("imurmurhash").then(assert.ok));
+test("indent-string", () => import("indent-string").then(assert.ok));
+test("inherits", () => import("inherits").then(assert.ok));
+test("ini", () => import("ini").then(assert.ok));
+test("inquirer", () => import("inquirer").then(assert.ok));
+test("install", () => import("install").then(assert.ok));
+test("internal-slot", () => import("internal-slot").then(assert.ok));
+test("interpret", () => import("interpret").then(assert.ok));
+test("ioredis", () => import("ioredis").then(assert.ok));
+test("ip-address", () => import("ip-address").then(assert.ok));
+test("ipaddr.js", () => import("ipaddr.js").then(assert.ok));
+test("is-arguments", () => import("is-arguments").then(assert.ok));
+test("is-array-buffer", () => import("is-array-buffer").then(assert.ok));
+test("is-arrayish", () => import("is-arrayish").then(assert.ok));
+test("is-async-function", () => import("is-async-function").then(assert.ok));
+test("is-bigint", () => import("is-bigint").then(assert.ok));
+test("is-binary-path", () => import("is-binary-path").then(assert.ok));
+test("is-boolean-object", () => import("is-boolean-object").then(assert.ok));
+test("is-callable", () => import("is-callable").then(assert.ok));
+test("is-core-module", () => import("is-core-module").then(assert.ok));
+test("is-data-view", () => import("is-data-view").then(assert.ok));
+test("is-date-object", () => import("is-date-object").then(assert.ok));
+test("is-extglob", () => import("is-extglob").then(assert.ok));
+test("is-finalizationregistry", () => import("is-finalizationregistry").then(assert.ok));
+test("is-fullwidth-code-point", () => import("is-fullwidth-code-point").then(assert.ok));
+test("is-generator-fn", () => import("is-generator-fn").then(assert.ok));
+test("is-generator-function", () => import("is-generator-function").then(assert.ok));
+test("is-glob", () => import("is-glob").then(assert.ok));
+test("is-interactive", () => import("is-interactive").then(assert.ok));
+test("is-map", () => import("is-map").then(assert.ok));
+test("is-negative-zero", () => import("is-negative-zero").then(assert.ok));
+test("is-number", () => import("is-number").then(assert.ok));
+test("is-number-object", () => import("is-number-object").then(assert.ok));
+test("is-obj", () => import("is-obj").then(assert.ok));
+test("is-path-inside", () => import("is-path-inside").then(assert.ok));
+test("is-plain-obj", () => import("is-plain-obj").then(assert.ok));
+test("is-plain-object", () => import("is-plain-object").then(assert.ok));
+test("is-potential-custom-element-name", () => import("is-potential-custom-element-name").then(assert.ok));
+test("is-regex", () => import("is-regex").then(assert.ok));
+test("is-set", () => import("is-set").then(assert.ok));
+test("is-shared-array-buffer", () => import("is-shared-array-buffer").then(assert.ok));
+test("is-stream", () => import("is-stream").then(assert.ok));
+test("is-string", () => import("is-string").then(assert.ok));
+test("is-symbol", () => import("is-symbol").then(assert.ok));
+test("is-typed-array", () => import("is-typed-array").then(assert.ok));
+test("is-unicode-supported", () => import("is-unicode-supported").then(assert.ok));
+test("is-weakmap", () => import("is-weakmap").then(assert.ok));
+test("is-weakref", () => import("is-weakref").then(assert.ok));
+test("is-weakset", () => import("is-weakset").then(assert.ok));
+test("is-wsl", () => import("is-wsl").then(assert.ok));
+test("isarray", () => import("isarray").then(assert.ok));
+test("isexe", () => import("isexe").then(assert.ok));
+test("istanbul-lib-coverage", () => import("istanbul-lib-coverage").then(assert.ok));
+test("istanbul-lib-instrument", () => import("istanbul-lib-instrument").then(assert.ok));
+test("istanbul-lib-report", () => import("istanbul-lib-report").then(assert.ok));
+test("istanbul-lib-source-maps", () => import("istanbul-lib-source-maps").then(assert.ok));
+test("istanbul-reports", () => import("istanbul-reports").then(assert.ok));
+test("iterator.prototype", () => import("iterator.prototype").then(assert.ok));
+test("jackspeak", () => import("jackspeak").then(assert.ok));
+test("jake", () => import("jake").then(assert.ok));
+test("jest", () => import("jest").then(assert.ok));
+test("jest-changed-files", () => import("jest-changed-files").then(assert.ok));
+test("jest-circus", () => import("jest-circus").then(assert.ok));
+test("jest-cli", () => import("jest-cli").then(assert.ok));
+test("jest-config", () => import("jest-config").then(assert.ok));
+test("jest-diff", () => import("jest-diff").then(assert.ok));
+test("jest-docblock", () => import("jest-docblock").then(assert.ok));
+test("jest-each", () => import("jest-each").then(assert.ok));
+test("jest-environment-jsdom", () => import("jest-environment-jsdom").then(assert.ok));
+test("jest-environment-node", () => import("jest-environment-node").then(assert.ok));
+test("jest-get-type", () => import("jest-get-type").then(assert.ok));
+test("jest-haste-map", () => import("jest-haste-map").then(assert.ok));
+test("jest-leak-detector", () => import("jest-leak-detector").then(assert.ok));
+test("jest-matcher-utils", () => import("jest-matcher-utils").then(assert.ok));
+test("jest-message-util", () => import("jest-message-util").then(assert.ok));
+test("jest-mock", () => import("jest-mock").then(assert.ok));
+test("jest-pnp-resolver", () => import("jest-pnp-resolver").then(assert.ok));
+test("jest-regex-util", () => import("jest-regex-util").then(assert.ok));
+test("jest-resolve", () => import("jest-resolve").then(assert.ok));
+test("jest-resolve-dependencies", () => import("jest-resolve-dependencies").then(assert.ok));
+test("jest-runner", () => import("jest-runner").then(assert.ok));
+test("jest-runtime", () => import("jest-runtime").then(assert.ok));
+test("jest-snapshot", () => import("jest-snapshot").then(assert.ok));
+test("jest-validate", () => import("jest-validate").then(assert.ok));
+test("jest-watcher", () => import("jest-watcher").then(assert.ok));
+test("jest-worker", () => import("jest-worker").then(assert.ok));
+test("jiti", () => import("jiti").then(assert.ok));
+test("joi", () => import("joi").then(assert.ok));
+test("jose", () => import("jose").then(assert.ok));
+test("jquery", () => import("jquery").then(assert.ok));
+test("js-cookie", () => import("js-cookie").then(assert.ok));
+test("js-tokens", () => import("js-tokens").then(assert.ok));
+test("js-yaml", () => import("js-yaml").then(assert.ok));
+test("jsbn", () => import("jsbn").then(assert.ok));
+test("jsdom", () => import("jsdom").then(assert.ok));
+test("jsesc", () => import("jsesc").then(assert.ok));
+test("json-buffer", () => import("json-buffer").then(assert.ok));
+test("json-parse-even-better-errors", () => import("json-parse-even-better-errors").then(assert.ok));
+test("json-schema-traverse", () => import("json-schema-traverse").then(assert.ok));
+test("json-stable-stringify-without-jsonify", () => import("json-stable-stringify-without-jsonify").then(assert.ok));
+test("json-stringify-safe", () => import("json-stringify-safe").then(assert.ok));
+test("json5", () => import("json5").then(assert.ok));
+test("jsonc-parser", () => import("jsonc-parser").then(assert.ok));
+test("jsonfile", () => import("jsonfile").then(assert.ok));
+test("jsonparse", () => import("jsonparse").then(assert.ok));
+test("jsonwebtoken", () => import("jsonwebtoken").then(assert.ok));
+test("jsx-ast-utils", () => import("jsx-ast-utils").then(assert.ok));
+test("jszip", () => import("jszip").then(assert.ok));
+test("jws", () => import("jws").then(assert.ok));
+test("jwt-decode", () => import("jwt-decode").then(assert.ok));
+test("keyv", () => import("keyv").then(assert.ok));
+test("kind-of", () => import("kind-of").then(assert.ok));
+test("kleur", () => import("kleur").then(assert.ok));
+test("language-tags", () => import("language-tags").then(assert.ok));
+test("less", () => import("less").then(assert.ok));
+test("less-loader", () => import("less-loader").then(assert.ok));
+test("leven", () => import("leven").then(assert.ok));
+test("levn", () => import("levn").then(assert.ok));
+test("lilconfig", () => import("lilconfig").then(assert.ok));
+test("lines-and-columns", () => import("lines-and-columns").then(assert.ok));
+test("lint-staged", () => import("lint-staged").then(assert.ok));
+test("listr2", () => import("listr2").then(assert.ok));
+test("loader-runner", () => import("loader-runner").then(assert.ok));
+test("loader-utils", () => import("loader-utils").then(assert.ok));
+test("locate-path", () => import("locate-path").then(assert.ok));
+test("lodash", () => import("lodash").then(assert.ok));
+test("lodash-es", () => import("lodash-es").then(assert.ok));
+test("lodash.camelcase", () => import("lodash.camelcase").then(assert.ok));
+test("lodash.clonedeep", () => import("lodash.clonedeep").then(assert.ok));
+test("lodash.debounce", () => import("lodash.debounce").then(assert.ok));
+test("lodash.get", () => import("lodash.get").then(assert.ok));
+test("lodash.isequal", () => import("lodash.isequal").then(assert.ok));
+test("lodash.isplainobject", () => import("lodash.isplainobject").then(assert.ok));
+test("lodash.isstring", () => import("lodash.isstring").then(assert.ok));
+test("lodash.memoize", () => import("lodash.memoize").then(assert.ok));
+test("lodash.merge", () => import("lodash.merge").then(assert.ok));
+test("lodash.uniq", () => import("lodash.uniq").then(assert.ok));
+test("log-symbols", () => import("log-symbols").then(assert.ok));
+test("log-update", () => import("log-update").then(assert.ok));
+test("long", () => import("long").then(assert.ok));
+test("loose-envify", () => import("loose-envify").then(assert.ok));
+test("lowercase-keys", () => import("lowercase-keys").then(assert.ok));
+test("lru-cache", () => import("lru-cache").then(assert.ok));
+test("luxon", () => import("luxon").then(assert.ok));
+test("lz-string", () => import("lz-string").then(assert.ok));
+test("magic-string", () => import("magic-string").then(assert.ok));
+test("make-dir", () => import("make-dir").then(assert.ok));
+test("make-error", () => import("make-error").then(assert.ok));
+test("make-fetch-happen", () => import("make-fetch-happen").then(assert.ok));
+test("makeerror", () => import("makeerror").then(assert.ok));
+test("markdown-it", () => import("markdown-it").then(assert.ok));
+test("marked", () => import("marked").then(assert.ok));
+test("md5", () => import("md5").then(assert.ok));
+test("mdn-data", () => import("mdn-data").then(assert.ok));
+test("media-typer", () => import("media-typer").then(assert.ok));
+test("memfs", () => import("memfs").then(assert.ok));
+test("meow", () => import("meow").then(assert.ok));
+test("merge-descriptors", () => import("merge-descriptors").then(assert.ok));
+test("merge-stream", () => import("merge-stream").then(assert.ok));
+test("merge2", () => import("merge2").then(assert.ok));
+test("methods", () => import("methods").then(assert.ok));
+test("micromatch", () => import("micromatch").then(assert.ok));
+test("mime", () => import("mime").then(assert.ok));
+test("mime-db", () => import("mime-db").then(assert.ok));
+test("mime-types", () => import("mime-types").then(assert.ok));
+test("mimic-response", () => import("mimic-response").then(assert.ok));
+test("min-indent", () => import("min-indent").then(assert.ok));
+test("mini-css-extract-plugin", () => import("mini-css-extract-plugin").then(assert.ok));
+test("minimalistic-assert", () => import("minimalistic-assert").then(assert.ok));
+test("minimatch", () => import("minimatch").then(assert.ok));
+test("minimist", () => import("minimist").then(assert.ok));
+test("minipass", () => import("minipass").then(assert.ok));
+test("minizlib", () => import("minizlib").then(assert.ok));
+test("mitt", () => import("mitt").then(assert.ok));
+test("mkdirp", () => import("mkdirp").then(assert.ok));
+test("mocha", () => import("mocha").then(assert.ok));
+test("moment", () => import("moment").then(assert.ok));
+test("moment-timezone", () => import("moment-timezone").then(assert.ok));
+test("mongodb", () => import("mongodb").then(assert.ok));
+test("mongoose", () => import("mongoose").then(assert.ok));
+test("morgan", () => import("morgan").then(assert.ok));
+test("ms", () => import("ms").then(assert.ok));
+test("multer", () => import("multer").then(assert.ok));
+test("mustache", () => import("mustache").then(assert.ok));
+test("mute-stream", () => import("mute-stream").then(assert.ok));
+test("mz", () => import("mz").then(assert.ok));
+test("nan", () => import("nan").then(assert.ok));
+test("nanoid", () => import("nanoid").then(assert.ok));
+test("natural-compare", () => import("natural-compare").then(assert.ok));
+test("negotiator", () => import("negotiator").then(assert.ok));
+test("neo-async", () => import("neo-async").then(assert.ok));
+test("next", () => import("next").then(assert.ok));
+test("node-addon-api", () => import("node-addon-api").then(assert.ok));
+test("node-fetch", () => import("node-fetch").then(assert.ok));
+test("node-gyp", () => import("node-gyp").then(assert.ok));
+test("node-gyp-build", () => import("node-gyp-build").then(assert.ok));
+test("node-int64", () => import("node-int64").then(assert.ok));
+test("nodemailer", () => import("nodemailer").then(assert.ok));
+test("nodemon", () => import("nodemon").then(assert.ok));
+test("nopt", () => import("nopt").then(assert.ok));
+test("normalize-package-data", () => import("normalize-package-data").then(assert.ok));
+test("normalize-path", () => import("normalize-path").then(assert.ok));
+test("normalize-url", () => import("normalize-url").then(assert.ok));
+test("npm-package-arg", () => import("npm-package-arg").then(assert.ok));
+test("npm-run-path", () => import("npm-run-path").then(assert.ok));
+test("nth-check", () => import("nth-check").then(assert.ok));
+test("nwsapi", () => import("nwsapi").then(assert.ok));
+test("object-assign", () => import("object-assign").then(assert.ok));
+test("object-hash", () => import("object-hash").then(assert.ok));
+test("object-inspect", () => import("object-inspect").then(assert.ok));
+test("object-is", () => import("object-is").then(assert.ok));
+test("object-keys", () => import("object-keys").then(assert.ok));
+test("object.entries", () => import("object.entries").then(assert.ok));
+test("object.fromentries", () => import("object.fromentries").then(assert.ok));
+test("object.groupby", () => import("object.groupby").then(assert.ok));
+test("object.hasown", () => import("object.hasown").then(assert.ok));
+test("object.values", () => import("object.values").then(assert.ok));
+test("on-finished", () => import("on-finished").then(assert.ok));
+test("on-headers", () => import("on-headers").then(assert.ok));
+test("once", () => import("once").then(assert.ok));
+test("onetime", () => import("onetime").then(assert.ok));
+test("open", () => import("open").then(assert.ok));
+test("optionator", () => import("optionator").then(assert.ok));
+test("ora", () => import("ora").then(assert.ok));
+test("p-cancelable", () => import("p-cancelable").then(assert.ok));
+test("p-limit", () => import("p-limit").then(assert.ok));
+test("p-locate", () => import("p-locate").then(assert.ok));
+test("p-map", () => import("p-map").then(assert.ok));
+test("p-retry", () => import("p-retry").then(assert.ok));
+test("p-try", () => import("p-try").then(assert.ok));
+test("pako", () => import("pako").then(assert.ok));
+test("parent-module", () => import("parent-module").then(assert.ok));
+test("parse-json", () => import("parse-json").then(assert.ok));
+test("parse5", () => import("parse5").then(assert.ok));
+test("parseurl", () => import("parseurl").then(assert.ok));
+test("path", () => import("path").then(assert.ok));
+test("path-exists", () => import("path-exists").then(assert.ok));
+test("path-key", () => import("path-key").then(assert.ok));
+test("path-parse", () => import("path-parse").then(assert.ok));
+test("path-scurry", () => import("path-scurry").then(assert.ok));
+test("path-to-regexp", () => import("path-to-regexp").then(assert.ok));
+test("path-type", () => import("path-type").then(assert.ok));
+test("pathe", () => import("pathe").then(assert.ok));
+test("pg", () => import("pg").then(assert.ok));
+test("picocolors", () => import("picocolors").then(assert.ok));
+test("picomatch", () => import("picomatch").then(assert.ok));
+test("pify", () => import("pify").then(assert.ok));
+test("pino", () => import("pino").then(assert.ok));
+test("pirates", () => import("pirates").then(assert.ok));
+test("pkg-dir", () => import("pkg-dir").then(assert.ok));
+test("pluralize", () => import("pluralize").then(assert.ok));
+test("polished", () => import("polished").then(assert.ok));
+test("possible-typed-array-names", () => import("possible-typed-array-names").then(assert.ok));
+test("postcss", () => import("postcss").then(assert.ok));
+test("postcss-import", () => import("postcss-import").then(assert.ok));
+test("postcss-load-config", () => import("postcss-load-config").then(assert.ok));
+test("postcss-loader", () => import("postcss-loader").then(assert.ok));
+test("postcss-nested", () => import("postcss-nested").then(assert.ok));
+test("postcss-selector-parser", () => import("postcss-selector-parser").then(assert.ok));
+test("prelude-ls", () => import("prelude-ls").then(assert.ok));
+test("prettier", () => import("prettier").then(assert.ok));
+test("pretty-bytes", () => import("pretty-bytes").then(assert.ok));
+test("pretty-format", () => import("pretty-format").then(assert.ok));
+test("proc-log", () => import("proc-log").then(assert.ok));
+test("process", () => import("process").then(assert.ok));
+test("process-nextick-args", () => import("process-nextick-args").then(assert.ok));
+test("promise", () => import("promise").then(assert.ok));
+test("promise-retry", () => import("promise-retry").then(assert.ok));
+test("prompts", () => import("prompts").then(assert.ok));
+test("prop-types", () => import("prop-types").then(assert.ok));
+test("protobufjs", () => import("protobufjs").then(assert.ok));
+test("proxy-addr", () => import("proxy-addr").then(assert.ok));
+test("proxy-from-env", () => import("proxy-from-env").then(assert.ok));
+test("psl", () => import("psl").then(assert.ok));
+test("pump", () => import("pump").then(assert.ok));
+test("punycode", () => import("punycode").then(assert.ok));
+test("qs", () => import("qs").then(assert.ok));
+test("querystringify", () => import("querystringify").then(assert.ok));
+test("queue-microtask", () => import("queue-microtask").then(assert.ok));
+test("quick-lru", () => import("quick-lru").then(assert.ok));
+test("raf", () => import("raf").then(assert.ok));
+test("ramda", () => import("ramda").then(assert.ok));
+test("randombytes", () => import("randombytes").then(assert.ok));
+test("range-parser", () => import("range-parser").then(assert.ok));
+test("rc", () => import("rc").then(assert.ok));
+test("react", () => import("react").then(assert.ok));
+test("react-dom", () => import("react-dom").then(assert.ok));
+test("react-hook-form", () => import("react-hook-form").then(assert.ok));
+test("react-is", () => import("react-is").then(assert.ok));
+test("react-redux", () => import("react-redux").then(assert.ok));
+test("react-refresh", () => import("react-refresh").then(assert.ok));
+test("react-router", () => import("react-router").then(assert.ok));
+test("react-router-dom", () => import("react-router-dom").then(assert.ok));
+test("readable-stream", () => import("readable-stream").then(assert.ok));
+test("readdirp", () => import("readdirp").then(assert.ok));
+test("rechoir", () => import("rechoir").then(assert.ok));
+test("redent", () => import("redent").then(assert.ok));
+test("redis", () => import("redis").then(assert.ok));
+test("redux", () => import("redux").then(assert.ok));
+test("redux-thunk", () => import("redux-thunk").then(assert.ok));
+test("reflect-metadata", () => import("reflect-metadata").then(assert.ok));
+test("reflect.getprototypeof", () => import("reflect.getprototypeof").then(assert.ok));
+test("regenerate", () => import("regenerate").then(assert.ok));
+test("regenerate-unicode-properties", () => import("regenerate-unicode-properties").then(assert.ok));
+test("regenerator-runtime", () => import("regenerator-runtime").then(assert.ok));
+test("regexp.prototype.flags", () => import("regexp.prototype.flags").then(assert.ok));
+test("regexpu-core", () => import("regexpu-core").then(assert.ok));
+test("regjsparser", () => import("regjsparser").then(assert.ok));
+test("require-directory", () => import("require-directory").then(assert.ok));
+test("require-from-string", () => import("require-from-string").then(assert.ok));
+test("requireindex", () => import("requireindex").then(assert.ok));
+test("requires-port", () => import("requires-port").then(assert.ok));
+test("reselect", () => import("reselect").then(assert.ok));
+test("resize-observer-polyfill", () => import("resize-observer-polyfill").then(assert.ok));
+test("resolve", () => import("resolve").then(assert.ok));
+test("resolve-cwd", () => import("resolve-cwd").then(assert.ok));
+test("resolve-from", () => import("resolve-from").then(assert.ok));
+test("resolve-url-loader", () => import("resolve-url-loader").then(assert.ok));
+test("resolve.exports", () => import("resolve.exports").then(assert.ok));
+test("responselike", () => import("responselike").then(assert.ok));
+test("restore-cursor", () => import("restore-cursor").then(assert.ok));
+test("retry", () => import("retry").then(assert.ok));
+test("reusify", () => import("reusify").then(assert.ok));
+test("rfdc", () => import("rfdc").then(assert.ok));
+test("rimraf", () => import("rimraf").then(assert.ok));
+test("rollup", () => import("rollup").then(assert.ok));
+test("run-async", () => import("run-async").then(assert.ok));
+test("run-parallel", () => import("run-parallel").then(assert.ok));
+test("rxjs", () => import("rxjs").then(assert.ok));
+test("safe-array-concat", () => import("safe-array-concat").then(assert.ok));
+test("safe-buffer", () => import("safe-buffer").then(assert.ok));
+test("safe-regex-test", () => import("safe-regex-test").then(assert.ok));
+test("safer-buffer", () => import("safer-buffer").then(assert.ok));
+test("sass", () => import("sass").then(assert.ok));
+test("sass-loader", () => import("sass-loader").then(assert.ok));
+test("sax", () => import("sax").then(assert.ok));
+test("saxes", () => import("saxes").then(assert.ok));
+test("scheduler", () => import("scheduler").then(assert.ok));
+test("schema-utils", () => import("schema-utils").then(assert.ok));
+test("selfsigned", () => import("selfsigned").then(assert.ok));
+test("semver", () => import("semver").then(assert.ok));
+test("send", () => import("send").then(assert.ok));
+test("serve-index", () => import("serve-index").then(assert.ok));
+test("serve-static", () => import("serve-static").then(assert.ok));
+test("set-blocking", () => import("set-blocking").then(assert.ok));
+test("set-function-length", () => import("set-function-length").then(assert.ok));
+test("set-function-name", () => import("set-function-name").then(assert.ok));
+test("setimmediate", () => import("setimmediate").then(assert.ok));
+test("setprototypeof", () => import("setprototypeof").then(assert.ok));
+test("shallow-clone", () => import("shallow-clone").then(assert.ok));
+test("sharp", () => import("sharp").then(assert.ok));
+test("shebang-command", () => import("shebang-command").then(assert.ok));
+test("shebang-regex", () => import("shebang-regex").then(assert.ok));
+test("shell-quote", () => import("shell-quote").then(assert.ok));
+test("shelljs", () => import("shelljs").then(assert.ok));
+test("side-channel", () => import("side-channel").then(assert.ok));
+test("signal-exit", () => import("signal-exit").then(assert.ok));
+test("simple-git", () => import("simple-git").then(assert.ok));
+test("sisteransi", () => import("sisteransi").then(assert.ok));
+test("slash", () => import("slash").then(assert.ok));
+test("slice-ansi", () => import("slice-ansi").then(assert.ok));
+test("smart-buffer", () => import("smart-buffer").then(assert.ok));
+test("socket.io", () => import("socket.io").then(assert.ok));
+test("socket.io-client", () => import("socket.io-client").then(assert.ok));
+test("socks", () => import("socks").then(assert.ok));
+test("socks-proxy-agent", () => import("socks-proxy-agent").then(assert.ok));
+test("source-map", () => import("source-map").then(assert.ok));
+test("source-map-js", () => import("source-map-js").then(assert.ok));
+test("spdx-correct", () => import("spdx-correct").then(assert.ok));
+test("spdx-expression-parse", () => import("spdx-expression-parse").then(assert.ok));
+test("split2", () => import("split2").then(assert.ok));
+test("sprintf-js", () => import("sprintf-js").then(assert.ok));
+test("ssri", () => import("ssri").then(assert.ok));
+test("stack-utils", () => import("stack-utils").then(assert.ok));
+test("statuses", () => import("statuses").then(assert.ok));
+test("stop-iteration-iterator", () => import("stop-iteration-iterator").then(assert.ok));
+test("streamsearch", () => import("streamsearch").then(assert.ok));
+test("string-length", () => import("string-length").then(assert.ok));
+test("string-width", () => import("string-width").then(assert.ok));
+test("string.prototype.matchall", () => import("string.prototype.matchall").then(assert.ok));
+test("string.prototype.trim", () => import("string.prototype.trim").then(assert.ok));
+test("string.prototype.trimend", () => import("string.prototype.trimend").then(assert.ok));
+test("string.prototype.trimstart", () => import("string.prototype.trimstart").then(assert.ok));
+test("string_decoder", () => import("string_decoder").then(assert.ok));
+test("strip-ansi", () => import("strip-ansi").then(assert.ok));
+test("strip-bom", () => import("strip-bom").then(assert.ok));
+test("strip-final-newline", () => import("strip-final-newline").then(assert.ok));
+test("strip-indent", () => import("strip-indent").then(assert.ok));
+test("strip-json-comments", () => import("strip-json-comments").then(assert.ok));
+test("style-loader", () => import("style-loader").then(assert.ok));
+test("styled-components", () => import("styled-components").then(assert.ok));
+test("stylis", () => import("stylis").then(assert.ok));
+test("sucrase", () => import("sucrase").then(assert.ok));
+test("supports-color", () => import("supports-color").then(assert.ok));
+test("supports-preserve-symlinks-flag", () => import("supports-preserve-symlinks-flag").then(assert.ok));
+test("svgo", () => import("svgo").then(assert.ok));
+test("symbol-tree", () => import("symbol-tree").then(assert.ok));
+test("tailwind-merge", () => import("tailwind-merge").then(assert.ok));
+test("tailwindcss", () => import("tailwindcss").then(assert.ok));
+test("tapable", () => import("tapable").then(assert.ok));
+test("tar", () => import("tar").then(assert.ok));
+test("tar-fs", () => import("tar-fs").then(assert.ok));
+test("tar-stream", () => import("tar-stream").then(assert.ok));
+test("temp", () => import("temp").then(assert.ok));
+test("temp-dir", () => import("temp-dir").then(assert.ok));
+test("tempy", () => import("tempy").then(assert.ok));
+test("terser", () => import("terser").then(assert.ok));
+test("terser-webpack-plugin", () => import("terser-webpack-plugin").then(assert.ok));
+test("test-exclude", () => import("test-exclude").then(assert.ok));
+test("text-table", () => import("text-table").then(assert.ok));
+test("thenify", () => import("thenify").then(assert.ok));
+test("thenify-all", () => import("thenify-all").then(assert.ok));
+test("through", () => import("through").then(assert.ok));
+test("through2", () => import("through2").then(assert.ok));
+test("tiny-invariant", () => import("tiny-invariant").then(assert.ok));
+test("tmp", () => import("tmp").then(assert.ok));
+test("tmpl", () => import("tmpl").then(assert.ok));
+test("to-fast-properties", () => import("to-fast-properties").then(assert.ok));
+test("to-regex-range", () => import("to-regex-range").then(assert.ok));
+test("tough-cookie", () => import("tough-cookie").then(assert.ok));
+test("tr46", () => import("tr46").then(assert.ok));
+test("traverse", () => import("traverse").then(assert.ok));
+test("tree-kill", () => import("tree-kill").then(assert.ok));
+test("ts-api-utils", () => import("ts-api-utils").then(assert.ok));
+test("ts-jest", () => import("ts-jest").then(assert.ok));
+test("ts-loader", () => import("ts-loader").then(assert.ok));
+test("ts-node", () => import("ts-node").then(assert.ok));
+test("tsconfig-paths", () => import("tsconfig-paths").then(assert.ok));
+test("tslib", () => import("tslib").then(assert.ok));
+test("type-check", () => import("type-check").then(assert.ok));
+test("type-detect", () => import("type-detect").then(assert.ok));
+test("type-is", () => import("type-is").then(assert.ok));
+test("typed-array-buffer", () => import("typed-array-buffer").then(assert.ok));
+test("typed-array-byte-length", () => import("typed-array-byte-length").then(assert.ok));
+test("typed-array-byte-offset", () => import("typed-array-byte-offset").then(assert.ok));
+test("typed-array-length", () => import("typed-array-length").then(assert.ok));
+test("typescript", () => import("typescript").then(assert.ok));
+test("ua-parser-js", () => import("ua-parser-js").then(assert.ok));
+test("ufo", () => import("ufo").then(assert.ok));
+test("uglify-js", () => import("uglify-js").then(assert.ok));
+test("unbox-primitive", () => import("unbox-primitive").then(assert.ok));
+test("underscore", () => import("underscore").then(assert.ok));
+test("undici", () => import("undici").then(assert.ok));
+test("unicode-canonical-property-names-ecmascript", () => import("unicode-canonical-property-names-ecmascript").then(assert.ok));
+test("unicode-match-property-ecmascript", () => import("unicode-match-property-ecmascript").then(assert.ok));
+test("unicode-match-property-value-ecmascript", () => import("unicode-match-property-value-ecmascript").then(assert.ok));
+test("unicode-property-aliases-ecmascript", () => import("unicode-property-aliases-ecmascript").then(assert.ok));
+test("unified", () => import("unified").then(assert.ok));
+test("unique-filename", () => import("unique-filename").then(assert.ok));
+test("unique-names-generator", () => import("unique-names-generator").then(assert.ok));
+test("unique-slug", () => import("unique-slug").then(assert.ok));
+test("unique-string", () => import("unique-string").then(assert.ok));
+test("unist-util-visit", () => import("unist-util-visit").then(assert.ok));
+test("unist-util-visit-parents", () => import("unist-util-visit-parents").then(assert.ok));
+test("universalify", () => import("universalify").then(assert.ok));
+test("unpipe", () => import("unpipe").then(assert.ok));
+test("update-browserslist-db", () => import("update-browserslist-db").then(assert.ok));
+test("uri-js", () => import("uri-js").then(assert.ok));
+test("url", () => import("url").then(assert.ok));
+test("url-join", () => import("url-join").then(assert.ok));
+test("url-parse", () => import("url-parse").then(assert.ok));
+test("use-sync-external-store", () => import("use-sync-external-store").then(assert.ok));
+test("util", () => import("util").then(assert.ok));
+test("util-deprecate", () => import("util-deprecate").then(assert.ok));
+test("utils-merge", () => import("utils-merge").then(assert.ok));
+test("uuid", () => import("uuid").then(assert.ok));
+test("v8-compile-cache-lib", () => import("v8-compile-cache-lib").then(assert.ok));
+test("v8-to-istanbul", () => import("v8-to-istanbul").then(assert.ok));
+test("validate-npm-package-license", () => import("validate-npm-package-license").then(assert.ok));
+test("validate-npm-package-name", () => import("validate-npm-package-name").then(assert.ok));
+test("validator", () => import("validator").then(assert.ok));
+test("vary", () => import("vary").then(assert.ok));
+test("vite", () => import("vite").then(assert.ok));
+test("vue", () => import("vue").then(assert.ok));
+test("vue-router", () => import("vue-router").then(assert.ok));
+test("w3c-xmlserializer", () => import("w3c-xmlserializer").then(assert.ok));
+test("walker", () => import("walker").then(assert.ok));
+test("watchpack", () => import("watchpack").then(assert.ok));
+test("wcwidth", () => import("wcwidth").then(assert.ok));
+test("web-streams-polyfill", () => import("web-streams-polyfill").then(assert.ok));
+test("webidl-conversions", () => import("webidl-conversions").then(assert.ok));
+test("webpack", () => import("webpack").then(assert.ok));
+test("webpack-bundle-analyzer", () => import("webpack-bundle-analyzer").then(assert.ok));
+test("webpack-cli", () => import("webpack-cli").then(assert.ok));
+test("webpack-dev-middleware", () => import("webpack-dev-middleware").then(assert.ok));
+test("webpack-dev-server", () => import("webpack-dev-server").then(assert.ok));
+test("webpack-merge", () => import("webpack-merge").then(assert.ok));
+test("whatwg-encoding", () => import("whatwg-encoding").then(assert.ok));
+test("whatwg-fetch", () => import("whatwg-fetch").then(assert.ok));
+test("whatwg-mimetype", () => import("whatwg-mimetype").then(assert.ok));
+test("whatwg-url", () => import("whatwg-url").then(assert.ok));
+test("which", () => import("which").then(assert.ok));
+test("which-boxed-primitive", () => import("which-boxed-primitive").then(assert.ok));
+test("which-builtin-type", () => import("which-builtin-type").then(assert.ok));
+test("which-collection", () => import("which-collection").then(assert.ok));
+test("which-typed-array", () => import("which-typed-array").then(assert.ok));
+test("winston", () => import("winston").then(assert.ok));
+test("word-wrap", () => import("word-wrap").then(assert.ok));
+test("wordwrap", () => import("wordwrap").then(assert.ok));
+test("wrap-ansi", () => import("wrap-ansi").then(assert.ok));
+test("wrappy", () => import("wrappy").then(assert.ok));
+test("write-file-atomic", () => import("write-file-atomic").then(assert.ok));
+test("ws", () => import("ws").then(assert.ok));
+test("xml-name-validator", () => import("xml-name-validator").then(assert.ok));
+test("xml2js", () => import("xml2js").then(assert.ok));
+test("xmlbuilder", () => import("xmlbuilder").then(assert.ok));
+test("xmlchars", () => import("xmlchars").then(assert.ok));
+test("xtend", () => import("xtend").then(assert.ok));
+test("y18n", () => import("y18n").then(assert.ok));
+test("yallist", () => import("yallist").then(assert.ok));
+test("yaml", () => import("yaml").then(assert.ok));
+test("yargs", () => import("yargs").then(assert.ok));
+test("yargs-parser", () => import("yargs-parser").then(assert.ok));
+test("yn", () => import("yn").then(assert.ok));
+test("yocto-queue", () => import("yocto-queue").then(assert.ok));
+test("yup", () => import("yup").then(assert.ok));
+test("zod", () => import("zod").then(assert.ok));
+test("zone.js", () => import("zone.js").then(assert.ok));
