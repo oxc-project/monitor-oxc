@@ -444,7 +444,6 @@ test("fresh", () => import("fresh").then(assert.ok));
 test("fs-extra", () => import("fs-extra").then(assert.ok));
 test("fs-minipass", () => import("fs-minipass").then(assert.ok));
 test("fs.realpath", () => import("fs.realpath").then(assert.ok));
-test("fsevents", () => import("fsevents").then(assert.ok));
 test("function-bind", () => import("function-bind").then(assert.ok));
 test("function.prototype.name", () => import("function.prototype.name").then(assert.ok));
 test("functions-have-names", () => import("functions-have-names").then(assert.ok));

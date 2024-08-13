@@ -14,6 +14,8 @@ const ignoreList = [
   "eslint-module-utils", "node-releases",
   // flow
   "ast-types-flow",
+  // not compatible with linux
+  "fsevents"
 ];
 
 const data = raw

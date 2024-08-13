@@ -450,7 +450,6 @@
     "fs-extra": "latest",
     "fs-minipass": "latest",
     "fs.realpath": "latest",
-    "fsevents": "latest",
     "function-bind": "latest",
     "function.prototype.name": "latest",
     "functions-have-names": "latest",

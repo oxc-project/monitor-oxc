@@ -1337,9 +1337,6 @@ importers:
       fs.realpath:
         specifier: latest
         version: 1.0.0
-      fsevents:
-        specifier: latest
-        version: 2.3.3
       function-bind:
         specifier: latest
         version: 1.1.2
@@ -18998,7 +18995,8 @@ snapshots:
 
   fs.realpath@1.0.0: {}
 
-  fsevents@2.3.3: {}
+  fsevents@2.3.3:
+    optional: true
 
   function-bind@1.1.2: {}
 
