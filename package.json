@@ -6,6 +6,7 @@
     "test": "node src/main.test.mjs"
   },
   "devDependencies": {
+    "tsx": "latest",
     "@ampproject/remapping": "latest",
     "@angular-devkit/core": "latest",
     "@aws-crypto/sha256-browser": "latest",
