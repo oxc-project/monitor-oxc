@@ -1,12 +1,14 @@
 const raw = require("./raw.json");
 
-const SIZE = 1050;
+const SIZE = 1100;
 
 const ignoreList = [
+  // package managers don't work
+  "npm", "yarn", "pnpm",
   // NO ESM export
   "babel-runtime", "@babel/runtime", "type-fest", "undici-types", "@testing-library/jest-dom",
   "assert", "@babel/compat-data", "csstype", "@jest/globals", "source-map-support",
-  "npm", "es-iterator-helpers", "spdx-exceptions", "spdx-license-ids", "yarn",
+  "es-iterator-helpers", "spdx-exceptions", "spdx-license-ids",
   "language-subtag-registry",
   // crashed vitest
   "eslint-module-utils", "node-releases",
@@ -30,15 +32,6 @@ data.map((name) => {
 
 // console.log(JSON.stringify(packageJson, null, 2));
 
-const map = new Map();
-
 data.forEach((key) => {
-  const ns = key.replace(/^@/, "").replace(/\/|-|\./g, "_");
-  if (!map.get(ns)) {
-    map.set(ns, key);
-  }
-});
-
-map.forEach((key, ns) => {
   console.log(`test("${key}", () => import("${key}").then(assert.ok));`);
 });
