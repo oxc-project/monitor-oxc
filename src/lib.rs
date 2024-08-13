@@ -1,5 +1,3 @@
-#![allow(clippy::new_without_default)]
-
 pub mod codegen;
 pub mod compressor;
 pub mod isolated_declarations;
@@ -39,8 +37,19 @@ pub struct NodeModulesRunner {
     pub cases: Vec<Box<dyn Case>>,
 }
 
-const PATH_IGNORES: &[&str] =
-    &["node_modules/.pnpm/node-domexception@1.0.0/node_modules/node-domexception/.history"];
+impl Default for NodeModulesRunner {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
+const PATH_IGNORES: &[&str] = &[
+    "node_modules/.pnpm/node-domexception@1.0.0/node_modules/node-domexception/.history",
+    // intentional parse errors
+    "node_modules/.pnpm/thread-stream@3.1.0/node_modules/thread-stream/test/syntax-error.mjs",
+    "node_modules/.pnpm/pino@9.3.2/node_modules/pino/test/fixtures/syntax-error-esm.mjs",
+    "node_modules/.pnpm/charenc@0.0.2/node_modules/charenc/README.js",
+];
 
 impl NodeModulesRunner {
     pub fn new() -> Self {

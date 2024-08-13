@@ -64,6 +64,10 @@ impl Driver {
                 .map(|e| e.with_source_code(source_text.to_string()).to_string())
                 .collect::<Vec<_>>()
                 .join("\n");
+            // ignore flow files
+            if message.contains("Flow is not supported") {
+                return Ok(String::new());
+            }
             return Err(Diagnostic { case: "Parse Error", path: path.to_path_buf(), message });
         }
 
