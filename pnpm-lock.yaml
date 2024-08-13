@@ -2306,9 +2306,6 @@ importers:
       pluralize:
         specifier: latest
         version: 8.0.0
-      pnpm:
-        specifier: latest
-        version: 9.7.0
       polished:
         specifier: latest
         version: 4.3.1
@@ -10537,11 +10534,6 @@ packages:
   pluralize@8.0.0:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
     engines: {node: '>=4'}
-
-  pnpm@9.7.0:
-    resolution: {integrity: sha512-3AlDAVa0J/Xs/HmIiJnhw50taQ8AS+cOBSMLcssXPZaDlYdUXQlCm1WsPEKcgBtNw8DgAvZTgwpCD6LdTjz5zw==}
-    engines: {node: '>=18.12'}
-    hasBin: true
 
   polished@4.3.1:
     resolution: {integrity: sha512-OBatVyC/N7SCW/FaDHrSd+vn0o5cS855TOmYi4OkdWUMSJCET/xip//ch8xGUvtr3i44X9LVyWwQlRMTN3pwSA==}
@@ -21614,8 +21606,6 @@ snapshots:
       find-up-simple: 1.0.0
 
   pluralize@8.0.0: {}
-
-  pnpm@9.7.0: {}
 
   polished@4.3.1:
     dependencies:
