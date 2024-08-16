@@ -1,6 +1,24 @@
 import test from "node:test"
 import assert from "node:assert"
 
+test("language-tools", () => import("language-tools").then(assert.ok));
+test("naive-ui", () => import("naive-ui").then(assert.ok));
+test("nuxt", () => import("nuxt").then(assert.ok));
+test("pinia", () => import("pinia").then(assert.ok));
+test("primevue", () => import("primevue").then(assert.ok));
+test("quasar", () => import("quasar").then(assert.ok));
+test("radix-vue", () => import("radix-vue").then(assert.ok));
+test("router", () => import("router").then(assert.ok));
+test("test-utils", () => import("test-utils").then(assert.ok));
+test("vant", () => import("vant").then(assert.ok));
+test("vite-plugin-vue", () => import("vite-plugin-vue").then(assert.ok));
+test("vitepress", () => import("vitepress").then(assert.ok));
+test("vue-i18n", () => import("vue-i18n").then(assert.ok));
+test("vue-macros", () => import("vue-macros").then(assert.ok));
+test("vue-simple-compiler", () => import("vue-simple-compiler").then(assert.ok));
+test("vuetify", () => import("vuetify").then(assert.ok));
+test("@vueuse/core", () => import("@vueuse/core").then(assert.ok));
+
 test("@ampproject/remapping", () => import("@ampproject/remapping").then(assert.ok));
 test("@angular-devkit/core", () => import("@angular-devkit/core").then(assert.ok));
 test("@angular-devkit/schematics", () => import("@angular-devkit/schematics").then(assert.ok));

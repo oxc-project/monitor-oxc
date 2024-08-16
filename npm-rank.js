@@ -18,6 +18,26 @@ const ignoreList = [
   "fsevents"
 ];
 
+// const vue = [
+  // "language-tools",
+  // "naive-ui",
+  // "nuxt",
+  // "pinia",
+  // "primevue",
+  // "quasar",
+  // "radix-vue",
+  // "router",
+  // "test-utils",
+  // "vant",
+  // "vite-plugin-vue",
+  // "vitepress",
+  // "vue-i18n",
+  // "vue-macros",
+  // "vue-simple-compiler",
+  // "vuetify",
+  // "@vueuse/core",
+// ];
+
 const data = raw
   .slice(0, SIZE)
   .map((data) => data.name)
