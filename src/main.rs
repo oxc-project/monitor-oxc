@@ -51,7 +51,5 @@ fn main() -> ExitCode {
         ExitCode::SUCCESS
     };
 
-    node_modules_runner.recover();
-
     exit_code
 }

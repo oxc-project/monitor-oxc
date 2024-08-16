@@ -64,19 +64,16 @@ impl NodeModulesRunner {
             if !path.is_file() {
                 continue;
             }
-            if PATH_IGNORES.iter().any(|p| path.to_string_lossy().contains(p)) {
-                continue;
-            }
             let Ok(source_type) = SourceType::from_path(path) else {
                 continue;
             };
+            if PATH_IGNORES.iter().any(|p| path.to_string_lossy().contains(p)) {
+                continue;
+            }
             if source_type.is_typescript_definition() {
                 continue;
             }
             let source_text = fs::read_to_string(path).unwrap();
-            if source_text.starts_with("// @flow") {
-                continue;
-            }
             files.push(Source { path: path.to_path_buf(), source_type, source_text });
         }
         println!("Collected {} files.", files.len());
@@ -85,12 +82,6 @@ impl NodeModulesRunner {
 
     pub fn add_case(&mut self, case: Box<dyn Case>) {
         self.cases.push(case);
-    }
-
-    pub fn recover(self) {
-        for source in self.files {
-            fs::write(source.path, source.source_text).unwrap();
-        }
     }
 
     pub fn run_all(&self) -> Result<(), Vec<Diagnostic>> {
@@ -111,10 +102,19 @@ impl NodeModulesRunner {
         if !diagnostics.is_empty() {
             return Err(diagnostics);
         }
-        Self::runtime_test()
+        let result = Self::runtime_test(case.name());
+        self.restore_files(case.name());
+        result
     }
 
-    fn runtime_test() -> Result<(), Vec<Diagnostic>> {
+    fn restore_files(&self, name: &str) {
+        println!("Restoring files for {name}");
+        for source in &self.files {
+            fs::write(&source.path, &source.source_text).unwrap();
+        }
+    }
+
+    fn runtime_test(name: &str) -> Result<(), Vec<Diagnostic>> {
         println!("pnpm test");
         match Command::new("pnpm").arg("test").status() {
             Ok(exit_status) => {
@@ -124,7 +124,7 @@ impl NodeModulesRunner {
                     Err(vec![Diagnostic {
                         case: "pnpm test",
                         path: PathBuf::new(),
-                        message: "pnpm failed".to_string(),
+                        message: format!("pnpm failed for {name}"),
                     }])
                 }
             }
