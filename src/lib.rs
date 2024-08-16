@@ -20,13 +20,15 @@ use case::Case;
 use driver::Driver;
 
 const PATH_IGNORES: &[&str] = &[
-    "node_modules/.pnpm/node-domexception@1.0.0/node_modules/node-domexception/.history",
+    "node_modules/node-domexception/.history",
     // intentional parse errors
-    "node_modules/.pnpm/thread-stream@3.1.0/node_modules/thread-stream/test/syntax-error.mjs",
-    "node_modules/.pnpm/pino@9.3.2/node_modules/pino/test/fixtures/syntax-error-esm.mjs",
-    "node_modules/.pnpm/charenc@0.0.2/node_modules/charenc/README.js",
+    "node_modules/thread-stream/test/syntax-error.mjs",
+    "node_modules/pino/test/fixtures/syntax-error-esm.mjs",
+    "node_modules/charenc/README.js",
     // broken types
-    "node_modules/.pnpm/immer@10.1.1/node_modules/immer/src/types/types-internal.ts",
+    "node_modules/immer/src/types/types-internal.ts",
+    // template files
+    ".vitepress",
 ];
 
 #[derive(Debug)]
@@ -62,7 +64,7 @@ impl NodeModulesRunner {
             if !path.is_file() {
                 continue;
             }
-            if PATH_IGNORES.iter().any(|p| path.starts_with(p)) {
+            if PATH_IGNORES.iter().any(|p| path.to_string_lossy().contains(p)) {
                 continue;
             }
             let Ok(source_type) = SourceType::from_path(path) else {

@@ -3,7 +3,7 @@
   "private": true,
   "packageManager": "pnpm@9.7.0",
   "scripts": {
-    "test": "node --test-reporter dot src/main.test.mjs"
+    "test": "node src/main.test.mjs"
   },
   "devDependencies": {
     "tsx": "latest",
@@ -17,10 +17,10 @@
     "router": "latest",
     "test-utils": "latest",
     "vant": "latest",
-    "vite-plugin-vue": "latest",
+    "@vitejs/plugin-vue": "latest",
     "vitepress": "latest",
     "vue-i18n": "latest",
-    "vue-macros": "latest",
+    "unplugin-vue-macros": "latest",
     "vue-simple-compiler": "latest",
     "vuetify": "latest",
     "@vueuse/core": "latest",
