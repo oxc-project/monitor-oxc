@@ -1963,7 +1963,7 @@ importers:
         version: 4.5.0
       log-symbols:
         specifier: latest
-        version: 6.0.0
+        version: 7.0.0
       log-update:
         specifier: latest
         version: 6.1.0
@@ -3052,7 +3052,7 @@ importers:
         version: 5.4.1(@types/node@22.4.0)(less@4.2.0)(sass@1.77.8)(terser@5.31.6)
       vitepress:
         specifier: latest
-        version: 1.3.2(@algolia/client-search@4.24.0)(@types/node@22.4.0)(@types/react@18.3.3)(async-validator@4.2.5)(axios@1.7.4(debug@4.3.6(supports-color@9.4.0)))(change-case@5.4.4)(jwt-decode@4.0.0)(less@4.2.0)(postcss@8.4.41)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.16.3)(terser@5.31.6)(typescript@5.5.4)
+        version: 1.3.3(@algolia/client-search@4.24.0)(@types/node@22.4.0)(@types/react@18.3.3)(async-validator@4.2.5)(axios@1.7.4(debug@4.3.6(supports-color@9.4.0)))(change-case@5.4.4)(jwt-decode@4.0.0)(less@4.2.0)(postcss@8.4.41)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.16.3)(terser@5.31.6)(typescript@5.5.4)
       vue:
         specifier: latest
         version: 3.4.38(typescript@5.5.4)
@@ -6708,21 +6708,21 @@ packages:
   '@vueuse/core@11.0.0':
     resolution: {integrity: sha512-shibzNGjmRjZucEm97B8V0NO5J3vPHMCE/mltxQ3vHezbDoFQBMtK11XsfwfPionxSbo+buqPmsCljtYuXIBpw==}
 
-  '@vueuse/integrations@10.11.1':
-    resolution: {integrity: sha512-Y5hCGBguN+vuVYTZmdd/IMXLOdfS60zAmDmFYc4BKBcMUPZH1n4tdyDECCPjXm0bNT3ZRUy1xzTLGaUje8Xyaw==}
+  '@vueuse/integrations@11.0.0':
+    resolution: {integrity: sha512-B95nBX4B2q2ZETBDldrKARM/fYXBHfwdo44UbHBq4bUTi25lrlc8MwAZGqEoRvdV4ND9T6O1Rb9e4kaCJFXnqw==}
     peerDependencies:
       async-validator: ^4
       axios: ^1
-      change-case: ^4
-      drauu: ^0.3
+      change-case: ^5
+      drauu: ^0.4
       focus-trap: ^7
-      fuse.js: ^6
+      fuse.js: ^7
       idb-keyval: ^6
-      jwt-decode: ^3
+      jwt-decode: ^4
       nprogress: ^0.2
       qrcode: ^1.5
       sortablejs: ^1
-      universal-cookie: ^6
+      universal-cookie: ^7
     peerDependenciesMeta:
       async-validator:
         optional: true
@@ -10769,6 +10769,10 @@ packages:
     resolution: {integrity: sha512-i24m8rpwhmPIS4zscNzK6MSEhk0DUWa/8iYQWxhffV8jkI4Phvs3F+quL5xvS0gdQR0FyTCMMH33Y78dDTzzIw==}
     engines: {node: '>=18'}
 
+  log-symbols@7.0.0:
+    resolution: {integrity: sha512-zrc91EDk2M+2AXo/9BTvK91pqb7qrPg2nX/Hy+u8a5qQlbaOflCKO+6SqgZ+M+xUFxGdKTgwnGiL96b1W3ikRA==}
+    engines: {node: '>=18'}
+
   log-update@6.1.0:
     resolution: {integrity: sha512-9ie8ItPR6tjY5uYJh8K/Zrv/RMZ5VOlOWvtZdEHYSTFKZfIBPQa9tOAEeAWhd+AnIneLJ22w5fjOYtoutpWq5w==}
     engines: {node: '>=18'}
@@ -13708,8 +13712,8 @@ packages:
     resolution: {integrity: sha512-tLq3bSNx+xSpwvAJnzrK0Ep5CLNWjvFTOp71URMaAEWBfRb9nnJiBoUe0tF8bI4ZFO3omgBR6NvnbzVUT3Ly4g==}
     engines: {node: '>=14.16'}
 
-  type-fest@4.24.0:
-    resolution: {integrity: sha512-spAaHzc6qre0TlZQQ2aA/nGMe+2Z/wyGk5Z+Ru2VUfdNwT6kWO6TjevOlpebsATEG1EIQ2sOiDszud3lO5mt/Q==}
+  type-fest@4.25.0:
+    resolution: {integrity: sha512-bRkIGlXsnGBRBQRAY56UXBm//9qH4bmJfFvq83gSz41N282df+fjy8ofcEgc1sM8geNt5cl6mC2g9Fht1cs8Aw==}
     engines: {node: '>=16'}
 
   type-is@1.6.18:
@@ -13904,8 +13908,8 @@ packages:
     peerDependencies:
       vue: ^2.7.0 || ^3.2.25
 
-  unplugin-vue-router@0.10.6:
-    resolution: {integrity: sha512-bJ9a/CtFKidhmne8PlTzUptimIFuzHegNODFxWNMOe372jzdRmZEDwvn8ylkI9aDehEI990dlIqZQKN/r0Ki1g==}
+  unplugin-vue-router@0.10.7:
+    resolution: {integrity: sha512-5KEh7Swc1L2Xh5WOD7yQLeB5bO3iTw+Hst7qMxwmwYcPm9qVrtrRTZUftn2Hj4is17oMKgqacyWadjQzwW5B/Q==}
     peerDependencies:
       vue-router: ^4.4.0
     peerDependenciesMeta:
@@ -14165,8 +14169,8 @@ packages:
       terser:
         optional: true
 
-  vitepress@1.3.2:
-    resolution: {integrity: sha512-6gvecsCuR6b1Cid4w19KQiQ02qkpgzFRqiG0v1ZBekGkrZCzsxdDD5y4WH82HRXAOhU4iZIpzA1CsWqs719rqA==}
+  vitepress@1.3.3:
+    resolution: {integrity: sha512-6UzEw/wZ41S/CATby7ea7UlffvRER/uekxgN6hbEvSys9ukmLOKsz87Ehq9yOx1Rwiw+Sj97yjpivP8w1sUmng==}
     hasBin: true
     peerDependencies:
       markdown-it-mathjax3: ^4
@@ -19142,10 +19146,10 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
-  '@vueuse/integrations@10.11.1(async-validator@4.2.5)(axios@1.7.4(debug@4.3.6(supports-color@9.4.0)))(change-case@5.4.4)(focus-trap@7.5.4)(jwt-decode@4.0.0)(vue@3.4.38(typescript@5.5.4))':
+  '@vueuse/integrations@11.0.0(async-validator@4.2.5)(axios@1.7.4(debug@4.3.6(supports-color@9.4.0)))(change-case@5.4.4)(focus-trap@7.5.4)(jwt-decode@4.0.0)(vue@3.4.38(typescript@5.5.4))':
     dependencies:
-      '@vueuse/core': 10.11.1(vue@3.4.38(typescript@5.5.4))
-      '@vueuse/shared': 10.11.1(vue@3.4.38(typescript@5.5.4))
+      '@vueuse/core': 11.0.0(vue@3.4.38(typescript@5.5.4))
+      '@vueuse/shared': 11.0.0(vue@3.4.38(typescript@5.5.4))
       vue-demi: 0.14.10(vue@3.4.38(typescript@5.5.4))
     optionalDependencies:
       async-validator: 4.2.5
@@ -21185,7 +21189,7 @@ snapshots:
 
   dot-prop@9.0.0:
     dependencies:
-      type-fest: 4.24.0
+      type-fest: 4.25.0
 
   dotenv-expand@11.0.6:
     dependencies:
@@ -22413,7 +22417,7 @@ snapshots:
       lowercase-keys: 3.0.0
       p-cancelable: 4.0.1
       responselike: 3.0.0
-      type-fest: 4.24.0
+      type-fest: 4.25.0
 
   graceful-fs@4.2.11: {}
 
@@ -23925,6 +23929,11 @@ snapshots:
       chalk: 5.3.0
       is-unicode-supported: 1.3.0
 
+  log-symbols@7.0.0:
+    dependencies:
+      is-unicode-supported: 2.0.0
+      yoctocolors: 2.1.1
+
   log-update@6.1.0:
     dependencies:
       ansi-escapes: 7.0.0
@@ -24840,7 +24849,7 @@ snapshots:
       unenv: 1.10.0
       unimport: 3.10.0(rollup@4.20.0)
       unplugin: 1.12.2
-      unplugin-vue-router: 0.10.6(rollup@4.20.0)(vue-router@4.4.3(vue@3.4.38(typescript@5.5.4)))(vue@3.4.38(typescript@5.5.4))
+      unplugin-vue-router: 0.10.7(rollup@4.20.0)(vue-router@4.4.3(vue@3.4.38(typescript@5.5.4)))(vue@3.4.38(typescript@5.5.4))
       unstorage: 1.10.2(ioredis@5.4.1(supports-color@9.4.0))
       untyped: 1.4.2(supports-color@9.4.0)
       vue: 3.4.38(typescript@5.5.4)
@@ -25155,7 +25164,7 @@ snapshots:
     dependencies:
       '@babel/code-frame': 7.24.7
       index-to-position: 0.1.2
-      type-fest: 4.24.0
+      type-fest: 4.25.0
 
   parse-ms@4.0.0: {}
 
@@ -27241,7 +27250,7 @@ snapshots:
 
   type-fest@3.13.1: {}
 
-  type-fest@4.24.0: {}
+  type-fest@4.25.0: {}
 
   type-is@1.6.18:
     dependencies:
@@ -27505,7 +27514,7 @@ snapshots:
       - vue-tsc
       - webpack
 
-  unplugin-vue-router@0.10.6(rollup@4.20.0)(vue-router@4.4.3(vue@3.4.38(typescript@5.5.4)))(vue@3.4.38(typescript@5.5.4)):
+  unplugin-vue-router@0.10.7(rollup@4.20.0)(vue-router@4.4.3(vue@3.4.38(typescript@5.5.4)))(vue@3.4.38(typescript@5.5.4)):
     dependencies:
       '@babel/types': 7.25.2
       '@rollup/pluginutils': 5.1.0(rollup@4.20.0)
@@ -27771,7 +27780,7 @@ snapshots:
       sass: 1.77.8
       terser: 5.31.6
 
-  vitepress@1.3.2(@algolia/client-search@4.24.0)(@types/node@22.4.0)(@types/react@18.3.3)(async-validator@4.2.5)(axios@1.7.4(debug@4.3.6(supports-color@9.4.0)))(change-case@5.4.4)(jwt-decode@4.0.0)(less@4.2.0)(postcss@8.4.41)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.16.3)(terser@5.31.6)(typescript@5.5.4):
+  vitepress@1.3.3(@algolia/client-search@4.24.0)(@types/node@22.4.0)(@types/react@18.3.3)(async-validator@4.2.5)(axios@1.7.4(debug@4.3.6(supports-color@9.4.0)))(change-case@5.4.4)(jwt-decode@4.0.0)(less@4.2.0)(postcss@8.4.41)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.16.3)(terser@5.31.6)(typescript@5.5.4):
     dependencies:
       '@docsearch/css': 3.6.1
       '@docsearch/js': 3.6.1(@algolia/client-search@4.24.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.16.3)
@@ -27781,8 +27790,8 @@ snapshots:
       '@vitejs/plugin-vue': 5.1.2(vite@5.4.1(@types/node@22.4.0)(less@4.2.0)(sass@1.77.8)(terser@5.31.6))(vue@3.4.38(typescript@5.5.4))
       '@vue/devtools-api': 7.3.8
       '@vue/shared': 3.4.38
-      '@vueuse/core': 10.11.1(vue@3.4.38(typescript@5.5.4))
-      '@vueuse/integrations': 10.11.1(async-validator@4.2.5)(axios@1.7.4(debug@4.3.6(supports-color@9.4.0)))(change-case@5.4.4)(focus-trap@7.5.4)(jwt-decode@4.0.0)(vue@3.4.38(typescript@5.5.4))
+      '@vueuse/core': 11.0.0(vue@3.4.38(typescript@5.5.4))
+      '@vueuse/integrations': 11.0.0(async-validator@4.2.5)(axios@1.7.4(debug@4.3.6(supports-color@9.4.0)))(change-case@5.4.4)(focus-trap@7.5.4)(jwt-decode@4.0.0)(vue@3.4.38(typescript@5.5.4))
       focus-trap: 7.5.4
       mark.js: 8.11.1
       minisearch: 7.1.0
