@@ -6463,11 +6463,11 @@ packages:
       vite: ^5.0.0
       vue: ^3.2.25
 
-  '@volar/language-core@2.4.0-alpha.19':
-    resolution: {integrity: sha512-8H6x3vC0/SbOqy1cU0s7/Hk9nNH61t8qOoghjX7XpguLagEyjF6zkMp6C5F/sBlpr0WpeByc1KDfyBHumB8ZfA==}
+  '@volar/language-core@2.4.0':
+    resolution: {integrity: sha512-FTla+khE+sYK0qJP+6hwPAAUwiNHVMph4RUXpxf/FIPKUP61NFrVZorml4mjFShnueR2y9/j8/vnh09YwVdH7A==}
 
-  '@volar/source-map@2.4.0-alpha.19':
-    resolution: {integrity: sha512-f86wTDVVjWUtaBcmFYTTLtWpBfooNfZmwvn73f+KXIchYqKgQVzOuGbORuVPwSrAjYLPW0f8Aa5Gb9TbdI17Ug==}
+  '@volar/source-map@2.4.0':
+    resolution: {integrity: sha512-2ceY8/NEZvN6F44TXw2qRP6AQsvCYhV2bxaBPWxV9HqIfkbRydSksTFObCF1DBDNBfKiZTS8G/4vqV6cvjdOIQ==}
 
   '@vue-macros/api@0.10.4':
     resolution: {integrity: sha512-uRez+hyshTZJpG0PLaS3gwOTFhdCOj1DYHBcSXRfJGAveYrSim6AxaNFgYt6UDZ5kgP2CU3SW4+ZkPW2duDqWQ==}
@@ -18712,11 +18712,11 @@ snapshots:
       vite: 5.4.1(@types/node@22.4.0)(less@4.2.0)(sass@1.77.8)(terser@5.31.6)
       vue: 3.4.38(typescript@5.5.4)
 
-  '@volar/language-core@2.4.0-alpha.19':
+  '@volar/language-core@2.4.0':
     dependencies:
-      '@volar/source-map': 2.4.0-alpha.19
+      '@volar/source-map': 2.4.0
 
-  '@volar/source-map@2.4.0-alpha.19': {}
+  '@volar/source-map@2.4.0': {}
 
   '@vue-macros/api@0.10.4(rollup@4.21.0)(vue@3.4.38(typescript@5.5.4))':
     dependencies:
@@ -19091,7 +19091,7 @@ snapshots:
 
   '@vue/language-core@2.0.29(typescript@5.5.4)':
     dependencies:
-      '@volar/language-core': 2.4.0-alpha.19
+      '@volar/language-core': 2.4.0
       '@vue/compiler-dom': 3.4.38
       '@vue/compiler-vue2': 2.7.16
       '@vue/shared': 3.4.38
