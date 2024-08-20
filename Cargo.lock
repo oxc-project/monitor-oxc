@@ -410,7 +410,7 @@ checksum = "caff54706df99d2a78a5a4e3455ff45448d81ef1bb63c22cd14052ca0e993a3f"
 
 [[package]]
 name = "oxc"
-version = "0.24.2"
+version = "0.24.3"
 dependencies = [
  "oxc_allocator",
  "oxc_ast",
@@ -442,7 +442,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_allocator"
-version = "0.24.2"
+version = "0.24.3"
 dependencies = [
  "allocator-api2",
  "bumpalo",
@@ -450,7 +450,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_ast"
-version = "0.24.2"
+version = "0.24.3"
 dependencies = [
  "bitflags",
  "num-bigint",
@@ -462,7 +462,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_ast_macros"
-version = "0.24.2"
+version = "0.24.3"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -471,7 +471,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_cfg"
-version = "0.24.2"
+version = "0.24.3"
 dependencies = [
  "bitflags",
  "itertools",
@@ -482,7 +482,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_codegen"
-version = "0.24.2"
+version = "0.24.3"
 dependencies = [
  "bitflags",
  "daachorse",
@@ -499,7 +499,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_diagnostics"
-version = "0.24.2"
+version = "0.24.3"
 dependencies = [
  "miette",
  "owo-colors",
@@ -509,11 +509,11 @@ dependencies = [
 
 [[package]]
 name = "oxc_index"
-version = "0.24.2"
+version = "0.24.3"
 
 [[package]]
 name = "oxc_isolated_declarations"
-version = "0.24.2"
+version = "0.24.3"
 dependencies = [
  "oxc_allocator",
  "oxc_ast",
@@ -525,7 +525,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_mangler"
-version = "0.24.2"
+version = "0.24.3"
 dependencies = [
  "itertools",
  "oxc_ast",
@@ -536,7 +536,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_minifier"
-version = "0.24.2"
+version = "0.24.3"
 dependencies = [
  "num-bigint",
  "num-traits",
@@ -554,7 +554,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_parser"
-version = "0.24.2"
+version = "0.24.3"
 dependencies = [
  "assert-unchecked",
  "bitflags",
@@ -572,7 +572,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_semantic"
-version = "0.24.2"
+version = "0.24.3"
 dependencies = [
  "assert-unchecked",
  "indexmap",
@@ -590,7 +590,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_sourcemap"
-version = "0.24.2"
+version = "0.24.3"
 dependencies = [
  "base64-simd",
  "cfg-if",
@@ -601,7 +601,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_span"
-version = "0.24.2"
+version = "0.24.3"
 dependencies = [
  "compact_str",
  "miette",
@@ -611,7 +611,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_syntax"
-version = "0.24.2"
+version = "0.24.3"
 dependencies = [
  "bitflags",
  "dashmap",
@@ -628,7 +628,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_transformer"
-version = "0.24.2"
+version = "0.24.3"
 dependencies = [
  "dashmap",
  "indexmap",
@@ -648,7 +648,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_traverse"
-version = "0.24.2"
+version = "0.24.3"
 dependencies = [
  "compact_str",
  "memoffset",

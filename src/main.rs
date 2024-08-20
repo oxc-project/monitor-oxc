@@ -41,7 +41,7 @@ fn main() -> ExitCode {
 
     let result = node_modules_runner.run_all();
 
-    let exit_code = if let Err(diagnostics) = result {
+    if let Err(diagnostics) = result {
         for diagnostic in &diagnostics {
             println!("{}\n{:?}\n{}", diagnostic.case, diagnostic.path, diagnostic.message);
         }
@@ -49,7 +49,5 @@ fn main() -> ExitCode {
         ExitCode::FAILURE
     } else {
         ExitCode::SUCCESS
-    };
-
-    exit_code
+    }
 }

@@ -1,8 +1,11 @@
 use std::{env, fmt, fs, path::PathBuf, process::Command, str::FromStr};
 
 use oxc::{
-    allocator::Allocator, codegen::CodeGenerator, isolated_declarations::IsolatedDeclarations,
-    parser::Parser, span::SourceType,
+    allocator::Allocator,
+    codegen::CodeGenerator,
+    isolated_declarations::IsolatedDeclarations,
+    parser::{ParseOptions, Parser},
+    span::SourceType,
 };
 use ureq::get;
 
@@ -35,7 +38,10 @@ fn transform(path: &str, source_text: &str) -> String {
     let allocator = Allocator::default();
     let source_type = SourceType::from_path(path).unwrap();
     let program = Parser::new(&allocator, source_text, source_type)
-        .allow_return_outside_function(true)
+        .with_options(ParseOptions {
+            allow_return_outside_function: true,
+            ..ParseOptions::default()
+        })
         .parse()
         .program;
     let ret = IsolatedDeclarations::new(&allocator).build(&program);

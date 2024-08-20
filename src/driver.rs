@@ -2,10 +2,10 @@ use std::path::Path;
 
 use oxc::{
     allocator::Allocator,
-    codegen::{CodeGenerator, CommentOptions, WhitespaceRemover},
+    codegen::{CodeGenerator, CodegenOptions, CommentOptions},
     mangler::ManglerBuilder,
     minifier::{CompressOptions, Compressor},
-    parser::{Parser, ParserReturn},
+    parser::{ParseOptions, Parser, ParserReturn},
     span::SourceType,
     transformer::{TransformOptions, Transformer},
 };
@@ -55,7 +55,10 @@ impl Driver {
         let allocator = Allocator::default();
         let ParserReturn { mut program, errors, trivias, .. } =
             Parser::new(&allocator, source_text, source_type)
-                .allow_return_outside_function(true)
+                .with_options(ParseOptions {
+                    allow_return_outside_function: true,
+                    ..ParseOptions::default()
+                })
                 .parse();
 
         if !errors.is_empty() {
@@ -91,15 +94,15 @@ impl Driver {
 
         let comment_options = CommentOptions { preserve_annotate_comments: true };
 
-        let source = if self.remove_whitespace {
-            WhitespaceRemover::new().with_mangler(mangler).build(&program).source_text
-        } else {
-            CodeGenerator::new()
-                .enable_comment(source_text, trivias, comment_options)
-                .with_mangler(mangler)
-                .build(&program)
-                .source_text
-        };
+        let source = CodeGenerator::new()
+            .with_options(CodegenOptions {
+                minify: self.remove_whitespace,
+                ..CodegenOptions::default()
+            })
+            .enable_comment(source_text, trivias, comment_options)
+            .with_mangler(mangler)
+            .build(&program)
+            .source_text;
 
         Ok(source)
     }
