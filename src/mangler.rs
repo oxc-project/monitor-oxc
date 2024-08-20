@@ -16,6 +16,6 @@ impl Case for ManglerRunner {
     }
 
     fn driver(&self) -> Driver {
-        Driver::default().with_mangle()
+        Driver { mangle: true, ..Driver::default() }
     }
 }

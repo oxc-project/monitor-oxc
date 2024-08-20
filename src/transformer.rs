@@ -18,6 +18,6 @@ impl Case for TransformerRunner {
     }
 
     fn driver(&self) -> Driver {
-        Driver::default().with_transform()
+        Driver { transform: true, ..Driver::default() }
     }
 }

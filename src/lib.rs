@@ -98,6 +98,7 @@ impl NodeModulesRunner {
         let diagnostics = results
             .into_iter()
             .filter_map(|source| if let Err(d) = source { Some(d) } else { None })
+            .flatten()
             .collect::<Vec<_>>();
         if !diagnostics.is_empty() {
             return Err(diagnostics);

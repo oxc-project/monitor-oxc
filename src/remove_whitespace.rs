@@ -16,6 +16,6 @@ impl Case for RemoveWhitespaceRunner {
     }
 
     fn driver(&self) -> Driver {
-        Driver::default().with_remove_whitespace()
+        Driver { remove_whitespace: true, ..Driver::default() }
     }
 }

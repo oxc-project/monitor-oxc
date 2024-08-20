@@ -1,13 +1,12 @@
-use std::path::Path;
+use std::{
+    mem,
+    path::{Path, PathBuf},
+};
 
 use oxc::{
-    allocator::Allocator,
-    codegen::{CodeGenerator, CodegenOptions, CommentOptions},
-    mangler::ManglerBuilder,
-    minifier::{CompressOptions, Compressor},
-    parser::{ParseOptions, Parser, ParserReturn},
-    span::SourceType,
-    transformer::{TransformOptions, Transformer},
+    codegen::CodegenOptions, diagnostics::OxcDiagnostic, mangler::MangleOptions,
+    minifier::CompressOptions, parser::ParseOptions, span::SourceType,
+    transformer::TransformOptions, CompilerInterface,
 };
 
 use crate::Diagnostic;
@@ -15,95 +14,68 @@ use crate::Diagnostic;
 #[allow(clippy::struct_excessive_bools)]
 #[derive(Default)]
 pub struct Driver {
-    transform: bool,
-    compress: bool,
-    mangle: bool,
-    remove_whitespace: bool,
+    // options
+    pub transform: bool,
+    pub compress: bool,
+    pub mangle: bool,
+    pub remove_whitespace: bool,
+    // states
+    pub printed: String,
+    pub path: PathBuf,
+    pub errors: Vec<Diagnostic>,
+}
+
+impl CompilerInterface for Driver {
+    fn handle_errors(&mut self, errors: Vec<OxcDiagnostic>) {
+        self.errors.extend(
+            errors.into_iter().filter(|d| !d.message.starts_with("Flow is not supported")).map(
+                |d| Diagnostic {
+                    case: "Error",
+                    path: self.path.clone(),
+                    message: d.message.to_string(),
+                },
+            ),
+        );
+    }
+
+    fn after_codegen(&mut self, printed: String) {
+        self.printed = printed;
+    }
+
+    fn parse_options(&self) -> ParseOptions {
+        ParseOptions { allow_return_outside_function: true, ..ParseOptions::default() }
+    }
+
+    fn transform_options(&self) -> Option<TransformOptions> {
+        self.transform.then(TransformOptions::default)
+    }
+
+    fn compress_options(&self) -> Option<CompressOptions> {
+        self.compress.then(CompressOptions::default)
+    }
+
+    fn mangle_options(&self) -> Option<MangleOptions> {
+        self.mangle.then(MangleOptions::default)
+    }
+
+    fn codegen_options(&self) -> Option<CodegenOptions> {
+        Some(CodegenOptions { minify: self.remove_whitespace, ..CodegenOptions::default() })
+    }
 }
 
 impl Driver {
-    #[must_use]
-    pub fn with_transform(mut self) -> Self {
-        self.transform = true;
-        self
-    }
-
-    #[must_use]
-    pub fn with_compress(mut self) -> Self {
-        self.compress = true;
-        self
-    }
-
-    #[must_use]
-    pub fn with_mangle(mut self) -> Self {
-        self.transform = true;
-        self
-    }
-
-    #[must_use]
-    pub fn with_remove_whitespace(mut self) -> Self {
-        self.remove_whitespace = true;
-        self
-    }
-
     pub fn run(
-        self,
-        path: &Path,
+        &mut self,
+        source_path: &Path,
         source_text: &str,
         source_type: SourceType,
-    ) -> Result<String, Diagnostic> {
-        let allocator = Allocator::default();
-        let ParserReturn { mut program, errors, trivias, .. } =
-            Parser::new(&allocator, source_text, source_type)
-                .with_options(ParseOptions {
-                    allow_return_outside_function: true,
-                    ..ParseOptions::default()
-                })
-                .parse();
-
-        if !errors.is_empty() {
-            let message = errors
-                .into_iter()
-                .map(|e| e.with_source_code(source_text.to_string()).to_string())
-                .collect::<Vec<_>>()
-                .join("\n");
-            // ignore flow files
-            if message.contains("Flow is not supported") {
-                return Ok(String::new());
-            }
-            return Err(Diagnostic { case: "Parse Error", path: path.to_path_buf(), message });
+    ) -> Result<String, Vec<Diagnostic>> {
+        self.path = source_path.to_path_buf();
+        self.compile(source_text, source_type, source_path);
+        if self.errors.is_empty() {
+            Ok(mem::take(&mut self.printed))
+        } else {
+            Err(mem::take(&mut self.errors))
         }
-
-        if self.transform {
-            Transformer::new(
-                &allocator,
-                path,
-                source_type,
-                source_text,
-                trivias.clone(),
-                TransformOptions::default(),
-            )
-            .build(&mut program);
-        }
-
-        if self.compress {
-            Compressor::new(&allocator, CompressOptions::default()).build(&mut program);
-        }
-
-        let mangler = self.mangle.then(|| ManglerBuilder::default().debug(true).build(&program));
-
-        let comment_options = CommentOptions { preserve_annotate_comments: true };
-
-        let source = CodeGenerator::new()
-            .with_options(CodegenOptions {
-                minify: self.remove_whitespace,
-                ..CodegenOptions::default()
-            })
-            .enable_comment(source_text, trivias, comment_options)
-            .with_mangler(mangler)
-            .build(&program)
-            .source_text;
-
-        Ok(source)
     }
 }

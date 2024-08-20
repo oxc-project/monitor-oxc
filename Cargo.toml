@@ -23,7 +23,7 @@ must_use_candidate = "allow"
 module_name_repetitions = "allow"
 
 [dependencies]
-oxc = { path = "../oxc/crates/oxc", features = ["transformer", "isolated_declarations", "codegen", "minifier"] }
+oxc = { path = "../oxc/crates/oxc", features = ["full", "isolated_declarations"] }
 walkdir = "2.5.0"
 similar = "2.5.0"
 console = "0.15.8"

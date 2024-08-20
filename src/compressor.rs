@@ -16,6 +16,6 @@ impl Case for CompressorRunner {
     }
 
     fn driver(&self) -> Driver {
-        Driver::default().with_compress()
+        Driver { compress: true, ..Driver::default() }
     }
 }
