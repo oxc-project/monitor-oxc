@@ -29,6 +29,9 @@ const PATH_IGNORES: &[&str] = &[
     "node_modules/immer/src/types/types-internal.ts",
     // template files
     ".vitepress",
+    "node_modules/next/dist/esm/build/templates/app-page.js",
+    // with statement
+    "node_modules/es-shim-unscopables/test/with.js",
 ];
 
 #[derive(Debug)]
