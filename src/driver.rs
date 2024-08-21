@@ -22,20 +22,13 @@ pub struct Driver {
     // states
     pub printed: String,
     pub path: PathBuf,
-    pub errors: Vec<Diagnostic>,
+    pub errors: Vec<OxcDiagnostic>,
 }
 
 impl CompilerInterface for Driver {
     fn handle_errors(&mut self, errors: Vec<OxcDiagnostic>) {
-        self.errors.extend(
-            errors.into_iter().filter(|d| !d.message.starts_with("Flow is not supported")).map(
-                |d| Diagnostic {
-                    case: "Error",
-                    path: self.path.clone(),
-                    message: d.message.to_string(),
-                },
-            ),
-        );
+        self.errors
+            .extend(errors.into_iter().filter(|d| !d.message.starts_with("Flow is not supported")));
     }
 
     fn after_codegen(&mut self, printed: String) {
@@ -75,7 +68,16 @@ impl Driver {
         if self.errors.is_empty() {
             Ok(mem::take(&mut self.printed))
         } else {
-            Err(mem::take(&mut self.errors))
+            let errors = mem::take(&mut self.errors)
+                .into_iter()
+                .map(|error| error.with_source_code(source_text.to_string()))
+                .map(|error| Diagnostic {
+                    case: "Error",
+                    path: source_path.to_path_buf(),
+                    message: format!("{error:?}"),
+                })
+                .collect();
+            Err(errors)
         }
     }
 }
