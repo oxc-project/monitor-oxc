@@ -36,7 +36,11 @@ impl CompilerInterface for Driver {
     }
 
     fn parse_options(&self) -> ParseOptions {
-        ParseOptions { allow_return_outside_function: true, ..ParseOptions::default() }
+        ParseOptions {
+            parse_regular_expression: true,
+            allow_return_outside_function: true,
+            ..ParseOptions::default()
+        }
     }
 
     fn transform_options(&self) -> Option<TransformOptions> {
