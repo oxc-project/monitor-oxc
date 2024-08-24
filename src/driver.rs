@@ -27,8 +27,15 @@ pub struct Driver {
 
 impl CompilerInterface for Driver {
     fn handle_errors(&mut self, errors: Vec<OxcDiagnostic>) {
-        self.errors
-            .extend(errors.into_iter().filter(|d| !d.message.starts_with("Flow is not supported")));
+        let errors = errors
+            .into_iter()
+            .filter(|d| !d.message.starts_with("Flow is not supported"))
+            // ignore `import lib = require(...);` syntax errors for transforms
+            .filter(|d| {
+                !d.message
+                    .contains("add @babel/plugin-transform-modules-commonjs to your Babel config")
+            });
+        self.errors.extend(errors);
     }
 
     fn after_codegen(&mut self, printed: String) {
