@@ -9,14 +9,11 @@
 
 * Test against vue
 
-## Top 100 npm packages (goal is all 5000+ packages from [npm-rank](https://github.com/LeoDog896/npm-rank))
+## Top 1000 npm packages from [npm-rank](https://github.com/LeoDog896/npm-rank)
 
+(checkout our [package.json](https://github.com/oxc-project/monitor-oxc/blob/main/package.json) 😆)
 
-For all js / ts files in `node_modules`:
-
-### Parser
-
-* semantic check
+For all js / ts files in `node_modules`, apply idempotency test:
 
 ### Transformer
 
@@ -36,6 +33,11 @@ For all js / ts files in `node_modules`:
 * mangle and override all js files
 * run `./src/main.test.mjs`
 
+### Compressor
+
+* Parse + compress idempotency test
+* compress and override all js files
+* run `./src/main.test.mjs`
 
 ## Developement
 
