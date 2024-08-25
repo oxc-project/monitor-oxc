@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1724534156100,
+  "lastUpdate": 1724549176209,
   "repoUrl": "https://github.com/oxc-project/monitor-oxc",
   "entries": {
     "Oxc Metrics": [
@@ -12996,6 +12996,38 @@ window.BENCHMARK_DATA = {
           {
             "name": "Compile Time",
             "value": 49.21,
+            "unit": "Seconds"
+          },
+          {
+            "name": "Binary Size",
+            "value": 2837104,
+            "unit": "Bytes"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Boshen",
+            "username": "Boshen",
+            "email": "boshenc@gmail.com"
+          },
+          "committer": {
+            "name": "Boshen",
+            "username": "Boshen",
+            "email": "boshenc@gmail.com"
+          },
+          "id": "eda3009a91589b92ffcd573a7d48d315e736b3a3",
+          "message": "ignore @babel/plugin-transform-modules-commonjs error",
+          "timestamp": "2024-08-24T05:04:59Z",
+          "url": "https://github.com/oxc-project/monitor-oxc/commit/eda3009a91589b92ffcd573a7d48d315e736b3a3"
+        },
+        "date": 1724549174811,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Compile Time",
+            "value": 49.2,
             "unit": "Seconds"
           },
           {
