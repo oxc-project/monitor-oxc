@@ -562,7 +562,7 @@ importers:
         version: 1.0.7
       aws-sdk:
         specifier: latest
-        version: 2.1683.0
+        version: 2.1684.0
       axe-core:
         specifier: latest
         version: 4.10.0
@@ -7151,8 +7151,8 @@ packages:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
 
-  aws-sdk@2.1683.0:
-    resolution: {integrity: sha512-uy53mN2oHU0Jx5tkH7qG6h/42DeMAQD5jMi/6294hVgGCa29MK/ZiFIOdkEJNS9tbB03RTabg+5i4c6DxBpG8g==}
+  aws-sdk@2.1684.0:
+    resolution: {integrity: sha512-Womhydf2UhEeLALLOUEDIuJ1Iv2k9aOsqAeDaQT3AhayiYt7pguvncs5IgEAxZ0TRH7driA7kTk+iGnCP2jMMA==}
     engines: {node: '>= 10.0.0'}
 
   axe-core@4.10.0:
@@ -19650,7 +19650,7 @@ snapshots:
     dependencies:
       possible-typed-array-names: 1.0.0
 
-  aws-sdk@2.1683.0:
+  aws-sdk@2.1684.0:
     dependencies:
       buffer: 4.9.2
       events: 1.1.1
