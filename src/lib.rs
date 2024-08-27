@@ -27,11 +27,18 @@ const PATH_IGNORES: &[&str] = &[
     "node_modules/charenc/README.js",
     // broken types
     "node_modules/immer/src/types/types-internal.ts",
+    "node_modules/fbjs/flow/lib/dev.js",
     // template files
     ".vitepress",
     "node_modules/next/dist/esm/build/templates/app-page.js",
     // with statement
     "node_modules/es-shim-unscopables/test/with.js",
+    // gzipped file
+    ".min.gzip.js",
+    // bash file
+    "node_modules/.bin/sha.js",
+    // using modules in cjs
+    "node_modules/storybook/test/default/cli.test.cjs",
 ];
 
 #[derive(Debug)]
@@ -76,7 +83,8 @@ impl NodeModulesRunner {
             if source_type.is_typescript_definition() {
                 continue;
             }
-            let source_text = fs::read_to_string(path).unwrap();
+            let source_text =
+                fs::read_to_string(path).unwrap_or_else(|e| panic!("{e:?}\n{path:?}"));
             files.push(Source { path: path.to_path_buf(), source_type, source_text });
         }
         println!("Collected {} files.", files.len());

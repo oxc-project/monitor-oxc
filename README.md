@@ -46,10 +46,8 @@ rm -rf node_modules && pnpm i
 cargo run --release
 ```
 
-### Add more npm packages
+### Generate packages
 
 ```bash
-wget https://github.com/LeoDog896/npm-rank/releases/download/latest/raw.json
-node npm-rank.js | pbcopy
-# (and paste the code over to package.json and main.test.mjs)
+pnpm run generate
 ```
