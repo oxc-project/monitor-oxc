@@ -65,6 +65,14 @@ jobs:
           name: monitor-oxc
           path: ./target/release/monitor-oxc
 
+      # populate pnpm cache
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      - run: pnpm install
+
   test:
     name: Test
     needs: build
