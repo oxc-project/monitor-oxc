@@ -81,4 +81,4 @@ let staticTestFile = 'import test from "node:test"\nimport assert from "node:ass
 data.forEach((key, i) => {
   staticTestFile += `import * as _${i} from "${key}";\ntest("${key}", () => assert.ok(_${i}));\n`;
 });
-fs.writeFileSync("./src/static.test.mjs", dynamicTestFile);
+fs.writeFileSync("./src/static.test.mjs", staticTestFile);
