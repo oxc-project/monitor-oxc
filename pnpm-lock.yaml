@@ -2733,6 +2733,9 @@ importers:
       d3-format:
         specifier: latest
         version: 3.1.0
+      d3-geo:
+        specifier: latest
+        version: 3.1.1
       d3-interpolate:
         specifier: latest
         version: 3.0.1
@@ -3195,9 +3198,6 @@ importers:
       eslint-plugin-flowtype:
         specifier: latest
         version: 8.0.3(@babel/plugin-syntax-flow@7.24.7(@babel/core@7.25.2(supports-color@9.4.0)))(@babel/plugin-transform-react-jsx@7.25.2(@babel/core@7.25.2(supports-color@9.4.0))(supports-color@9.4.0))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))
-      eslint-plugin-import:
-        specifier: latest
-        version: 2.29.1(@typescript-eslint/parser@5.62.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint-import-resolver-typescript@3.6.3)(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)
       eslint-plugin-jest:
         specifier: latest
         version: 28.8.0(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(jest@29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4)))(supports-color@9.4.0)(typescript@5.5.4)
@@ -15156,6 +15156,10 @@ packages:
 
   d3-format@3.1.0:
     resolution: {integrity: sha512-YyUI6AEuY/Wpt8KWLgZHsIU86atmikuoOmCfommt0LYHiQSPjvX2AcFc38PX0CBpr2RCyZhjex+NS/LPOv6YqA==}
+    engines: {node: '>=12'}
+
+  d3-geo@3.1.1:
+    resolution: {integrity: sha512-637ln3gXKXOwhalDzinUgY83KzNWZRKbYubaG+fGVuc/dxO64RRljtCTnf5ecMyE1RIdtqpkVcq0IbtU2S8j2Q==}
     engines: {node: '>=12'}
 
   d3-interpolate@3.0.1:
@@ -34514,6 +34518,10 @@ snapshots:
   d3-ease@3.0.1: {}
 
   d3-format@3.1.0: {}
+
+  d3-geo@3.1.1:
+    dependencies:
+      d3-array: 3.2.4
 
   d3-interpolate@3.0.1:
     dependencies:

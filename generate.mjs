@@ -23,6 +23,8 @@ const ignoreList = new Set([
   "ast-types-flow",
   // not compatible with linux
   "fsevents",
+  // breaks rolldown
+  "eslint-plugin-import"
 ]);
 
 const vue = [
