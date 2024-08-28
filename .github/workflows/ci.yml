@@ -149,3 +149,16 @@ jobs:
           benchmark-data-dir-path: metrics
           auto-push: true
           save-data-file: true
+
+  rolldown:
+    name: Rolldown
+    runs-on: ubuntu-latest
+    steps:
+      - uses: taiki-e/checkout-action@v1
+      - run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - run: pnpm install
+      - run: pnpm run rolldown

@@ -2,13 +2,16 @@
   "name": "monitor-oxc",
   "private": true,
   "packageManager": "pnpm@9.9.0",
+  "type": "module",
   "scripts": {
     "generate": "node generate.mjs && pnpm i",
-    "test": "node src/static.test.mjs"
+    "test": "node src/static.test.mjs",
+    "rolldown": "rolldown -c"
   },
   "dependencies": {
     "npm-high-impact": "latest",
-    "tsx": "latest"
+    "tsx": "latest",
+    "rolldown": "nightly"
   },
   "devDependencies": {
     "@aashutoshrathi/word-wrap": "latest",
