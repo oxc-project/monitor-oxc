@@ -3180,9 +3180,6 @@ importers:
       eslint-plugin-es:
         specifier: latest
         version: 4.1.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))
-      eslint-plugin-flowtype:
-        specifier: latest
-        version: 8.0.3(@babel/plugin-syntax-flow@7.24.7(@babel/core@7.25.2(supports-color@9.4.0)))(@babel/plugin-transform-react-jsx@7.25.2(@babel/core@7.25.2(supports-color@9.4.0))(supports-color@9.4.0))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))
       eslint-plugin-jest:
         specifier: latest
         version: 28.8.0(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(jest@29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4)))(supports-color@9.4.0)(typescript@5.5.4)
@@ -7512,6 +7509,9 @@ importers:
       xmlhttprequest-ssl:
         specifier: latest
         version: 2.1.1
+      xregexp:
+        specifier: latest
+        version: 5.1.1
       xtend:
         specifier: latest
         version: 4.0.2
@@ -8844,6 +8844,10 @@ packages:
 
   '@babel/regjsgen@0.8.0':
     resolution: {integrity: sha512-x/rqGMdzj+fWZvCOYForTghzbtqPDZ5gPwaoNGHdgDfF2QA/XZbCBp4Moo5scrkAMPhB7z26XM/AaHuIJdgauA==}
+
+  '@babel/runtime-corejs3@7.25.0':
+    resolution: {integrity: sha512-BOehWE7MgQ8W8Qn0CQnMtg2tHPHPulcS/5AVpFvs2KCK1ET+0WqZqPvnpRpFN81gYoFopdIEJX9Sgjw3ZBccPg==}
+    engines: {node: '>=6.9.0'}
 
   '@babel/runtime@7.25.4':
     resolution: {integrity: sha512-DSgLeL/FNcpXuzav5wfYvHCGvynXkJbn3Zvc3823AEe9nPwW9IK4UoCSS5yGymmQzN0pCPvivtgS6/8U2kkm1w==}
@@ -24844,6 +24848,9 @@ packages:
     resolution: {integrity: sha512-ptjR8YSJIXoA3Mbv5po7RtSYHO6mZr8s7i5VGmEk7QY2pQWyT1o0N+W1gKbOyJPUCGXGnuw0wqe8f0L6Y0ny7g==}
     engines: {node: '>=0.4.0'}
 
+  xregexp@5.1.1:
+    resolution: {integrity: sha512-fKXeVorD+CzWvFs7VBuKTYIW63YD1e1osxwQ8caZ6o1jg6pDAbABDG54LCIq0j5cy7PjRvGIq6sef9DYPXpncg==}
+
   xtend@4.0.2:
     resolution: {integrity: sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==}
     engines: {node: '>=0.4'}
@@ -26925,6 +26932,11 @@ snapshots:
       source-map-support: 0.5.21
 
   '@babel/regjsgen@0.8.0': {}
+
+  '@babel/runtime-corejs3@7.25.0':
+    dependencies:
+      core-js-pure: 3.38.1
+      regenerator-runtime: 0.14.1
 
   '@babel/runtime@7.25.4':
     dependencies:
@@ -45779,6 +45791,10 @@ snapshots:
   xmlhttprequest-ssl@2.0.0: {}
 
   xmlhttprequest-ssl@2.1.1: {}
+
+  xregexp@5.1.1:
+    dependencies:
+      '@babel/runtime-corejs3': 7.25.0
 
   xtend@4.0.2: {}
 

@@ -20,7 +20,7 @@ const ignoreList = new Set([
   // types
   "type", "type-fest", "types-registry", "undici-types", "@octokit/types", "@schematics/angular",
   // flow
-  "ast-types-flow",
+  "ast-types-flow", "eslint-plugin-flowtype",
   // not compatible with linux
   "fsevents",
   // breaks rolldown
