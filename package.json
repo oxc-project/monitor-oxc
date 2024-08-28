@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "generate": "node generate.mjs && pnpm i",
-    "test": "node src/static.test.mjs",
+    "test": "node src/dynamic.test.mjs",
     "rolldown": "rolldown -c"
   },
   "dependencies": {
@@ -2210,6 +2210,7 @@
     "split-string": "latest",
     "split2": "latest",
     "sprintf-js": "latest",
+    "sqlstring": "latest",
     "sshpk": "latest",
     "ssri": "latest",
     "stable": "latest",
@@ -2456,7 +2457,6 @@
     "vuetify": "latest",
     "w3c-hr-time": "latest",
     "w3c-xmlserializer": "latest",
-    "wait-on": "latest",
     "walker": "latest",
     "warning": "latest",
     "watchpack": "latest",

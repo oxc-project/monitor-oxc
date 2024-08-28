@@ -16,7 +16,7 @@ const ignoreList = new Set([
   "limiter", "react-app-polyfill", "react-dev-utils", "react-error-overlay",
   "timers-ext", "unfetch",
   // broken in node
-  "bootstrap", "@vitest/expect",
+  "bootstrap", "@vitest/expect", "wait-on",
   // types
   "type", "type-fest", "types-registry", "undici-types", "@octokit/types", "@schematics/angular",
   // flow
