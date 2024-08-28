@@ -9,9 +9,9 @@
 
 * Test against vue
 
-## Top 1000 npm packages from [npm-rank](https://github.com/LeoDog896/npm-rank)
+## Top 2500 npm packages from [npm-high-impact](https://github.com/wooorm/npm-high-impact)
 
-(checkout our [package.json](https://github.com/oxc-project/monitor-oxc/blob/main/package.json) 😆)
+(check out our [package.json](https://github.com/oxc-project/monitor-oxc/blob/main/package.json) 😆)
 
 For all js / ts files in `node_modules`, apply idempotency test:
 
