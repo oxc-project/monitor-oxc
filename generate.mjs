@@ -1,33 +1,24 @@
-import fs from 'node:fs';
+import fs from "node:fs";
 
 import packageJson from "./package.json" with { type: "json" };
-import { npmHighImpact } from 'npm-high-impact'
-
+import { npmHighImpact } from "npm-high-impact";
 
 const ignoreList = new Set([
-  // package managers don't work
-  "npm", "yarn", "pnpm",
+  // CLIs don't work
+  "npm", "yarn", "pnpm", "nx", "@storybook/cli", "vitest",
   // NO ESM export
-  "babel-runtime", "@babel/runtime", "type-fest", "undici-types", "@testing-library/jest-dom",
-  "assert", "@babel/compat-data", "csstype", "@jest/globals", "source-map-support",
-  "es-iterator-helpers", "spdx-exceptions", "spdx-license-ids",
-  "language-subtag-registry",
-  "@storybook/components", "@storybook/node-logger",
-  "@octokit/openapi-types",
-  "@graphql-typed-document-node/core",
-  "@esbuild/linux-x64",
-  "types-registry",
-  "type",
-  "readdir-glob",
-  "eslint-module-utils", "node-releases",
-  "file-system-cache",
-  "fbjs",
-  "ext",
-  "devtools-protocol",
-  "constants-browserify",
-  "@rushstack/eslint-patch",
-  "octokit/types",
-  "@babel/runtime-corejs3",
+  "@babel/compat-data", "@babel/runtime", "@babel/runtime-corejs3", "@esbuild/linux-x64", "@graphql-typed-document-node/core",
+  "@jest/globals", "@octokit/openapi-types", "@rushstack/eslint-patch", "@storybook/components", "@storybook/node-logger",
+  "@testing-library/jest-dom", "assert", "babel-runtime", "constants-browserify", "csstype", "devtools-protocol",
+  "es-iterator-helpers", "eslint-module-utils", "ext", "fbjs", "file-system-cache", "language-subtag-registry",
+  "node-releases", "octokit/types", "readdir-glob", "source-map-support", "spdx-exceptions", "spdx-license-ids",
+  "@tokenizer/token", "css-color-names", "eslint-config-next", "extract-files", "jest-watch-typeahead",
+  "limiter", "react-app-polyfill", "react-dev-utils", "react-error-overlay",
+  "timers-ext", "unfetch",
+  // broken in node
+  "bootstrap", "@vitest/expect",
+  // types
+  "type", "type-fest", "types-registry", "undici-types", "@octokit/types", "@schematics/angular",
   // flow
   "ast-types-flow",
   // not compatible with linux
@@ -54,31 +45,36 @@ const vue = [
   "@vueuse/core",
 ];
 
-const data = [...new Set(npmHighImpact
-  .slice(0, 2000)
-  .filter((key) => !key.startsWith("@types/"))
-  .filter((key) => !key.startsWith("@tsconfig/"))
-  // web3 crap
-  // .filter((key) => !key.startsWith("@juigorg/"))
-  // .filter((key) => !key.startsWith("@/zitterorg"))
-  .filter((key) => !ignoreList.has(key)).concat(vue))]
-  .sort();
+const ignorePrefixes = [
+  "@types", "@tsconfig", "@tsconfig", "@next", "@esbuild", "@nrwl", "@rollup", "@mui", "workbox",
+  "@swc", "esbuild-"
+];
+
+const data = [
+  ...new Set(
+    npmHighImpact
+      .filter((key) => !ignorePrefixes.some((p) => key.startsWith(p)))
+      .filter((key) => !ignoreList.has(key))
+      .slice(0, 2500)
+      .concat(vue),
+  ),
+].sort();
 
 packageJson.devDependencies = {};
 data.map((name) => {
   packageJson.devDependencies[name] = "latest";
 });
 
-fs.writeFileSync('./package.json', JSON.stringify(packageJson, null, 2));
+fs.writeFileSync("./package.json", JSON.stringify(packageJson, null, 2));
 
 let dynamicTestFile = 'import test from "node:test"\nimport assert from "node:assert";\n';
 data.forEach((key) => {
-  dynamicTestFile += `test("${key}", () => import("${key}").then(assert.ok));\n`
+  dynamicTestFile += `test("${key}", () => import("${key}").then(assert.ok));\n`;
 });
-fs.writeFileSync('./src/dynamic.test.mjs', dynamicTestFile);
+fs.writeFileSync("./src/dynamic.test.mjs", dynamicTestFile);
 
 let staticTestFile = 'import test from "node:test"\nimport assert from "node:assert";\n';
 data.forEach((key, i) => {
-  staticTestFile += `import * as _${i} from "${key}";\ntest("${key}", () => assert.ok(_${i}));\n`
+  staticTestFile += `import * as _${i} from "${key}";\ntest("${key}", () => assert.ok(_${i}));\n`;
 });
-fs.writeFileSync('./src/static.test.mjs', dynamicTestFile);
+fs.writeFileSync("./src/static.test.mjs", dynamicTestFile);
