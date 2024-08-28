@@ -917,7 +917,7 @@ importers:
         version: 29.7.0
       '@jest/core':
         specifier: latest
-        version: 29.7.0(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4))
+        version: 29.7.0(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4))
       '@jest/environment':
         specifier: latest
         version: 29.7.0
@@ -1079,7 +1079,7 @@ importers:
         version: 1.46.1
       '@pmmmwh/react-refresh-webpack-plugin':
         specifier: latest
-        version: 0.5.15(react-refresh@0.14.2)(sockjs-client@1.6.1(supports-color@9.4.0))(type-fest@4.25.0)(webpack-dev-server@5.0.4(debug@4.3.6(supports-color@9.4.0))(supports-color@9.4.0)(webpack-cli@5.1.4)(webpack@5.94.0))(webpack-hot-middleware@2.26.1)(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+        version: 0.5.15(react-refresh@0.14.2)(sockjs-client@1.6.1(supports-color@9.4.0))(type-fest@4.25.0)(webpack-dev-server@5.0.4(debug@4.3.6(supports-color@9.4.0))(supports-color@9.4.0)(webpack-cli@5.1.4)(webpack@5.94.0))(webpack-hot-middleware@2.26.1)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       '@polka/url':
         specifier: latest
         version: 0.5.0
@@ -1230,6 +1230,9 @@ importers:
       '@sigstore/protobuf-specs':
         specifier: latest
         version: 0.3.2
+      '@sigstore/sign':
+        specifier: latest
+        version: 2.3.2(supports-color@9.4.0)
       '@sigstore/tuf':
         specifier: latest
         version: 2.3.4(supports-color@9.4.0)
@@ -1661,13 +1664,13 @@ importers:
         version: 1.12.1
       '@webpack-cli/configtest':
         specifier: latest
-        version: 2.1.1(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@5.0.4)(webpack@5.94.0))(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+        version: 2.1.1(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@5.0.4)(webpack@5.94.0))(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       '@webpack-cli/info':
         specifier: latest
-        version: 2.0.2(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@5.0.4)(webpack@5.94.0))(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+        version: 2.0.2(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@5.0.4)(webpack@5.94.0))(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       '@webpack-cli/serve':
         specifier: latest
-        version: 2.0.5(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@5.0.4)(webpack@5.94.0))(webpack-dev-server@5.0.4(debug@4.3.6(supports-color@9.4.0))(supports-color@9.4.0)(webpack-cli@5.1.4)(webpack@5.94.0))(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+        version: 2.0.5(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@5.0.4)(webpack@5.94.0))(webpack-dev-server@5.0.4(debug@4.3.6(supports-color@9.4.0))(supports-color@9.4.0)(webpack-cli@5.1.4)(webpack@5.94.0))(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       '@whatwg-node/events':
         specifier: latest
         version: 0.1.2
@@ -1988,7 +1991,7 @@ importers:
         version: 29.7.0(@babel/core@7.25.2(supports-color@9.4.0))(supports-color@9.4.0)
       babel-loader:
         specifier: latest
-        version: 9.1.3(@babel/core@7.25.2(supports-color@9.4.0))(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+        version: 9.1.3(@babel/core@7.25.2(supports-color@9.4.0))(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       babel-plugin-dynamic-import-node:
         specifier: latest
         version: 2.3.3
@@ -2579,7 +2582,7 @@ importers:
         version: 3.3.3
       copy-webpack-plugin:
         specifier: latest
-        version: 12.0.2(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+        version: 12.0.2(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       core-js:
         specifier: latest
         version: 3.38.1
@@ -2618,7 +2621,7 @@ importers:
         version: 1.1.7
       create-jest:
         specifier: latest
-        version: 29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4))
+        version: 29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4))
       create-require:
         specifier: latest
         version: 1.1.1
@@ -2660,10 +2663,10 @@ importers:
         version: 7.0.0(postcss@8.4.41)
       css-loader:
         specifier: latest
-        version: 7.1.2(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+        version: 7.1.2(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       css-minimizer-webpack-plugin:
         specifier: latest
-        version: 7.0.0(clean-css@5.3.3)(csso@5.0.5)(esbuild@0.23.1)(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+        version: 7.0.0(clean-css@5.3.3)(csso@5.0.5)(esbuild@0.23.1)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       css-prefers-color-scheme:
         specifier: latest
         version: 10.0.0(postcss@8.4.41)
@@ -3167,7 +3170,7 @@ importers:
         version: 9.1.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))
       eslint-config-react-app:
         specifier: latest
-        version: 7.0.1(@babel/plugin-syntax-flow@7.24.7(@babel/core@7.25.2(supports-color@9.4.0)))(@babel/plugin-transform-react-jsx@7.25.2(@babel/core@7.25.2(supports-color@9.4.0))(supports-color@9.4.0))(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@5.62.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9(supports-color@9.4.0))(eslint-plugin-import@2.29.1)(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(jest@29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4)))(supports-color@9.4.0)(typescript@5.5.4)
+        version: 7.0.1(@babel/plugin-syntax-flow@7.24.7(@babel/core@7.25.2(supports-color@9.4.0)))(@babel/plugin-transform-react-jsx@7.25.2(@babel/core@7.25.2(supports-color@9.4.0))(supports-color@9.4.0))(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@5.62.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9(supports-color@9.4.0))(eslint-plugin-import@2.29.1)(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(jest@29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4)))(supports-color@9.4.0)(typescript@5.5.4)
       eslint-import-resolver-node:
         specifier: latest
         version: 0.3.9(supports-color@9.4.0)
@@ -3182,7 +3185,7 @@ importers:
         version: 8.0.3(@babel/plugin-syntax-flow@7.24.7(@babel/core@7.25.2(supports-color@9.4.0)))(@babel/plugin-transform-react-jsx@7.25.2(@babel/core@7.25.2(supports-color@9.4.0))(supports-color@9.4.0))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))
       eslint-plugin-jest:
         specifier: latest
-        version: 28.8.0(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(jest@29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4)))(supports-color@9.4.0)(typescript@5.5.4)
+        version: 28.8.0(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(jest@29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4)))(supports-color@9.4.0)(typescript@5.5.4)
       eslint-plugin-jsx-a11y:
         specifier: latest
         version: 6.9.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))
@@ -3215,7 +3218,7 @@ importers:
         version: 4.0.0
       eslint-webpack-plugin:
         specifier: latest
-        version: 4.2.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+        version: 4.2.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       espree:
         specifier: latest
         version: 10.1.0
@@ -3389,7 +3392,7 @@ importers:
         version: 9.1.0
       file-loader:
         specifier: latest
-        version: 6.2.0(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+        version: 6.2.0(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       file-type:
         specifier: latest
         version: 19.4.1
@@ -3470,7 +3473,7 @@ importers:
         version: 0.6.1
       fork-ts-checker-webpack-plugin:
         specifier: latest
-        version: 9.0.2(typescript@5.5.4)(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+        version: 9.0.2(typescript@5.5.4)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       form-data:
         specifier: latest
         version: 4.0.0
@@ -3818,7 +3821,7 @@ importers:
         version: 3.0.0
       html-webpack-plugin:
         specifier: latest
-        version: 5.6.0(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+        version: 5.6.0(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       htmlparser2:
         specifier: latest
         version: 9.1.0
@@ -4283,7 +4286,7 @@ importers:
         version: 5.2.0
       jest:
         specifier: latest
-        version: 29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4))
+        version: 29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4))
       jest-changed-files:
         specifier: latest
         version: 29.7.0
@@ -4292,10 +4295,10 @@ importers:
         version: 29.7.0(babel-plugin-macros@3.1.0)(supports-color@9.4.0)
       jest-cli:
         specifier: latest
-        version: 29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4))
+        version: 29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4))
       jest-config:
         specifier: latest
-        version: 29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4))
+        version: 29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4))
       jest-diff:
         specifier: latest
         version: 29.7.0
@@ -4392,9 +4395,6 @@ importers:
       js-base64:
         specifier: latest
         version: 3.7.7
-      js-beautify:
-        specifier: latest
-        version: 1.15.1
       js-cookie:
         specifier: latest
         version: 3.0.5
@@ -4547,7 +4547,7 @@ importers:
         version: 4.2.0
       less-loader:
         specifier: latest
-        version: 12.2.0(less@4.2.0)(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+        version: 12.2.0(less@4.2.0)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       leven:
         specifier: latest
         version: 4.0.0
@@ -4952,7 +4952,7 @@ importers:
         version: 1.0.1
       mini-css-extract-plugin:
         specifier: latest
-        version: 2.9.1(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+        version: 2.9.1(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       minimalistic-assert:
         specifier: latest
         version: 1.0.1
@@ -5675,7 +5675,7 @@ importers:
         version: 6.0.1(jiti@1.21.6)(postcss@8.4.41)(tsx@4.18.0)(yaml@2.5.0)
       postcss-loader:
         specifier: latest
-        version: 8.1.1(postcss@8.4.41)(typescript@5.5.4)(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+        version: 8.1.1(postcss@8.4.41)(typescript@5.5.4)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       postcss-logical:
         specifier: latest
         version: 8.0.0(postcss@8.4.41)
@@ -6005,7 +6005,7 @@ importers:
         version: 3.0.0
       raw-loader:
         specifier: latest
-        version: 4.0.2(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+        version: 4.0.2(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       rc:
         specifier: latest
         version: 1.2.8
@@ -6365,7 +6365,7 @@ importers:
         version: 1.77.8
       sass-loader:
         specifier: latest
-        version: 16.0.1(sass@1.77.8)(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+        version: 16.0.1(sass@1.77.8)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       sax:
         specifier: latest
         version: 1.4.1
@@ -6563,7 +6563,7 @@ importers:
         version: 1.2.0
       source-map-loader:
         specifier: latest
-        version: 5.0.0(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+        version: 5.0.0(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       source-map-resolve:
         specifier: latest
         version: 0.6.0
@@ -6752,7 +6752,7 @@ importers:
         version: 3.0.0
       style-loader:
         specifier: latest
-        version: 4.0.0(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+        version: 4.0.0(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       style-to-object:
         specifier: latest
         version: 1.0.6
@@ -6818,7 +6818,7 @@ importers:
         version: 6.8.2
       tailwindcss:
         specifier: latest
-        version: 3.4.10(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4))
+        version: 3.4.10(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4))
       tapable:
         specifier: latest
         version: 2.2.1
@@ -6857,7 +6857,7 @@ importers:
         version: 5.31.6
       terser-webpack-plugin:
         specifier: latest
-        version: 5.3.10(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+        version: 5.3.10(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       test-exclude:
         specifier: latest
         version: 7.0.1
@@ -7007,13 +7007,13 @@ importers:
         version: 0.10.3
       ts-jest:
         specifier: latest
-        version: 29.2.5(@babel/core@7.25.2(supports-color@9.4.0))(@jest/transform@29.7.0(supports-color@9.4.0))(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2(supports-color@9.4.0))(supports-color@9.4.0))(esbuild@0.23.1)(jest@29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4)))(typescript@5.5.4)
+        version: 29.2.5(@babel/core@7.25.2(supports-color@9.4.0))(@jest/transform@29.7.0(supports-color@9.4.0))(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2(supports-color@9.4.0))(supports-color@9.4.0))(esbuild@0.23.1)(jest@29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4)))(typescript@5.5.4)
       ts-loader:
         specifier: latest
-        version: 9.5.1(typescript@5.5.4)(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+        version: 9.5.1(typescript@5.5.4)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       ts-node:
         specifier: latest
-        version: 10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4)
+        version: 10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4)
       ts-pnp:
         specifier: latest
         version: 1.2.0(typescript@5.5.4)
@@ -7175,7 +7175,7 @@ importers:
         version: 1.12.2
       unplugin-vue-macros:
         specifier: latest
-        version: 2.11.6(@vueuse/core@11.0.3(vue@3.4.38(typescript@5.5.4)))(esbuild@0.23.1)(rolldown@0.12.2-snapshot-e7c2bff-20240828002954)(rollup@4.21.1)(supports-color@9.4.0)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(less@4.2.0)(sass@1.77.8)(terser@5.31.6))(vue@3.4.38(typescript@5.5.4))(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+        version: 2.11.6(@vueuse/core@11.0.3(vue@3.4.38(typescript@5.5.4)))(esbuild@0.23.1)(rolldown@0.12.2-snapshot-e7c2bff-20240828002954)(rollup@4.21.1)(supports-color@9.4.0)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(less@4.2.0)(sass@1.77.8)(terser@5.31.6))(vue@3.4.38(typescript@5.5.4))(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       unquote:
         specifier: latest
         version: 1.1.1
@@ -7214,7 +7214,7 @@ importers:
         version: 5.0.0
       url-loader:
         specifier: latest
-        version: 4.1.1(file-loader@6.2.0(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)))(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+        version: 4.1.1(file-loader@6.2.0(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)))(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       url-parse:
         specifier: latest
         version: 1.5.10
@@ -7376,7 +7376,7 @@ importers:
         version: 7.0.0
       webpack:
         specifier: latest
-        version: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+        version: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
       webpack-bundle-analyzer:
         specifier: latest
         version: 4.10.2
@@ -7385,7 +7385,7 @@ importers:
         version: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@5.0.4)(webpack@5.94.0)
       webpack-dev-middleware:
         specifier: latest
-        version: 7.4.2(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+        version: 7.4.2(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       webpack-dev-server:
         specifier: latest
         version: 5.0.4(debug@4.3.6(supports-color@9.4.0))(supports-color@9.4.0)(webpack-cli@5.1.4)(webpack@5.94.0)
@@ -7397,7 +7397,7 @@ importers:
         version: 3.0.2
       webpack-manifest-plugin:
         specifier: latest
-        version: 5.0.0(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+        version: 5.0.0(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       webpack-merge:
         specifier: latest
         version: 6.0.1
@@ -15692,11 +15692,6 @@ packages:
   ecdsa-sig-formatter@1.0.11:
     resolution: {integrity: sha512-nagl3RYrbNv6kQkeJIpt6NJZy8twLB/2vtz6yN9Z4vRKHN4/QZJIEbqohALSgwKdnksuY3k5Addp5lg8sVoVcQ==}
 
-  editorconfig@1.0.4:
-    resolution: {integrity: sha512-L9Qe08KWTlqYMVvMcTIvMAdl1cDUubzRNYL+WfA4bLDMHe4nemKkpmYzkznE1FwLKu0EEmy6obgQKzMJrg4x9Q==}
-    engines: {node: '>=14'}
-    hasBin: true
-
   editorconfig@2.0.0:
     resolution: {integrity: sha512-s1NQ63WQ7RNXH6Efb2cwuyRlfpbtdZubvfNe4vCuoyGPewNPY7vah8JUSOFBiJ+jr99Qh8t0xKv0oITc1dclgw==}
     engines: {node: '>=16'}
@@ -18530,11 +18525,6 @@ packages:
   js-base64@3.7.7:
     resolution: {integrity: sha512-7rCnleh0z2CkXhH67J8K1Ytz0b2Y+yxTPL+/KOJoa20hfnVQ/3/T6W/KflYI4bRHRagNeXeU2bkNGI3v1oS/lw==}
 
-  js-beautify@1.15.1:
-    resolution: {integrity: sha512-ESjNzSlt/sWE8sciZH8kBF8BPlwXPwhR6pWKAw8bw4Bwj+iZcnKW6ONWUutJ7eObuBZQpiIb8S7OYspWrKt7rA==}
-    engines: {node: '>=14'}
-    hasBin: true
-
   js-cookie@3.0.5:
     resolution: {integrity: sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==}
     engines: {node: '>=14'}
@@ -19545,10 +19535,6 @@ packages:
   minimatch@5.1.6:
     resolution: {integrity: sha512-lKwV/1brpG6mBUFHtb7NUmtABCb2WZZmm2wNiOA5hAb8VdCS4B3dtMWyvcoViccwAW/COERjXLt0zP1zXUN26g==}
     engines: {node: '>=10'}
-
-  minimatch@9.0.1:
-    resolution: {integrity: sha512-0jWhJpD/MdhPXwPuiRkCbfYfSKp2qnn2eOc279qI7f+osl/l+prKSrvhg157zSYvx/1nmgn2NqdT6k2Z7zSH9w==}
-    engines: {node: '>=16 || 14 >=14.17'}
 
   minimatch@9.0.2:
     resolution: {integrity: sha512-PZOT9g5v2ojiTL7r1xF6plNHLtOeTpSlDI007As2NlA2aYBMfVom17yqa6QzhmDP8QOhn7LjHTg7DFCVSSa6yg==}
@@ -28115,7 +28101,7 @@ snapshots:
       jest-util: 29.7.0
       slash: 3.0.0
 
-  '@jest/core@29.7.0(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4))':
+  '@jest/core@29.7.0(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4))':
     dependencies:
       '@jest/console': 29.7.0
       '@jest/reporters': 29.7.0(node-notifier@10.0.1)(supports-color@9.4.0)
@@ -28129,7 +28115,7 @@ snapshots:
       exit: 0.1.2
       graceful-fs: 4.2.11
       jest-changed-files: 29.7.0
-      jest-config: 29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4))
+      jest-config: 29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4))
       jest-haste-map: 29.7.0
       jest-message-util: 29.7.0
       jest-regex-util: 29.6.3
@@ -29053,7 +29039,7 @@ snapshots:
     dependencies:
       playwright: 1.46.1
 
-  '@pmmmwh/react-refresh-webpack-plugin@0.5.15(react-refresh@0.14.2)(sockjs-client@1.6.1(supports-color@9.4.0))(type-fest@4.25.0)(webpack-dev-server@5.0.4(debug@4.3.6(supports-color@9.4.0))(supports-color@9.4.0)(webpack-cli@5.1.4)(webpack@5.94.0))(webpack-hot-middleware@2.26.1)(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))':
+  '@pmmmwh/react-refresh-webpack-plugin@0.5.15(react-refresh@0.14.2)(sockjs-client@1.6.1(supports-color@9.4.0))(type-fest@4.25.0)(webpack-dev-server@5.0.4(debug@4.3.6(supports-color@9.4.0))(supports-color@9.4.0)(webpack-cli@5.1.4)(webpack@5.94.0))(webpack-hot-middleware@2.26.1)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))':
     dependencies:
       ansi-html: 0.0.9
       core-js-pure: 3.38.1
@@ -29063,7 +29049,7 @@ snapshots:
       react-refresh: 0.14.2
       schema-utils: 4.2.0
       source-map: 0.7.4
-      webpack: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+      webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
     optionalDependencies:
       sockjs-client: 1.6.1(supports-color@9.4.0)
       type-fest: 4.25.0
@@ -30756,7 +30742,7 @@ snapshots:
   '@swc/core-win32-x64-msvc@1.7.18':
     optional: true
 
-  '@swc/core@1.7.18':
+  '@swc/core@1.7.18(@swc/helpers@0.5.12)':
     dependencies:
       '@swc/counter': 0.1.3
       '@swc/types': 0.1.12
@@ -30771,6 +30757,7 @@ snapshots:
       '@swc/core-win32-arm64-msvc': 1.7.18
       '@swc/core-win32-ia32-msvc': 1.7.18
       '@swc/core-win32-x64-msvc': 1.7.18
+      '@swc/helpers': 0.5.12
     optional: true
 
   '@swc/counter@0.1.3':
@@ -32009,19 +31996,19 @@ snapshots:
       '@webassemblyjs/wast-parser': 1.9.1
       '@xtuc/long': 4.2.2
 
-  '@webpack-cli/configtest@2.1.1(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@5.0.4)(webpack@5.94.0))(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))':
+  '@webpack-cli/configtest@2.1.1(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@5.0.4)(webpack@5.94.0))(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))':
     dependencies:
-      webpack: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+      webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
       webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@5.0.4)(webpack@5.94.0)
 
-  '@webpack-cli/info@2.0.2(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@5.0.4)(webpack@5.94.0))(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))':
+  '@webpack-cli/info@2.0.2(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@5.0.4)(webpack@5.94.0))(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))':
     dependencies:
-      webpack: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+      webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
       webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@5.0.4)(webpack@5.94.0)
 
-  '@webpack-cli/serve@2.0.5(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@5.0.4)(webpack@5.94.0))(webpack-dev-server@5.0.4(debug@4.3.6(supports-color@9.4.0))(supports-color@9.4.0)(webpack-cli@5.1.4)(webpack@5.94.0))(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))':
+  '@webpack-cli/serve@2.0.5(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@5.0.4)(webpack@5.94.0))(webpack-dev-server@5.0.4(debug@4.3.6(supports-color@9.4.0))(supports-color@9.4.0)(webpack-cli@5.1.4)(webpack@5.94.0))(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))':
     dependencies:
-      webpack: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+      webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
       webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@5.0.4)(webpack@5.94.0)
     optionalDependencies:
       webpack-dev-server: 5.0.4(debug@4.3.6(supports-color@9.4.0))(supports-color@9.4.0)(webpack-cli@5.1.4)(webpack@5.94.0)
@@ -32710,12 +32697,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  babel-loader@9.1.3(@babel/core@7.25.2(supports-color@9.4.0))(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
+  babel-loader@9.1.3(@babel/core@7.25.2(supports-color@9.4.0))(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
     dependencies:
       '@babel/core': 7.25.2(supports-color@9.4.0)
       find-cache-dir: 4.0.0
       schema-utils: 4.2.0
-      webpack: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+      webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
 
   babel-messages@6.23.0:
     dependencies:
@@ -34006,7 +33993,7 @@ snapshots:
     dependencies:
       toggle-selection: 1.0.6
 
-  copy-webpack-plugin@12.0.2(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
+  copy-webpack-plugin@12.0.2(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
     dependencies:
       fast-glob: 3.3.2
       glob-parent: 6.0.2
@@ -34014,7 +34001,7 @@ snapshots:
       normalize-path: 3.0.0
       schema-utils: 4.2.0
       serialize-javascript: 6.0.2
-      webpack: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+      webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
 
   core-js-compat@3.38.1:
     dependencies:
@@ -34097,13 +34084,13 @@ snapshots:
       safe-buffer: 5.2.1
       sha.js: 2.4.11
 
-  create-jest@29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4)):
+  create-jest@29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4)):
     dependencies:
       '@jest/types': 29.6.3
       chalk: 4.1.2
       exit: 0.1.2
       graceful-fs: 4.2.11
-      jest-config: 29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4))
+      jest-config: 29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4))
       jest-util: 29.7.0
       prompts: 2.4.2
     transitivePeerDependencies:
@@ -34192,7 +34179,7 @@ snapshots:
       postcss-selector-parser: 6.1.2
       postcss-value-parser: 4.2.0
 
-  css-loader@7.1.2(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
+  css-loader@7.1.2(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
     dependencies:
       icss-utils: 5.1.0(postcss@8.4.41)
       postcss: 8.4.41
@@ -34203,9 +34190,9 @@ snapshots:
       postcss-value-parser: 4.2.0
       semver: 7.6.3
     optionalDependencies:
-      webpack: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+      webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
 
-  css-minimizer-webpack-plugin@7.0.0(clean-css@5.3.3)(csso@5.0.5)(esbuild@0.23.1)(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
+  css-minimizer-webpack-plugin@7.0.0(clean-css@5.3.3)(csso@5.0.5)(esbuild@0.23.1)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
       cssnano: 7.0.5(postcss@8.4.41)
@@ -34213,7 +34200,7 @@ snapshots:
       postcss: 8.4.41
       schema-utils: 4.2.0
       serialize-javascript: 6.0.2
-      webpack: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+      webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
     optionalDependencies:
       clean-css: 5.3.3
       csso: 5.0.5
@@ -34961,13 +34948,6 @@ snapshots:
     dependencies:
       safe-buffer: 5.2.1
 
-  editorconfig@1.0.4:
-    dependencies:
-      '@one-ini/wasm': 0.1.1
-      commander: 10.0.1
-      minimatch: 9.0.1
-      semver: 7.6.3
-
   editorconfig@2.0.0:
     dependencies:
       '@one-ini/wasm': 0.1.1
@@ -35405,7 +35385,7 @@ snapshots:
     dependencies:
       eslint: 9.9.1(jiti@1.21.6)(supports-color@9.4.0)
 
-  eslint-config-react-app@7.0.1(@babel/plugin-syntax-flow@7.24.7(@babel/core@7.25.2(supports-color@9.4.0)))(@babel/plugin-transform-react-jsx@7.25.2(@babel/core@7.25.2(supports-color@9.4.0))(supports-color@9.4.0))(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@5.62.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9(supports-color@9.4.0))(eslint-plugin-import@2.29.1)(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(jest@29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4)))(supports-color@9.4.0)(typescript@5.5.4):
+  eslint-config-react-app@7.0.1(@babel/plugin-syntax-flow@7.24.7(@babel/core@7.25.2(supports-color@9.4.0)))(@babel/plugin-transform-react-jsx@7.25.2(@babel/core@7.25.2(supports-color@9.4.0))(supports-color@9.4.0))(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@5.62.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9(supports-color@9.4.0))(eslint-plugin-import@2.29.1)(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(jest@29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4)))(supports-color@9.4.0)(typescript@5.5.4):
     dependencies:
       '@babel/core': 7.25.2(supports-color@9.4.0)
       '@babel/eslint-parser': 7.25.1(@babel/core@7.25.2(supports-color@9.4.0))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))
@@ -35417,7 +35397,7 @@ snapshots:
       eslint: 9.9.1(jiti@1.21.6)(supports-color@9.4.0)
       eslint-plugin-flowtype: 8.0.3(@babel/plugin-syntax-flow@7.24.7(@babel/core@7.25.2(supports-color@9.4.0)))(@babel/plugin-transform-react-jsx@7.25.2(@babel/core@7.25.2(supports-color@9.4.0))(supports-color@9.4.0))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))
       eslint-plugin-import: 2.29.1(@typescript-eslint/parser@5.62.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint-import-resolver-typescript@3.6.3)(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)
-      eslint-plugin-jest: 25.7.0(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(jest@29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4)))(supports-color@9.4.0)(typescript@5.5.4)
+      eslint-plugin-jest: 25.7.0(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(jest@29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4)))(supports-color@9.4.0)(typescript@5.5.4)
       eslint-plugin-jsx-a11y: 6.9.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))
       eslint-plugin-react: 7.35.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))
       eslint-plugin-react-hooks: 4.6.2(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))
@@ -35517,24 +35497,24 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-plugin-jest@25.7.0(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(jest@29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4)))(supports-color@9.4.0)(typescript@5.5.4):
+  eslint-plugin-jest@25.7.0(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(jest@29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4)))(supports-color@9.4.0)(typescript@5.5.4):
     dependencies:
       '@typescript-eslint/experimental-utils': 5.62.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4)
       eslint: 9.9.1(jiti@1.21.6)(supports-color@9.4.0)
     optionalDependencies:
       '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4)
-      jest: 29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4))
+      jest: 29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4))
     transitivePeerDependencies:
       - supports-color
       - typescript
 
-  eslint-plugin-jest@28.8.0(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(jest@29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4)))(supports-color@9.4.0)(typescript@5.5.4):
+  eslint-plugin-jest@28.8.0(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(jest@29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4)))(supports-color@9.4.0)(typescript@5.5.4):
     dependencies:
       '@typescript-eslint/utils': 8.3.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4)
       eslint: 9.9.1(jiti@1.21.6)(supports-color@9.4.0)
     optionalDependencies:
       '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4)
-      jest: 29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4))
+      jest: 29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4))
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -35657,7 +35637,7 @@ snapshots:
 
   eslint-visitor-keys@4.0.0: {}
 
-  eslint-webpack-plugin@4.2.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
+  eslint-webpack-plugin@4.2.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
     dependencies:
       '@types/eslint': 8.56.12
       eslint: 9.9.1(jiti@1.21.6)(supports-color@9.4.0)
@@ -35665,7 +35645,7 @@ snapshots:
       micromatch: 4.0.8
       normalize-path: 3.0.0
       schema-utils: 4.2.0
-      webpack: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+      webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
 
   eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0):
     dependencies:
@@ -36144,11 +36124,11 @@ snapshots:
     dependencies:
       flat-cache: 5.0.0
 
-  file-loader@6.2.0(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
+  file-loader@6.2.0(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
     dependencies:
       loader-utils: 2.0.4
       schema-utils: 3.3.0
-      webpack: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+      webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
 
   file-system-cache@2.3.0:
     dependencies:
@@ -36329,7 +36309,7 @@ snapshots:
 
   forever-agent@0.6.1: {}
 
-  fork-ts-checker-webpack-plugin@9.0.2(typescript@5.5.4)(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
+  fork-ts-checker-webpack-plugin@9.0.2(typescript@5.5.4)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
     dependencies:
       '@babel/code-frame': 7.24.7
       chalk: 4.1.2
@@ -36344,7 +36324,7 @@ snapshots:
       semver: 7.6.3
       tapable: 2.2.1
       typescript: 5.5.4
-      webpack: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+      webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
 
   form-data-encoder@4.0.2: {}
 
@@ -37175,7 +37155,7 @@ snapshots:
 
   html-void-elements@3.0.0: {}
 
-  html-webpack-plugin@5.6.0(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
+  html-webpack-plugin@5.6.0(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
     dependencies:
       '@types/html-minifier-terser': 6.1.0
       html-minifier-terser: 6.1.0
@@ -37183,7 +37163,7 @@ snapshots:
       pretty-error: 4.0.0
       tapable: 2.2.1
     optionalDependencies:
-      webpack: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+      webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
 
   htmlparser2@6.1.0:
     dependencies:
@@ -38081,16 +38061,16 @@ snapshots:
       - babel-plugin-macros
       - supports-color
 
-  jest-cli@29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4)):
+  jest-cli@29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4)):
     dependencies:
-      '@jest/core': 29.7.0(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4))
+      '@jest/core': 29.7.0(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4))
       '@jest/test-result': 29.7.0
       '@jest/types': 29.6.3
       chalk: 4.1.2
-      create-jest: 29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4))
+      create-jest: 29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4))
       exit: 0.1.2
       import-local: 3.2.0
-      jest-config: 29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4))
+      jest-config: 29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4))
       jest-util: 29.7.0
       jest-validate: 29.7.0
       yargs: 17.7.2
@@ -38102,7 +38082,7 @@ snapshots:
       - supports-color
       - ts-node
 
-  jest-config@29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4)):
+  jest-config@29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4)):
     dependencies:
       '@babel/core': 7.25.2(supports-color@9.4.0)
       '@jest/test-sequencer': 29.7.0
@@ -38128,7 +38108,7 @@ snapshots:
       strip-json-comments: 3.1.1
     optionalDependencies:
       '@types/node': 22.5.1
-      ts-node: 10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4)
+      ts-node: 10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4)
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
@@ -38409,12 +38389,12 @@ snapshots:
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
-  jest@29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4)):
+  jest@29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4)):
     dependencies:
-      '@jest/core': 29.7.0(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4))
+      '@jest/core': 29.7.0(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4))
       '@jest/types': 29.6.3
       import-local: 3.2.0
-      jest-cli: 29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4))
+      jest-cli: 29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4))
     optionalDependencies:
       node-notifier: 10.0.1
     transitivePeerDependencies:
@@ -38444,14 +38424,6 @@ snapshots:
   jquery@3.7.1: {}
 
   js-base64@3.7.7: {}
-
-  js-beautify@1.15.1:
-    dependencies:
-      config-chain: 1.1.13
-      editorconfig: 1.0.4
-      glob: 10.4.5
-      js-cookie: 3.0.5
-      nopt: 7.2.1
 
   js-cookie@3.0.5: {}
 
@@ -38824,11 +38796,11 @@ snapshots:
     dependencies:
       invert-kv: 4.2.0
 
-  less-loader@12.2.0(less@4.2.0)(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
+  less-loader@12.2.0(less@4.2.0)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
     dependencies:
       less: 4.2.0
     optionalDependencies:
-      webpack: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+      webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
 
   less@4.2.0:
     dependencies:
@@ -39611,11 +39583,11 @@ snapshots:
 
   min-indent@1.0.1: {}
 
-  mini-css-extract-plugin@2.9.1(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
+  mini-css-extract-plugin@2.9.1(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
     dependencies:
       schema-utils: 4.2.0
       tapable: 2.2.1
-      webpack: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+      webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
 
   minimalistic-assert@1.0.1: {}
 
@@ -39630,10 +39602,6 @@ snapshots:
       brace-expansion: 1.1.11
 
   minimatch@5.1.6:
-    dependencies:
-      brace-expansion: 2.0.1
-
-  minimatch@9.0.1:
     dependencies:
       brace-expansion: 2.0.1
 
@@ -41321,13 +41289,13 @@ snapshots:
       '@csstools/utilities': 2.0.0(postcss@8.4.41)
       postcss: 8.4.41
 
-  postcss-load-config@4.0.2(postcss@8.4.41)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4)):
+  postcss-load-config@4.0.2(postcss@8.4.41)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4)):
     dependencies:
       lilconfig: 3.1.2
       yaml: 2.5.0
     optionalDependencies:
       postcss: 8.4.41
-      ts-node: 10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4)
+      ts-node: 10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4)
 
   postcss-load-config@6.0.1(jiti@1.21.6)(postcss@8.4.41)(tsx@4.18.0)(yaml@2.5.0):
     dependencies:
@@ -41338,14 +41306,14 @@ snapshots:
       tsx: 4.18.0
       yaml: 2.5.0
 
-  postcss-loader@8.1.1(postcss@8.4.41)(typescript@5.5.4)(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
+  postcss-loader@8.1.1(postcss@8.4.41)(typescript@5.5.4)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
     dependencies:
       cosmiconfig: 9.0.0(typescript@5.5.4)
       jiti: 1.21.6
       postcss: 8.4.41
       semver: 7.6.3
     optionalDependencies:
-      webpack: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+      webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
     transitivePeerDependencies:
       - typescript
 
@@ -42000,11 +41968,11 @@ snapshots:
       iconv-lite: 0.6.3
       unpipe: 1.0.0
 
-  raw-loader@4.0.2(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
+  raw-loader@4.0.2(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
     dependencies:
       loader-utils: 2.0.4
       schema-utils: 3.3.0
-      webpack: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+      webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
 
   rc9@2.1.2:
     dependencies:
@@ -42783,12 +42751,12 @@ snapshots:
       minimist: 1.2.8
       walker: 1.0.8
 
-  sass-loader@16.0.1(sass@1.77.8)(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
+  sass-loader@16.0.1(sass@1.77.8)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
     dependencies:
       neo-async: 2.6.2
     optionalDependencies:
       sass: 1.77.8
-      webpack: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+      webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
 
   sass@1.77.8:
     dependencies:
@@ -43290,11 +43258,11 @@ snapshots:
 
   source-map-js@1.2.0: {}
 
-  source-map-loader@5.0.0(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
+  source-map-loader@5.0.0(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
     dependencies:
       iconv-lite: 0.6.3
       source-map-js: 1.2.0
-      webpack: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+      webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
 
   source-map-resolve@0.5.3:
     dependencies:
@@ -43728,9 +43696,9 @@ snapshots:
 
   stubs@3.0.0: {}
 
-  style-loader@4.0.0(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
+  style-loader@4.0.0(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
     dependencies:
-      webpack: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+      webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
 
   style-to-object@1.0.6:
     dependencies:
@@ -43946,7 +43914,7 @@ snapshots:
       string-width: 4.2.3
       strip-ansi: 6.0.1
 
-  tailwindcss@3.4.10(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4)):
+  tailwindcss@3.4.10(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4)):
     dependencies:
       '@alloc/quick-lru': 5.2.0
       arg: 5.0.2
@@ -43965,7 +43933,7 @@ snapshots:
       postcss: 8.4.41
       postcss-import: 15.1.0(postcss@8.4.41)
       postcss-js: 4.0.1(postcss@8.4.41)
-      postcss-load-config: 4.0.2(postcss@8.4.41)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4))
+      postcss-load-config: 4.0.2(postcss@8.4.41)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4))
       postcss-nested: 6.2.0(postcss@8.4.41)
       postcss-selector-parser: 6.1.2
       resolve: 1.22.8
@@ -44066,16 +44034,16 @@ snapshots:
       ansi-escapes: 5.0.0
       supports-hyperlinks: 2.3.0
 
-  terser-webpack-plugin@5.3.10(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
+  terser-webpack-plugin@5.3.10(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
       jest-worker: 27.5.1
       schema-utils: 3.3.0
       serialize-javascript: 6.0.2
       terser: 5.31.6
-      webpack: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+      webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
     optionalDependencies:
-      '@swc/core': 1.7.18
+      '@swc/core': 1.7.18(@swc/helpers@0.5.12)
       esbuild: 0.23.1
       uglify-js: 3.19.2
 
@@ -44309,12 +44277,12 @@ snapshots:
     dependencies:
       tslib: 2.7.0
 
-  ts-jest@29.2.5(@babel/core@7.25.2(supports-color@9.4.0))(@jest/transform@29.7.0(supports-color@9.4.0))(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2(supports-color@9.4.0))(supports-color@9.4.0))(esbuild@0.23.1)(jest@29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4)))(typescript@5.5.4):
+  ts-jest@29.2.5(@babel/core@7.25.2(supports-color@9.4.0))(@jest/transform@29.7.0(supports-color@9.4.0))(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2(supports-color@9.4.0))(supports-color@9.4.0))(esbuild@0.23.1)(jest@29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4)))(typescript@5.5.4):
     dependencies:
       bs-logger: 0.2.6
       ejs: 3.1.10
       fast-json-stable-stringify: 2.1.0
-      jest: 29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4))
+      jest: 29.7.0(@types/node@22.5.1)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4))
       jest-util: 29.7.0
       json5: 2.2.3
       lodash.memoize: 4.1.2
@@ -44329,7 +44297,7 @@ snapshots:
       babel-jest: 29.7.0(@babel/core@7.25.2(supports-color@9.4.0))(supports-color@9.4.0)
       esbuild: 0.23.1
 
-  ts-loader@9.5.1(typescript@5.5.4)(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
+  ts-loader@9.5.1(typescript@5.5.4)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
     dependencies:
       chalk: 4.1.2
       enhanced-resolve: 5.17.1
@@ -44337,9 +44305,9 @@ snapshots:
       semver: 7.6.3
       source-map: 0.7.4
       typescript: 5.5.4
-      webpack: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+      webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
 
-  ts-node@10.9.2(@swc/core@1.7.18)(@types/node@22.5.1)(typescript@5.5.4):
+  ts-node@10.9.2(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/node@22.5.1)(typescript@5.5.4):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.11
@@ -44357,7 +44325,7 @@ snapshots:
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
     optionalDependencies:
-      '@swc/core': 1.7.18
+      '@swc/core': 1.7.18(@swc/helpers@0.5.12)
 
   ts-pnp@1.2.0(typescript@5.5.4):
     optionalDependencies:
@@ -44733,7 +44701,7 @@ snapshots:
 
   unpipe@1.0.0: {}
 
-  unplugin-combine@1.0.2(esbuild@0.23.1)(rolldown@0.12.2-snapshot-e7c2bff-20240828002954)(rollup@4.21.1)(vite@5.4.2(@types/node@22.5.1)(less@4.2.0)(sass@1.77.8)(terser@5.31.6))(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
+  unplugin-combine@1.0.2(esbuild@0.23.1)(rolldown@0.12.2-snapshot-e7c2bff-20240828002954)(rollup@4.21.1)(vite@5.4.2(@types/node@22.5.1)(less@4.2.0)(sass@1.77.8)(terser@5.31.6))(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
     dependencies:
       '@antfu/utils': 0.7.10
       unplugin: 1.12.2
@@ -44742,7 +44710,7 @@ snapshots:
       rolldown: 0.12.2-snapshot-e7c2bff-20240828002954
       rollup: 4.21.1
       vite: 5.4.2(@types/node@22.5.1)(less@4.2.0)(sass@1.77.8)(terser@5.31.6)
-      webpack: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+      webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
 
   unplugin-vue-define-options@1.4.9(rollup@4.21.1)(vue@3.4.38(typescript@5.5.4)):
     dependencies:
@@ -44753,7 +44721,7 @@ snapshots:
       - rollup
       - vue
 
-  unplugin-vue-macros@2.11.6(@vueuse/core@11.0.3(vue@3.4.38(typescript@5.5.4)))(esbuild@0.23.1)(rolldown@0.12.2-snapshot-e7c2bff-20240828002954)(rollup@4.21.1)(supports-color@9.4.0)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(less@4.2.0)(sass@1.77.8)(terser@5.31.6))(vue@3.4.38(typescript@5.5.4))(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
+  unplugin-vue-macros@2.11.6(@vueuse/core@11.0.3(vue@3.4.38(typescript@5.5.4)))(esbuild@0.23.1)(rolldown@0.12.2-snapshot-e7c2bff-20240828002954)(rollup@4.21.1)(supports-color@9.4.0)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1)(less@4.2.0)(sass@1.77.8)(terser@5.31.6))(vue@3.4.38(typescript@5.5.4))(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
     dependencies:
       '@vue-macros/better-define': 1.8.3(rollup@4.21.1)(vue@3.4.38(typescript@5.5.4))
       '@vue-macros/boolean-prop': 0.4.4(rollup@4.21.1)(vue@3.4.38(typescript@5.5.4))
@@ -44784,7 +44752,7 @@ snapshots:
       '@vue-macros/short-vmodel': 1.4.9(rollup@4.21.1)(vue@3.4.38(typescript@5.5.4))
       '@vue-macros/volar': 0.27.4(@vue-macros/reactivity-transform@1.0.3(rollup@4.21.1)(vue@3.4.38(typescript@5.5.4)))(rollup@4.21.1)(supports-color@9.4.0)(typescript@5.5.4)(vue@3.4.38(typescript@5.5.4))
       unplugin: 1.12.2
-      unplugin-combine: 1.0.2(esbuild@0.23.1)(rolldown@0.12.2-snapshot-e7c2bff-20240828002954)(rollup@4.21.1)(vite@5.4.2(@types/node@22.5.1)(less@4.2.0)(sass@1.77.8)(terser@5.31.6))(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+      unplugin-combine: 1.0.2(esbuild@0.23.1)(rolldown@0.12.2-snapshot-e7c2bff-20240828002954)(rollup@4.21.1)(vite@5.4.2(@types/node@22.5.1)(less@4.2.0)(sass@1.77.8)(terser@5.31.6))(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       unplugin-vue-define-options: 1.4.9(rollup@4.21.1)(vue@3.4.38(typescript@5.5.4))
       vue: 3.4.38(typescript@5.5.4)
     transitivePeerDependencies:
@@ -44933,14 +44901,14 @@ snapshots:
 
   url-join@5.0.0: {}
 
-  url-loader@4.1.1(file-loader@6.2.0(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)))(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
+  url-loader@4.1.1(file-loader@6.2.0(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)))(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
     dependencies:
       loader-utils: 2.0.4
       mime-types: 2.1.35
       schema-utils: 3.3.0
-      webpack: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+      webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
     optionalDependencies:
-      file-loader: 6.2.0(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+      file-loader: 6.2.0(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
 
   url-parse-lax@5.0.0:
     dependencies:
@@ -45453,9 +45421,9 @@ snapshots:
   webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@5.0.4)(webpack@5.94.0):
     dependencies:
       '@discoveryjs/json-ext': 0.5.7
-      '@webpack-cli/configtest': 2.1.1(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@5.0.4)(webpack@5.94.0))(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
-      '@webpack-cli/info': 2.0.2(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@5.0.4)(webpack@5.94.0))(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
-      '@webpack-cli/serve': 2.0.5(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@5.0.4)(webpack@5.94.0))(webpack-dev-server@5.0.4(debug@4.3.6(supports-color@9.4.0))(supports-color@9.4.0)(webpack-cli@5.1.4)(webpack@5.94.0))(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+      '@webpack-cli/configtest': 2.1.1(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@5.0.4)(webpack@5.94.0))(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+      '@webpack-cli/info': 2.0.2(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@5.0.4)(webpack@5.94.0))(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+      '@webpack-cli/serve': 2.0.5(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@5.0.4)(webpack@5.94.0))(webpack-dev-server@5.0.4(debug@4.3.6(supports-color@9.4.0))(supports-color@9.4.0)(webpack-cli@5.1.4)(webpack@5.94.0))(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       colorette: 2.0.20
       commander: 10.0.1
       cross-spawn: 7.0.3
@@ -45464,13 +45432,13 @@ snapshots:
       import-local: 3.2.0
       interpret: 3.1.1
       rechoir: 0.8.0
-      webpack: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+      webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
       webpack-merge: 5.10.0
     optionalDependencies:
       webpack-bundle-analyzer: 4.10.2
       webpack-dev-server: 5.0.4(debug@4.3.6(supports-color@9.4.0))(supports-color@9.4.0)(webpack-cli@5.1.4)(webpack@5.94.0)
 
-  webpack-dev-middleware@7.4.2(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
+  webpack-dev-middleware@7.4.2(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
     dependencies:
       colorette: 2.0.20
       memfs: 4.11.1
@@ -45479,7 +45447,7 @@ snapshots:
       range-parser: 1.2.1
       schema-utils: 4.2.0
     optionalDependencies:
-      webpack: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+      webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
 
   webpack-dev-server@5.0.4(debug@4.3.6(supports-color@9.4.0))(supports-color@9.4.0)(webpack-cli@5.1.4)(webpack@5.94.0):
     dependencies:
@@ -45511,10 +45479,10 @@ snapshots:
       serve-index: 1.9.1(supports-color@9.4.0)
       sockjs: 0.3.24
       spdy: 4.0.2(supports-color@9.4.0)
-      webpack-dev-middleware: 7.4.2(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+      webpack-dev-middleware: 7.4.2(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       ws: 8.18.0
     optionalDependencies:
-      webpack: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+      webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
       webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@5.0.4)(webpack@5.94.0)
     transitivePeerDependencies:
       - bufferutil
@@ -45534,10 +45502,10 @@ snapshots:
       loglevelnext: 3.0.1
       nanoid: 2.1.11
 
-  webpack-manifest-plugin@5.0.0(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
+  webpack-manifest-plugin@5.0.0(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)):
     dependencies:
       tapable: 2.2.1
-      webpack: 5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
+      webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4)
       webpack-sources: 2.3.1
 
   webpack-merge@5.10.0:
@@ -45563,7 +45531,7 @@ snapshots:
 
   webpack-virtual-modules@0.6.2: {}
 
-  webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4):
+  webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4):
     dependencies:
       '@types/estree': 1.0.5
       '@webassemblyjs/ast': 1.12.1
@@ -45585,7 +45553,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 3.3.0
       tapable: 2.2.1
-      terser-webpack-plugin: 5.3.10(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack@5.94.0(@swc/core@1.7.18)(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
+      terser-webpack-plugin: 5.3.10(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(uglify-js@3.19.2)(webpack-cli@5.1.4))
       watchpack: 2.4.2
       webpack-sources: 3.2.3
     optionalDependencies:

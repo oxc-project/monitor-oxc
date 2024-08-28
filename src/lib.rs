@@ -40,7 +40,6 @@ const PATH_IGNORES: &[&str] = &[
     // using modules in cjs
     "node_modules/storybook/test/default/cli.test.cjs",
     // not strict mode
-    "node_modules/js-beautify/js/lib/unpackers/myobfuscate_unpacker.js",
     "node_modules/esprima/test/test.js",
 ];
 

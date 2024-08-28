@@ -24,7 +24,9 @@ const ignoreList = new Set([
   // not compatible with linux
   "fsevents",
   // breaks rolldown
-  "eslint-plugin-import", "event-emitter", "d", "memoizee", "next"
+  "eslint-plugin-import", "event-emitter", "d", "memoizee", "next",
+  // not strict mode
+  "js-beautify"
 ]);
 
 const vue = [
