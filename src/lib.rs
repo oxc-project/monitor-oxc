@@ -41,6 +41,8 @@ const PATH_IGNORES: &[&str] = &[
     "node_modules/storybook/test/default/cli.test.cjs",
     // not strict mode
     "node_modules/esprima/test/test.js",
+    // broken syntax
+    "node_modules/eslint-plugin-flowtype/dist/bin/checkDocs.js",
 ];
 
 #[derive(Debug)]
