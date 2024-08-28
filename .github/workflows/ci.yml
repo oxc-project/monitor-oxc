@@ -66,11 +66,11 @@ jobs:
           path: ./target/release/monitor-oxc
 
       # populate pnpm cache
+      - run: corepack enable
       - uses: actions/setup-node@v4
         with:
           node-version-file: .node-version
           cache: pnpm
-
       - run: pnpm install
 
   test:
