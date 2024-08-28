@@ -24,7 +24,7 @@ const ignoreList = new Set([
   // not compatible with linux
   "fsevents",
   // breaks rolldown
-  "eslint-plugin-import"
+  "eslint-plugin-import", "event-emitter", "d", "memoizee", "next"
 ]);
 
 const vue = [
@@ -49,7 +49,7 @@ const vue = [
 
 const ignorePrefixes = [
   "@types", "@tsconfig", "@tsconfig", "@next", "@esbuild", "@nrwl", "@rollup", "@mui", "workbox",
-  "@swc", "esbuild-"
+  "@swc", "esbuild-", "es6-", "es5-"
 ];
 
 const data = [

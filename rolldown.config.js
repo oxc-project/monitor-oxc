@@ -4,6 +4,10 @@ let modulesCount = 0;
 
 export default defineConfig({
   input: 'src/dynamic.test.mjs',
+  external: [
+    "fsevents",
+    "@swc/core"
+  ],
   plugins: [
     {
       name: "counter",
