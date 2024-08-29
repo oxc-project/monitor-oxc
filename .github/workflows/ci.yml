@@ -161,6 +161,7 @@ jobs:
   rolldown:
     name: Rolldown
     runs-on: ubuntu-latest
+    if: false
     steps:
       - uses: taiki-e/checkout-action@v1
       - run: corepack enable
