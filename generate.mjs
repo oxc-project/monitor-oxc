@@ -31,7 +31,9 @@ const ignoreList = new Set([
   // breaks rolldown
   "eslint-plugin-import", "event-emitter", "d", "memoizee", "next", "nx", "@storybook/codemod",
   // not strict mode
-  "js-beautify"
+  "js-beautify",
+  // need transform to cjs
+  "fast-json-patch"
 ]);
 
 const ignorePrefixes = [
