@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1725021335206,
+  "lastUpdate": 1725031249305,
   "repoUrl": "https://github.com/oxc-project/monitor-oxc",
   "entries": {
     "Oxc Metrics": [
@@ -15486,6 +15486,38 @@ window.BENCHMARK_DATA = {
           {
             "name": "Compile Time",
             "value": 52.44,
+            "unit": "Seconds"
+          },
+          {
+            "name": "Binary Size",
+            "value": 6109824,
+            "unit": "Bytes"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Dunqing",
+            "username": "Dunqing",
+            "email": "dengqing0821@gmail.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "1ce03a7e44917ffeef38414ccb7bdecd7b526fd2",
+          "message": "fix: compressor has a conflict with the TypeScript feature that removes unused imports (#31)\n\nrelated:\r\nhttps://github.com/oxc-project/monitor-oxc/actions/runs/10630143033/job/29468505973\r\n\r\nThe compressor removes the unreachable codes but keeps the imports used\r\nin those codes, and then the typescript plugin removes the unused\r\nimports, creating a conflict.",
+          "timestamp": "2024-08-30T11:37:32Z",
+          "url": "https://github.com/oxc-project/monitor-oxc/commit/1ce03a7e44917ffeef38414ccb7bdecd7b526fd2"
+        },
+        "date": 1725031247202,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Compile Time",
+            "value": 54.46,
             "unit": "Seconds"
           },
           {
