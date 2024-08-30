@@ -2,7 +2,7 @@ use std::path::{Path, PathBuf};
 
 use oxc::span::SourceType;
 
-use crate::{Case, Driver};
+use crate::{driver::default_transformer_options, Case, Driver};
 
 pub struct TransformerRunner;
 
@@ -18,6 +18,6 @@ impl Case for TransformerRunner {
     }
 
     fn driver(&self) -> Driver {
-        Driver { transform: true, ..Driver::default() }
+        Driver { transform: Some(default_transformer_options()), ..Driver::default() }
     }
 }
