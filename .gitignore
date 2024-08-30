@@ -4,4 +4,4 @@
 **/isolated_declarations/*.ts
 !**/isolated_declarations/tsc.ts
 
-raw.json
+/dist

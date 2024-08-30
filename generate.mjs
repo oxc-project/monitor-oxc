@@ -5,7 +5,7 @@ import { npmHighImpact } from "npm-high-impact";
 
 const ignoreList = new Set([
   // CLIs don't work
-  "npm", "yarn", "pnpm", "nx", "@storybook/cli", "vitest",
+  "npm", "yarn", "pnpm", "nx", "@storybook/cli", "vitest", "turbo",
   // NO ESM export
   "@babel/compat-data", "@babel/runtime", "@babel/runtime-corejs3", "@esbuild/linux-x64", "@graphql-typed-document-node/core",
   "@jest/globals", "@octokit/openapi-types", "@rushstack/eslint-patch", "@storybook/components", "@storybook/node-logger",
@@ -14,20 +14,28 @@ const ignoreList = new Set([
   "node-releases", "octokit/types", "readdir-glob", "source-map-support", "spdx-exceptions", "spdx-license-ids",
   "@tokenizer/token", "css-color-names", "eslint-config-next", "extract-files", "jest-watch-typeahead",
   "limiter", "react-app-polyfill", "react-dev-utils", "react-error-overlay",
-  "timers-ext", "unfetch",
+  "timers-ext", "unfetch", "bare-path", "bare-os", "bare-fs", "@storybook/manager",
+  "@noble/hashes", "chromium-bidi", " @storybook/preview", "pg-cloudflare", "react-scripts", "sanitize.css", "vue-template-compiler", "@csstools/normalize.css",
   // broken in node
-  "bootstrap", "@vitest/expect", "wait-on",
+  "bootstrap", "@vitest/expect", "wait-on", "metro-symbolicate", "react-devtools-core",
+  "nice-napi", "@storybook/preview",
   // types
   "type", "type-fest", "types-registry", "undici-types", "@octokit/types", "@schematics/angular",
+  "@react-types/shared",
   // flow
   "ast-types-flow",
   // not compatible with linux
   "fsevents",
   // breaks rolldown
-  "eslint-plugin-import", "event-emitter", "d", "memoizee", "next",
+  "eslint-plugin-import", "event-emitter", "d", "memoizee", "next", "nx",
   // not strict mode
   "js-beautify"
 ]);
+
+const ignorePrefixes = [
+  "@types", "@tsconfig", "@tsconfig", "@next", "@esbuild", "@nrwl", "@rollup", "@mui", "workbox",
+  "@swc", "esbuild-", "es6-", "es5-", "@nx", "@firebase", "@angular", "turbo-",
+];
 
 const vue = [
   "language-tools",
@@ -49,17 +57,12 @@ const vue = [
   "@vueuse/core",
 ];
 
-const ignorePrefixes = [
-  "@types", "@tsconfig", "@tsconfig", "@next", "@esbuild", "@nrwl", "@rollup", "@mui", "workbox",
-  "@swc", "esbuild-", "es6-", "es5-"
-];
-
 const data = [
   ...new Set(
     npmHighImpact
       .filter((key) => !ignorePrefixes.some((p) => key.startsWith(p)))
       .filter((key) => !ignoreList.has(key))
-      .slice(0, 2500)
+      .slice(0, 3000)
       .concat(vue),
   ),
 ].sort();
