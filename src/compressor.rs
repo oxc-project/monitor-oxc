@@ -16,6 +16,7 @@ impl Case for CompressorRunner {
     }
 
     fn driver(&self) -> Driver {
-        Driver { compress: true, ..Driver::default() }
+        // always compress js files
+        Driver { transform: true, compress: true, ..Driver::default() }
     }
 }
