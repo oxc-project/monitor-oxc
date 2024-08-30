@@ -3,6 +3,8 @@ import fs from "node:fs";
 import packageJson from "./package.json" with { type: "json" };
 import { npmHighImpact } from "npm-high-impact";
 
+const COUNT = 3000;
+
 const ignoreList = new Set([
   // CLIs don't work
   "npm", "yarn", "pnpm", "nx", "@storybook/cli", "vitest", "turbo",
@@ -27,7 +29,7 @@ const ignoreList = new Set([
   // not compatible with linux
   "fsevents",
   // breaks rolldown
-  "eslint-plugin-import", "event-emitter", "d", "memoizee", "next", "nx",
+  "eslint-plugin-import", "event-emitter", "d", "memoizee", "next", "nx", "@storybook/codemod",
   // not strict mode
   "js-beautify"
 ]);
@@ -62,7 +64,7 @@ const data = [
     npmHighImpact
       .filter((key) => !ignorePrefixes.some((p) => key.startsWith(p)))
       .filter((key) => !ignoreList.has(key))
-      .slice(0, 3000)
+      .slice(0, COUNT)
       .concat(vue),
   ),
 ].sort();
