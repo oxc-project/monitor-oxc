@@ -4,9 +4,14 @@ use std::{
 };
 
 use oxc::{
-    codegen::CodegenOptions, diagnostics::OxcDiagnostic, mangler::MangleOptions,
-    minifier::CompressOptions, parser::ParseOptions, span::SourceType,
-    transformer::TransformOptions, CompilerInterface,
+    codegen::CodegenOptions,
+    diagnostics::OxcDiagnostic,
+    mangler::MangleOptions,
+    minifier::CompressOptions,
+    parser::ParseOptions,
+    span::SourceType,
+    transformer::{EnvOptions, Targets, TransformOptions},
+    CompilerInterface,
 };
 
 use crate::Diagnostic;
@@ -51,7 +56,13 @@ impl CompilerInterface for Driver {
     }
 
     fn transform_options(&self) -> Option<TransformOptions> {
-        self.transform.then(TransformOptions::default)
+        self.transform.then(|| {
+            TransformOptions::from_preset_env(&EnvOptions {
+                targets: Targets::from_query("chrome 51"),
+                ..EnvOptions::default()
+            })
+            .unwrap()
+        })
     }
 
     fn compress_options(&self) -> Option<CompressOptions> {

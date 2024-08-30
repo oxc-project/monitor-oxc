@@ -11,7 +11,7 @@
   "dependencies": {
     "npm-high-impact": "latest",
     "tsx": "latest",
-    "rolldown": "nightly"
+    "rolldown": "link:../../github/rolldown/packages/rolldown"
   },
   "devDependencies": {
     "@aashutoshrathi/word-wrap": "latest",

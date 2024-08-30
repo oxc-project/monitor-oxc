@@ -4,6 +4,7 @@ let modulesCount = 0;
 
 export default defineConfig({
   input: 'src/dynamic.test.mjs',
+  platform: 'node',
   // [UNLOADABLE_DEPENDENCY] Error: Could not load ... .node
   external: [
     "fsevents",
