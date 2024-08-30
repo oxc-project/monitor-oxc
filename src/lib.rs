@@ -28,6 +28,7 @@ const PATH_IGNORES: &[&str] = &[
     // broken types
     "node_modules/immer/src/types/types-internal.ts",
     "node_modules/fbjs/flow/lib/dev.js",
+    "node_modules/fast-copy/flow-typed/fast-copy.js",
     // template files
     ".vitepress",
     "node_modules/next/dist/esm/build/templates/app-page.js",
@@ -43,6 +44,10 @@ const PATH_IGNORES: &[&str] = &[
     "node_modules/esprima/test/test.js",
     // broken syntax
     "node_modules/eslint-plugin-flowtype/dist/bin/checkDocs.js",
+    "node_modules/limiter/test/tokenbucket-test.js",
+    "node_modules/fast-json-patch/webpack.config.js",
+    "node_modules/cardinal/test/fixtures/foo-with-errors.js",
+    "node_modules/js-beautify/js/src/unpackers/p_a_c_k_e_r_unpacker.js",
 ];
 
 #[derive(Debug)]

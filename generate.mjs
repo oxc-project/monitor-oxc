@@ -20,7 +20,7 @@ const ignoreList = new Set([
   "@noble/hashes", "chromium-bidi", " @storybook/preview", "pg-cloudflare", "react-scripts", "sanitize.css", "vue-template-compiler", "@csstools/normalize.css",
   // broken in node
   "bootstrap", "@vitest/expect", "wait-on", "metro-symbolicate", "react-devtools-core",
-  "nice-napi", "@storybook/preview",
+  "nice-napi", "@storybook/preview", "envdb", "@babel/cli",
   // types
   "type", "type-fest", "types-registry", "undici-types", "@octokit/types", "@schematics/angular",
   "@react-types/shared",
