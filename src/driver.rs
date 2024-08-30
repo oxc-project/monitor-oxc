@@ -14,13 +14,21 @@ use oxc::{
     CompilerInterface,
 };
 
+pub fn default_transformer_options() -> TransformOptions {
+    TransformOptions::from_preset_env(&EnvOptions {
+        targets: Targets::from_query("chrome 51"),
+        ..EnvOptions::default()
+    })
+    .unwrap()
+}
+
 use crate::Diagnostic;
 
 #[allow(clippy::struct_excessive_bools)]
 #[derive(Default)]
 pub struct Driver {
     // options
-    pub transform: bool,
+    pub transform: Option<TransformOptions>,
     pub compress: bool,
     pub mangle: bool,
     pub remove_whitespace: bool,
@@ -56,13 +64,7 @@ impl CompilerInterface for Driver {
     }
 
     fn transform_options(&self) -> Option<TransformOptions> {
-        self.transform.then(|| {
-            TransformOptions::from_preset_env(&EnvOptions {
-                targets: Targets::from_query("chrome 51"),
-                ..EnvOptions::default()
-            })
-            .unwrap()
-        })
+        self.transform.clone()
     }
 
     fn compress_options(&self) -> Option<CompressOptions> {
