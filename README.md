@@ -9,7 +9,7 @@
 
 * Test against vue
 
-## Top 2500 npm packages from [npm-high-impact](https://github.com/wooorm/npm-high-impact)
+## Top 3000 npm packages from [npm-high-impact](https://github.com/wooorm/npm-high-impact)
 
 (check out our [package.json](https://github.com/oxc-project/monitor-oxc/blob/main/package.json) 😆)
 
