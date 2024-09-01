@@ -2,6 +2,9 @@
   "name": "monitor-oxc",
   "private": true,
   "packageManager": "pnpm@9.9.0",
+  "volta": {
+    "node": "22.7.0"
+  },
   "type": "module",
   "scripts": {
     "generate": "node generate.mjs && pnpm i",
