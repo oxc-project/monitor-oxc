@@ -161,7 +161,6 @@ jobs:
   rolldown:
     name: Rolldown
     runs-on: ubuntu-latest
-    if: false
     steps:
       - uses: taiki-e/checkout-action@v1
       - run: corepack enable
@@ -170,4 +169,4 @@ jobs:
           node-version-file: .node-version
           cache: pnpm
       - run: pnpm install
-      - run: pnpm run rolldown
+      - run: node --run rolldown
