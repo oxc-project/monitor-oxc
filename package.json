@@ -13,8 +13,8 @@
   },
   "dependencies": {
     "npm-high-impact": "latest",
-    "tsx": "latest",
-    "rolldown": "nightly"
+    "rolldown": "0.12.2-snapshot-aa5807f-20240902003235",
+    "tsx": "latest"
   },
   "devDependencies": {
     "@aashutoshrathi/word-wrap": "latest",
