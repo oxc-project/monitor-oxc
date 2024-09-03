@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "npm-high-impact": "latest",
-    "rolldown": "0.12.2-snapshot-aa5807f-20240902003235",
+    "rolldown": "0.13.0",
     "tsx": "latest"
   },
   "devDependencies": {
