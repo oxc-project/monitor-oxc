@@ -15,11 +15,14 @@ use oxc::{
 };
 
 pub fn default_transformer_options() -> TransformOptions {
-    TransformOptions::from_preset_env(&EnvOptions {
+    let mut options = TransformOptions::from_preset_env(&EnvOptions {
         targets: Targets::from_query("chrome 51"),
         ..EnvOptions::default()
     })
-    .unwrap()
+    .unwrap();
+    // `object_rest_spread` is not ready
+    options.es2018.object_rest_spread = None;
+    options
 }
 
 use crate::Diagnostic;
