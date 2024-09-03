@@ -8889,9 +8889,6 @@ importers:
       webpack-sources:
         specifier: latest
         version: 3.2.3
-      webpack-subresource-integrity:
-        specifier: latest
-        version: 5.2.0-rc.1(html-webpack-plugin@5.6.0(webpack@5.94.0(esbuild@0.23.1)(uglify-js@3.19.3)(webpack-cli@5.1.4)))(webpack@5.94.0(esbuild@0.23.1)(uglify-js@3.19.3)(webpack-cli@5.1.4))
       webpack-virtual-modules:
         specifier: latest
         version: 0.6.2
@@ -8946,6 +8943,9 @@ importers:
       window-size:
         specifier: latest
         version: 1.1.1
+      windows-release:
+        specifier: latest
+        version: 6.0.1
       winston:
         specifier: latest
         version: 3.14.2
@@ -28709,16 +28709,6 @@ packages:
   webpack-sources@3.2.3:
     resolution: {integrity: sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==}
     engines: {node: '>=10.13.0'}
-
-  webpack-subresource-integrity@5.2.0-rc.1:
-    resolution: {integrity: sha512-SyjlQ3VZVwpNeVPIMpYf9Qt6oTnq9G3lCcr5YNwjW9TfUoip70MlB9ZDNhJPhkHvfvajMDQwZFfDVVL1QVwnLQ==}
-    engines: {node: '>= 12'}
-    peerDependencies:
-      html-webpack-plugin: '>= 5.0.0-beta.1 < 6'
-      webpack: ^5.12.0
-    peerDependenciesMeta:
-      html-webpack-plugin:
-        optional: true
 
   webpack-virtual-modules@0.6.2:
     resolution: {integrity: sha512-66/V2i5hQanC51vBQKPH4aI8NMAcBW59FVBs+rC7eGHupMyfn34q7rZIE+ETlJ+XTevqfUhVVBgSUNSW2flEUQ==}
@@ -53237,12 +53227,6 @@ snapshots:
       source-map: 0.6.1
 
   webpack-sources@3.2.3: {}
-
-  webpack-subresource-integrity@5.2.0-rc.1(html-webpack-plugin@5.6.0(webpack@5.94.0(esbuild@0.23.1)(uglify-js@3.19.3)(webpack-cli@5.1.4)))(webpack@5.94.0(esbuild@0.23.1)(uglify-js@3.19.3)(webpack-cli@5.1.4)):
-    dependencies:
-      webpack: 5.94.0(esbuild@0.23.1)(uglify-js@3.19.3)(webpack-cli@5.1.4)
-    optionalDependencies:
-      html-webpack-plugin: 5.6.0(webpack@5.94.0(esbuild@0.23.1)(uglify-js@3.19.3)(webpack-cli@5.1.4))
 
   webpack-virtual-modules@0.6.2: {}
 
