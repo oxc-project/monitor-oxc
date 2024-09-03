@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1725366995949,
+  "lastUpdate": 1725368514466,
   "repoUrl": "https://github.com/oxc-project/monitor-oxc",
   "entries": {
     "Oxc Metrics": [
@@ -16717,6 +16717,40 @@ window.BENCHMARK_DATA = {
           {
             "name": "Binary Size",
             "value": 6158976,
+            "unit": "Bytes"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "boshenc@gmail.com",
+            "name": "Boshen",
+            "username": "Boshen"
+          },
+          "committer": {
+            "email": "boshenc@gmail.com",
+            "name": "Boshen",
+            "username": "Boshen"
+          },
+          "distinct": true,
+          "id": "4c7d82805dd81c98b38d6796cb58234ba710cc8d",
+          "message": "remove webpack-subresource-integrity",
+          "timestamp": "2024-09-03T20:59:27+08:00",
+          "tree_id": "591585f475fc1eee7db3e07b01d026d055135ca6",
+          "url": "https://github.com/oxc-project/monitor-oxc/commit/4c7d82805dd81c98b38d6796cb58234ba710cc8d"
+        },
+        "date": 1725368512274,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Compile Time",
+            "value": 57.94,
+            "unit": "Seconds"
+          },
+          {
+            "name": "Binary Size",
+            "value": 6163072,
             "unit": "Bytes"
           }
         ]
