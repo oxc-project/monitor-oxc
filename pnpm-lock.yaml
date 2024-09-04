@@ -1256,7 +1256,7 @@ importers:
         version: 10.4.1(@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(encoding@0.1.13)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       '@ngtools/webpack':
         specifier: latest
-        version: 18.2.2(@angular/compiler-cli@18.2.3(@angular/compiler@18.2.3)(supports-color@9.4.0)(typescript@5.5.4))(typescript@5.5.4)(webpack@5.94.0(esbuild@0.23.1)(uglify-js@3.19.3)(webpack-cli@5.1.4))
+        version: 18.2.3(@angular/compiler-cli@18.2.3(@angular/compiler@18.2.3)(supports-color@9.4.0)(typescript@5.5.4))(typescript@5.5.4)(webpack@5.94.0(esbuild@0.23.1)(uglify-js@3.19.3)(webpack-cli@5.1.4))
       '@nicolo-ribaudo/eslint-scope-5-internals':
         specifier: latest
         version: 5.1.1-v1
@@ -3956,7 +3956,7 @@ importers:
         version: 8.0.3(@babel/plugin-syntax-flow@7.24.7(@babel/core@7.25.2(supports-color@9.4.0)))(@babel/plugin-transform-react-jsx@7.25.2(@babel/core@7.25.2(supports-color@9.4.0))(supports-color@9.4.0))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))
       eslint-plugin-jest:
         specifier: latest
-        version: 28.8.2(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(jest@29.7.0(@types/node@22.5.3)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@types/node@22.5.3)(typescript@5.5.4)))(supports-color@9.4.0)(typescript@5.5.4)
+        version: 28.8.3(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(jest@29.7.0(@types/node@22.5.3)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@types/node@22.5.3)(typescript@5.5.4)))(supports-color@9.4.0)(typescript@5.5.4)
       eslint-plugin-jsx-a11y:
         specifier: latest
         version: 6.10.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))
@@ -12159,8 +12159,8 @@ packages:
     resolution: {integrity: sha512-2KYkyluThg1AKfd0JWI7FzpS4A/fzVVGYIf6AM4ydWyNj8eI/86GQVLeRgDoH7CNOxt243R5tutWlmHpVq0/Ew==}
     engines: {node: '>=18.0.0'}
 
-  '@ngtools/webpack@18.2.2':
-    resolution: {integrity: sha512-YhADmc+lVjLt3kze07A+yLry2yzcghdclu+7D3EDfa6fG2Pk33HK3MY2I0Z0BO+Ivoq7cV7yxm+naR+Od0Y5ng==}
+  '@ngtools/webpack@18.2.3':
+    resolution: {integrity: sha512-DDuBHcu23qckt43SexBJaPEIeMc/HKaFOidILZM9D4gU4C9VroMActdR218dvQ802QfL0S46t5Ykz8ENprIfjA==}
     engines: {node: ^18.19.1 || ^20.11.1 || >=22.0.0, npm: ^6.11.0 || ^7.5.6 || >=8.0.0, yarn: '>= 1.13.0'}
     peerDependencies:
       '@angular/compiler-cli': ^18.0.0
@@ -13543,11 +13543,11 @@ packages:
     resolution: {integrity: sha512-smhk7PJpvDMQ2DB5p2qn9UeoUHdU41IgjMmS2xklZpa8tjzBTxDeWpGvrX2fuH67D9bAJuLC/XyZjJCHLoEW5g==}
     engines: {node: '>=14.18'}
 
-  '@shikijs/core@1.16.1':
-    resolution: {integrity: sha512-aI0hBtw+a6KsJp2jcD4YuQqKpeCbURMZbhHVozDknJpm+KJqeMRkEnfBC8BaKE/5XC+uofPgCLsa/TkTk0Ba0w==}
+  '@shikijs/core@1.16.2':
+    resolution: {integrity: sha512-XSVH5OZCvE4WLMgdoBqfPMYmGHGmCC3OgZhw0S7KcSi2XKZ+5oHGe71GFnTljgdOxvxx5WrRks6QoTLKrl1eAA==}
 
-  '@shikijs/transformers@1.16.1':
-    resolution: {integrity: sha512-mfbe4YMov+1eyIBU3F6BtaPmLgDkRQaVse8xsBlKTVAcNF3cbZMRCyUz2N6gJOMKLJiv9T5gapBPbRxrDMuoxA==}
+  '@shikijs/transformers@1.16.2':
+    resolution: {integrity: sha512-AR6ANiKwi1dJr5g/W0L+Su4PoHurkHLgtNmesbOFOPGKNQC2BeGU/Z2Ghkl+cUF5PfE+UeLkxUwzpE6H37hTSg==}
 
   '@shikijs/vscode-textmate@9.2.0':
     resolution: {integrity: sha512-5FinaOp6Vdh/dl4/yaOTh0ZeKch+rYS8DUb38V3GMKYVkdqzxw53lViRKUYkVILRiVQT7dcPC7VvAKOR73zVtQ==}
@@ -18819,8 +18819,8 @@ packages:
       jest:
         optional: true
 
-  eslint-plugin-jest@28.8.2:
-    resolution: {integrity: sha512-mC3OyklHmS5i7wYU1rGId9EnxRI8TVlnFG56AE+8U9iRy6zwaNygZR+DsdZuCL0gRG0wVeyzq+uWcPt6yJrrMA==}
+  eslint-plugin-jest@28.8.3:
+    resolution: {integrity: sha512-HIQ3t9hASLKm2IhIOqnu+ifw7uLZkIlR7RYNv7fMcEi/p0CIiJmfriStQS2LDkgtY4nyLbIZAD+JL347Yc2ETQ==}
     engines: {node: ^16.10.0 || ^18.12.0 || >=20.0.0}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': ^6.0.0 || ^7.0.0 || ^8.0.0
@@ -26235,8 +26235,8 @@ packages:
   shellwords@1.0.1:
     resolution: {integrity: sha512-Fd5KAbmR0kf6GL4bYJTeHdSKW1mCu6rMxdZcZ4l/hD9wRpBB6RxA01TdmegXWzIhJARyYDFs8EAdnpAsRaDGWw==}
 
-  shiki@1.16.1:
-    resolution: {integrity: sha512-tCJIMaxDVB1mEIJ5TvfZU7kCPB5eo9fli5+21Olc/bmyv+w8kye3JOp+LZRmGkAyT71hrkefQhTiY+o9mBikRQ==}
+  shiki@1.16.2:
+    resolution: {integrity: sha512-gSym0hZf5a1U0iDPsdoOAZbvoi+e0c6c3NKAi03FoSLTm7oG20tum29+gk0wzzivOasn3loxfGUPT+jZXIUbWg==}
 
   shimmer@1.2.1:
     resolution: {integrity: sha512-sQTKC1Re/rM6XyFM6fIAGHRPVGvyXfgzIDvzoq608vM+jeyVD0Tu1E6Np0Kc2zAIFWIj963V2800iF/9LPieQw==}
@@ -33226,7 +33226,7 @@ snapshots:
       '@netlify/node-cookies': 0.1.0
       urlpattern-polyfill: 8.0.2
 
-  '@ngtools/webpack@18.2.2(@angular/compiler-cli@18.2.3(@angular/compiler@18.2.3)(supports-color@9.4.0)(typescript@5.5.4))(typescript@5.5.4)(webpack@5.94.0(esbuild@0.23.1)(uglify-js@3.19.3)(webpack-cli@5.1.4))':
+  '@ngtools/webpack@18.2.3(@angular/compiler-cli@18.2.3(@angular/compiler@18.2.3)(supports-color@9.4.0)(typescript@5.5.4))(typescript@5.5.4)(webpack@5.94.0(esbuild@0.23.1)(uglify-js@3.19.3)(webpack-cli@5.1.4))':
     dependencies:
       '@angular/compiler-cli': 18.2.3(@angular/compiler@18.2.3)(supports-color@9.4.0)(typescript@5.5.4)
       typescript: 5.5.4
@@ -34838,14 +34838,14 @@ snapshots:
     dependencies:
       '@sentry/types': 8.28.0
 
-  '@shikijs/core@1.16.1':
+  '@shikijs/core@1.16.2':
     dependencies:
       '@shikijs/vscode-textmate': 9.2.0
       '@types/hast': 3.0.4
 
-  '@shikijs/transformers@1.16.1':
+  '@shikijs/transformers@1.16.2':
     dependencies:
-      shiki: 1.16.1
+      shiki: 1.16.2
 
   '@shikijs/vscode-textmate@9.2.0': {}
 
@@ -41496,7 +41496,7 @@ snapshots:
       - supports-color
       - typescript
 
-  eslint-plugin-jest@28.8.2(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(jest@29.7.0(@types/node@22.5.3)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@types/node@22.5.3)(typescript@5.5.4)))(supports-color@9.4.0)(typescript@5.5.4):
+  eslint-plugin-jest@28.8.3(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(jest@29.7.0(@types/node@22.5.3)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@9.4.0)(ts-node@10.9.2(@types/node@22.5.3)(typescript@5.5.4)))(supports-color@9.4.0)(typescript@5.5.4):
     dependencies:
       '@typescript-eslint/utils': 8.4.0(eslint@9.9.1(jiti@1.21.6)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.5.4)
       eslint: 9.9.1(jiti@1.21.6)(supports-color@9.4.0)
@@ -50400,9 +50400,9 @@ snapshots:
 
   shellwords@1.0.1: {}
 
-  shiki@1.16.1:
+  shiki@1.16.2:
     dependencies:
-      '@shikijs/core': 1.16.1
+      '@shikijs/core': 1.16.2
       '@shikijs/vscode-textmate': 9.2.0
       '@types/hast': 3.0.4
 
@@ -52859,8 +52859,8 @@ snapshots:
     dependencies:
       '@docsearch/css': 3.6.1
       '@docsearch/js': 3.6.1(@algolia/client-search@4.24.0)(@types/react@18.3.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.17.1)
-      '@shikijs/core': 1.16.1
-      '@shikijs/transformers': 1.16.1
+      '@shikijs/core': 1.16.2
+      '@shikijs/transformers': 1.16.2
       '@types/markdown-it': 14.1.2
       '@vitejs/plugin-vue': 5.1.3(vite@5.4.3(@types/node@22.5.3)(less@4.2.0)(sass@1.78.0)(terser@5.31.6))(vue@3.5.1(typescript@5.5.4))
       '@vue/devtools-api': 7.4.4
@@ -52870,7 +52870,7 @@ snapshots:
       focus-trap: 7.5.4
       mark.js: 8.11.1
       minisearch: 7.1.0
-      shiki: 1.16.1
+      shiki: 1.16.2
       vite: 5.4.3(@types/node@22.5.3)(less@4.2.0)(sass@1.78.0)(terser@5.31.6)
       vue: 3.5.1(typescript@5.5.4)
     optionalDependencies:
