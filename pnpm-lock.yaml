@@ -1460,7 +1460,7 @@ importers:
         version: 1.1.0
       '@puppeteer/browsers':
         specifier: latest
-        version: 2.3.1(supports-color@9.4.0)
+        version: 2.4.0(supports-color@9.4.0)
       '@radix-ui/number':
         specifier: latest
         version: 1.1.0
@@ -4343,7 +4343,7 @@ importers:
         version: 0.2.1
       framer-motion:
         specifier: latest
-        version: 11.5.0(@emotion/is-prop-valid@1.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 11.5.2(@emotion/is-prop-valid@1.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       fresh:
         specifier: latest
         version: 0.5.2
@@ -5933,13 +5933,13 @@ importers:
         version: 1.1.2
       metro-babel-transformer:
         specifier: latest
-        version: 0.80.10(supports-color@9.4.0)
+        version: 0.80.11(supports-color@9.4.0)
       metro-resolver:
         specifier: latest
-        version: 0.80.10
+        version: 0.80.11
       metro-source-map:
         specifier: latest
-        version: 0.80.10(supports-color@9.4.0)
+        version: 0.80.11(supports-color@9.4.0)
       micromark:
         specifier: latest
         version: 4.0.0(supports-color@9.4.0)
@@ -6371,7 +6371,7 @@ importers:
         version: 0.9.0
       ob1:
         specifier: latest
-        version: 0.80.10
+        version: 0.80.11
       object-assign:
         specifier: latest
         version: 4.1.1
@@ -7169,10 +7169,10 @@ importers:
         version: 3.1.0
       puppeteer:
         specifier: latest
-        version: 23.2.2(supports-color@9.4.0)(typescript@5.5.4)
+        version: 23.3.0(supports-color@9.4.0)(typescript@5.5.4)
       puppeteer-core:
         specifier: latest
-        version: 23.2.2(supports-color@9.4.0)
+        version: 23.3.0(supports-color@9.4.0)
       pure-rand:
         specifier: latest
         version: 6.1.0
@@ -7190,7 +7190,7 @@ importers:
         version: 6.13.0
       quasar:
         specifier: latest
-        version: 2.16.9
+        version: 2.16.10
       query-string:
         specifier: latest
         version: 9.1.0
@@ -12771,8 +12771,8 @@ packages:
   '@protobufjs/utf8@1.1.0':
     resolution: {integrity: sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==}
 
-  '@puppeteer/browsers@2.3.1':
-    resolution: {integrity: sha512-uK7o3hHkK+naEobMSJ+2ySYyXtQkBxIH8Gn4MK9ciePjNV+Pf+PgY/W7iPzn2MTjl3stcYB5AlcTmPYw7AXDwA==}
+  '@puppeteer/browsers@2.4.0':
+    resolution: {integrity: sha512-x8J1csfIygOwf6D6qUAZ0ASk3z63zPb7wkNeHRerCMh82qWKUrOgkuP005AJC8lDL6/evtXETGEJVcwykKT4/g==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -19641,8 +19641,8 @@ packages:
     resolution: {integrity: sha512-GMBAbW9antB8iZRHLoGw0b3HANt57diZYFO/HL1JGIC1MjKrdmhxvrJbupnVvpys0zsz7yBApXdQyfepKly2kA==}
     engines: {node: '>=0.10.0'}
 
-  framer-motion@11.5.0:
-    resolution: {integrity: sha512-Br0sk5vVf4/dCwK+K7keLzE67ZSoQO7OeAVSQRY72mA4GEjPYJgedAaRzXHkq/ilB87Z1YiJLjhvk5+U4Kz8Yg==}
+  framer-motion@11.5.2:
+    resolution: {integrity: sha512-dZLb7F+orjs+y2ggdl3tL5wuIDsHV1p28gloOSrDWH+nwmt0RTC7myq9FdfWZcQZ47qzv4RrqHEtHoeaBK57dg==}
     peerDependencies:
       '@emotion/is-prop-valid': '*'
       react: ^18.0.0
@@ -20340,14 +20340,8 @@ packages:
   help-me@5.0.0:
     resolution: {integrity: sha512-7xgomUX6ADmcYzFik0HzAxh/73YlKR9bmFzf51CZwR+b6YtzU2m0u49hQCqV6SvlqIqsaxovfwdvbnsw3b/zpg==}
 
-  hermes-estree@0.23.0:
-    resolution: {integrity: sha512-Rkp0PNLGpORw4ktsttkVbpYJbrYKS3hAnkxu8D9nvQi6LvSbuPa+tYw/t2u3Gjc35lYd/k95YkjqyTcN4zspag==}
-
   hermes-estree@0.23.1:
     resolution: {integrity: sha512-eT5MU3f5aVhTqsfIReZ6n41X5sYn4IdQL0nvz6yO+MMlPxw49aSARHLg/MSehQftyjnrE8X6bYregzSumqc6cg==}
-
-  hermes-parser@0.23.0:
-    resolution: {integrity: sha512-xLwM4ylfHGwrm+2qXfO1JT/fnqEDGSnpS/9hQ4VLtqTexSviu2ZpBgz07U8jVtndq67qdb/ps0qvaWDZ3fkTyg==}
 
   hermes-parser@0.23.1:
     resolution: {integrity: sha512-oxl5h2DkFW83hT4DAUJorpah8ou4yvmweUzLJmmr6YV2cezduCdlil1AvU/a/xSsAFo4WUcNA4GoV5Bvq6JffA==}
@@ -22683,20 +22677,20 @@ packages:
     resolution: {integrity: sha512-iclAHeNqNm68zFtnZ0e+1L2yUIdvzNoauKU4WBA3VvH/vPFieF7qfRlwUZU+DA9P9bPXIS90ulxoUoCH23sV2w==}
     engines: {node: '>= 0.6'}
 
-  metro-babel-transformer@0.80.10:
-    resolution: {integrity: sha512-GXHueUzgzcazfzORDxDzWS9jVVRV6u+cR6TGvHOfGdfLzJCj7/D0PretLfyq+MwN20twHxLW+BUXkoaB8sCQBg==}
+  metro-babel-transformer@0.80.11:
+    resolution: {integrity: sha512-ViWx0rdAIyfX73HiEC1TXW0hs42fKPuPm4VxmbazM8XBIjykGnkk5i2OVm3+uA1YnAC242AzbX6uy7uJh9Pv3w==}
     engines: {node: '>=18'}
 
-  metro-resolver@0.80.10:
-    resolution: {integrity: sha512-EYC5CL7f+bSzrqdk1bylKqFNGabfiI5PDctxoPx70jFt89Jz+ThcOscENog8Jb4LEQFG6GkOYlwmPpsi7kx3QA==}
+  metro-resolver@0.80.11:
+    resolution: {integrity: sha512-g1ntyySE22OCyy7ycdmiexcdfOS/yUrevUFg2+GCGpPWnDC4Lj71/AeKbkPVYjFEHQJhd/EALGo3EzxMhUpR5A==}
     engines: {node: '>=18'}
 
-  metro-source-map@0.80.10:
-    resolution: {integrity: sha512-EyZswqJW8Uukv/HcQr6K19vkMXW1nzHAZPWJSEyJFKIbgp708QfRZ6vnZGmrtFxeJEaFdNup4bGnu8/mIOYlyA==}
+  metro-source-map@0.80.11:
+    resolution: {integrity: sha512-s/lxGxUBVYhufYmJBLpxk1m6m73KbcXBS30T1TGPKJWhrO/hu6T0i9fqS6r/z4LdhB/TGQkHoB1VWiQ/J445iQ==}
     engines: {node: '>=18'}
 
-  metro-symbolicate@0.80.10:
-    resolution: {integrity: sha512-qAoVUoSxpfZ2DwZV7IdnQGXCSsf2cAUExUcZyuCqGlY5kaWBb0mx2BL/xbMFDJ4wBp3sVvSBPtK/rt4J7a0xBA==}
+  metro-symbolicate@0.80.11:
+    resolution: {integrity: sha512-xYQYC5dZd9qtK6gxwsnzgw3Byv9juQnJPcnt+fFcNfQBPxiZNuDa8tLq240btVGG3giQfmkNTWe1lHKsFddDBQ==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -23508,8 +23502,8 @@ packages:
   oauth-sign@0.9.0:
     resolution: {integrity: sha512-fexhUFFPTGV8ybAtSIGbV6gOkSv8UtRbDBnAyLQw4QPKkgNlsH2ByPGtMUqdWkos6YCRmAqViwgZrJc/mRDzZQ==}
 
-  ob1@0.80.10:
-    resolution: {integrity: sha512-dJHyB0S6JkMorUSfSGcYGkkg9kmq3qDUu3ygZUKIfkr47XOPuG35r2Sk6tbwtHXbdKIXmcMvM8DF2CwgdyaHfQ==}
+  ob1@0.80.11:
+    resolution: {integrity: sha512-1FqQEnd4n3UJ441/eHSKCgiMGf1RbrR/aXN0ybJ27zhbq+cc4mpE4WHLuzgNEnXu/9wf43lnAUL0WN7vcVD8Yg==}
     engines: {node: '>=18'}
 
   object-assign@4.1.1:
@@ -25094,12 +25088,12 @@ packages:
     resolution: {integrity: sha512-FLpr4flz5xZTSJxSeaheeMKN/EDzMdK7b8PTOC6a5PYFKTucWbdqjgqaEyH0shFiSJrVB1+Qqi4Tk19ccU6Aug==}
     engines: {node: '>=12.20'}
 
-  puppeteer-core@23.2.2:
-    resolution: {integrity: sha512-MK2Kbdmro+nX9/pfGKm8TiU5G3CuS6BbcNfkcz42GWnHp7KYsJHrP6lPDepiyvwjti5Bt/4a8U3w+DoFpIcBHQ==}
+  puppeteer-core@23.3.0:
+    resolution: {integrity: sha512-sB2SsVMFs4gKad5OCdv6w5vocvtEUrRl0zQqSyRPbo/cj1Ktbarmhxy02Zyb9R9HrssBcJDZbkrvBnbaesPyYg==}
     engines: {node: '>=18'}
 
-  puppeteer@23.2.2:
-    resolution: {integrity: sha512-3RX5vEhlOE/9M7ZXxoJVvI7pbOF3fzFK4etwbdii7w+r58q+krK5l2FXWlA1ETnNs7ilM/KLFc0n6K8VUi99dA==}
+  puppeteer@23.3.0:
+    resolution: {integrity: sha512-e2jY8cdWSUGsrLxqGm3hIbJq/UIk1uOY8XY7SM51leXkH7shrIyE91lK90Q9byX6tte+cyL3HKqlWBEd6TjWTA==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -25137,8 +25131,8 @@ packages:
     resolution: {integrity: sha512-qxXIEh4pCGfHICj1mAJQ2/2XVZkjCDTcEgfoSQxc/fYivUZxTkk7L3bDBJSoNrEzXI17oUO5Dp07ktqE5KzczA==}
     engines: {node: '>=0.6'}
 
-  quasar@2.16.9:
-    resolution: {integrity: sha512-cAbt5l8hbxf7GQSwtYQ/3TlrbA8cOfjXXbFvikx4amMQEFKVB/vi/PfQMjbdRVcK/zEB6hu1y5OjS/9NlpJc/Q==}
+  quasar@2.16.10:
+    resolution: {integrity: sha512-n4fPFabxtgUO2gsYXpg6WYkx0eTDi+CGyTmbI+HqiYQlGqAIa8qjuOIuKzX/wrkg5vKx4PvnCthTImOYHGT8Hg==}
     engines: {node: '>= 10.18.1', npm: '>= 6.13.4', yarn: '>= 1.21.1'}
 
   query-string@9.1.0:
@@ -34087,7 +34081,7 @@ snapshots:
 
   '@protobufjs/utf8@1.1.0': {}
 
-  '@puppeteer/browsers@2.3.1(supports-color@9.4.0)':
+  '@puppeteer/browsers@2.4.0(supports-color@9.4.0)':
     dependencies:
       debug: 4.3.6(supports-color@9.4.0)
       extract-zip: 2.0.1(supports-color@9.4.0)
@@ -42564,7 +42558,7 @@ snapshots:
     dependencies:
       map-cache: 0.2.2
 
-  framer-motion@11.5.0(@emotion/is-prop-valid@1.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  framer-motion@11.5.2(@emotion/is-prop-valid@1.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       tslib: 2.7.0
     optionalDependencies:
@@ -43426,13 +43420,7 @@ snapshots:
 
   help-me@5.0.0: {}
 
-  hermes-estree@0.23.0: {}
-
   hermes-estree@0.23.1: {}
-
-  hermes-parser@0.23.0:
-    dependencies:
-      hermes-estree: 0.23.0
 
   hermes-parser@0.23.1:
     dependencies:
@@ -46079,38 +46067,38 @@ snapshots:
 
   methods@1.1.2: {}
 
-  metro-babel-transformer@0.80.10(supports-color@9.4.0):
+  metro-babel-transformer@0.80.11(supports-color@9.4.0):
     dependencies:
       '@babel/core': 7.25.2(supports-color@9.4.0)
       flow-enums-runtime: 0.0.6
-      hermes-parser: 0.23.0
+      hermes-parser: 0.23.1
       nullthrows: 1.1.1
     transitivePeerDependencies:
       - supports-color
 
-  metro-resolver@0.80.10:
+  metro-resolver@0.80.11:
     dependencies:
       flow-enums-runtime: 0.0.6
 
-  metro-source-map@0.80.10(supports-color@9.4.0):
+  metro-source-map@0.80.11(supports-color@9.4.0):
     dependencies:
       '@babel/traverse': 7.25.6(supports-color@9.4.0)
       '@babel/types': 7.25.6
       flow-enums-runtime: 0.0.6
       invariant: 2.2.4
-      metro-symbolicate: 0.80.10(supports-color@9.4.0)
+      metro-symbolicate: 0.80.11(supports-color@9.4.0)
       nullthrows: 1.1.1
-      ob1: 0.80.10
+      ob1: 0.80.11
       source-map: 0.5.7
       vlq: 1.0.1
     transitivePeerDependencies:
       - supports-color
 
-  metro-symbolicate@0.80.10(supports-color@9.4.0):
+  metro-symbolicate@0.80.11(supports-color@9.4.0):
     dependencies:
       flow-enums-runtime: 0.0.6
       invariant: 2.2.4
-      metro-source-map: 0.80.10(supports-color@9.4.0)
+      metro-source-map: 0.80.11(supports-color@9.4.0)
       nullthrows: 1.1.1
       source-map: 0.5.7
       through2: 2.0.5
@@ -47408,7 +47396,7 @@ snapshots:
 
   oauth-sign@0.9.0: {}
 
-  ob1@0.80.10:
+  ob1@0.80.11:
     dependencies:
       flow-enums-runtime: 0.0.6
 
@@ -49056,9 +49044,9 @@ snapshots:
     dependencies:
       escape-goat: 4.0.0
 
-  puppeteer-core@23.2.2(supports-color@9.4.0):
+  puppeteer-core@23.3.0(supports-color@9.4.0):
     dependencies:
-      '@puppeteer/browsers': 2.3.1(supports-color@9.4.0)
+      '@puppeteer/browsers': 2.4.0(supports-color@9.4.0)
       chromium-bidi: 0.6.5(devtools-protocol@0.0.1330662)
       debug: 4.3.6(supports-color@9.4.0)
       devtools-protocol: 0.0.1330662
@@ -49069,13 +49057,13 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  puppeteer@23.2.2(supports-color@9.4.0)(typescript@5.5.4):
+  puppeteer@23.3.0(supports-color@9.4.0)(typescript@5.5.4):
     dependencies:
-      '@puppeteer/browsers': 2.3.1(supports-color@9.4.0)
+      '@puppeteer/browsers': 2.4.0(supports-color@9.4.0)
       chromium-bidi: 0.6.5(devtools-protocol@0.0.1330662)
       cosmiconfig: 9.0.0(typescript@5.5.4)
       devtools-protocol: 0.0.1330662
-      puppeteer-core: 23.2.2(supports-color@9.4.0)
+      puppeteer-core: 23.3.0(supports-color@9.4.0)
       typed-query-selector: 2.12.0
     transitivePeerDependencies:
       - bufferutil
@@ -49107,7 +49095,7 @@ snapshots:
 
   qs@6.5.3: {}
 
-  quasar@2.16.9: {}
+  quasar@2.16.10: {}
 
   query-string@9.1.0:
     dependencies:
