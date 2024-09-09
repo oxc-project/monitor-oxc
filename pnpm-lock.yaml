@@ -884,7 +884,7 @@ importers:
         version: 26.0.0
       '@cypress/request':
         specifier: latest
-        version: 3.0.4
+        version: 3.0.5
       '@cypress/xvfb':
         specifier: latest
         version: 1.2.4(supports-color@9.4.0)
@@ -8642,7 +8642,7 @@ importers:
         version: 1.1.0(browserslist@4.23.3)
       update-notifier:
         specifier: latest
-        version: 7.3.0
+        version: 7.3.1
       upper-case:
         specifier: latest
         version: 3.0.0
@@ -10842,8 +10842,8 @@ packages:
   '@cucumber/messages@26.0.0':
     resolution: {integrity: sha512-8czw2GfA1caaTKCnQJkpmly6bU2jwUmHfgH2wV9skVxr79O9UnzjCeCy36XGm87l97G+7AQ5GucsR8wYWu8Fbg==}
 
-  '@cypress/request@3.0.4':
-    resolution: {integrity: sha512-eqNHMsxEXuit0sRvvWoGG3/4+Q5qwqjKARWXKM/KoSsKvTNBwWt8pwspg5+TniP3POAZcPPx0O8CiEIQ4e6NWg==}
+  '@cypress/request@3.0.5':
+    resolution: {integrity: sha512-v+XHd9XmWbufxF1/bTaVm2yhbxY+TB4YtWRqF2zaXBlDNMkls34KiATz0AVDLavL3iB6bQk9/7n3oY1EoLSWGA==}
     engines: {node: '>= 6'}
 
   '@cypress/xvfb@1.2.4':
@@ -28114,8 +28114,8 @@ packages:
     peerDependencies:
       browserslist: '>= 4.21.0'
 
-  update-notifier@7.3.0:
-    resolution: {integrity: sha512-nA5Zoy3rahYd/Lx1s6jZYHfrKKYOgw0kThkLdwgJtXEFsXqEbMnwdVNPT9D+HELlEXqTR7Iq8rjg/NjenGLIvg==}
+  update-notifier@7.3.1:
+    resolution: {integrity: sha512-+dwUY4L35XFYEzE+OAL3sarJdUioVovq+8f7lcIJ7wnmnYQV5UD1Y/lcwaMSyaQ6Bj3JMj1XSTjZbNLHn/19yA==}
     engines: {node: '>=18'}
 
   upper-case-first@2.0.2:
@@ -31770,7 +31770,7 @@ snapshots:
       reflect-metadata: 0.2.2
       uuid: 10.0.0
 
-  '@cypress/request@3.0.4':
+  '@cypress/request@3.0.5':
     dependencies:
       aws-sign2: 0.7.0
       aws4: 1.13.2
@@ -31778,7 +31778,7 @@ snapshots:
       combined-stream: 1.0.8
       extend: 3.0.2
       forever-agent: 0.6.1
-      form-data: 2.5.1
+      form-data: 4.0.0
       http-signature: 1.4.0
       is-typedarray: 1.0.0
       isstream: 0.1.2
@@ -40108,7 +40108,7 @@ snapshots:
 
   cypress@13.14.2:
     dependencies:
-      '@cypress/request': 3.0.4
+      '@cypress/request': 3.0.5
       '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
       '@types/sinonjs__fake-timers': 8.1.1
       '@types/sizzle': 2.3.8
@@ -52596,7 +52596,7 @@ snapshots:
       escalade: 3.2.0
       picocolors: 1.1.0
 
-  update-notifier@7.3.0:
+  update-notifier@7.3.1:
     dependencies:
       boxen: 8.0.1
       chalk: 5.3.0
