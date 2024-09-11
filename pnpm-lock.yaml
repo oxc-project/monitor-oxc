@@ -5546,7 +5546,7 @@ importers:
         version: 2.9.1
       libsql-stateless-easy:
         specifier: latest
-        version: 1.7.8
+        version: 1.8.0
       license-webpack-plugin:
         specifier: latest
         version: 4.0.2(webpack@5.94.0(esbuild@0.23.1)(uglify-js@3.19.3)(webpack-cli@5.1.4))
@@ -6155,7 +6155,7 @@ importers:
         version: 2.1.3
       msw:
         specifier: latest
-        version: 2.4.4(typescript@5.6.2)
+        version: 2.4.5(typescript@5.6.2)
       multer:
         specifier: latest
         version: 1.4.5-lts.1
@@ -8618,7 +8618,7 @@ importers:
         version: 1.0.0
       unplugin:
         specifier: latest
-        version: 1.14.0(webpack-sources@3.2.3)
+        version: 1.14.1(webpack-sources@3.2.3)
       unplugin-vue-macros:
         specifier: latest
         version: 2.11.11(@vueuse/core@11.0.3(vue@3.5.4(typescript@5.6.2)))(esbuild@0.23.1)(rolldown@0.13.2)(rollup@4.21.2)(supports-color@9.4.0)(typescript@5.6.2)(vite@5.4.3(@types/node@22.5.4)(less@4.2.0)(sass@1.78.0)(terser@5.32.0))(vue@3.5.4(typescript@5.6.2))(webpack-sources@3.2.3)(webpack@5.94.0(esbuild@0.23.1)(uglify-js@3.19.3)(webpack-cli@5.1.4))
@@ -8771,7 +8771,7 @@ importers:
         version: 2.0.5(@types/node@22.5.4)(less@4.2.0)(sass@1.78.0)(supports-color@9.4.0)(terser@5.32.0)
       vitepress:
         specifier: latest
-        version: 1.3.4(@algolia/client-search@4.24.0)(@types/node@22.5.4)(@types/react@18.3.5)(async-validator@4.2.5)(axios@1.7.7(debug@4.3.7(supports-color@9.4.0)))(change-case@5.4.4)(fuse.js@7.0.0)(jwt-decode@4.0.0)(less@4.2.0)(postcss@8.4.45)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.78.0)(search-insights@2.17.1)(terser@5.32.0)(typescript@5.6.2)
+        version: 1.3.4(@algolia/client-search@4.24.0)(@types/node@22.5.4)(@types/react@18.3.5)(async-validator@4.2.5)(axios@1.7.7(debug@4.3.7(supports-color@9.4.0)))(change-case@5.4.4)(fuse.js@7.0.0)(jwt-decode@4.0.0)(less@4.2.0)(postcss@8.4.45)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.78.0)(search-insights@2.17.2)(terser@5.32.0)(typescript@5.6.2)
       vlq:
         specifier: latest
         version: 2.0.4
@@ -22034,8 +22034,8 @@ packages:
   libphonenumber-js@1.11.8:
     resolution: {integrity: sha512-0fv/YKpJBAgXKy0kaS3fnqoUVN8901vUYAKIGD/MWZaDfhJt1nZjPL3ZzdZBt/G8G8Hw2J1xOIrXWdNHFHPAvg==}
 
-  libsql-stateless-easy@1.7.8:
-    resolution: {integrity: sha512-VevfVY8/cjszOoLXVZeMKypae6PPbgv8R8AKn+nA5K4uOQAxZhr+2MpFUK0VEiNjNaZu0LRZ2MmBpjBdMeh1sQ==}
+  libsql-stateless-easy@1.8.0:
+    resolution: {integrity: sha512-0Hm2bW0Ntx3X8BAnX+qUUNMRr/GfmJj7HfVkhBDkCld8flSaIO6bwqDAUX6DGLH32KOANmk1dM18VSGjx2BLyQ==}
 
   libsql-stateless@2.9.1:
     resolution: {integrity: sha512-vxq2eyQoKYjGl2J6vYpZ4+rfX9zLckUswbchbgcaeiV/d6Do7T77NHWkiS57KywJRJdbxxoZUS404Nx9AfUDzQ==}
@@ -23138,8 +23138,8 @@ packages:
     resolution: {integrity: sha512-SZ2IxeqZ1oRFGo0xFGbvBJWMp3yLIY9rlIJyxy8CGrwZn1f0ZK4r6jV/AM1r0FZMDUkWkglOk/eeKIL9g77Nxw==}
     hasBin: true
 
-  msw@2.4.4:
-    resolution: {integrity: sha512-iuM0qGs4YmgYCLH+xqb07w2e/e4fYmsx3+WHVlIOUA34TW1sw+wRpNmOlXnLDkw/T7233Jnm6t+aNf4v2E3e2Q==}
+  msw@2.4.5:
+    resolution: {integrity: sha512-lX7knS9us1EKs1Y/ihB4eYEJ9VCq+ZGezrPSspbRw0iEaoOn1q0vZkR0joZ6w1S4u46ZD+VLJ522EQihIIkRCg==}
     engines: {node: '>=18'}
     hasBin: true
     peerDependencies:
@@ -26105,8 +26105,8 @@ packages:
   scule@1.3.0:
     resolution: {integrity: sha512-6FtHJEvt+pVMIB9IBY+IcCJ6Z5f1iQnytgyfKMhDKgmzYG+TeH/wx1y3l27rshSbLiSanrR9ffZDrEsmjlQF2g==}
 
-  search-insights@2.17.1:
-    resolution: {integrity: sha512-HHFjYH/0AqXacETlIbe9EYc3UNlQYGNNTY0fZ/sWl6SweX+GDxq9NB5+RVoPLgEFuOtCz7M9dhYxqDnhbbF0eQ==}
+  search-insights@2.17.2:
+    resolution: {integrity: sha512-zFNpOpUO+tY2D85KrxJ+aqwnIfdEGi06UH2+xEb+Bp9Mwznmauqc9djbnBibJO5mpfUPPa8st6Sx65+vbeO45g==}
 
   section-matter@1.0.0:
     resolution: {integrity: sha512-vfD3pmTzGpufjScBh50YHKzEu2lxBWhVEHsNGoEXmCmn2hKGfeNLYMzCJpe8cD7gqX7TJluOVpBkAequ6dgMmA==}
@@ -28021,8 +28021,8 @@ packages:
       vue-router:
         optional: true
 
-  unplugin@1.14.0:
-    resolution: {integrity: sha512-cfkZeALGyW7tKYjZbi0G+pn0XnUFa0QvLIeLJEUUlnU0R8YYsBQnt5+h9Eu1B7AB7KETld+UBFI5lOeBL+msoQ==}
+  unplugin@1.14.1:
+    resolution: {integrity: sha512-lBlHbfSFPToDYp9pjXlUEFVxYLaue9f9T1HC+4OHlmj+HnMDdz9oZY+erXfoCe/5V/7gKUSY2jpXPb9S7f0f/w==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       webpack-sources: ^3
@@ -29176,19 +29176,19 @@ snapshots:
 
   '@adobe/css-tools@4.4.0': {}
 
-  '@algolia/autocomplete-core@1.9.3(@algolia/client-search@4.24.0)(algoliasearch@4.24.0)(search-insights@2.17.1)':
+  '@algolia/autocomplete-core@1.9.3(@algolia/client-search@4.24.0)(algoliasearch@4.24.0)(search-insights@2.17.2)':
     dependencies:
-      '@algolia/autocomplete-plugin-algolia-insights': 1.9.3(@algolia/client-search@4.24.0)(algoliasearch@4.24.0)(search-insights@2.17.1)
+      '@algolia/autocomplete-plugin-algolia-insights': 1.9.3(@algolia/client-search@4.24.0)(algoliasearch@4.24.0)(search-insights@2.17.2)
       '@algolia/autocomplete-shared': 1.9.3(@algolia/client-search@4.24.0)(algoliasearch@4.24.0)
     transitivePeerDependencies:
       - '@algolia/client-search'
       - algoliasearch
       - search-insights
 
-  '@algolia/autocomplete-plugin-algolia-insights@1.9.3(@algolia/client-search@4.24.0)(algoliasearch@4.24.0)(search-insights@2.17.1)':
+  '@algolia/autocomplete-plugin-algolia-insights@1.9.3(@algolia/client-search@4.24.0)(algoliasearch@4.24.0)(search-insights@2.17.2)':
     dependencies:
       '@algolia/autocomplete-shared': 1.9.3(@algolia/client-search@4.24.0)(algoliasearch@4.24.0)
-      search-insights: 2.17.1
+      search-insights: 2.17.2
     transitivePeerDependencies:
       - '@algolia/client-search'
       - algoliasearch
@@ -31852,9 +31852,9 @@ snapshots:
 
   '@docsearch/css@3.6.1': {}
 
-  '@docsearch/js@3.6.1(@algolia/client-search@4.24.0)(@types/react@18.3.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.17.1)':
+  '@docsearch/js@3.6.1(@algolia/client-search@4.24.0)(@types/react@18.3.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.17.2)':
     dependencies:
-      '@docsearch/react': 3.6.1(@algolia/client-search@4.24.0)(@types/react@18.3.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.17.1)
+      '@docsearch/react': 3.6.1(@algolia/client-search@4.24.0)(@types/react@18.3.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.17.2)
       preact: 10.23.2
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -31863,9 +31863,9 @@ snapshots:
       - react-dom
       - search-insights
 
-  '@docsearch/react@3.6.1(@algolia/client-search@4.24.0)(@types/react@18.3.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.17.1)':
+  '@docsearch/react@3.6.1(@algolia/client-search@4.24.0)(@types/react@18.3.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.17.2)':
     dependencies:
-      '@algolia/autocomplete-core': 1.9.3(@algolia/client-search@4.24.0)(algoliasearch@4.24.0)(search-insights@2.17.1)
+      '@algolia/autocomplete-core': 1.9.3(@algolia/client-search@4.24.0)(algoliasearch@4.24.0)(search-insights@2.17.2)
       '@algolia/autocomplete-preset-algolia': 1.9.3(@algolia/client-search@4.24.0)(algoliasearch@4.24.0)
       '@docsearch/css': 3.6.1
       algoliasearch: 4.24.0
@@ -31873,7 +31873,7 @@ snapshots:
       '@types/react': 18.3.5
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      search-insights: 2.17.1
+      search-insights: 2.17.2
     transitivePeerDependencies:
       - '@algolia/client-search'
 
@@ -33582,7 +33582,7 @@ snapshots:
       strip-literal: 2.1.0
       ufo: 1.5.4
       unenv: 1.10.0
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
       vite: 5.4.3(@types/node@22.5.4)(less@4.2.0)(sass@1.78.0)(terser@5.32.0)
       vite-node: 2.0.5(@types/node@22.5.4)(less@4.2.0)(sass@1.78.0)(supports-color@9.4.0)(terser@5.32.0)
       vite-plugin-checker: 0.7.2(eslint@9.10.0(jiti@1.21.6)(supports-color@9.4.0))(meow@13.2.0)(optionator@0.9.4)(stylelint@16.9.0(supports-color@9.4.0)(typescript@5.6.2))(typescript@5.6.2)(vite@5.4.3(@types/node@22.5.4)(less@4.2.0)(sass@1.78.0)(terser@5.32.0))
@@ -35828,7 +35828,7 @@ snapshots:
   '@storybook/csf-plugin@8.2.9(storybook@8.2.9(@babel/preset-env@7.25.4(@babel/core@7.25.2(supports-color@9.4.0))(supports-color@9.4.0))(supports-color@9.4.0))(webpack-sources@3.2.3)':
     dependencies:
       storybook: 8.2.9(@babel/preset-env@7.25.4(@babel/core@7.25.2(supports-color@9.4.0))(supports-color@9.4.0))(supports-color@9.4.0)
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
     transitivePeerDependencies:
       - webpack-sources
 
@@ -36841,7 +36841,7 @@ snapshots:
     dependencies:
       '@vue-macros/api': 0.10.5(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))
       '@vue-macros/common': 1.12.3(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
     transitivePeerDependencies:
       - rollup
       - vue
@@ -36858,7 +36858,7 @@ snapshots:
   '@vue-macros/chain-call@0.3.5(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))(webpack-sources@3.2.3)':
     dependencies:
       '@vue-macros/common': 1.12.3(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
     transitivePeerDependencies:
       - rollup
       - vue
@@ -36891,7 +36891,7 @@ snapshots:
     dependencies:
       '@vue-macros/api': 0.10.5(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))
       '@vue-macros/common': 1.12.3(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
       vue: 3.5.4(typescript@5.6.2)
     transitivePeerDependencies:
       - rollup
@@ -36901,7 +36901,7 @@ snapshots:
     dependencies:
       '@vue-macros/common': 1.12.3(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))
       ast-walker-scope: 0.6.2
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
     optionalDependencies:
       '@vueuse/core': 11.0.3(vue@3.5.4(typescript@5.6.2))
     transitivePeerDependencies:
@@ -36913,7 +36913,7 @@ snapshots:
     dependencies:
       '@vue-macros/api': 0.10.5(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))
       '@vue-macros/common': 1.12.3(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
       vue: 3.5.4(typescript@5.6.2)
     transitivePeerDependencies:
       - rollup
@@ -36922,7 +36922,7 @@ snapshots:
   '@vue-macros/define-props-refs@1.2.10(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))(webpack-sources@3.2.3)':
     dependencies:
       '@vue-macros/common': 1.12.3(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
       vue: 3.5.4(typescript@5.6.2)
     transitivePeerDependencies:
       - rollup
@@ -36932,7 +36932,7 @@ snapshots:
     dependencies:
       '@vue-macros/common': 1.12.3(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))
       '@vue-macros/reactivity-transform': 1.0.4(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))(webpack-sources@3.2.3)
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
       vue: 3.5.4(typescript@5.6.2)
     transitivePeerDependencies:
       - rollup
@@ -36941,7 +36941,7 @@ snapshots:
   '@vue-macros/define-render@1.5.10(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))(webpack-sources@3.2.3)':
     dependencies:
       '@vue-macros/common': 1.12.3(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
       vue: 3.5.4(typescript@5.6.2)
     transitivePeerDependencies:
       - rollup
@@ -36950,7 +36950,7 @@ snapshots:
   '@vue-macros/define-slots@1.1.10(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))(webpack-sources@3.2.3)':
     dependencies:
       '@vue-macros/common': 1.12.3(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
       vue: 3.5.4(typescript@5.6.2)
     transitivePeerDependencies:
       - rollup
@@ -36969,7 +36969,7 @@ snapshots:
     dependencies:
       '@vue-macros/common': 1.12.3(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))
       '@vue/compiler-sfc': 3.5.4
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
       vue: 3.5.4(typescript@5.6.2)
     transitivePeerDependencies:
       - rollup
@@ -36978,7 +36978,7 @@ snapshots:
   '@vue-macros/export-props@0.4.10(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))(webpack-sources@3.2.3)':
     dependencies:
       '@vue-macros/common': 1.12.3(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
       vue: 3.5.4(typescript@5.6.2)
     transitivePeerDependencies:
       - rollup
@@ -36987,7 +36987,7 @@ snapshots:
   '@vue-macros/export-render@0.2.11(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))(webpack-sources@3.2.3)':
     dependencies:
       '@vue-macros/common': 1.12.3(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
       vue: 3.5.4(typescript@5.6.2)
     transitivePeerDependencies:
       - rollup
@@ -36996,7 +36996,7 @@ snapshots:
   '@vue-macros/hoist-static@1.5.10(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))(webpack-sources@3.2.3)':
     dependencies:
       '@vue-macros/common': 1.12.3(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
     transitivePeerDependencies:
       - rollup
       - vue
@@ -37005,7 +37005,7 @@ snapshots:
   '@vue-macros/jsx-directive@0.8.21(rollup@4.21.2)(typescript@5.6.2)(webpack-sources@3.2.3)':
     dependencies:
       '@vue-macros/common': 1.12.3(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
       vue: 3.5.4(typescript@5.6.2)
     transitivePeerDependencies:
       - rollup
@@ -37016,7 +37016,7 @@ snapshots:
     dependencies:
       '@vue-macros/common': 1.12.3(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))
       '@vue/compiler-dom': 3.5.4
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
     transitivePeerDependencies:
       - rollup
       - vue
@@ -37029,7 +37029,7 @@ snapshots:
       '@vue/compiler-core': 3.5.4
       '@vue/shared': 3.5.4
       magic-string: 0.30.11
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
       vue: 3.5.4(typescript@5.6.2)
     transitivePeerDependencies:
       - rollup
@@ -37038,7 +37038,7 @@ snapshots:
   '@vue-macros/script-lang@0.1.5(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))(webpack-sources@3.2.3)':
     dependencies:
       '@vue-macros/common': 1.12.3(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
       vue: 3.5.4(typescript@5.6.2)
     transitivePeerDependencies:
       - rollup
@@ -37048,7 +37048,7 @@ snapshots:
     dependencies:
       '@vue-macros/common': 1.12.3(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))
       '@vue/compiler-dom': 3.5.4
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
     transitivePeerDependencies:
       - rollup
       - vue
@@ -37057,7 +37057,7 @@ snapshots:
   '@vue-macros/setup-component@0.17.10(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))(webpack-sources@3.2.3)':
     dependencies:
       '@vue-macros/common': 1.12.3(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
     transitivePeerDependencies:
       - rollup
       - vue
@@ -37066,7 +37066,7 @@ snapshots:
   '@vue-macros/setup-sfc@0.17.10(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))(webpack-sources@3.2.3)':
     dependencies:
       '@vue-macros/common': 1.12.3(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
     transitivePeerDependencies:
       - rollup
       - vue
@@ -37083,7 +37083,7 @@ snapshots:
   '@vue-macros/short-emits@1.5.10(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))(webpack-sources@3.2.3)':
     dependencies:
       '@vue-macros/common': 1.12.3(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
     transitivePeerDependencies:
       - rollup
       - vue
@@ -43831,7 +43831,7 @@ snapshots:
       mlly: 1.7.1
       pathe: 1.1.2
       unenv: 1.10.0
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
     transitivePeerDependencies:
       - rollup
       - webpack-sources
@@ -45348,7 +45348,7 @@ snapshots:
 
   libphonenumber-js@1.11.8: {}
 
-  libsql-stateless-easy@1.7.8:
+  libsql-stateless-easy@1.8.0:
     dependencies:
       libsql-stateless: 2.9.1
 
@@ -46767,7 +46767,7 @@ snapshots:
       int64-buffer: 0.1.10
       isarray: 1.0.0
 
-  msw@2.4.4(typescript@5.6.2):
+  msw@2.4.5(typescript@5.6.2):
     dependencies:
       '@bundled-es-modules/cookie': 2.0.0
       '@bundled-es-modules/statuses': 1.0.1
@@ -47370,7 +47370,7 @@ snapshots:
       unctx: 2.3.1(webpack-sources@3.2.3)
       unenv: 1.10.0
       unimport: 3.11.1(rollup@4.21.2)(webpack-sources@3.2.3)
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
       unplugin-vue-router: 0.10.8(rollup@4.21.2)(vue-router@4.4.4(vue@3.5.4(typescript@5.6.2)))(vue@3.5.4(typescript@5.6.2))(webpack-sources@3.2.3)
       unstorage: 1.12.0(@azure/identity@4.4.1(supports-color@9.4.0))(ioredis@5.4.1(supports-color@9.4.0))
       untyped: 1.4.2(supports-color@9.4.0)
@@ -50249,7 +50249,7 @@ snapshots:
 
   scule@1.3.0: {}
 
-  search-insights@2.17.1: {}
+  search-insights@2.17.2: {}
 
   section-matter@1.0.0:
     dependencies:
@@ -52234,7 +52234,7 @@ snapshots:
       acorn: 8.12.1
       estree-walker: 3.0.3
       magic-string: 0.30.11
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
     transitivePeerDependencies:
       - webpack-sources
 
@@ -52325,7 +52325,7 @@ snapshots:
       pkg-types: 1.2.0
       scule: 1.3.0
       strip-literal: 2.1.0
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
     transitivePeerDependencies:
       - rollup
       - webpack-sources
@@ -52432,7 +52432,7 @@ snapshots:
   unplugin-combine@1.0.3(esbuild@0.23.1)(rolldown@0.13.2)(rollup@4.21.2)(vite@5.4.3(@types/node@22.5.4)(less@4.2.0)(sass@1.78.0)(terser@5.32.0))(webpack-sources@3.2.3)(webpack@5.94.0(esbuild@0.23.1)(uglify-js@3.19.3)(webpack-cli@5.1.4)):
     dependencies:
       '@antfu/utils': 0.7.10
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
     optionalDependencies:
       esbuild: 0.23.1
       rolldown: 0.13.2
@@ -52446,7 +52446,7 @@ snapshots:
     dependencies:
       '@vue-macros/common': 1.12.3(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))
       ast-walker-scope: 0.6.2
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
     transitivePeerDependencies:
       - rollup
       - vue
@@ -52481,7 +52481,7 @@ snapshots:
       '@vue-macros/short-emits': 1.5.10(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))(webpack-sources@3.2.3)
       '@vue-macros/short-vmodel': 1.4.10(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))
       '@vue-macros/volar': 0.29.1(rollup@4.21.2)(supports-color@9.4.0)(typescript@5.6.2)(vue@3.5.4(typescript@5.6.2))
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
       unplugin-combine: 1.0.3(esbuild@0.23.1)(rolldown@0.13.2)(rollup@4.21.2)(vite@5.4.3(@types/node@22.5.4)(less@4.2.0)(sass@1.78.0)(terser@5.32.0))(webpack-sources@3.2.3)(webpack@5.94.0(esbuild@0.23.1)(uglify-js@3.19.3)(webpack-cli@5.1.4))
       unplugin-vue-define-options: 1.4.10(rollup@4.21.2)(vue@3.5.4(typescript@5.6.2))(webpack-sources@3.2.3)
       vue: 3.5.4(typescript@5.6.2)
@@ -52512,7 +52512,7 @@ snapshots:
       mlly: 1.7.1
       pathe: 1.1.2
       scule: 1.3.0
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
       yaml: 2.5.1
     optionalDependencies:
       vue-router: 4.4.4(vue@3.5.4(typescript@5.6.2))
@@ -52521,7 +52521,7 @@ snapshots:
       - vue
       - webpack-sources
 
-  unplugin@1.14.0(webpack-sources@3.2.3):
+  unplugin@1.14.1(webpack-sources@3.2.3):
     dependencies:
       acorn: 8.12.1
       webpack-virtual-modules: 0.6.2
@@ -52587,7 +52587,7 @@ snapshots:
       mlly: 1.7.1
       pathe: 1.1.2
       pkg-types: 1.2.0
-      unplugin: 1.14.0(webpack-sources@3.2.3)
+      unplugin: 1.14.1(webpack-sources@3.2.3)
     transitivePeerDependencies:
       - webpack-sources
 
@@ -52948,10 +52948,10 @@ snapshots:
       sass: 1.78.0
       terser: 5.32.0
 
-  vitepress@1.3.4(@algolia/client-search@4.24.0)(@types/node@22.5.4)(@types/react@18.3.5)(async-validator@4.2.5)(axios@1.7.7(debug@4.3.7(supports-color@9.4.0)))(change-case@5.4.4)(fuse.js@7.0.0)(jwt-decode@4.0.0)(less@4.2.0)(postcss@8.4.45)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.78.0)(search-insights@2.17.1)(terser@5.32.0)(typescript@5.6.2):
+  vitepress@1.3.4(@algolia/client-search@4.24.0)(@types/node@22.5.4)(@types/react@18.3.5)(async-validator@4.2.5)(axios@1.7.7(debug@4.3.7(supports-color@9.4.0)))(change-case@5.4.4)(fuse.js@7.0.0)(jwt-decode@4.0.0)(less@4.2.0)(postcss@8.4.45)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.78.0)(search-insights@2.17.2)(terser@5.32.0)(typescript@5.6.2):
     dependencies:
       '@docsearch/css': 3.6.1
-      '@docsearch/js': 3.6.1(@algolia/client-search@4.24.0)(@types/react@18.3.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.17.1)
+      '@docsearch/js': 3.6.1(@algolia/client-search@4.24.0)(@types/react@18.3.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.17.2)
       '@shikijs/core': 1.16.3
       '@shikijs/transformers': 1.16.3
       '@types/markdown-it': 14.1.2
