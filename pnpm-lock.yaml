@@ -1247,7 +1247,7 @@ importers:
         version: 2.2.1
       '@mswjs/interceptors':
         specifier: latest
-        version: 0.35.0
+        version: 0.35.1
       '@nestjs/common':
         specifier: latest
         version: 10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
@@ -5546,7 +5546,7 @@ importers:
         version: 2.9.1
       libsql-stateless-easy:
         specifier: latest
-        version: 1.7.7
+        version: 1.7.8
       license-webpack-plugin:
         specifier: latest
         version: 4.0.2(webpack@5.94.0(esbuild@0.23.1)(uglify-js@3.19.3)(webpack-cli@5.1.4))
@@ -12106,8 +12106,8 @@ packages:
     resolution: {integrity: sha512-bPHp6Ji8b41szTOcaP63VlnbbO5Ny6dwAATtY6JTjh5N2OLrb5Qk/Th5cRkRQhkWCt+EJsYrNB0MiL+Gpn6e3g==}
     engines: {node: '>=4'}
 
-  '@mswjs/interceptors@0.35.0':
-    resolution: {integrity: sha512-f5cHyIvm4m4g1I5x9EH1etGx0puaU0OaX2szqGRVBVgUC6aMASlOI5hbpe7tJ9l4/VWjCUu5OMraCazLZGI24A==}
+  '@mswjs/interceptors@0.35.1':
+    resolution: {integrity: sha512-nMuUaMCtg8oKSTHwAnsoGRN6c1RZXNm6+ebEoe9SBGALVlBIzniZoSuC/itNCLOt51YEEYsF0svB/sOzYhqLPA==}
     engines: {node: '>=18'}
 
   '@napi-rs/wasm-runtime@0.2.4':
@@ -22034,8 +22034,8 @@ packages:
   libphonenumber-js@1.11.8:
     resolution: {integrity: sha512-0fv/YKpJBAgXKy0kaS3fnqoUVN8901vUYAKIGD/MWZaDfhJt1nZjPL3ZzdZBt/G8G8Hw2J1xOIrXWdNHFHPAvg==}
 
-  libsql-stateless-easy@1.7.7:
-    resolution: {integrity: sha512-+A3IPRYB9XNCxuXm/vfutEmeT9I5PhV8gFzthfgViVDkkRckbggxwVxD42gvD0hFmObFtIhj+afPuUs4mTPGCQ==}
+  libsql-stateless-easy@1.7.8:
+    resolution: {integrity: sha512-VevfVY8/cjszOoLXVZeMKypae6PPbgv8R8AKn+nA5K4uOQAxZhr+2MpFUK0VEiNjNaZu0LRZ2MmBpjBdMeh1sQ==}
 
   libsql-stateless@2.9.1:
     resolution: {integrity: sha512-vxq2eyQoKYjGl2J6vYpZ4+rfX9zLckUswbchbgcaeiV/d6Do7T77NHWkiS57KywJRJdbxxoZUS404Nx9AfUDzQ==}
@@ -33223,7 +33223,7 @@ snapshots:
       call-me-maybe: 1.0.2
       glob-to-regexp: 0.3.0
 
-  '@mswjs/interceptors@0.35.0':
+  '@mswjs/interceptors@0.35.1':
     dependencies:
       '@open-draft/deferred-promise': 2.2.0
       '@open-draft/logger': 0.3.0
@@ -45348,7 +45348,7 @@ snapshots:
 
   libphonenumber-js@1.11.8: {}
 
-  libsql-stateless-easy@1.7.7:
+  libsql-stateless-easy@1.7.8:
     dependencies:
       libsql-stateless: 2.9.1
 
@@ -46773,7 +46773,7 @@ snapshots:
       '@bundled-es-modules/statuses': 1.0.1
       '@bundled-es-modules/tough-cookie': 0.1.6
       '@inquirer/confirm': 3.2.0
-      '@mswjs/interceptors': 0.35.0
+      '@mswjs/interceptors': 0.35.1
       '@open-draft/until': 2.1.0
       '@types/cookie': 0.6.0
       '@types/statuses': 2.0.5
