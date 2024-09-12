@@ -1248,6 +1248,9 @@ importers:
       '@mswjs/interceptors':
         specifier: latest
         version: 0.35.1
+      '@ndelangen/get-tarball':
+        specifier: latest
+        version: 3.0.9
       '@nestjs/common':
         specifier: latest
         version: 10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
@@ -1884,9 +1887,6 @@ importers:
       '@storybook/client-logger':
         specifier: latest
         version: 8.2.9(storybook@8.2.9(@babel/preset-env@7.25.4(@babel/core@7.25.2(supports-color@9.4.0))(supports-color@9.4.0))(supports-color@9.4.0))
-      '@storybook/core':
-        specifier: latest
-        version: 8.2.9(supports-color@9.4.0)
       '@storybook/core-client':
         specifier: latest
         version: 7.6.17
@@ -12112,6 +12112,9 @@ packages:
 
   '@napi-rs/wasm-runtime@0.2.4':
     resolution: {integrity: sha512-9zESzOO5aDByvhIAsOy9TbpZ0Ur2AJbUI7UT73kcUTS2mxAMHOBaa1st/jAymNoCtvrit99kkzT1FZuXVcgfIQ==}
+
+  '@ndelangen/get-tarball@3.0.9':
+    resolution: {integrity: sha512-9JKTEik4vq+yGosHYhZ1tiH/3WpUS0Nh0kej4Agndhox8pAdWhEx5knFVRcb/ya9knCRCs1rPxNrSXTDdfVqpA==}
 
   '@nestjs/common@10.4.1':
     resolution: {integrity: sha512-4CkrDx0s4XuWqFjX8WvOFV7Y6RGJd0P2OBblkhZS7nwoctoSuW5pyEa8SWak6YHNGrHRpFb6ymm5Ai4LncwRVA==}
@@ -33255,6 +33258,12 @@ snapshots:
       '@emnapi/runtime': 1.2.0
       '@tybys/wasm-util': 0.9.0
     optional: true
+
+  '@ndelangen/get-tarball@3.0.9':
+    dependencies:
+      gunzip-maybe: 1.4.2
+      pump: 3.0.2
+      tar-fs: 2.1.1
 
   '@nestjs/common@10.4.1(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)':
     dependencies:
