@@ -83,9 +83,9 @@ jobs:
       matrix:
         include:
           - command: codegen
-          - command: compress
-          - command: transform
-          - command: mangle
+          - command: compressor
+          - command: transformer
+          - command: mangler
           - command: whitespace
           - command: id
     steps:

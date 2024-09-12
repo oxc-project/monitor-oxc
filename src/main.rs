@@ -3,7 +3,7 @@ use std::process::ExitCode;
 use pico_args::Arguments;
 
 use monitor_oxc::{
-    codegen::CodegenRunner, compressor::CompressorRunner, mangler::ManglerRunner,
+    codegen::CodegenRunner, compressor::CompressorRunner, mangle::ManglerRunner,
     remove_whitespace::RemoveWhitespaceRunner, transformer::TransformerRunner, NodeModulesRunner,
 };
 
@@ -19,15 +19,15 @@ fn main() -> ExitCode {
         node_modules_runner.add_case(Box::new(CodegenRunner));
     }
 
-    if matches!(task, "compress" | "default") {
+    if matches!(task, "compress" | "compressor" | "default") {
         node_modules_runner.add_case(Box::new(CompressorRunner));
     }
 
-    if matches!(task, "transform" | "default") {
+    if matches!(task, "transform" | "transformer" | "default") {
         node_modules_runner.add_case(Box::new(TransformerRunner));
     }
 
-    if matches!(task, "mangler" | "default") {
+    if matches!(task, "mangle" | "mangler" | "default") {
         node_modules_runner.add_case(Box::new(ManglerRunner));
     }
 
