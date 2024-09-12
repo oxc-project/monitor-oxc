@@ -3,7 +3,7 @@ use std::process::ExitCode;
 use pico_args::Arguments;
 
 use monitor_oxc::{
-    codegen::CodegenRunner, compressor::CompressorRunner, mangle::ManglerRunner,
+    codegen::CodegenRunner, compressor::CompressorRunner, mangler::ManglerRunner,
     remove_whitespace::RemoveWhitespaceRunner, transformer::TransformerRunner, NodeModulesRunner,
 };
 
