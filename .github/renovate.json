@@ -10,12 +10,6 @@
       "matchManagers": ["npm"],
       "rangeStrategy": "auto",
       "schedule": ["before 10am"]
-    },
-    {
-      "groupName": "rolldown",
-      "matchManagers": ["npm"],
-      "rangeStrategy": "update-lockfile",
-      "schedule": ["at any time"]
     }
   ]
 }
