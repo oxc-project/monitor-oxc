@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1726305548262,
+  "lastUpdate": 1726310683077,
   "repoUrl": "https://github.com/oxc-project/monitor-oxc",
   "entries": {
     "Oxc Metrics": [
@@ -20880,6 +20880,40 @@ window.BENCHMARK_DATA = {
           {
             "name": "Compile Time",
             "value": 55.11,
+            "unit": "Seconds"
+          },
+          {
+            "name": "Binary Size",
+            "value": 6273664,
+            "unit": "Bytes"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "dengqing0821@gmail.com",
+            "name": "Dunqing",
+            "username": "Dunqing"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "dc221cf90e6722d2d9b01bd0560773cc45cc6f30",
+          "message": "Turns on Typescript's `only_remove_type_imports` option in transformer (#40)\n\nThis option always causes idempotency test failures.",
+          "timestamp": "2024-09-14T18:43:00+08:00",
+          "tree_id": "4b76dadfc74ae9bb9b1979a26eb161b2106f1b76",
+          "url": "https://github.com/oxc-project/monitor-oxc/commit/dc221cf90e6722d2d9b01bd0560773cc45cc6f30"
+        },
+        "date": 1726310680790,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Compile Time",
+            "value": 53,
             "unit": "Seconds"
           },
           {
