@@ -22,6 +22,8 @@ pub fn default_transformer_options() -> TransformOptions {
     .unwrap();
     // `object_rest_spread` is not ready
     options.es2018.object_rest_spread = None;
+    // Enables `only_remove_type_imports` avoiding removing all unused imports
+    options.typescript.only_remove_type_imports = true;
     options
 }
 

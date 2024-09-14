@@ -17,12 +17,10 @@ impl Case for CompressorRunner {
 
     fn driver(&self) -> Driver {
         // always compress js files
-        let mut transform = default_transformer_options();
-
-        // The compressor will remove unreachable code and the typescript plugin has a feature to remove unused imports.
-        // There is a conflict between these two features, so we need to disable the typescript plugin's feature.
-        transform.typescript.only_remove_type_imports = true;
-
-        Driver { transform: Some(transform), compress: true, ..Driver::default() }
+        Driver {
+            transform: Some(default_transformer_options()),
+            compress: true,
+            ..Driver::default()
+        }
     }
 }
