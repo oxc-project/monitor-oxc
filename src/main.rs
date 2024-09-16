@@ -43,7 +43,12 @@ fn main() -> ExitCode {
 
     if let Err(diagnostics) = result {
         for diagnostic in &diagnostics {
-            println!("{}\n{:?}\n{}", diagnostic.case, diagnostic.path, diagnostic.message);
+            println!(
+                "{}\n{}\n{}",
+                diagnostic.case,
+                diagnostic.path.to_string_lossy(),
+                diagnostic.message
+            );
         }
         println!("{} Failed.", diagnostics.len());
         ExitCode::FAILURE
