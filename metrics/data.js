@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1726555787237,
+  "lastUpdate": 1726563407337,
   "repoUrl": "https://github.com/oxc-project/monitor-oxc",
   "entries": {
     "Oxc Metrics": [
@@ -21782,6 +21782,40 @@ window.BENCHMARK_DATA = {
           {
             "name": "Compile Time",
             "value": 55.48,
+            "unit": "Seconds"
+          },
+          {
+            "name": "Binary Size",
+            "value": 6277760,
+            "unit": "Bytes"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "boshenc@gmail.com",
+            "name": "Boshen",
+            "username": "Boshen"
+          },
+          "committer": {
+            "email": "boshenc@gmail.com",
+            "name": "Boshen",
+            "username": "Boshen"
+          },
+          "distinct": true,
+          "id": "bf0c6fce5d6dfb8c575613f048a0c39c2f4c170f",
+          "message": "`opencollective-postinstall` does not work",
+          "timestamp": "2024-09-17T16:54:27+08:00",
+          "tree_id": "6b606285862961f55fc5f82dbaeb77250f7bde62",
+          "url": "https://github.com/oxc-project/monitor-oxc/commit/bf0c6fce5d6dfb8c575613f048a0c39c2f4c170f"
+        },
+        "date": 1726563404975,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Compile Time",
+            "value": 53.55,
             "unit": "Seconds"
           },
           {
