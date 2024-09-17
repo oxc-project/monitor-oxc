@@ -20,7 +20,7 @@ const ignoreList = new Set([
   "@noble/hashes", "chromium-bidi", "pg-cloudflare", "react-scripts", "sanitize.css", "vue-template-compiler", "@csstools/normalize.css",
   // broken in node
   "bootstrap", "@vitest/expect", "wait-on", "metro-symbolicate", "react-devtools-core",
-  "nice-napi", "envdb", "@babel/cli", "webpack-subresource-integrity",
+  "nice-napi", "envdb", "@babel/cli", "webpack-subresource-integrity", "opencollective-postinstall",
   // types
   "type", "type-fest", "types-registry", "undici-types", "@octokit/types", "@schematics/angular",
   "@react-types/shared",
@@ -40,7 +40,7 @@ const ignoreList = new Set([
 
 const ignorePrefixes = [
   "@types", "@tsconfig", "@tsconfig", "@next", "@esbuild", "@nrwl", "@rollup", "@mui", "workbox",
-  "@swc", "esbuild-", "es6-", "es5-", "@nx", "@firebase", "@angular", "turbo-", "@storybook"
+  "@swc", "esbuild-", "es6-", "es5-", "@nx", "@firebase", "@angular", "turbo-", "@storybook", "metro"
 ];
 
 const vue = [
