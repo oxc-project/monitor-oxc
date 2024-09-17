@@ -38,8 +38,6 @@ const PATH_IGNORES: &[&str] = &[
     ".min.gzip.js",
     // bash file
     "node_modules/.bin/sha.js",
-    // using modules in cjs
-    "node_modules/storybook/test/default/cli.test.cjs",
     // not strict mode
     "node_modules/esprima/test/test.js",
     // broken syntax
@@ -48,6 +46,8 @@ const PATH_IGNORES: &[&str] = &[
     "node_modules/fast-json-patch/webpack.config.js",
     "node_modules/cardinal/test/fixtures/foo-with-errors.js",
     "node_modules/js-beautify/js/src/unpackers/p_a_c_k_e_r_unpacker.js",
+    "node_modules/comment-parser/tests/e2e/examples.js",
+    "node_modules/react-native/Libraries/Utilities/__mocks__/BackHandler.js",
 ];
 
 #[derive(Debug)]

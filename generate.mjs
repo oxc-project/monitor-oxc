@@ -7,20 +7,20 @@ const COUNT = 3000;
 
 const ignoreList = new Set([
   // CLIs don't work
-  "npm", "yarn", "pnpm", "nx", "@storybook/cli", "vitest", "turbo",
+  "npm", "yarn", "pnpm", "nx", "vitest", "turbo",
   // NO ESM export
   "@babel/compat-data", "@babel/runtime", "@babel/runtime-corejs3", "@esbuild/linux-x64", "@graphql-typed-document-node/core",
-  "@jest/globals", "@octokit/openapi-types", "@rushstack/eslint-patch", "@storybook/components", "@storybook/node-logger",
+  "@jest/globals", "@octokit/openapi-types", "@rushstack/eslint-patch",
   "@testing-library/jest-dom", "assert", "babel-runtime", "constants-browserify", "csstype", "devtools-protocol",
   "es-iterator-helpers", "eslint-module-utils", "ext", "fbjs", "file-system-cache", "language-subtag-registry",
   "node-releases", "octokit/types", "readdir-glob", "source-map-support", "spdx-exceptions", "spdx-license-ids",
   "@tokenizer/token", "css-color-names", "eslint-config-next", "extract-files", "jest-watch-typeahead",
   "limiter", "react-app-polyfill", "react-dev-utils", "react-error-overlay",
-  "timers-ext", "unfetch", "bare-path", "bare-os", "bare-fs", "@storybook/manager",
-  "@noble/hashes", "chromium-bidi", " @storybook/preview", "pg-cloudflare", "react-scripts", "sanitize.css", "vue-template-compiler", "@csstools/normalize.css",
+  "timers-ext", "unfetch", "bare-path", "bare-os", "bare-fs",
+  "@noble/hashes", "chromium-bidi", "pg-cloudflare", "react-scripts", "sanitize.css", "vue-template-compiler", "@csstools/normalize.css",
   // broken in node
   "bootstrap", "@vitest/expect", "wait-on", "metro-symbolicate", "react-devtools-core",
-  "nice-napi", "@storybook/preview", "@storybook/core", "envdb", "@babel/cli", "webpack-subresource-integrity",
+  "nice-napi", "envdb", "@babel/cli", "webpack-subresource-integrity",
   // types
   "type", "type-fest", "types-registry", "undici-types", "@octokit/types", "@schematics/angular",
   "@react-types/shared",
@@ -29,7 +29,7 @@ const ignoreList = new Set([
   // not compatible with linux
   "fsevents",
   // breaks rolldown
-  "eslint-plugin-import", "event-emitter", "d", "memoizee", "next", "nx", "@storybook/codemod",
+  "eslint-plugin-import", "event-emitter", "d", "memoizee", "next", "nx",
   // not strict mode
   "js-beautify",
   // need transform to cjs
@@ -40,7 +40,7 @@ const ignoreList = new Set([
 
 const ignorePrefixes = [
   "@types", "@tsconfig", "@tsconfig", "@next", "@esbuild", "@nrwl", "@rollup", "@mui", "workbox",
-  "@swc", "esbuild-", "es6-", "es5-", "@nx", "@firebase", "@angular", "turbo-",
+  "@swc", "esbuild-", "es6-", "es5-", "@nx", "@firebase", "@angular", "turbo-", "@storybook"
 ];
 
 const vue = [
