@@ -25,7 +25,7 @@ const ignoreList = new Set([
   "type", "type-fest", "types-registry", "undici-types", "@octokit/types", "@schematics/angular",
   "@react-types/shared",
   // flow
-  "ast-types-flow",
+  "ast-types-flow", "react-native",
   // not compatible with linux
   "fsevents",
   // breaks rolldown
