@@ -3,8 +3,9 @@ use std::process::ExitCode;
 use pico_args::Arguments;
 
 use monitor_oxc::{
-    codegen::CodegenRunner, compressor::CompressorRunner, mangler::ManglerRunner,
-    remove_whitespace::RemoveWhitespaceRunner, transformer::TransformerRunner, NodeModulesRunner,
+    codegen::CodegenRunner, compressor::CompressorRunner, isolated_declarations,
+    mangler::ManglerRunner, remove_whitespace::RemoveWhitespaceRunner,
+    transformer::TransformerRunner, NodeModulesRunner,
 };
 
 fn main() -> ExitCode {
@@ -12,6 +13,10 @@ fn main() -> ExitCode {
 
     let command = args.subcommand().expect("subcommand");
     let task = command.as_deref().unwrap_or("default");
+
+    if matches!(task, "id") {
+        return isolated_declarations::test();
+    }
 
     let mut node_modules_runner = NodeModulesRunner::new();
 
@@ -34,10 +39,6 @@ fn main() -> ExitCode {
     if matches!(task, "whitespace" | "default") {
         node_modules_runner.add_case(Box::new(RemoveWhitespaceRunner));
     }
-
-    // if matches!(task, "id" | "default") {
-    // isolated_declarations::test_isolated_declarations::test_isolated_declarations();
-    // }
 
     let result = node_modules_runner.run_all();
 

@@ -31,7 +31,7 @@ pub trait Case {
             return Err(vec![Diagnostic {
                 case: self.name(),
                 path: path.clone(),
-                message: NodeModulesRunner::print_diff(&source_text2, &source_text3),
+                message: NodeModulesRunner::get_diff(&source_text2, &source_text3),
             }]);
         }
         Ok(source_text3)
