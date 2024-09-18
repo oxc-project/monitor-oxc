@@ -159,6 +159,7 @@ jobs:
           # save-data-file: true
 
   isolated_declarations:
+    needs: build
     name: Isolated Declarations
     runs-on: ubuntu-latest
     steps:
@@ -176,7 +177,7 @@ jobs:
 
       - run: pnpm install
 
-      - run: pnpm run tsc -p tsconfig.build.json --noCheck
+      - run: ./node_modules/.bin/tsc -p tsconfig.build.json --noCheck
 
       - uses: actions/download-artifact@v4
         with:
