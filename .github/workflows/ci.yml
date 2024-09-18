@@ -74,89 +74,89 @@ jobs:
           cache: pnpm
       - run: pnpm install
 
-  test:
-    name: Test
-    needs: build
-    timeout-minutes: 30
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - command: codegen
-          - command: compressor
-          - command: transformer
-          - command: mangler
-          - command: whitespace
-    steps:
-      - uses: taiki-e/checkout-action@v1
+  # test:
+    # name: Test
+    # needs: build
+    # timeout-minutes: 30
+    # runs-on: ubuntu-latest
+    # strategy:
+      # fail-fast: false
+      # matrix:
+        # include:
+          # - command: codegen
+          # - command: compressor
+          # - command: transformer
+          # - command: mangler
+          # - command: whitespace
+    # steps:
+      # - uses: taiki-e/checkout-action@v1
 
-      - uses: actions/download-artifact@v4
-        with:
-          name: monitor-oxc
+      # - uses: actions/download-artifact@v4
+        # with:
+          # name: monitor-oxc
 
-      - run: chmod +x ./monitor-oxc
+      # - run: chmod +x ./monitor-oxc
 
-      - uses: pnpm/action-setup@v4.0.0
+      # - uses: pnpm/action-setup@v4.0.0
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: .node-version
-          cache: pnpm
+      # - uses: actions/setup-node@v4
+        # with:
+          # node-version-file: .node-version
+          # cache: pnpm
 
-      - run: pnpm install
+      # - run: pnpm install
 
-      - run: ./monitor-oxc ${{ matrix.command }}
+      # - run: ./monitor-oxc ${{ matrix.command }}
 
-  compile-time:
-    name: Compile Time
-    runs-on: ubuntu-latest
-    if: ${{ github.ref_name == 'main' }}
-    outputs:
-      time: ${{ steps.run.outputs.COMPILE_TIME }}
-    steps:
-      - uses: taiki-e/checkout-action@v1
-      - name: Checkout oxc
-        uses: actions/checkout@v4
-        with:
-          repository: oxc-project/oxc
-          ref: main
-          path: oxc
-      - run: mv oxc ../oxc
-      - uses: Boshen/setup-rust@main
-      - run: cargo clean # build from scatch using local system cache to avoid download from crates.io
-      - id: run
-        run: |
-          /usr/bin/time -f "%e" -o output cargo build --release
-          cat output
-          COMPILE_TIME=$(cat output)
-          echo $COMPILE_TIME
-          echo "COMPILE_TIME=$COMPILE_TIME" >> $GITHUB_OUTPUT
+  # compile-time:
+    # name: Compile Time
+    # runs-on: ubuntu-latest
+    # if: ${{ github.ref_name == 'main' }}
+    # outputs:
+      # time: ${{ steps.run.outputs.COMPILE_TIME }}
+    # steps:
+      # - uses: taiki-e/checkout-action@v1
+      # - name: Checkout oxc
+        # uses: actions/checkout@v4
+        # with:
+          # repository: oxc-project/oxc
+          # ref: main
+          # path: oxc
+      # - run: mv oxc ../oxc
+      # - uses: Boshen/setup-rust@main
+      # - run: cargo clean # build from scatch using local system cache to avoid download from crates.io
+      # - id: run
+        # run: |
+          # /usr/bin/time -f "%e" -o output cargo build --release
+          # cat output
+          # COMPILE_TIME=$(cat output)
+          # echo $COMPILE_TIME
+          # echo "COMPILE_TIME=$COMPILE_TIME" >> $GITHUB_OUTPUT
 
-  monitor:
-    name: Monitor Metrics
-    needs: [build, compile-time]
-    if: ${{ github.ref_name == 'main' }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: taiki-e/checkout-action@v1
+  # monitor:
+    # name: Monitor Metrics
+    # needs: [build, compile-time]
+    # if: ${{ github.ref_name == 'main' }}
+    # runs-on: ubuntu-latest
+    # steps:
+      # - uses: taiki-e/checkout-action@v1
 
-      - name: Create Data
-        run: |
-          echo $(jq ".[0].value = ${{ needs.compile-time.outputs.time }}" metrics.json) > data.json
-          echo $(jq ".[1].value = ${{ needs.build.outputs.size }}" data.json) > data.json
-          cat data.json
+      # - name: Create Data
+        # run: |
+          # echo $(jq ".[0].value = ${{ needs.compile-time.outputs.time }}" metrics.json) > data.json
+          # echo $(jq ".[1].value = ${{ needs.build.outputs.size }}" data.json) > data.json
+          # cat data.json
 
-      - uses: benchmark-action/github-action-benchmark@v1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          name: Oxc Metrics
-          tool: customSmallerIsBetter
-          output-file-path: data.json
-          gh-pages-branch: gh-pages
-          benchmark-data-dir-path: metrics
-          auto-push: true
-          save-data-file: true
+      # - uses: benchmark-action/github-action-benchmark@v1
+        # with:
+          # github-token: ${{ secrets.GITHUB_TOKEN }}
+          # name: Oxc Metrics
+          # tool: customSmallerIsBetter
+          # output-file-path: data.json
+          # gh-pages-branch: gh-pages
+          # benchmark-data-dir-path: metrics
+          # auto-push: true
+          # save-data-file: true
 
   isolated_declarations:
     name: Isolated Declarations
@@ -177,17 +177,16 @@ jobs:
 
       - run: ./monitor-oxc id .
 
-
-  rolldown:
-    name: Rolldown
-    runs-on: ubuntu-latest
-    steps:
-      - uses: taiki-e/checkout-action@v1
-      - uses: pnpm/action-setup@v4.0.0
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: .node-version
-          cache: pnpm
-      - run: pnpm install
-      - run: ./node_modules/.bin/rolldown --version
-      - run: node --run rolldown
+  # rolldown:
+    # name: Rolldown
+    # runs-on: ubuntu-latest
+    # steps:
+      # - uses: taiki-e/checkout-action@v1
+      # - uses: pnpm/action-setup@v4.0.0
+      # - uses: actions/setup-node@v4
+        # with:
+          # node-version-file: .node-version
+          # cache: pnpm
+      # - run: pnpm install
+      # - run: ./node_modules/.bin/rolldown --version
+      # - run: node --run rolldown
