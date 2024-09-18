@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1726640909406,
+  "lastUpdate": 1726651285759,
   "repoUrl": "https://github.com/oxc-project/monitor-oxc",
   "entries": {
     "Oxc Metrics": [
@@ -22145,6 +22145,38 @@ window.BENCHMARK_DATA = {
           {
             "name": "Binary Size",
             "value": 6281856,
+            "unit": "Bytes"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Boshen",
+            "username": "Boshen",
+            "email": "boshenc@gmail.com"
+          },
+          "committer": {
+            "name": "Boshen",
+            "username": "Boshen",
+            "email": "boshenc@gmail.com"
+          },
+          "id": "372b640ea582a50cb8c457ff24a7fcd4a4489f87",
+          "message": "remove `react-native` (exports flow)",
+          "timestamp": "2024-09-18T03:29:17Z",
+          "url": "https://github.com/oxc-project/monitor-oxc/commit/372b640ea582a50cb8c457ff24a7fcd4a4489f87"
+        },
+        "date": 1726651283475,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Compile Time",
+            "value": 57.2,
+            "unit": "Seconds"
+          },
+          {
+            "name": "Binary Size",
+            "value": 6290048,
             "unit": "Bytes"
           }
         ]
