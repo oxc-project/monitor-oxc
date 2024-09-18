@@ -388,6 +388,7 @@ dependencies = [
  "console",
  "oxc",
  "pico-args",
+ "project-root",
  "similar",
  "ureq",
  "url",
@@ -832,6 +833,12 @@ checksum = "5e719e8df665df0d1c8fbfd238015744736151d4445ec0836b8e628aae103b77"
 dependencies = [
  "unicode-ident",
 ]
+
+[[package]]
+name = "project-root"
+version = "0.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8bccbff07d5ed689c4087d20d7307a52ab6141edeedf487c3876a55b86cf63df"
 
 [[package]]
 name = "quote"

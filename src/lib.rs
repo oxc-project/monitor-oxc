@@ -159,7 +159,8 @@ impl NodeModulesRunner {
         }
     }
 
-    pub fn print_diff(origin_string: &str, expected_string: &str) -> String {
+    #[must_use]
+    pub fn get_diff(origin_string: &str, expected_string: &str) -> String {
         let diff = TextDiff::from_lines(expected_string, origin_string);
         let mut output = String::new();
         for change in diff.iter_all_changes() {

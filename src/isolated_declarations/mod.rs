@@ -1,89 +1,101 @@
-use std::{env, fmt, fs, path::PathBuf, process::Command, str::FromStr};
+use std::{fs, path::PathBuf, process::ExitCode};
+
+use project_root::get_project_root;
+use walkdir::WalkDir;
+
+use crate::NodeModulesRunner;
 
 use oxc::{
     allocator::Allocator,
-    codegen::CodeGenerator,
+    codegen::{Codegen, CommentOptions},
     isolated_declarations::IsolatedDeclarations,
-    parser::{ParseOptions, Parser},
+    parser::Parser,
     span::SourceType,
 };
-use ureq::get;
 
-const FILES: &[&str] =
-    &["https://raw.githubusercontent.com/oxc-project/benchmark-files/main/vue-id.ts"];
+#[must_use]
+pub fn test(path_to_vue: Option<PathBuf>) -> ExitCode {
+    let root = path_to_vue.unwrap_or_else(|| get_project_root().unwrap().join("../core"));
+    let temp_dir = root.join("temp");
 
-pub fn current_dir() -> PathBuf {
-    let dir = env::current_dir().unwrap();
-    dir.join("src/isolated_declarations")
-}
-
-pub fn test_isolated_declarations() {
-    for url in FILES {
-        let (path, original) = get_source_text(url).expect("Failed to download file");
-        write_file("input.ts", &original);
-        let dts = transform(&path, &original);
-        write_file("output.d.ts", &dts);
-        compare_with_tsc();
+    if !temp_dir.exists() {
+        println!("Please provide path to vue repository.");
+        println!("And run `tsc -p tsconfig.build.json --noCheck` in the vue repository.");
+        return ExitCode::FAILURE;
     }
-}
 
-fn compare_with_tsc() {
-    Command::new("pnpm")
-        .args(["tsx", &current_dir().join("./tsc.ts").to_string_lossy()])
-        .spawn()
-        .expect("Failed to run tsc");
-}
+    let include = vec![
+        // "packages/global.d.ts",
+        "packages/vue/src",
+        "packages/vue-compat/src",
+        "packages/compiler-core/src",
+        "packages/compiler-dom/src",
+        "packages/runtime-core/src",
+        "packages/runtime-dom/src",
+        "packages/reactivity/src",
+        "packages/shared/src",
+        // "packages/global.d.ts",
+        "packages/compiler-sfc/src",
+        "packages/compiler-ssr/src",
+        "packages/server-renderer/src",
+    ];
 
-fn transform(path: &str, source_text: &str) -> String {
-    let allocator = Allocator::default();
-    let source_type = SourceType::from_path(path).unwrap();
-    let program = Parser::new(&allocator, source_text, source_type)
-        .with_options(ParseOptions {
-            allow_return_outside_function: true,
-            ..ParseOptions::default()
-        })
-        .parse()
-        .program;
-    let ret = IsolatedDeclarations::new(&allocator).build(&program);
-    CodeGenerator::new().build(&ret.program).source_text
-}
+    let mut exit_code = ExitCode::SUCCESS;
+    for entry in WalkDir::new(root.join("packages")) {
+        let dir_entry = entry.unwrap();
+        let path = dir_entry.path();
+        let path_str = path.to_string_lossy();
+        if !include.iter().any(|i| path_str.contains(i)) {
+            continue;
+        }
+        let Ok(source_type) = SourceType::from_path(path) else {
+            continue;
+        };
+        if !source_type.is_typescript() || source_type.is_typescript_definition() {
+            continue;
+        }
 
-fn write_file(path: &str, source_text: &str) {
-    fs::write(current_dir().join(path), source_text)
-        .unwrap_or_else(|_| panic!("Failed to write {path}"));
-}
+        let source_text = fs::read_to_string(path).unwrap();
+        let comment_options = CommentOptions { preserve_annotate_comments: false };
+        let printed = {
+            let allocator = Allocator::default();
+            let ret = Parser::new(&allocator, &source_text, source_type).parse();
+            let id = IsolatedDeclarations::new(&allocator).build(&ret.program);
+            Codegen::new()
+                .enable_comment(&source_text, ret.trivias, comment_options)
+                .build(&id.program)
+                .source_text
+        };
 
-fn err_to_string<E: fmt::Debug>(e: E) -> String {
-    format!("{e:?}")
-}
+        let root_str = root.to_string_lossy();
+        let read_path = temp_dir
+            .join(path_str.strip_prefix(root_str.as_ref()).unwrap().strip_prefix("/").unwrap())
+            .with_extension("")
+            .with_extension("d.ts");
 
-fn get_source_text(lib: &str) -> Result<(String, String), String> {
-    let url = url::Url::from_str(lib).map_err(err_to_string)?;
+        let tsc_output = {
+            let allocator = Allocator::default();
+            let source_type = SourceType::d_ts();
+            let source_text =
+                fs::read_to_string(&read_path).unwrap_or_else(|e| panic!("{e}\n{read_path:?}"));
+            let ret = Parser::new(&allocator, &source_text, source_type).parse();
+            Codegen::new()
+                .enable_comment(&source_text, ret.trivias, comment_options)
+                .build(&ret.program)
+                .source_text
+        };
 
-    let segments = url.path_segments().ok_or_else(|| "lib url has no segments".to_string())?;
-
-    let filename = segments.last().ok_or_else(|| "lib url has no segments".to_string())?;
-
-    let file = current_dir().join(filename);
-
-    if let Ok(code) = std::fs::read_to_string(&file) {
-        println!("[{filename}] - using [{filename}]");
-        Ok((filename.to_string(), code))
-    } else {
-        println!("[{filename}] - Downloading [{lib}] to [{filename}]");
-        match get(lib).call() {
-            Ok(response) => {
-                let mut reader = response.into_reader();
-
-                let _drop = std::fs::remove_file(&file);
-                let mut writer = std::fs::File::create(&file).map_err(err_to_string)?;
-                let _drop = std::io::copy(&mut reader, &mut writer);
-
-                std::fs::read_to_string(file)
-                    .map_err(err_to_string)
-                    .map(|code| (filename.to_string(), code))
-            }
-            Err(e) => Err(format!("{e:?}")),
+        if tsc_output.trim() != printed.trim() {
+            exit_code = ExitCode::FAILURE;
+            println!("{}", path.to_string_lossy());
+            // println!("tsc output:");
+            // println!("{tsc_output}");
+            // println!("oxc output:");
+            // println!("{printed}");
+            println!("diff");
+            println!("{}", NodeModulesRunner::get_diff(&tsc_output, &printed));
         }
     }
+
+    exit_code
 }

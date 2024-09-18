@@ -16,3 +16,6 @@ ready:
 
 lint:
   cargo clippy
+
+watch command:
+  cargo watch --no-vcs-ignores -x '{{command}}'
