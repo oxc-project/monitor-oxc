@@ -1,4 +1,4 @@
-use std::{fs, process::ExitCode};
+use std::{fs, path::PathBuf, process::ExitCode};
 
 use project_root::get_project_root;
 use walkdir::WalkDir;
@@ -14,9 +14,15 @@ use oxc::{
 };
 
 #[must_use]
-pub fn test() -> ExitCode {
-    let root = get_project_root().unwrap().join("../core");
+pub fn test(path_to_vue: Option<PathBuf>) -> ExitCode {
+    let root = path_to_vue.unwrap_or_else(|| get_project_root().unwrap().join("../core"));
     let temp_dir = root.join("temp");
+
+    if !temp_dir.exists() {
+        println!("Please provide path to vue repository.");
+        println!("And run `tsc -p tsconfig.build.json --noCheck` in the vue repository.");
+        return ExitCode::FAILURE;
+    }
 
     let include = vec![
         // "packages/global.d.ts",

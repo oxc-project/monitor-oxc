@@ -11,6 +11,7 @@ on:
     branches:
       - main
       - "renovate/**"
+      - id
     paths-ignore:
       - '**/*.md'
   workflow_dispatch:
@@ -87,7 +88,6 @@ jobs:
           - command: transformer
           - command: mangler
           - command: whitespace
-          - command: id
     steps:
       - uses: taiki-e/checkout-action@v1
 
@@ -97,7 +97,7 @@ jobs:
 
       - run: chmod +x ./monitor-oxc
 
-      - run: corepack enable
+      - uses: pnpm/action-setup@v4.0.0
 
       - uses: actions/setup-node@v4
         with:
@@ -157,6 +157,26 @@ jobs:
           benchmark-data-dir-path: metrics
           auto-push: true
           save-data-file: true
+
+  isolated_declarations:
+    name: Isolated Declarations
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: vuejs/core
+          ref: main
+
+      - run: npx -y -p typescript tsc -p tsconfig.build.json --noCheck
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: monitor-oxc
+
+      - run: chmod +x ./monitor-oxc
+
+      - run: ./monitor-oxc id .
+
 
   rolldown:
     name: Rolldown

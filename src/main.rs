@@ -1,4 +1,4 @@
-use std::process::ExitCode;
+use std::{path::PathBuf, process::ExitCode};
 
 use pico_args::Arguments;
 
@@ -15,7 +15,8 @@ fn main() -> ExitCode {
     let task = command.as_deref().unwrap_or("default");
 
     if matches!(task, "id") {
-        return isolated_declarations::test();
+        let path_to_vue = args.opt_free_from_str::<PathBuf>().unwrap();
+        return isolated_declarations::test(path_to_vue);
     }
 
     let mut node_modules_runner = NodeModulesRunner::new();
