@@ -93,7 +93,7 @@ pub fn test(path_to_vue: Option<PathBuf>) -> ExitCode {
             // println!("oxc output:");
             // println!("{printed}");
             println!("diff");
-            println!("{}", NodeModulesRunner::get_diff(&tsc_output, &printed));
+            println!("{}", NodeModulesRunner::get_diff(&printed, &tsc_output));
         }
     }
 
