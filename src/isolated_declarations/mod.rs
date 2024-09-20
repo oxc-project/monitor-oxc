@@ -8,7 +8,7 @@ use crate::NodeModulesRunner;
 use oxc::{
     allocator::Allocator,
     codegen::{Codegen, CommentOptions},
-    isolated_declarations::IsolatedDeclarations,
+    isolated_declarations::{IsolatedDeclarations, IsolatedDeclarationsOptions},
     parser::Parser,
     span::SourceType,
 };
@@ -60,7 +60,13 @@ pub fn test(path_to_vue: Option<PathBuf>) -> ExitCode {
         let printed = {
             let allocator = Allocator::default();
             let ret = Parser::new(&allocator, &source_text, source_type).parse();
-            let id = IsolatedDeclarations::new(&allocator).build(&ret.program);
+            let id = IsolatedDeclarations::new(
+                &allocator,
+                &source_text,
+                &ret.trivias,
+                IsolatedDeclarationsOptions { strip_internal: true },
+            )
+            .build(&ret.program);
             Codegen::new()
                 .enable_comment(&source_text, ret.trivias, comment_options)
                 .build(&id.program)
