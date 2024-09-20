@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1726749440646,
+  "lastUpdate": 1726844120361,
   "repoUrl": "https://github.com/oxc-project/monitor-oxc",
   "entries": {
     "Oxc Metrics": [
@@ -22533,6 +22533,40 @@ window.BENCHMARK_DATA = {
           {
             "name": "Binary Size",
             "value": 6515328,
+            "unit": "Bytes"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "dengqing0821@gmail.com",
+            "name": "Dunqing",
+            "username": "Dunqing"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "214e52b4e259a3f9721324870335d887d2f70f0c",
+          "message": "Enable `strip_internal` option in IsolatedDeclarations (#42)",
+          "timestamp": "2024-09-20T22:39:41+08:00",
+          "tree_id": "929990ad536f2ef651853549806a5dc08a72ee12",
+          "url": "https://github.com/oxc-project/monitor-oxc/commit/214e52b4e259a3f9721324870335d887d2f70f0c"
+        },
+        "date": 1726844118081,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Compile Time",
+            "value": 55.77,
+            "unit": "Seconds"
+          },
+          {
+            "name": "Binary Size",
+            "value": 6593152,
             "unit": "Bytes"
           }
         ]
