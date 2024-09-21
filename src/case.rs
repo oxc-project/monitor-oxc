@@ -1,22 +1,23 @@
 use oxc::span::SourceType;
 
-use std::{
-    fs,
-    path::{Path, PathBuf},
-};
+use std::fs;
 
 use crate::{Diagnostic, Driver, NodeModulesRunner, Source};
 
 pub trait Case {
     fn name(&self) -> &'static str;
 
-    fn save_file(&self, path: &Path, source_type: SourceType) -> Option<PathBuf>;
+    fn run_test(&self, _source_type: SourceType) -> bool {
+        true
+    }
 
     fn test(&self, source: &Source) -> Result<(), Vec<Diagnostic>> {
-        let source_text = self.idempotency_test(source)?;
-        // Write js files for runtime test
-        if let Some(path) = self.save_file(&source.path, source.source_type) {
-            fs::write(path, source_text).unwrap();
+        if self.run_test(source.source_type) {
+            let source_text = self.idempotency_test(source)?;
+            // Write js files for runtime test
+            if source.source_type.is_javascript() {
+                fs::write(&source.path, source_text).unwrap();
+            }
         }
         Ok(())
     }

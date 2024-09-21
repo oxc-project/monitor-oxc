@@ -1,8 +1,6 @@
-use std::path::{Path, PathBuf};
-
 use oxc::span::SourceType;
 
-use crate::{driver::default_transformer_options, Case, Driver};
+use crate::{Case, Driver};
 
 pub struct CompressorRunner;
 
@@ -11,16 +9,11 @@ impl Case for CompressorRunner {
         "Compressor"
     }
 
-    fn save_file(&self, path: &Path, source_type: SourceType) -> Option<PathBuf> {
-        source_type.is_javascript().then(|| path.to_path_buf())
+    fn run_test(&self, source_type: SourceType) -> bool {
+        source_type.is_javascript() && !source_type.is_jsx()
     }
 
     fn driver(&self) -> Driver {
-        // always compress js files
-        Driver {
-            transform: Some(default_transformer_options()),
-            compress: true,
-            ..Driver::default()
-        }
+        Driver { compress: true, ..Driver::default() }
     }
 }
