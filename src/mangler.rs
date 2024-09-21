@@ -1,6 +1,4 @@
-use oxc::span::SourceType;
-
-use crate::{Case, Driver};
+use crate::{Case, Driver, Source};
 
 pub struct ManglerRunner;
 
@@ -9,8 +7,8 @@ impl Case for ManglerRunner {
         "Mangler"
     }
 
-    fn run_test(&self, source_type: SourceType) -> bool {
-        source_type.is_javascript() && !source_type.is_jsx()
+    fn run_test(&self, source: &Source) -> bool {
+        source.is_js_only()
     }
 
     fn driver(&self) -> Driver {

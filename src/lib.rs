@@ -65,6 +65,13 @@ pub struct Source {
     pub source_text: String,
 }
 
+impl Source {
+    pub fn is_js_only(&self) -> bool {
+        self.source_type.is_javascript()
+            && !self.path.extension().is_some_and(|ext| ext.to_str().unwrap().contains('x'))
+    }
+}
+
 pub struct NodeModulesRunner {
     pub files: Vec<Source>,
     pub cases: Vec<Box<dyn Case>>,

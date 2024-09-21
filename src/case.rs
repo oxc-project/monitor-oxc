@@ -1,5 +1,3 @@
-use oxc::span::SourceType;
-
 use std::fs;
 
 use crate::{Diagnostic, Driver, NodeModulesRunner, Source};
@@ -7,12 +5,12 @@ use crate::{Diagnostic, Driver, NodeModulesRunner, Source};
 pub trait Case {
     fn name(&self) -> &'static str;
 
-    fn run_test(&self, _source_type: SourceType) -> bool {
+    fn run_test(&self, _source: &Source) -> bool {
         true
     }
 
     fn test(&self, source: &Source) -> Result<(), Vec<Diagnostic>> {
-        if self.run_test(source.source_type) {
+        if self.run_test(source) {
             let source_text = self.idempotency_test(source)?;
             // Write js files for runtime test
             if source.source_type.is_javascript() {
