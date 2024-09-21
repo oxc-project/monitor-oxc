@@ -160,14 +160,15 @@ impl NodeModulesRunner {
     }
 
     #[must_use]
-    pub fn get_diff(origin_string: &str, expected_string: &str) -> String {
+    pub fn get_diff(origin_string: &str, expected_string: &str, print_all: bool) -> String {
         let diff = TextDiff::from_lines(expected_string, origin_string);
         let mut output = String::new();
         for change in diff.iter_all_changes() {
             let (sign, style) = match change.tag() {
                 ChangeTag::Delete => ("-", Style::new().red()),
                 ChangeTag::Insert => ("+", Style::new().green()),
-                ChangeTag::Equal => continue, // (" ", Style::new()),
+                ChangeTag::Equal if print_all => (" ", Style::new()),
+                ChangeTag::Equal => continue,
             };
             output.push_str(&format!("{}{}", style.apply_to(sign).bold(), style.apply_to(change)));
         }

@@ -24,7 +24,7 @@ pub fn test(path_to_vue: Option<PathBuf>) -> ExitCode {
         return ExitCode::FAILURE;
     }
 
-    let include = vec![
+    let include = [
         // "packages/global.d.ts",
         "packages/vue/src",
         "packages/vue-compat/src",
@@ -93,13 +93,10 @@ pub fn test(path_to_vue: Option<PathBuf>) -> ExitCode {
 
         if tsc_output.trim() != printed.trim() {
             exit_code = ExitCode::FAILURE;
+            println!();
             println!("{}", path.to_string_lossy());
-            // println!("tsc output:");
-            // println!("{tsc_output}");
-            // println!("oxc output:");
-            // println!("{printed}");
-            println!("diff");
-            println!("{}", NodeModulesRunner::get_diff(&printed, &tsc_output));
+            println!("{}", NodeModulesRunner::get_diff(&printed, &tsc_output, true));
+            println!();
         }
     }
 
