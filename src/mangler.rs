@@ -2,7 +2,7 @@ use std::path::{Path, PathBuf};
 
 use oxc::span::SourceType;
 
-use crate::{Case, Driver};
+use crate::{driver::default_transformer_options, Case, Driver};
 
 pub struct ManglerRunner;
 
@@ -16,6 +16,6 @@ impl Case for ManglerRunner {
     }
 
     fn driver(&self) -> Driver {
-        Driver { mangle: true, ..Driver::default() }
+        Driver { transform: Some(default_transformer_options()), mangle: true, ..Driver::default() }
     }
 }
