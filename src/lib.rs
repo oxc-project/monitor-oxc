@@ -77,20 +77,22 @@ pub struct NodeModulesRunner {
     pub cases: Vec<Box<dyn Case>>,
 }
 
-impl Default for NodeModulesRunner {
-    fn default() -> Self {
-        Self::new()
-    }
-}
-
 impl NodeModulesRunner {
-    pub fn new() -> Self {
+    pub fn new(filter: Option<&str>) -> Self {
         let mut files = vec![];
         for entry in WalkDir::new("node_modules/.pnpm") {
             let dir_entry = entry.unwrap();
             let path = dir_entry.path();
             if !path.is_file() {
                 continue;
+            }
+            if let Some(filter) = filter.as_ref() {
+                let path = path.to_string_lossy();
+                if path.contains(filter) {
+                    println!("Filtered {path}");
+                } else {
+                    continue;
+                }
             }
             let Ok(source_type) = SourceType::from_path(path) else {
                 continue;

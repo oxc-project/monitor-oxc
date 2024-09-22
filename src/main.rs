@@ -13,13 +13,14 @@ fn main() -> ExitCode {
 
     let command = args.subcommand().expect("subcommand");
     let task = command.as_deref().unwrap_or("default");
+    let filter: Option<String> = args.opt_value_from_str("--filter").unwrap();
 
     if matches!(task, "id") {
         let path_to_vue = args.opt_free_from_str::<PathBuf>().unwrap();
         return isolated_declarations::test(path_to_vue);
     }
 
-    let mut node_modules_runner = NodeModulesRunner::new();
+    let mut node_modules_runner = NodeModulesRunner::new(filter.as_deref());
 
     if matches!(task, "codegen" | "default") {
         node_modules_runner.add_case(Box::new(CodegenRunner));
