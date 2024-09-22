@@ -50,6 +50,7 @@ const PATH_IGNORES: &[&str] = &[
     "node_modules/react-native/Libraries/Utilities/__mocks__/BackHandler.js",
     // TypeError: Cannot convert a BigInt value to a number at Math.pow
     "node_modules/pprof-format/dist/index.js",
+    "node_modules/sass/sass.dart.js",
 ];
 
 #[derive(Debug)]
