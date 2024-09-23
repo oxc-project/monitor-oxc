@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1727116018314,
+  "lastUpdate": 1727126338635,
   "repoUrl": "https://github.com/oxc-project/monitor-oxc",
   "entries": {
     "Oxc Metrics": [
@@ -23758,6 +23758,38 @@ window.BENCHMARK_DATA = {
           {
             "name": "Compile Time",
             "value": 55.96,
+            "unit": "Seconds"
+          },
+          {
+            "name": "Binary Size",
+            "value": 6560384,
+            "unit": "Bytes"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Boshen",
+            "username": "Boshen",
+            "email": "boshenc@gmail.com"
+          },
+          "committer": {
+            "name": "Boshen",
+            "username": "Boshen",
+            "email": "boshenc@gmail.com"
+          },
+          "id": "68000004f81f5ef62146027b56957c43dbae23a3",
+          "message": "ignore dart",
+          "timestamp": "2024-09-22T13:42:09Z",
+          "url": "https://github.com/oxc-project/monitor-oxc/commit/68000004f81f5ef62146027b56957c43dbae23a3"
+        },
+        "date": 1727126335433,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Compile Time",
+            "value": 54.75,
             "unit": "Seconds"
           },
           {
