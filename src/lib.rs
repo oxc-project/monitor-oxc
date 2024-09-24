@@ -48,8 +48,6 @@ const PATH_IGNORES: &[&str] = &[
     "node_modules/js-beautify/js/src/unpackers/p_a_c_k_e_r_unpacker.js",
     "node_modules/comment-parser/tests/e2e/examples.js",
     "node_modules/react-native/Libraries/Utilities/__mocks__/BackHandler.js",
-    // TypeError: Cannot convert a BigInt value to a number at Math.pow
-    "node_modules/pprof-format/dist/index.js",
     "node_modules/sass/sass.dart.js",
 ];
 

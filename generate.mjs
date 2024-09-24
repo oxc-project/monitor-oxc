@@ -34,9 +34,6 @@ const ignoreList = new Set([
   "js-beautify",
   // need transform to cjs
   "fast-json-patch",
-  // Cannot be lowered
-  // TypeError: Cannot convert a BigInt value to a number at Math.pow (<anonymous>) at node_modules/.pnpm/ip-bigint@7.3.0/node_modules/ip-bigint/index.js:1:26
-  "internal-ip", "pprof-format",
 ]);
 
 const ignorePrefixes = [
