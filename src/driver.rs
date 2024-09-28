@@ -4,9 +4,10 @@ use std::{
 };
 
 use oxc::{
-    codegen::CodegenOptions,
+    ast::{ast::Program, Trivias},
+    codegen::{CodeGenerator, CodegenOptions, CommentOptions},
     diagnostics::OxcDiagnostic,
-    mangler::MangleOptions,
+    mangler::{MangleOptions, Mangler},
     minifier::CompressOptions,
     parser::ParseOptions,
     span::SourceType,
@@ -82,6 +83,22 @@ impl CompilerInterface for Driver {
 
     fn codegen_options(&self) -> Option<CodegenOptions> {
         Some(CodegenOptions { minify: self.remove_whitespace, ..CodegenOptions::default() })
+    }
+
+    fn codegen<'a>(
+        &self,
+        program: &Program<'a>,
+        source_text: &'a str,
+        trivias: &Trivias,
+        mangler: Option<Mangler>,
+        options: CodegenOptions,
+    ) -> String {
+        let mut codegen = CodeGenerator::new().with_options(options).with_mangler(mangler);
+        if self.compress_options().is_none() {
+            let comment_options = CommentOptions { preserve_annotate_comments: true };
+            codegen = codegen.enable_comment(source_text, trivias.clone(), comment_options);
+        };
+        codegen.build(program).source_text
     }
 }
 
