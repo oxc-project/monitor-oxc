@@ -4208,7 +4208,7 @@ importers:
         version: 6.0.1
       flat-cache:
         specifier: latest
-        version: 6.0.0
+        version: 6.1.0
       flatted:
         specifier: latest
         version: 3.3.1
@@ -19624,8 +19624,8 @@ packages:
     resolution: {integrity: sha512-JrqFmyUl2PnPi1OvLyTVHnQvwQ0S+e6lGSwu8OkAZlSaNIZciTY2H/cOOROxsBA1m/LZNHDsqAgDZt6akWcjsQ==}
     engines: {node: '>=18'}
 
-  flat-cache@6.0.0:
-    resolution: {integrity: sha512-7H9dNBhjjmBZjsSIN665cpd+ASPC0VnZ5fF2nIHiCU7lXm6zT6R36B60jedvvJ5M93LtvgSjzKWfWHlr2k9+wQ==}
+  flat-cache@6.1.0:
+    resolution: {integrity: sha512-txr9o9zCbXvMOWZ1wZAID4U+CnYxdkSFqxxvd8Bs/a0ZidSs8V8diyv0CviKkPYEWHtbFJloF/QQO2WnkarnlA==}
 
   flat@5.0.2:
     resolution: {integrity: sha512-b6suED+5/3rTpUBdG1gupIl8MPFCAMA0QXwmljLhvCUKcUvdE4gWky9zpuGCcXHOsz4J9wPGNWq6OKpmIzz3hQ==}
@@ -42667,10 +42667,11 @@ snapshots:
       flatted: 3.3.1
       keyv: 4.5.4
 
-  flat-cache@6.0.0:
+  flat-cache@6.1.0:
     dependencies:
       cacheable: 1.7.1
       flatted: 3.3.1
+      hookified: 1.1.0
 
   flat@5.0.2: {}
 
