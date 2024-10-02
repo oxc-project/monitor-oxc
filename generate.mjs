@@ -34,6 +34,8 @@ const ignoreList = new Set([
   "js-beautify",
   // need transform to cjs
   "fast-json-patch",
+  // Deprecated: use `rehype-external-links`
+  "remark-external-links", "remark-slug"
 ]);
 
 const ignorePrefixes = [
