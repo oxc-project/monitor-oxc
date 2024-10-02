@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1727872707004,
+  "lastUpdate": 1727877883282,
   "repoUrl": "https://github.com/oxc-project/monitor-oxc",
   "entries": {
     "Oxc Metrics": [
@@ -26711,6 +26711,40 @@ window.BENCHMARK_DATA = {
           {
             "name": "Binary Size",
             "value": 6699648,
+            "unit": "Bytes"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ecc13b6f70892b719de2320ed94e172d426989ff",
+          "message": "Lock file maintenance npm packages (#45)",
+          "timestamp": "2024-10-02T21:59:16+08:00",
+          "tree_id": "8febe1338447bec88829079b60e1e5f1a12b112e",
+          "url": "https://github.com/oxc-project/monitor-oxc/commit/ecc13b6f70892b719de2320ed94e172d426989ff"
+        },
+        "date": 1727877880252,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Compile Time",
+            "value": 55.53,
+            "unit": "Seconds"
+          },
+          {
+            "name": "Binary Size",
+            "value": 6756992,
             "unit": "Bytes"
           }
         ]
