@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1727877883282,
+  "lastUpdate": 1727882561817,
   "repoUrl": "https://github.com/oxc-project/monitor-oxc",
   "entries": {
     "Oxc Metrics": [
@@ -26740,6 +26740,38 @@ window.BENCHMARK_DATA = {
           {
             "name": "Compile Time",
             "value": 55.53,
+            "unit": "Seconds"
+          },
+          {
+            "name": "Binary Size",
+            "value": 6756992,
+            "unit": "Bytes"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Ethan Goh",
+            "username": "7086cmd",
+            "email": "7086cmd@gmail.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "efd6b880b63388497bae1029f16d2d983de08aed",
+          "message": "docs(README): fix typo. (#46)",
+          "timestamp": "2024-10-02T15:13:27Z",
+          "url": "https://github.com/oxc-project/monitor-oxc/commit/efd6b880b63388497bae1029f16d2d983de08aed"
+        },
+        "date": 1727882557595,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Compile Time",
+            "value": 56.27,
             "unit": "Seconds"
           },
           {
