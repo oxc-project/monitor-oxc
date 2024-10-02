@@ -39,7 +39,7 @@ For all js / ts files in `node_modules`, apply idempotency test:
 * compress and override all js files
 * run `./src/main.test.mjs`
 
-## Developement
+## Development
 
 ```
 rm -rf node_modules && pnpm i
