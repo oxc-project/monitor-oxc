@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1727893641401,
+  "lastUpdate": 1727904058998,
   "repoUrl": "https://github.com/oxc-project/monitor-oxc",
   "entries": {
     "Oxc Metrics": [
@@ -26838,6 +26838,38 @@ window.BENCHMARK_DATA = {
           {
             "name": "Compile Time",
             "value": 55.34,
+            "unit": "Seconds"
+          },
+          {
+            "name": "Binary Size",
+            "value": 6756992,
+            "unit": "Bytes"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Boshen",
+            "username": "Boshen",
+            "email": "boshenc@gmail.com"
+          },
+          "committer": {
+            "name": "Boshen",
+            "username": "Boshen",
+            "email": "boshenc@gmail.com"
+          },
+          "id": "f58990817dad41d4e77c319fbfd311de8937638e",
+          "message": "remove deprecated remark packages, which doesn't have exports",
+          "timestamp": "2024-10-02T15:29:41Z",
+          "url": "https://github.com/oxc-project/monitor-oxc/commit/f58990817dad41d4e77c319fbfd311de8937638e"
+        },
+        "date": 1727904055355,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Compile Time",
+            "value": 56.94,
             "unit": "Seconds"
           },
           {
