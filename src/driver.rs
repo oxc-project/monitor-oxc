@@ -5,7 +5,7 @@ use std::{
 
 use oxc::{
     ast::{ast::Program, Trivias},
-    codegen::{CodeGenerator, CodegenOptions, CommentOptions},
+    codegen::{CodeGenerator, CodegenOptions, CodegenReturn, CommentOptions},
     diagnostics::OxcDiagnostic,
     mangler::{MangleOptions, Mangler},
     minifier::CompressOptions,
@@ -57,8 +57,8 @@ impl CompilerInterface for Driver {
         self.errors.extend(errors);
     }
 
-    fn after_codegen(&mut self, printed: String) {
-        self.printed = printed;
+    fn after_codegen(&mut self, ret: CodegenReturn) {
+        self.printed = ret.source_text;
     }
 
     fn parse_options(&self) -> ParseOptions {
@@ -89,16 +89,17 @@ impl CompilerInterface for Driver {
         &self,
         program: &Program<'a>,
         source_text: &'a str,
+        _source_path: &Path,
         trivias: &Trivias,
         mangler: Option<Mangler>,
         options: CodegenOptions,
-    ) -> String {
+    ) -> CodegenReturn {
         let mut codegen = CodeGenerator::new().with_options(options).with_mangler(mangler);
         if self.compress_options().is_none() {
             let comment_options = CommentOptions { preserve_annotate_comments: true };
             codegen = codegen.enable_comment(source_text, trivias.clone(), comment_options);
         };
-        codegen.build(program).source_text
+        codegen.build(program)
     }
 }
 
