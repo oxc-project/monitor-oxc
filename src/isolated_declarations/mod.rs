@@ -70,7 +70,7 @@ pub fn test(path_to_vue: Option<PathBuf>) -> ExitCode {
             Codegen::new()
                 .enable_comment(&source_text, ret.trivias, comment_options)
                 .build(&id.program)
-                .source_text
+                .code
         };
 
         let root_str = root.to_string_lossy();
@@ -88,7 +88,7 @@ pub fn test(path_to_vue: Option<PathBuf>) -> ExitCode {
             Codegen::new()
                 .enable_comment(&source_text, ret.trivias, comment_options)
                 .build(&ret.program)
-                .source_text
+                .code
         };
 
         if tsc_output.trim() != printed.trim() {
