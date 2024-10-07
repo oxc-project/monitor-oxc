@@ -21,6 +21,7 @@ const ignoreList = new Set([
   // broken in node
   "bootstrap", "@vitest/expect", "wait-on", "metro-symbolicate", "react-devtools-core",
   "nice-napi", "envdb", "@babel/cli", "webpack-subresource-integrity", "opencollective-postinstall",
+  "react-dropzone",
   // types
   "type", "type-fest", "types-registry", "undici-types", "@octokit/types", "@schematics/angular",
   "@react-types/shared",
