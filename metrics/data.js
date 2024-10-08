@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1728351701008,
+  "lastUpdate": 1728358063967,
   "repoUrl": "https://github.com/oxc-project/monitor-oxc",
   "entries": {
     "Oxc Metrics": [
@@ -28194,6 +28194,38 @@ window.BENCHMARK_DATA = {
           {
             "name": "Compile Time",
             "value": 57.53,
+            "unit": "Seconds"
+          },
+          {
+            "name": "Binary Size",
+            "value": 6769280,
+            "unit": "Bytes"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "renovate[bot]",
+            "username": "renovate[bot]",
+            "email": "29139614+renovate[bot]@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "6c5e17398ff4c34be3be115a41603b02c96c51ab",
+          "message": "chore(deps): lock file maintenance",
+          "timestamp": "2024-10-07T21:14:39Z",
+          "url": "https://github.com/oxc-project/monitor-oxc/commit/6c5e17398ff4c34be3be115a41603b02c96c51ab"
+        },
+        "date": 1728358060078,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Compile Time",
+            "value": 55.38,
             "unit": "Seconds"
           },
           {
