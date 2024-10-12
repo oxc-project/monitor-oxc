@@ -7,7 +7,7 @@ use crate::NodeModulesRunner;
 
 use oxc::{
     allocator::Allocator,
-    codegen::{Codegen, CommentOptions},
+    codegen::Codegen,
     isolated_declarations::{IsolatedDeclarations, IsolatedDeclarationsOptions},
     parser::Parser,
     span::SourceType,
@@ -56,21 +56,15 @@ pub fn test(path_to_vue: Option<PathBuf>) -> ExitCode {
         }
 
         let source_text = fs::read_to_string(path).unwrap();
-        let comment_options = CommentOptions { preserve_annotate_comments: false };
         let printed = {
             let allocator = Allocator::default();
             let ret = Parser::new(&allocator, &source_text, source_type).parse();
             let id = IsolatedDeclarations::new(
                 &allocator,
-                &source_text,
-                &ret.trivias,
                 IsolatedDeclarationsOptions { strip_internal: true },
             )
             .build(&ret.program);
-            Codegen::new()
-                .enable_comment(&source_text, ret.trivias, comment_options)
-                .build(&id.program)
-                .code
+            Codegen::new().build(&id.program).code
         };
 
         let root_str = root.to_string_lossy();
@@ -85,10 +79,7 @@ pub fn test(path_to_vue: Option<PathBuf>) -> ExitCode {
             let source_text =
                 fs::read_to_string(&read_path).unwrap_or_else(|e| panic!("{e}\n{read_path:?}"));
             let ret = Parser::new(&allocator, &source_text, source_type).parse();
-            Codegen::new()
-                .enable_comment(&source_text, ret.trivias, comment_options)
-                .build(&ret.program)
-                .code
+            Codegen::new().build(&ret.program).code
         };
 
         if tsc_output.trim() != printed.trim() {
