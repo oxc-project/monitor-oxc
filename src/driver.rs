@@ -83,7 +83,8 @@ impl CompilerInterface for Driver {
     fn codegen_options(&self) -> Option<CodegenOptions> {
         Some(CodegenOptions {
             minify: self.remove_whitespace,
-            source_map_path: self.compress_options().is_none().then(|| self.path.clone()),
+            comments: !self.compress,
+            source_map_path: (!self.compress).then(|| self.path.clone()),
             ..CodegenOptions::default()
         })
     }
