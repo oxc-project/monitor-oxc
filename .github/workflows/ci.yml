@@ -112,6 +112,8 @@ jobs:
       - run: pnpm install
 
       - run: ./monitor-oxc ${{ matrix.command }}
+        env:
+          RUST_BACKTRACE: "1"
 
   compile-time:
     name: Compile Time
