@@ -1,6 +1,6 @@
 use std::fs;
 
-use crate::{driver::default_transformer_options, Case, Diagnostic, Driver, Source};
+use crate::{Case, Diagnostic, Driver, Source};
 
 pub struct TransformerRunner;
 
@@ -20,6 +20,6 @@ impl Case for TransformerRunner {
     }
 
     fn driver(&self) -> Driver {
-        Driver { transform: Some(default_transformer_options()), ..Driver::default() }
+        Driver { transform: true, ..Driver::default() }
     }
 }

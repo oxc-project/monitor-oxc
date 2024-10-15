@@ -10,22 +10,9 @@ use oxc::{
     minifier::CompressOptions,
     parser::ParseOptions,
     span::SourceType,
-    transformer::{EnvOptions, Targets, TransformOptions},
+    transformer::TransformOptions,
     CompilerInterface,
 };
-
-pub fn default_transformer_options() -> TransformOptions {
-    let mut options = TransformOptions::from_preset_env(&EnvOptions {
-        targets: Targets::from_query("chrome 51"),
-        ..EnvOptions::default()
-    })
-    .unwrap();
-    // `object_rest_spread` is not ready
-    options.es2018.object_rest_spread = None;
-    // Enables `only_remove_type_imports` avoiding removing all unused imports
-    options.typescript.only_remove_type_imports = true;
-    options
-}
 
 use crate::Diagnostic;
 
@@ -33,7 +20,7 @@ use crate::Diagnostic;
 #[derive(Default)]
 pub struct Driver {
     // options
-    pub transform: Option<TransformOptions>,
+    pub transform: bool,
     pub compress: bool,
     pub mangle: bool,
     pub remove_whitespace: bool,
@@ -69,7 +56,7 @@ impl CompilerInterface for Driver {
     }
 
     fn transform_options(&self) -> Option<TransformOptions> {
-        self.transform.clone()
+        self.transform.then(|| TransformOptions::enable_all())
     }
 
     fn compress_options(&self) -> Option<CompressOptions> {
