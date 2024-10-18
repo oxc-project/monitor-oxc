@@ -56,7 +56,13 @@ impl CompilerInterface for Driver {
     }
 
     fn transform_options(&self) -> Option<TransformOptions> {
-        self.transform.then(|| TransformOptions::enable_all())
+        self.transform.then(|| {
+            let mut options = TransformOptions::enable_all();
+            // The refresh plugin is never idempotent
+            options.react.refresh = None;
+
+            options
+        })
     }
 
     fn compress_options(&self) -> Option<CompressOptions> {
