@@ -62,6 +62,8 @@ impl CompilerInterface for Driver {
             options.react.refresh = None;
             // Enables `only_remove_type_imports` avoiding removing all unused imports
             options.typescript.only_remove_type_imports = true;
+            // Unfinished plugins
+            options.es2018.object_rest_spread = None;
 
             options
         })
