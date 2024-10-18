@@ -1256,10 +1256,10 @@ importers:
         version: 1.0.11(encoding@0.1.13)(supports-color@9.4.0)
       '@mdx-js/mdx':
         specifier: latest
-        version: 3.0.1(supports-color@9.4.0)
+        version: 3.1.0(acorn@8.13.0)(supports-color@9.4.0)
       '@mdx-js/react':
         specifier: latest
-        version: 3.0.1(@types/react@18.3.11)(react@18.3.1)
+        version: 3.1.0(@types/react@18.3.11)(react@18.3.1)
       '@microsoft/tsdoc':
         specifier: latest
         version: 0.15.0
@@ -1325,7 +1325,7 @@ importers:
         version: 6.0.1(bluebird@3.7.2)
       '@npmcli/promise-spawn':
         specifier: latest
-        version: 8.0.1
+        version: 8.0.2
       '@npmcli/redact':
         specifier: latest
         version: 3.0.0
@@ -2516,7 +2516,7 @@ importers:
         version: 2.5.0
       bare-stream:
         specifier: latest
-        version: 2.3.0
+        version: 2.3.1
       base:
         specifier: latest
         version: 3.0.0
@@ -3914,7 +3914,7 @@ importers:
         version: 0.9.0(eslint@9.12.0(jiti@2.3.3)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.6.3)
       eslint-plugin-testing-library:
         specifier: latest
-        version: 6.3.4(eslint@9.12.0(jiti@2.3.3)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.6.3)
+        version: 6.4.0(eslint@9.12.0(jiti@2.3.3)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.6.3)
       eslint-plugin-unicorn:
         specifier: latest
         version: 56.0.0(eslint@9.12.0(jiti@2.3.3)(supports-color@9.4.0))
@@ -5396,7 +5396,7 @@ importers:
         version: 1.1.1
       jsonpath-plus:
         specifier: latest
-        version: 10.0.5
+        version: 10.0.6
       jsonpointer:
         specifier: latest
         version: 5.0.1
@@ -7448,7 +7448,7 @@ importers:
         version: 4.0.0(supports-color@9.4.0)
       remark-mdx:
         specifier: latest
-        version: 3.0.1(supports-color@9.4.0)
+        version: 3.1.0(supports-color@9.4.0)
       remark-parse:
         specifier: latest
         version: 11.0.0(supports-color@9.4.0)
@@ -7979,7 +7979,7 @@ importers:
         version: 2.14.3
       storybook:
         specifier: latest
-        version: 8.3.5(supports-color@9.4.0)
+        version: 8.3.6(supports-color@9.4.0)
       stream-browserify:
         specifier: latest
         version: 3.0.0
@@ -8246,7 +8246,7 @@ importers:
         version: 1.1.1
       text-decoder:
         specifier: latest
-        version: 1.2.0
+        version: 1.2.1
       text-extensions:
         specifier: latest
         version: 3.0.0
@@ -12400,11 +12400,11 @@ packages:
     resolution: {integrity: sha512-Yhlar6v9WQgUp/He7BdgzOz8lqMQ8sU+jkCq7Wx8Myc5YFJLbEe7lgui/V7G1qB1DJykHSGwreceSaD60Y0PUQ==}
     hasBin: true
 
-  '@mdx-js/mdx@3.0.1':
-    resolution: {integrity: sha512-eIQ4QTrOWyL3LWEe/bu6Taqzq2HQvHcyTMaOrI95P2/LmJE7AsfPfgJGuFLPVqBUE1BC1rik3VIhU+s9u72arA==}
+  '@mdx-js/mdx@3.1.0':
+    resolution: {integrity: sha512-/QxEhPAvGwbQmy1Px8F899L5Uc2KZ6JtXwlCgJmjSTBedwOZkByYcBG4GceIGPXRDsmfxhHazuS+hlOShRLeDw==}
 
-  '@mdx-js/react@3.0.1':
-    resolution: {integrity: sha512-9ZrPIU4MGf6et1m1ov3zKf+q9+deetI51zprKB1D/z3NOb+rUxxtEl3mCjW5wTGh6VhRdwPueh1oRzi6ezkA8A==}
+  '@mdx-js/react@3.1.0':
+    resolution: {integrity: sha512-QjHtSaoameoalGnKDT3FoIl4+9RwyTmo9ZJGBdLOks/YOiWHoRDI3PUwEzOE7kEmGcV3AFcp9K6dYu9rEuKLAQ==}
     peerDependencies:
       '@types/react': '>=16'
       react: '>=16'
@@ -12666,8 +12666,8 @@ packages:
     resolution: {integrity: sha512-YW6PZ99sc1Q4DINEY2td5z9Z3rwbbsx7CyCnOc7UXUUdePXh5gPi1UeaoQVmKQMVbIU7aOwX2l1OG5ZfjgGi5g==}
     engines: {node: ^18.17.0 || >=20.5.0}
 
-  '@npmcli/promise-spawn@8.0.1':
-    resolution: {integrity: sha512-ZscqKtJqy7oj6MgXEJcHQ1om4utU0Q84QtC28UVuiO6ALSO9sDPanXdu6Wd1oYhItW8fx2u96zRFUE8BuPlAjA==}
+  '@npmcli/promise-spawn@8.0.2':
+    resolution: {integrity: sha512-/bNJhjc+o6qL+Dwz/bqfTQClkEO5nTQ1ZEcdCkAQjhkZMHIh22LPG7fNh1enJP1NKWDqYiiABnjFCY7E0zHYtQ==}
     engines: {node: ^18.17.0 || >=20.5.0}
 
   '@npmcli/redact@3.0.0':
@@ -14469,8 +14469,8 @@ packages:
     resolution: {integrity: sha512-/kjtr+0t0tjKr+heVfviO9FrU/uGLc+QNX3fHJc19xsCNYqU7lVhaXxDmEID9BZTjG+/r9pK9xP/xU02XGg65g==}
     engines: {node: ^12.20 || >=14.13}
 
-  '@storybook/core@8.3.5':
-    resolution: {integrity: sha512-GOGfTvdioNa/n+Huwg4u/dsyYyBcM+gEcdxi3B7i5x4yJ3I912KoVshumQAOF2myKSRdI8h8aGWdx7nnjd0+5Q==}
+  '@storybook/core@8.3.6':
+    resolution: {integrity: sha512-frwfgf0EJ7QL29DWZ5bla/g0eOOWqJGd14t+VUBlpP920zB6sdDfo7+p9JoCjD9u08lGeFDqbPNKayUk+0qDag==}
 
   '@storybook/csf@0.0.1':
     resolution: {integrity: sha512-USTLkZze5gkel8MYCujSRBVIrUQ3YPBrLOx7GNk/0wttvVtlzWXAq9eLbQ4p/NicGxP+3T7KPEMVV//g+yubpw==}
@@ -14783,8 +14783,8 @@ packages:
   '@types/lodash-es@4.17.12':
     resolution: {integrity: sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==}
 
-  '@types/lodash@4.17.10':
-    resolution: {integrity: sha512-YpS0zzoduEhuOWjAotS6A5AVCva7X4lVlYLF0FYHAY9sdraBfnatttHItlWeZdGhuEkf+OzMNg2ZYAx8t+52uQ==}
+  '@types/lodash@4.17.11':
+    resolution: {integrity: sha512-jzqWo/uQP/iqeGGTjhgFp2yaCrCYTauASQcpdzESNCkHjSprBJVcZP9KG9aQ0q+xcsXiKd/iuw/4dLjS3Odc7Q==}
 
   '@types/long@4.0.2':
     resolution: {integrity: sha512-MqTGEo5bj5t157U6fA/BiDynNkn0YknVdh48CMPkTSpFTVmvao5UQmm7uEF6xBEo7qIMAlY/JSleYaE6VOdpaA==}
@@ -16404,8 +16404,8 @@ packages:
   bare-path@2.1.3:
     resolution: {integrity: sha512-lh/eITfU8hrj9Ru5quUp0Io1kJWIk1bTjzo7JH1P5dWmQ2EL4hFUlfI8FonAhSlgIfhn63p84CDY/x+PisgcXA==}
 
-  bare-stream@2.3.0:
-    resolution: {integrity: sha512-pVRWciewGUeCyKEuRxwv06M079r+fRjAQjBEK2P6OYGrO43O+Z0LrPZZEjlc4mB6C2RpZ9AxJ1s7NLEtOHO6eA==}
+  bare-stream@2.3.1:
+    resolution: {integrity: sha512-Vm8kAeOcfzHPTH8sq0tHBnUqYrkXdroaBVVylqFT4cF5wnMfKEIxxy2jIGu2zKVNl9P8MAP9XBWwXJ9N2+jfEw==}
 
   base-64@1.0.0:
     resolution: {integrity: sha512-kwDPIFCGx0NZHog36dj+tHiwP4QMzsZ3AgMViUBKI0+V5n4U0ufTCUMhnQ04diaRI8EX/QcPfql7zlhZ7j4zgg==}
@@ -18819,6 +18819,12 @@ packages:
   es6-weak-map@2.0.3:
     resolution: {integrity: sha512-p5um32HOTO1kP+w7PRnB+5lQ43Z6muuMuIMffvDN8ZB4GcnjLBV6zGStpbASIMk4DCAvEaamhe2zhyCb/QXXsA==}
 
+  esast-util-from-estree@2.0.0:
+    resolution: {integrity: sha512-4CyanoAudUSBAn5K13H4JhsMH6L9ZP7XbLVe/dKybkxMO7eDyLsT8UHl9TRNrU2Gr9nz+FovfSIjuXWJ81uVwQ==}
+
+  esast-util-from-js@2.0.1:
+    resolution: {integrity: sha512-8Ja+rNJ0Lt56Pcf3TAmpBZjmx8ZcK5Ts4cAzIOjsjevg9oSXJnl6SUQ2EevU8tv3h6ZLWmoKL5H4fgWvdvfETw==}
+
   esbuild-register@3.6.0:
     resolution: {integrity: sha512-H2/S7Pm8a9CL1uhp9OvjwrBh5Pvx0H8qVOxNu8Wed9Y7qv56MPtq+GGM8RJpq6glYJn9Wspr8uw7l55uyinNeg==}
     peerDependencies:
@@ -19107,11 +19113,11 @@ packages:
     peerDependencies:
       eslint: ^7.5.0 || ^8.0.0
 
-  eslint-plugin-testing-library@6.3.4:
-    resolution: {integrity: sha512-nFwedetKOC8675r9UWePojlL/EgrBVywJPB1UygMpGsA0QocCCv+z8HmXOnI/wbXyJmwSOYRjnp8n4tqTjIL+A==}
+  eslint-plugin-testing-library@6.4.0:
+    resolution: {integrity: sha512-yeWF+YgCgvNyPNI9UKnG0FjeE2sk93N/3lsKqcmR8dSfeXJwFT5irnWo7NjLf152HkRzfoFjh3LsBUrhvFz4eA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0, npm: '>=6'}
     peerDependencies:
-      eslint: ^7.5.0 || ^8.0.0
+      eslint: ^7.5.0 || ^8.0.0 || ^9.0.0
 
   eslint-plugin-unicorn@56.0.0:
     resolution: {integrity: sha512-aXpddVz/PQMmd69uxO98PA4iidiVNvA0xOtbpUoz1WhBd4RxOQQYqN618v68drY0hmy5uU2jy1bheKEVWBjlPw==}
@@ -19243,6 +19249,9 @@ packages:
 
   estree-util-is-identifier-name@3.0.0:
     resolution: {integrity: sha512-hFtqIDZTIUZ9BXLb8y4pYGyk6+wekIivNVTcmvk8NoOh+VeRn5y6cEHzbURrWbfp1fIqdVipilzj+lfaadNZmg==}
+
+  estree-util-scope@1.0.0:
+    resolution: {integrity: sha512-2CAASclonf+JFWBNJPndcOpA8EMJwa0Q8LUFJEKqXLW6+qBvbFZuF5gItbQOs/umBUkjviCSDCbBwU2cXbmrhQ==}
 
   estree-util-to-js@2.0.0:
     resolution: {integrity: sha512-WDF+xj5rRWmD5tj6bIqRi6CkLIXbbNQUcxQHzGysQzvHmdYG2G7p/Tf0J0gpxGgkeMZNTIjT/AoSvC9Xehcgdg==}
@@ -22068,8 +22077,8 @@ packages:
     resolution: {integrity: sha512-POQXvpdL69+CluYsillJ7SUhKvytYjW9vG/GKpnf+xP8UWgYEM/RaMzHHofbALDiKbbP1W8UEYmgGl39WkPZsg==}
     engines: {'0': node >= 0.2.0}
 
-  jsonpath-plus@10.0.5:
-    resolution: {integrity: sha512-it8kRSK9fdAhauC5ik86kBWpIIdDrnMvre1b3IDKqApPwC48iYI2IRvhy88TB/MrtZfXIQOMTF5p0UHucZVveA==}
+  jsonpath-plus@10.0.6:
+    resolution: {integrity: sha512-Q0KCash90S0WQnPnE/W0uVXQSww4NkO34COfs+gbq0fk+Kv03FYpZ+uU2I7soLLaS4d/ywsm9PxplZsTMmfBmg==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -24462,9 +24471,6 @@ packages:
   performance-now@2.1.0:
     resolution: {integrity: sha512-7EAHlyLHI56VEIdK57uwHdHKIaAGbnXPiw0yWbarQZOKaKpvUIgW0jWRVLiatnM+XXlSwsanIBH/hzGMJulMow==}
 
-  periscopic@3.1.0:
-    resolution: {integrity: sha512-vKiQ8RRtkl9P+r/+oefh25C3fhybptkHKCZSPlcXiJux2tJF55GnEj3BVn4A5gKfq9NWWXXrxkHBwVPUfH0opw==}
-
   pg-cloudflare@1.1.1:
     resolution: {integrity: sha512-xWPagP/4B6BgFO+EKz3JONXv3YDgvkbVrGw2mTo3D6tVDQRh1e7cqVGvyR3BE+eQgAvx1XhW/iEASj4/jCWl3Q==}
 
@@ -25848,6 +25854,18 @@ packages:
     resolution: {integrity: sha512-/vxpCXddiX8NGfGO/mTafwjq4aFa/71pvamip0++IQk3zG8cbCj0fifNPrjjF1XMXUne91jL9OoxmdykoEtifQ==}
     engines: {node: '>= 10.13.0'}
 
+  recma-build-jsx@1.0.0:
+    resolution: {integrity: sha512-8GtdyqaBcDfva+GUKDr3nev3VpKAhup1+RvkMvUxURHpW7QyIvk9F5wz7Vzo06CEMSilw6uArgRqhpiUcWp8ew==}
+
+  recma-jsx@1.0.0:
+    resolution: {integrity: sha512-5vwkv65qWwYxg+Atz95acp8DMu1JDSqdGkA2Of1j6rCreyFUE/gp15fC8MnGEuG1W68UKjM6x6+YTWIh7hZM/Q==}
+
+  recma-parse@1.0.0:
+    resolution: {integrity: sha512-OYLsIGBB5Y5wjnSnQW6t3Xg7q3fQ7FWbw/vcXtORTnyaSFscOtABg+7Pnz6YZ6c27fG1/aN8CjfwoUEUIdwqWQ==}
+
+  recma-stringify@1.0.0:
+    resolution: {integrity: sha512-cjwII1MdIIVloKvC9ErQ+OgAtwHBmcZ0Bg4ciz78FtbT8In39aAYbaA7zvxQ61xVMSPE8WxhLwLbhif4Js2C+g==}
+
   recursive-readdir@2.2.3:
     resolution: {integrity: sha512-8HrF5ZsXk5FAH9dgsx3BlUer73nIhuj+9OrQwEbLTPOBzGkL1lsFCR01am+v+0m2Cmbs1nP12hLDl5FA7EszKA==}
     engines: {node: '>=6.0.0'}
@@ -25957,6 +25975,9 @@ packages:
       react:
         optional: true
 
+  rehype-recma@1.0.0:
+    resolution: {integrity: sha512-lqA4rGUf1JmacCNWWZx0Wv1dHqMwxzsDWYMTowuplHF3xH0N/MmrZ/G3BDZnzAkRmxDadujCjaKM2hqYdCBOGw==}
+
   relateurl@0.2.7:
     resolution: {integrity: sha512-G08Dxvm4iDN3MLM0EsP62EDV9IuhXPR6blNz6Utcp7zyV3tr4HVNINt6MpaRWbxoOHT3Q7YN2P+jaHX8vUbgog==}
     engines: {node: '>= 0.10'}
@@ -25974,8 +25995,8 @@ packages:
   remark-gfm@4.0.0:
     resolution: {integrity: sha512-U92vJgBPkbw4Zfu/IiW2oTZLSL3Zpv+uI7My2eq8JxKgqraFdU8YUGicEJCEgSbeaG+QDFqIcwwfMTOEelPxuA==}
 
-  remark-mdx@3.0.1:
-    resolution: {integrity: sha512-3Pz3yPQ5Rht2pM5R+0J2MrGoBSrzf+tJG94N+t/ilfdh8YLyyKYtidAYwTveB20BoHAcwIopOUqhcmh2F7hGYA==}
+  remark-mdx@3.1.0:
+    resolution: {integrity: sha512-Ngl/H3YXyBV9RcRNdlYsZujAmhsxwzxpDzpDEhFBVAGthS4GDgnctpDjgFl/ULx5UEDzqtW1cyBSNKqYYrqLBA==}
 
   remark-parse@11.0.0:
     resolution: {integrity: sha512-FCxlKLNGknS5ba/1lmpYijMUzX2esxW5xQqjWxw2eHFfS2MSdaHVINFmhjo+qN1WhZhNimq0dZATN9pH0IDrpA==}
@@ -26988,8 +27009,8 @@ packages:
   store2@2.14.3:
     resolution: {integrity: sha512-4QcZ+yx7nzEFiV4BMLnr/pRa5HYzNITX2ri0Zh6sT9EyQHbBHacC6YigllUPU9X3D0f/22QCgfokpKs52YRrUg==}
 
-  storybook@8.3.5:
-    resolution: {integrity: sha512-hYQVtP2l+3kO8oKDn4fjXXQYxgTRsj/LaV6lUMJH0zt+OhVmDXKJLxmdUP4ieTm0T8wEbSYosFavgPcQZlxRfw==}
+  storybook@8.3.6:
+    resolution: {integrity: sha512-9GVbtej6ZzPRUM7KRQ7848506FfHrUiJGqPuIQdoSJd09EmuEoLjmLAgEOmrHBQKgGYMaM7Vh9GsTLim6vwZTQ==}
     hasBin: true
 
   stream-browserify@2.0.2:
@@ -27513,8 +27534,8 @@ packages:
     resolution: {integrity: sha512-8c+klFp39712pdCJAtKdm9JtTIE51cUq0ZiOaJvmbGCzM9zoKq2DgGBGWKWuYQFvJuCM+lDnatbkMRtDNyYV4Q==}
     engines: {node: '>= 8.9.1'}
 
-  text-decoder@1.2.0:
-    resolution: {integrity: sha512-n1yg1mOj9DNpk3NeZOx7T6jchTbyJS3i3cucbNN6FcdPriMZx7NsgrGpWWdWZZGxD7ES1XB+3uoqHMgOKaN+fg==}
+  text-decoder@1.2.1:
+    resolution: {integrity: sha512-x9v3H/lTKIJKQQe7RPQkLfKAnc9lUTkWDypIQgTzPJAq+5/GCDHonmshfvlsNSj58yyshbIJJDLmU15qNERrXQ==}
 
   text-extensions@2.4.0:
     resolution: {integrity: sha512-te/NtwBwfiNRLf9Ijqx3T0nlqZiQ2XrrtBvu+cLL8ZRrGkO0NHTug8MYFKyoSrv/sHTaSKfilUkizV6XhxMJ3g==}
@@ -33888,7 +33909,7 @@ snapshots:
       - encoding
       - supports-color
 
-  '@mdx-js/mdx@3.0.1(supports-color@9.4.0)':
+  '@mdx-js/mdx@3.1.0(acorn@8.13.0)(supports-color@9.4.0)':
     dependencies:
       '@types/estree': 1.0.6
       '@types/estree-jsx': 1.0.5
@@ -33896,15 +33917,16 @@ snapshots:
       '@types/mdx': 2.0.13
       collapse-white-space: 2.1.0
       devlop: 1.1.0
-      estree-util-build-jsx: 3.0.1
       estree-util-is-identifier-name: 3.0.0
-      estree-util-to-js: 2.0.0
+      estree-util-scope: 1.0.0
       estree-walker: 3.0.3
-      hast-util-to-estree: 3.1.0(supports-color@9.4.0)
       hast-util-to-jsx-runtime: 2.3.2(supports-color@9.4.0)
       markdown-extensions: 2.0.0
-      periscopic: 3.1.0
-      remark-mdx: 3.0.1(supports-color@9.4.0)
+      recma-build-jsx: 1.0.0
+      recma-jsx: 1.0.0(acorn@8.13.0)
+      recma-stringify: 1.0.0
+      rehype-recma: 1.0.0(supports-color@9.4.0)
+      remark-mdx: 3.1.0(supports-color@9.4.0)
       remark-parse: 11.0.0(supports-color@9.4.0)
       remark-rehype: 11.1.1
       source-map: 0.7.4
@@ -33914,9 +33936,10 @@ snapshots:
       unist-util-visit: 5.0.0
       vfile: 6.0.3
     transitivePeerDependencies:
+      - acorn
       - supports-color
 
-  '@mdx-js/react@3.0.1(@types/react@18.3.11)(react@18.3.1)':
+  '@mdx-js/react@3.1.0(@types/react@18.3.11)(react@18.3.1)':
     dependencies:
       '@types/mdx': 2.0.13
       '@types/react': 18.3.11
@@ -34152,7 +34175,7 @@ snapshots:
 
   '@npmcli/git@6.0.1(bluebird@3.7.2)':
     dependencies:
-      '@npmcli/promise-spawn': 8.0.1
+      '@npmcli/promise-spawn': 8.0.2
       ini: 5.0.0
       lru-cache: 10.4.3
       npm-pick-manifest: 10.0.0
@@ -34199,7 +34222,7 @@ snapshots:
     transitivePeerDependencies:
       - bluebird
 
-  '@npmcli/promise-spawn@8.0.1':
+  '@npmcli/promise-spawn@8.0.2':
     dependencies:
       which: 5.0.0
 
@@ -34209,7 +34232,7 @@ snapshots:
     dependencies:
       '@npmcli/node-gyp': 4.0.0
       '@npmcli/package-json': 6.0.1(bluebird@3.7.2)
-      '@npmcli/promise-spawn': 8.0.1
+      '@npmcli/promise-spawn': 8.0.2
       node-gyp: 10.2.0(supports-color@9.4.0)
       proc-log: 5.0.0
       which: 5.0.0
@@ -36427,7 +36450,7 @@ snapshots:
       '@types/json-schema': 7.0.15
       utility-types: 3.11.0
 
-  '@storybook/core@8.3.5(supports-color@9.4.0)':
+  '@storybook/core@8.3.6(supports-color@9.4.0)':
     dependencies:
       '@storybook/csf': 0.1.11
       '@types/express': 4.17.21
@@ -36797,9 +36820,9 @@ snapshots:
 
   '@types/lodash-es@4.17.12':
     dependencies:
-      '@types/lodash': 4.17.10
+      '@types/lodash': 4.17.11
 
-  '@types/lodash@4.17.10': {}
+  '@types/lodash@4.17.11': {}
 
   '@types/long@4.0.2': {}
 
@@ -38877,7 +38900,7 @@ snapshots:
     dependencies:
       bare-events: 2.5.0
       bare-path: 2.1.3
-      bare-stream: 2.3.0
+      bare-stream: 2.3.1
     optional: true
 
   bare-os@2.4.4:
@@ -38888,9 +38911,8 @@ snapshots:
       bare-os: 2.4.4
     optional: true
 
-  bare-stream@2.3.0:
+  bare-stream@2.3.1:
     dependencies:
-      b4a: 1.6.7
       streamx: 2.20.1
 
   base-64@1.0.0: {}
@@ -41650,6 +41672,20 @@ snapshots:
       es6-iterator: 2.0.3
       es6-symbol: 3.1.4
 
+  esast-util-from-estree@2.0.0:
+    dependencies:
+      '@types/estree-jsx': 1.0.5
+      devlop: 1.1.0
+      estree-util-visit: 2.0.0
+      unist-util-position-from-estree: 2.0.0
+
+  esast-util-from-js@2.0.1:
+    dependencies:
+      '@types/estree-jsx': 1.0.5
+      acorn: 8.13.0
+      esast-util-from-estree: 2.0.0
+      vfile-message: 4.0.2
+
   esbuild-register@3.6.0(esbuild@0.23.1)(supports-color@9.4.0):
     dependencies:
       debug: 4.3.7(supports-color@9.4.0)
@@ -42089,7 +42125,7 @@ snapshots:
       - supports-color
       - typescript
 
-  eslint-plugin-testing-library@6.3.4(eslint@9.12.0(jiti@2.3.3)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.6.3):
+  eslint-plugin-testing-library@6.4.0(eslint@9.12.0(jiti@2.3.3)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.6.3):
     dependencies:
       '@typescript-eslint/utils': 5.62.0(eslint@9.12.0(jiti@2.3.3)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.6.3)
       eslint: 9.12.0(jiti@2.3.3)(supports-color@9.4.0)
@@ -42272,6 +42308,11 @@ snapshots:
       estree-walker: 3.0.3
 
   estree-util-is-identifier-name@3.0.0: {}
+
+  estree-util-scope@1.0.0:
+    dependencies:
+      '@types/estree': 1.0.6
+      devlop: 1.1.0
 
   estree-util-to-js@2.0.0:
     dependencies:
@@ -45562,7 +45603,7 @@ snapshots:
 
   jsonparse@1.3.1: {}
 
-  jsonpath-plus@10.0.5:
+  jsonpath-plus@10.0.6:
     dependencies:
       '@jsep-plugin/assignment': 1.2.1(jsep@1.3.9)
       '@jsep-plugin/regex': 1.0.3(jsep@1.3.9)
@@ -47282,7 +47323,7 @@ snapshots:
       '@css-render/plugin-bem': 0.15.14(css-render@0.15.14)
       '@css-render/vue3-ssr': 0.15.14(vue@3.5.12(typescript@5.6.3))
       '@types/katex': 0.16.7
-      '@types/lodash': 4.17.10
+      '@types/lodash': 4.17.11
       '@types/lodash-es': 4.17.12
       async-validator: 4.2.5
       css-render: 0.15.14
@@ -48322,7 +48363,7 @@ snapshots:
       '@npmcli/git': 6.0.1(bluebird@3.7.2)
       '@npmcli/installed-package-contents': 3.0.0
       '@npmcli/package-json': 6.0.1(bluebird@3.7.2)
-      '@npmcli/promise-spawn': 8.0.1
+      '@npmcli/promise-spawn': 8.0.2
       '@npmcli/run-script': 9.0.1(bluebird@3.7.2)(supports-color@9.4.0)
       cacache: 19.0.1
       fs-minipass: 3.0.3
@@ -48621,12 +48662,6 @@ snapshots:
   perfect-debounce@1.0.0: {}
 
   performance-now@2.1.0: {}
-
-  periscopic@3.1.0:
-    dependencies:
-      '@types/estree': 1.0.6
-      estree-walker: 3.0.3
-      is-reference: 3.0.2
 
   pg-cloudflare@1.1.1:
     optional: true
@@ -50090,6 +50125,36 @@ snapshots:
     dependencies:
       resolve: 1.22.8
 
+  recma-build-jsx@1.0.0:
+    dependencies:
+      '@types/estree': 1.0.6
+      estree-util-build-jsx: 3.0.1
+      vfile: 6.0.3
+
+  recma-jsx@1.0.0(acorn@8.13.0):
+    dependencies:
+      acorn-jsx: 5.3.2(acorn@8.13.0)
+      estree-util-to-js: 2.0.0
+      recma-parse: 1.0.0
+      recma-stringify: 1.0.0
+      unified: 11.0.5
+    transitivePeerDependencies:
+      - acorn
+
+  recma-parse@1.0.0:
+    dependencies:
+      '@types/estree': 1.0.6
+      esast-util-from-js: 2.0.1
+      unified: 11.0.5
+      vfile: 6.0.3
+
+  recma-stringify@1.0.0:
+    dependencies:
+      '@types/estree': 1.0.6
+      estree-util-to-js: 2.0.0
+      unified: 11.0.5
+      vfile: 6.0.3
+
   recursive-readdir@2.2.3:
     dependencies:
       minimatch: 3.1.2
@@ -50202,6 +50267,14 @@ snapshots:
       '@types/react': 18.3.11
       react: 18.3.1
 
+  rehype-recma@1.0.0(supports-color@9.4.0):
+    dependencies:
+      '@types/estree': 1.0.6
+      '@types/hast': 3.0.4
+      hast-util-to-estree: 3.1.0(supports-color@9.4.0)
+    transitivePeerDependencies:
+      - supports-color
+
   relateurl@0.2.7: {}
 
   relay-runtime@12.0.0(encoding@0.1.13):
@@ -50235,7 +50308,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  remark-mdx@3.0.1(supports-color@9.4.0):
+  remark-mdx@3.1.0(supports-color@9.4.0):
     dependencies:
       mdast-util-mdx: 3.0.0(supports-color@9.4.0)
       micromark-extension-mdxjs: 3.0.0
@@ -51447,9 +51520,9 @@ snapshots:
 
   store2@2.14.3: {}
 
-  storybook@8.3.5(supports-color@9.4.0):
+  storybook@8.3.6(supports-color@9.4.0):
     dependencies:
-      '@storybook/core': 8.3.5(supports-color@9.4.0)
+      '@storybook/core': 8.3.6(supports-color@9.4.0)
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -51516,7 +51589,7 @@ snapshots:
     dependencies:
       fast-fifo: 1.3.2
       queue-tick: 1.0.1
-      text-decoder: 1.2.0
+      text-decoder: 1.2.1
     optionalDependencies:
       bare-events: 2.5.0
 
@@ -52141,9 +52214,7 @@ snapshots:
     dependencies:
       mgeneratejs: 0.4.0
 
-  text-decoder@1.2.0:
-    dependencies:
-      b4a: 1.6.7
+  text-decoder@1.2.1: {}
 
   text-extensions@2.4.0: {}
 
