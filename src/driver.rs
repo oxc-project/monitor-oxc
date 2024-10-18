@@ -56,7 +56,17 @@ impl CompilerInterface for Driver {
     }
 
     fn transform_options(&self) -> Option<TransformOptions> {
-        self.transform.then(|| TransformOptions::enable_all())
+        self.transform.then(|| {
+            let mut options = TransformOptions::enable_all();
+            // Turns off the refresh plugin because it is never idempotent
+            options.react.refresh = None;
+            // Enables `only_remove_type_imports` avoiding removing all unused imports
+            options.typescript.only_remove_type_imports = true;
+            // Unfinished plugins
+            options.es2018.object_rest_spread = None;
+
+            options
+        })
     }
 
     fn compress_options(&self) -> Option<CompressOptions> {
