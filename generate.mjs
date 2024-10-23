@@ -36,7 +36,9 @@ const ignoreList = new Set([
   // need transform to cjs
   "fast-json-patch",
   // Deprecated: use `rehype-external-links`
-  "remark-external-links", "remark-slug"
+  "remark-external-links", "remark-slug",
+  // Requires `node-gyp`
+  "@datadog/pprof"
 ]);
 
 const ignorePrefixes = [
