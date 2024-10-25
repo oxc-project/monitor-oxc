@@ -83,7 +83,7 @@ importers:
         version: 3.679.0
       '@aws-sdk/client-lambda':
         specifier: latest
-        version: 3.679.0
+        version: 3.680.0
       '@aws-sdk/client-s3':
         specifier: latest
         version: 3.679.0
@@ -3731,7 +3731,7 @@ importers:
         version: 3.1.10
       electron-to-chromium:
         specifier: latest
-        version: 1.5.45
+        version: 1.5.46
       elliptic:
         specifier: latest
         version: 6.5.7
@@ -4151,7 +4151,7 @@ importers:
         version: 2.0.5
       file-selector:
         specifier: latest
-        version: 1.1.0
+        version: 1.2.0
       file-type:
         specifier: latest
         version: 19.6.0
@@ -6092,7 +6092,7 @@ importers:
         version: 3.0.1
       mongoose:
         specifier: latest
-        version: 8.7.2(@aws-sdk/credential-providers@3.679.0(@aws-sdk/client-sso-oidc@3.679.0(@aws-sdk/client-sts@3.679.0)))(gcp-metadata@6.1.0(encoding@0.1.13)(supports-color@9.4.0))(socks@2.8.3)(supports-color@9.4.0)
+        version: 8.7.3(@aws-sdk/credential-providers@3.679.0(@aws-sdk/client-sso-oidc@3.679.0(@aws-sdk/client-sts@3.679.0)))(gcp-metadata@6.1.0(encoding@0.1.13)(supports-color@9.4.0))(socks@2.8.3)(supports-color@9.4.0)
       moo:
         specifier: latest
         version: 0.5.2
@@ -9255,8 +9255,8 @@ packages:
     resolution: {integrity: sha512-vJzQ6QpaMu8itJMe3FH1/0rwMjL0ELh63iLTxiAmhiV/SvCwNNoSFLd2HdKxbV0Bg/x8lUiPVq3pl6+cxaIrEQ==}
     engines: {node: '>=16.0.0'}
 
-  '@aws-sdk/client-lambda@3.679.0':
-    resolution: {integrity: sha512-CSJ7FF1RSgABJRf9mRaH4JGUvfMKv42zO8hHsr/GLd7HL9uTTZ2iRQ7Hpx7TRLWo/Ju7WIyZbbImNLtQ9lpVeQ==}
+  '@aws-sdk/client-lambda@3.680.0':
+    resolution: {integrity: sha512-oABfvrJTVvlVnCEi6lMtxlC/ta5wxu79bB2ZACe/0AxFZrXgr+gscrUtSm1iNye5+6oeYvQPD7b+ft6UwFrSlw==}
     engines: {node: '>=16.0.0'}
 
   '@aws-sdk/client-s3@3.679.0':
@@ -18594,8 +18594,8 @@ packages:
     engines: {node: '>=0.10.0'}
     hasBin: true
 
-  electron-to-chromium@1.5.45:
-    resolution: {integrity: sha512-vOzZS6uZwhhbkZbcRyiy99Wg+pYFV5hk+5YaECvx0+Z31NR3Tt5zS6dze2OepT6PCTzVzT0dIJItti+uAW5zmw==}
+  electron-to-chromium@1.5.46:
+    resolution: {integrity: sha512-1XDk0Z8/YRgB2t5GeEg8DPK592DLjVmd/5uwAu6c/S4Z0CUwV/RwYqe5GWxQqcoN3bJ5U7hYMiMRPZzpCzSBhQ==}
 
   elliptic@6.5.7:
     resolution: {integrity: sha512-ESVCtTwiA+XhY3wyh24QqRGBoP3rEdDUl3EDUUo9tft074fi19IrdpH7hLCMMP3CIj7jb3W96rn8lt/BqIlt5Q==}
@@ -19569,8 +19569,8 @@ packages:
   file-saver@2.0.5:
     resolution: {integrity: sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==}
 
-  file-selector@1.1.0:
-    resolution: {integrity: sha512-242AM3EcVCRwKFqAHOVxuo93MnXnINrWR3tgEllLvBV3KhL2cWynQSReigbCwLNOkBaD5oyMeDCfXuSq1PlUzw==}
+  file-selector@1.2.0:
+    resolution: {integrity: sha512-49855884Jfcij/ec+RGkUYmZo45CwBpN+gfxuOTiOGCBTwvr5p8ZpfBQo1n2sdJz8Pl6FCmNDxyltjptHVPFNQ==}
     engines: {node: '>= 12'}
 
   file-type@19.6.0:
@@ -23341,8 +23341,8 @@ packages:
       socks:
         optional: true
 
-  mongoose@8.7.2:
-    resolution: {integrity: sha512-Ok4VzMds9p5G3ZSUhmvBm1GdxanbzhS29jpSn02SPj+IXEVFnIdfwAlHHXWkyNscZKlcn8GuMi68FH++jo0flg==}
+  mongoose@8.7.3:
+    resolution: {integrity: sha512-Xl6+dzU5ZpEcDoJ8/AyrIdAwTY099QwpolvV73PIytpK13XqwllLq/9XeVzzLEQgmyvwBVGVgjmMrKbuezxrIA==}
     engines: {node: '>=16.20.1'}
 
   moo@0.5.2:
@@ -29800,7 +29800,7 @@ snapshots:
     transitivePeerDependencies:
       - aws-crt
 
-  '@aws-sdk/client-lambda@3.679.0':
+  '@aws-sdk/client-lambda@3.680.0':
     dependencies:
       '@aws-crypto/sha256-browser': 5.2.0
       '@aws-crypto/sha256-js': 5.2.0
@@ -39112,7 +39112,7 @@ snapshots:
   browserslist@4.24.2:
     dependencies:
       caniuse-lite: 1.0.30001669
-      electron-to-chromium: 1.5.45
+      electron-to-chromium: 1.5.46
       node-releases: 2.0.18
       update-browserslist-db: 1.1.1(browserslist@4.24.2)
 
@@ -41348,7 +41348,7 @@ snapshots:
     dependencies:
       jake: 10.9.2
 
-  electron-to-chromium@1.5.45: {}
+  electron-to-chromium@1.5.46: {}
 
   elliptic@6.5.7:
     dependencies:
@@ -42730,7 +42730,7 @@ snapshots:
 
   file-saver@2.0.5: {}
 
-  file-selector@1.1.0:
+  file-selector@1.2.0:
     dependencies:
       tslib: 2.8.0
 
@@ -47136,7 +47136,7 @@ snapshots:
       gcp-metadata: 6.1.0(encoding@0.1.13)(supports-color@9.4.0)
       socks: 2.8.3
 
-  mongoose@8.7.2(@aws-sdk/credential-providers@3.679.0(@aws-sdk/client-sso-oidc@3.679.0(@aws-sdk/client-sts@3.679.0)))(gcp-metadata@6.1.0(encoding@0.1.13)(supports-color@9.4.0))(socks@2.8.3)(supports-color@9.4.0):
+  mongoose@8.7.3(@aws-sdk/credential-providers@3.679.0(@aws-sdk/client-sso-oidc@3.679.0(@aws-sdk/client-sts@3.679.0)))(gcp-metadata@6.1.0(encoding@0.1.13)(supports-color@9.4.0))(socks@2.8.3)(supports-color@9.4.0):
     dependencies:
       bson: 6.9.0
       kareem: 2.6.3
