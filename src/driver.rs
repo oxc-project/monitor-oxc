@@ -59,7 +59,7 @@ impl CompilerInterface for Driver {
         self.transform.then(|| {
             let mut options = TransformOptions::enable_all();
             // Turns off the refresh plugin because it is never idempotent
-            options.react.refresh = None;
+            options.jsx.refresh = None;
             // Enables `only_remove_type_imports` avoiding removing all unused imports
             options.typescript.only_remove_type_imports = true;
             // Unfinished plugins
