@@ -208,6 +208,36 @@ jobs:
       - run: ./node_modules/.bin/rolldown --version
       - run: node --run rolldown
 
+  test262:
+    name: Test262
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout oxc (${{ inputs.ref }})
+        uses: actions/checkout@v4
+        with:
+          repository: oxc-project/oxc
+          ref: ${{ inputs.ref }}
+
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
+          repository: tc39/test262
+          path: tasks/coverage/test262
+          ref: 0645461999632a17426e45d044ee519a0f07d022
+
+      - uses: Boshen/setup-rust@main
+        with:
+          save-cache: ${{ github.ref_name == 'main' }}
+          cache-key: test262
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+
+      - run: cargo coverage runtime
+
+      - run: git diff --exit-code
+
   comment:
     needs: [test, isolated_declarations]
     if: ${{ always() }}
