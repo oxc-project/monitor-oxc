@@ -8,7 +8,8 @@ export default defineConfig({
   // [UNLOADABLE_DEPENDENCY] Error: Could not load ... .node
   external: [
     "fsevents",
-    "@swc/core"
+    "@swc/core",
+    "oxc-resolver",
   ],
   plugins: [
     {
