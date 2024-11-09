@@ -27,6 +27,11 @@ impl Case for TransformerRunner {
         options.jsx.refresh = None;
         // Enables `only_remove_type_imports` avoiding removing all unused imports
         options.typescript.only_remove_type_imports = true;
+
+        // These two injects helper in esm format, which breaks cjs files.
+        options.env.es2018.async_generator_functions = false;
+        options.env.es2017.async_to_generator = false;
+
         Driver { transform: Some(options), ..Driver::default() }
     }
 }
