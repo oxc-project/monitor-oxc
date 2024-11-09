@@ -20,7 +20,7 @@ use crate::Diagnostic;
 #[derive(Default)]
 pub struct Driver {
     // options
-    pub transform: bool,
+    pub transform: Option<TransformOptions>,
     pub compress: bool,
     pub mangle: bool,
     pub remove_whitespace: bool,
@@ -55,15 +55,8 @@ impl CompilerInterface for Driver {
         }
     }
 
-    fn transform_options(&self) -> Option<TransformOptions> {
-        self.transform.then(|| {
-            let mut options = TransformOptions::enable_all();
-            // Turns off the refresh plugin because it is never idempotent
-            options.jsx.refresh = None;
-            // Enables `only_remove_type_imports` avoiding removing all unused imports
-            options.typescript.only_remove_type_imports = true;
-            options
-        })
+    fn transform_options(&self) -> Option<&TransformOptions> {
+        self.transform.as_ref()
     }
 
     fn compress_options(&self) -> Option<CompressOptions> {

@@ -1,5 +1,7 @@
 use std::fs;
 
+use oxc::transformer::TransformOptions;
+
 use crate::{Case, Diagnostic, Driver, Source};
 
 pub struct TransformerRunner;
@@ -20,6 +22,11 @@ impl Case for TransformerRunner {
     }
 
     fn driver(&self) -> Driver {
-        Driver { transform: true, ..Driver::default() }
+        let mut options = TransformOptions::enable_all();
+        // Turns off the refresh plugin because it is never idempotent
+        options.jsx.refresh = None;
+        // Enables `only_remove_type_imports` avoiding removing all unused imports
+        options.typescript.only_remove_type_imports = true;
+        Driver { transform: Some(options), ..Driver::default() }
     }
 }
