@@ -184,7 +184,7 @@ jobs:
       - run: git diff --exit-code
 
   comment:
-    needs: [test, isolated_declarations]
+    needs: [test, isolated_declarations, rolldown, test262]
     if: ${{ always() }}
     runs-on: ubuntu-latest
     name: Reply Comment
