@@ -35,8 +35,6 @@ jobs:
     name: Build
     timeout-minutes: 10
     runs-on: ubuntu-latest
-    outputs:
-      size: ${{ steps.size.outputs.BINARY_SIZE }}
     steps:
       - uses: taiki-e/checkout-action@v1
 
