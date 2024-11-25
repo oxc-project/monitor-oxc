@@ -32,6 +32,8 @@ const PATH_IGNORES: &[&str] = &[
     // template files
     ".vitepress",
     "node_modules/next/dist/esm/build/templates/app-page.js",
+    "node_modules/karma/config.tpl.ts",
+    "node_modules/karma/config.tpl.js",
     // with statement
     "node_modules/es-shim-unscopables/test/with.js",
     // gzipped file
@@ -49,7 +51,6 @@ const PATH_IGNORES: &[&str] = &[
     "node_modules/comment-parser/tests/e2e/examples.js",
     "node_modules/react-native/Libraries/Utilities/__mocks__/BackHandler.js",
     "node_modules/sass/sass.dart.js",
-    "node_modules/karma/config.tpl.ts",
 ];
 
 #[derive(Debug)]
