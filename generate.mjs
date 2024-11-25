@@ -40,7 +40,9 @@ const ignoreList = new Set([
   // Requires `node-gyp`
   "@datadog/pprof",
   // removed packages
-  "contenthook"
+  "contenthook",
+  // transfomer inserts incorrect helper
+  "@azure/core-rest-pipeline"
 ]);
 
 const ignorePrefixes = [
