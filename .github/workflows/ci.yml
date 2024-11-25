@@ -57,27 +57,17 @@ jobs:
         env:
           RUSTFLAGS: "-C debug-assertions=true"
 
-      - name: export BINARY_SIZE
-        id: size
-        run: |
-          BINARY_SIZE=$(ls -l ./target/release/monitor-oxc | awk '{print $5}')
-          echo $BINARY_SIZE
-          echo "BINARY_SIZE=$BINARY_SIZE" >> $GITHUB_OUTPUT
-
-      - name: Upload Binary
-        uses: actions/upload-artifact@v4
-        with:
-          if-no-files-found: error
-          name: monitor-oxc
-          path: ./target/release/monitor-oxc
-
       # populate pnpm cache
-      - run: corepack enable
+
+      - uses: pnpm/action-setup@v4.0.0
+
       - uses: actions/setup-node@v4
         with:
           node-version-file: .node-version
+          registry-url: "https://registry.npmjs.org"
           cache: pnpm
-      - run: pnpm install
+
+      - run: pnpm install --frozen-lockfile
 
   test:
     name: Test
@@ -139,31 +129,6 @@ jobs:
           COMPILE_TIME=$(cat output)
           echo $COMPILE_TIME
           echo "COMPILE_TIME=$COMPILE_TIME" >> $GITHUB_OUTPUT
-
-  monitor:
-    name: Monitor Metrics
-    needs: [build, compile-time]
-    if: ${{ github.ref_name == 'main' }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: taiki-e/checkout-action@v1
-
-      - name: Create Data
-        run: |
-          echo $(jq ".[0].value = ${{ needs.compile-time.outputs.time }}" metrics.json) > data.json
-          echo $(jq ".[1].value = ${{ needs.build.outputs.size }}" data.json) > data.json
-          cat data.json
-
-      - uses: benchmark-action/github-action-benchmark@v1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          name: Oxc Metrics
-          tool: customSmallerIsBetter
-          output-file-path: data.json
-          gh-pages-branch: gh-pages
-          benchmark-data-dir-path: metrics
-          auto-push: true
-          save-data-file: true
 
   isolated_declarations:
     needs: build

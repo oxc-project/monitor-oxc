@@ -1,20 +1,5 @@
 # Monitor Oxc
 
-## [Metrics](https://oxc-project.github.io/monitor-oxc/metrics)
-
-* Compile time
-* Binary size
-
-## Isolated Declarations
-
-* Test against vue
-
-## Top 3000 npm packages from [npm-high-impact](https://github.com/wooorm/npm-high-impact)
-
-(check out our [package.json](https://github.com/oxc-project/monitor-oxc/blob/main/package.json) 😆)
-
-For all js / ts files in `node_modules`, apply idempotency test:
-
 ### Transformer
 
 * Parse + transform idempotency test
@@ -38,6 +23,16 @@ For all js / ts files in `node_modules`, apply idempotency test:
 * Parse + compress idempotency test
 * compress and override all js files
 * run `./src/main.test.mjs`
+
+### Isolated Declarations
+
+* Test against vue
+
+## Top 3000 npm packages from [npm-high-impact](https://github.com/wooorm/npm-high-impact)
+
+(check out our [package.json](https://github.com/oxc-project/monitor-oxc/blob/main/package.json) 😆)
+
+For all js / ts files in `node_modules`, apply idempotency test:
 
 ## Development
 
