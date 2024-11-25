@@ -819,15 +819,6 @@ importers:
       '@commitlint/types':
         specifier: latest
         version: 19.5.0
-      '@contenthook/browser':
-        specifier: latest
-        version: 1.4.0
-      '@contenthook/cli':
-        specifier: latest
-        version: 1.5.0
-      '@contenthook/node':
-        specifier: latest
-        version: 1.5.0
       '@cspotcode/source-map-support':
         specifier: latest
         version: 0.8.1
@@ -1914,6 +1905,9 @@ importers:
       '@tanstack/react-query':
         specifier: latest
         version: 5.61.0(react@18.3.1)
+      '@tanstack/virtual-core':
+        specifier: latest
+        version: 3.10.9
       '@testing-library/dom':
         specifier: latest
         version: 10.4.0
@@ -2292,6 +2286,9 @@ importers:
       array-slice:
         specifier: latest
         version: 1.1.0
+      array-timsort:
+        specifier: latest
+        version: 1.0.3
       array-union:
         specifier: latest
         version: 3.0.1
@@ -9042,6 +9039,9 @@ importers:
       yup:
         specifier: latest
         version: 1.4.0
+      z-schema:
+        specifier: latest
+        version: 6.0.2
       zen-observable:
         specifier: latest
         version: 0.10.0
@@ -10572,11 +10572,6 @@ packages:
   '@contenthook/browser@1.4.0':
     resolution: {integrity: sha512-AkKGlCzHDCq0K9IBOARIqso3LzXjtJxCg/I7u/9f+crvN/WUs1njGAo5DZikvEWeiuw/wXD74t5Setk16ligbw==}
     deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
-
-  '@contenthook/cli@1.5.0':
-    resolution: {integrity: sha512-YIbo1oH4D6+IWIIPCAgukjD86L5mRW5hGRjeMipKZm/Og4SIy3DsMAwrY4cTjN+OH5upGVKQ1vpyY7L6eOSBkg==}
-    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
-    hasBin: true
 
   '@contenthook/node@1.5.0':
     resolution: {integrity: sha512-DTnWOhqClvfrRi9lnedPrFTKVd6Kxc/TnID/00+2YKDVMqlGhBY/wfjKASuzSQYe8jHO/OovVp8gdi8fXZFeuQ==}
@@ -20345,10 +20340,6 @@ packages:
     resolution: {integrity: sha512-GGTKBX4SD7Wdb8mqeDLni2oaRGYQWjWHGKPQ24ZMnUtKfcsVoiv4uX8+LJr1K6U5VW2Lu1BwJnj7uiori0YtRw==}
     engines: {node: ^12.22.0 || ^14.16.0 || ^16.0.0 || >=17.0.0}
 
-  gray-matter@4.0.3:
-    resolution: {integrity: sha512-5v6yZd4JK3eMI3FqqCouswVqwugaA9r4dNZB1wwcmrD02QkV5H0y7XBQW8QwQqEaZY1pM9aqORSORhJRdNK44Q==}
-    engines: {node: '>=6.0'}
-
   growl@1.10.5:
     resolution: {integrity: sha512-qBr4OuELkhPenW6goKVXiv47US3clb3/IbuWF9KNKEijAy9oeHxU9IgzjvJhHkUzhaj7rOUD7+YGWqUjLp5oSA==}
     engines: {node: '>=4.x'}
@@ -20983,10 +20974,6 @@ packages:
   inquirer@8.2.6:
     resolution: {integrity: sha512-M1WuAmb7pn9zdFRtQYk26ZBoY043Sse0wVDdk4Bppr+JOXyQYybdtvK+l9wUibhtjdjvtoiNy8tk+EgsYIUqKg==}
     engines: {node: '>=12.0.0'}
-
-  inquirer@9.3.7:
-    resolution: {integrity: sha512-LJKFHCSeIRq9hanN14IlOtPSTe3lNES7TYDTE2xxdAy1LS5rYphajK1qtwvj3YmQXvvk0U2Vbmcni8P9EIQW9w==}
-    engines: {node: '>=18'}
 
   inspect-with-kind@1.0.5:
     resolution: {integrity: sha512-MAQUJuIo7Xqk8EVNP+6d3CKq9c80hi4tjIbIAT6lmGW9W6WzlHiu9PS8uSuUYU+Do+j1baiFp3H25XEVxDIG2g==}
@@ -23429,10 +23416,6 @@ packages:
 
   mute-stream@0.0.8:
     resolution: {integrity: sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==}
-
-  mute-stream@1.0.0:
-    resolution: {integrity: sha512-avsJQhyd+680gKXyG/sQc0nXaC6rBkPOfyHYcFb9+hdkqQkR9bdnkJ0AMZhke0oesPqIO+mFFJ+IdBc7mst4IA==}
-    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
   mute-stream@2.0.0:
     resolution: {integrity: sha512-WWdIxpyjEn+FhQJQQv9aQAYlHoNVdzIzUySNV1gHUPDSdZJ3yZn7pAAbQcV7B56Mvu881q9FZV+0Vx2xC44VWA==}
@@ -26416,10 +26399,6 @@ packages:
   search-insights@2.17.3:
     resolution: {integrity: sha512-RQPdCYTa8A68uM2jwxoY842xDhvx3E5LFL1LxvxCNMev4o5mLuokczhzjAgGwUZBAmOKZknArSxLKmXtIi2AxQ==}
 
-  section-matter@1.0.0:
-    resolution: {integrity: sha512-vfD3pmTzGpufjScBh50YHKzEu2lxBWhVEHsNGoEXmCmn2hKGfeNLYMzCJpe8cD7gqX7TJluOVpBkAequ6dgMmA==}
-    engines: {node: '>=4'}
-
   secure-json-parse@2.7.0:
     resolution: {integrity: sha512-6aU+Rwsezw7VR8/nyvKTx8QpWH9FrcYiXXlqC4z5d5XQBDRqtbfsRjnwGyqbi3gddNtWHuEk9OANUotL26qKUw==}
 
@@ -27182,10 +27161,6 @@ packages:
   strip-ansi@7.1.0:
     resolution: {integrity: sha512-iq6eVVI64nQQTRYq2KtEg2d2uU7LElhTJwsH4YzIHZshxlgZms/wIc4VoDQTlG/IvVIrBKG06CrZnp0qv7hkcQ==}
     engines: {node: '>=12'}
-
-  strip-bom-string@1.0.0:
-    resolution: {integrity: sha512-uCC2VHvQRYu+lMh4My/sFNmF2klFymLX1wHJeXnbEJERpV/ZsVuonzerjfrGpIGF7LBVa1O7i9kjiWvJiFck8g==}
-    engines: {node: '>=0.10.0'}
 
   strip-bom@2.0.0:
     resolution: {integrity: sha512-kwrX1y7czp1E69n2ajbG65mIo9dqvJ+8aBQXOGVxqwvNbsXdFM6Lq37dLAY3mknUwru8CfcCbfOLL/gMo+fi3g==}
@@ -29457,6 +29432,11 @@ packages:
 
   yup@1.4.0:
     resolution: {integrity: sha512-wPbgkJRCqIf+OHyiTBQoJiP5PFuAXaWiJK6AmYkzQAh5/c2K9hzSApBZG5wV9KoKSePF7sAxmNSvh/13YHkFDg==}
+
+  z-schema@6.0.2:
+    resolution: {integrity: sha512-9fQb2ZhpMD0ZQXYw0ll5ya6uLQm3Xtt4DXY2RV3QO1QVI4ihSzSWirlgkDsMgGg4qK0EV4tLOJgRSH2bn0cbIw==}
+    engines: {node: '>=16.0.0'}
+    hasBin: true
 
   zen-observable-ts@1.1.0:
     resolution: {integrity: sha512-1h4zlLSqI2cRLPJUHJFL8bCWHhkpuXkF+dbGkRaWjgDIG26DmzyshUMrdV/rL3UnR+mhaX4fRq8LPouq0MYYIA==}
@@ -31834,13 +31814,6 @@ snapshots:
   '@contenthook/browser@1.4.0':
     dependencies:
       dotenv: 16.4.5
-
-  '@contenthook/cli@1.5.0':
-    dependencies:
-      chalk: 5.3.0
-      dotenv: 16.4.5
-      gray-matter: 4.0.3
-      inquirer: 9.3.7
 
   '@contenthook/node@1.5.0':
     dependencies:
@@ -43592,13 +43565,6 @@ snapshots:
 
   graphql@16.9.0: {}
 
-  gray-matter@4.0.3:
-    dependencies:
-      js-yaml: 3.14.1
-      kind-of: 6.0.3
-      section-matter: 1.0.0
-      strip-bom-string: 1.0.0
-
   growl@1.10.5: {}
 
   growly@1.3.0: {}
@@ -44328,21 +44294,6 @@ snapshots:
       strip-ansi: 6.0.1
       through: 2.3.8
       wrap-ansi: 6.2.0
-
-  inquirer@9.3.7:
-    dependencies:
-      '@inquirer/figures': 1.0.8
-      ansi-escapes: 4.3.2
-      cli-width: 4.1.0
-      external-editor: 3.1.0
-      mute-stream: 1.0.0
-      ora: 5.4.1
-      run-async: 3.0.0
-      rxjs: 7.8.1
-      string-width: 4.2.3
-      strip-ansi: 6.0.1
-      wrap-ansi: 6.2.0
-      yoctocolors-cjs: 2.1.2
 
   inspect-with-kind@1.0.5:
     dependencies:
@@ -47256,8 +47207,6 @@ snapshots:
   mustache@4.2.0: {}
 
   mute-stream@0.0.8: {}
-
-  mute-stream@1.0.0: {}
 
   mute-stream@2.0.0: {}
 
@@ -50744,11 +50693,6 @@ snapshots:
 
   search-insights@2.17.3: {}
 
-  section-matter@1.0.0:
-    dependencies:
-      extend-shallow: 2.0.1
-      kind-of: 6.0.3
-
   secure-json-parse@2.7.0: {}
 
   secure-json-parse@3.0.1: {}
@@ -51727,8 +51671,6 @@ snapshots:
   strip-ansi@7.1.0:
     dependencies:
       ansi-regex: 6.1.0
-
-  strip-bom-string@1.0.0: {}
 
   strip-bom@2.0.0:
     dependencies:
@@ -54186,6 +54128,14 @@ snapshots:
       tiny-case: 1.0.3
       toposort: 2.0.2
       type-fest: 2.19.0
+
+  z-schema@6.0.2:
+    dependencies:
+      lodash.get: 4.4.2
+      lodash.isequal: 4.5.0
+      validator: 13.12.0
+    optionalDependencies:
+      commander: 11.1.0
 
   zen-observable-ts@1.1.0:
     dependencies:

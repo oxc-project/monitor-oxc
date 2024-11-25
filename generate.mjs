@@ -43,7 +43,9 @@ const ignoreList = new Set([
 
 const ignorePrefixes = [
   "@types", "@tsconfig", "@tsconfig", "@next", "@esbuild", "@nrwl", "@rollup", "@mui", "workbox",
-  "@swc", "esbuild-", "es6-", "es5-", "@nx", "@firebase", "@angular", "turbo-", "@storybook", "metro"
+  "@swc", "esbuild-", "es6-", "es5-", "@nx", "@firebase", "@angular", "turbo-", "@storybook", "metro",
+  // removed packages
+  "@contenthook"
 ];
 
 const vue = [
