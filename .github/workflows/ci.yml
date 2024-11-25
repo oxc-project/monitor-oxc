@@ -55,6 +55,13 @@ jobs:
         env:
           RUSTFLAGS: "-C debug-assertions=true"
 
+      - name: Upload Binary
+        uses: actions/upload-artifact@v4
+        with:
+          if-no-files-found: error
+          name: monitor-oxc
+          path: ./target/release/monitor-oxc
+
       # populate pnpm cache
 
       - uses: pnpm/action-setup@v4.0.0
