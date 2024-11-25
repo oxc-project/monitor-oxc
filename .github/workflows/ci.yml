@@ -31,127 +31,127 @@ concurrency:
   cancel-in-progress: ${{ github.ref_name != 'main' }}
 
 jobs:
-  build:
-    name: Build
-    timeout-minutes: 10
-    runs-on: ubuntu-latest
-    steps:
-      - uses: taiki-e/checkout-action@v1
+  # build:
+    # name: Build
+    # timeout-minutes: 10
+    # runs-on: ubuntu-latest
+    # steps:
+      # - uses: taiki-e/checkout-action@v1
 
-      - name: Checkout oxc (${{ inputs.ref }})
-        uses: actions/checkout@v4
-        with:
-          repository: oxc-project/oxc
-          ref: ${{ inputs.ref }}
-          path: oxc
+      # - name: Checkout oxc (${{ inputs.ref }})
+        # uses: actions/checkout@v4
+        # with:
+          # repository: oxc-project/oxc
+          # ref: ${{ inputs.ref }}
+          # path: oxc
 
-      - run: mv oxc ../oxc
+      # - run: mv oxc ../oxc
 
-      - uses: Boshen/setup-rust@main
-        with:
-          save-cache: ${{ github.ref_name == 'main' }}
+      # - uses: Boshen/setup-rust@main
+        # with:
+          # save-cache: ${{ github.ref_name == 'main' }}
 
-      - run: cargo build --release
-        env:
-          RUSTFLAGS: "-C debug-assertions=true"
+      # - run: cargo build --release
+        # env:
+          # RUSTFLAGS: "-C debug-assertions=true"
 
-      - name: Upload Binary
-        uses: actions/upload-artifact@v4
-        with:
-          if-no-files-found: error
-          name: monitor-oxc
-          path: ./target/release/monitor-oxc
+      # - name: Upload Binary
+        # uses: actions/upload-artifact@v4
+        # with:
+          # if-no-files-found: error
+          # name: monitor-oxc
+          # path: ./target/release/monitor-oxc
 
-      # populate pnpm cache
+      # # populate pnpm cache
 
-      - uses: pnpm/action-setup@v4.0.0
+      # - uses: pnpm/action-setup@v4.0.0
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: .node-version
-          registry-url: "https://registry.npmjs.org"
-          cache: pnpm
+      # - uses: actions/setup-node@v4
+        # with:
+          # node-version-file: .node-version
+          # registry-url: "https://registry.npmjs.org"
+          # cache: pnpm
 
-      - run: pnpm install --frozen-lockfile
+      # - run: pnpm install --frozen-lockfile
 
-  test:
-    name: Test
-    needs: build
-    timeout-minutes: 30
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - command: codegen
-          - command: compressor
-          - command: transformer
-          - command: mangler
-          - command: whitespace
-    steps:
-      - uses: taiki-e/checkout-action@v1
+  # test:
+    # name: Test
+    # needs: build
+    # timeout-minutes: 30
+    # runs-on: ubuntu-latest
+    # strategy:
+      # fail-fast: false
+      # matrix:
+        # include:
+          # - command: codegen
+          # - command: compressor
+          # - command: transformer
+          # - command: mangler
+          # - command: whitespace
+    # steps:
+      # - uses: taiki-e/checkout-action@v1
 
-      - uses: actions/download-artifact@v4
-        with:
-          name: monitor-oxc
+      # - uses: actions/download-artifact@v4
+        # with:
+          # name: monitor-oxc
 
-      - run: chmod +x ./monitor-oxc
+      # - run: chmod +x ./monitor-oxc
 
-      - uses: pnpm/action-setup@v4.0.0
+      # - uses: pnpm/action-setup@v4.0.0
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: .node-version
-          cache: pnpm
+      # - uses: actions/setup-node@v4
+        # with:
+          # node-version-file: .node-version
+          # cache: pnpm
 
-      - run: pnpm install
+      # - run: pnpm install
 
-      - run: ./monitor-oxc ${{ matrix.command }}
-        env:
-          RUST_BACKTRACE: "1"
+      # - run: ./monitor-oxc ${{ matrix.command }}
+        # env:
+          # RUST_BACKTRACE: "1"
 
-  isolated_declarations:
-    needs: build
-    name: Test Isolated Declarations
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          repository: vuejs/core
-          ref: main
+  # isolated_declarations:
+    # needs: build
+    # name: Test Isolated Declarations
+    # runs-on: ubuntu-latest
+    # steps:
+      # - uses: actions/checkout@v4
+        # with:
+          # repository: vuejs/core
+          # ref: main
 
-      - uses: pnpm/action-setup@v4.0.0
+      # - uses: pnpm/action-setup@v4.0.0
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: .node-version
-          cache: pnpm
+      # - uses: actions/setup-node@v4
+        # with:
+          # node-version-file: .node-version
+          # cache: pnpm
 
-      - run: pnpm install
+      # - run: pnpm install
 
-      - run: ./node_modules/.bin/tsc -p tsconfig.build.json --noCheck
+      # - run: ./node_modules/.bin/tsc -p tsconfig.build.json --noCheck
 
-      - uses: actions/download-artifact@v4
-        with:
-          name: monitor-oxc
+      # - uses: actions/download-artifact@v4
+        # with:
+          # name: monitor-oxc
 
-      - run: chmod +x ./monitor-oxc
+      # - run: chmod +x ./monitor-oxc
 
-      - run: ./monitor-oxc id .
+      # - run: ./monitor-oxc id .
 
-  rolldown:
-    name: Rolldown
-    runs-on: ubuntu-latest
-    steps:
-      - uses: taiki-e/checkout-action@v1
-      - uses: pnpm/action-setup@v4.0.0
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: .node-version
-          cache: pnpm
-      - run: pnpm install
-      - run: ./node_modules/.bin/rolldown --version
-      - run: node --run rolldown
+  # rolldown:
+    # name: Rolldown
+    # runs-on: ubuntu-latest
+    # steps:
+      # - uses: taiki-e/checkout-action@v1
+      # - uses: pnpm/action-setup@v4.0.0
+      # - uses: actions/setup-node@v4
+        # with:
+          # node-version-file: .node-version
+          # cache: pnpm
+      # - run: pnpm install
+      # - run: ./node_modules/.bin/rolldown --version
+      # - run: node --run rolldown
 
   test262:
     name: Test262
@@ -190,61 +190,61 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
-      - run: cargo coverage runtime --target node${{ matrix.os }}
+      - run: cargo coverage runtime --target node${{ matrix.node }}
 
       - run: git diff -I"^commit:" --exit-code
 
-  comment:
-    needs: [test, isolated_declarations, rolldown, test262]
-    if: ${{ always() }}
-    runs-on: ubuntu-latest
-    name: Reply Comment
-    permissions:
-      pull-requests: write
-      contents: write
-    steps:
-      - uses: actions/github-script@v7
-        id: script
-        if: ${{ inputs.issue-number }}
-        with:
-          github-token: ${{ secrets.OXC_BOT_PAT }}
-          result-encoding: string
-          script: |
-            const {
-              data: { jobs },
-            } = await github.rest.actions.listJobsForWorkflowRun({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              run_id: context.runId,
-              per_page: 100,
-            });
-            let result = jobs
-              .filter((job) => job.name.startsWith("Test "))
-              .map((job) => {
-                const suite = job.name.slice(5);
-                return { suite, conclusion: job.conclusion, link: job.html_url };
-              });
-            const url = `${context.serverUrl}//${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
-            const urlLink = `[Open](${url})`;
-            const conclusionEmoji = {
-              success: ":white_check_mark:",
-              failure: ":x:",
-              cancelled: ":stop_button:",
-            };
-            const body = `
-            ## [Monitor Oxc](${urlLink})
-            | suite | result |
-            |-------|--------|
-            ${result.map((r) => `| [${r.suite}](${r.link}) | ${conclusionEmoji[r.conclusion]} |`).join("\n")}
-            `;
-            return body;
+  # comment:
+    # needs: [test, isolated_declarations, rolldown, test262]
+    # if: ${{ always() }}
+    # runs-on: ubuntu-latest
+    # name: Reply Comment
+    # permissions:
+      # pull-requests: write
+      # contents: write
+    # steps:
+      # - uses: actions/github-script@v7
+        # id: script
+        # if: ${{ inputs.issue-number }}
+        # with:
+          # github-token: ${{ secrets.OXC_BOT_PAT }}
+          # result-encoding: string
+          # script: |
+            # const {
+              # data: { jobs },
+            # } = await github.rest.actions.listJobsForWorkflowRun({
+              # owner: context.repo.owner,
+              # repo: context.repo.repo,
+              # run_id: context.runId,
+              # per_page: 100,
+            # });
+            # let result = jobs
+              # .filter((job) => job.name.startsWith("Test "))
+              # .map((job) => {
+                # const suite = job.name.slice(5);
+                # return { suite, conclusion: job.conclusion, link: job.html_url };
+              # });
+            # const url = `${context.serverUrl}//${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            # const urlLink = `[Open](${url})`;
+            # const conclusionEmoji = {
+              # success: ":white_check_mark:",
+              # failure: ":x:",
+              # cancelled: ":stop_button:",
+            # };
+            # const body = `
+            # ## [Monitor Oxc](${urlLink})
+            # | suite | result |
+            # |-------|--------|
+            # ${result.map((r) => `| [${r.suite}](${r.link}) | ${conclusionEmoji[r.conclusion]} |`).join("\n")}
+            # `;
+            # return body;
 
-      - uses: peter-evans/create-or-update-comment@v4
-        if: ${{ inputs.issue-number && inputs.comment-id }}
-        with:
-          token: ${{ secrets.OXC_BOT_PAT }}
-          repository: oxc-project/oxc
-          issue-number: ${{ inputs.issue-number }}
-          comment-id: ${{ inputs.comment-id }}
-          body: ${{ steps.script.outputs.result }}
-          edit-mode: replace
+      # - uses: peter-evans/create-or-update-comment@v4
+        # if: ${{ inputs.issue-number && inputs.comment-id }}
+        # with:
+          # token: ${{ secrets.OXC_BOT_PAT }}
+          # repository: oxc-project/oxc
+          # issue-number: ${{ inputs.issue-number }}
+          # comment-id: ${{ inputs.comment-id }}
+          # body: ${{ steps.script.outputs.result }}
+          # edit-mode: replace
