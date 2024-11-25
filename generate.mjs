@@ -38,7 +38,9 @@ const ignoreList = new Set([
   // Deprecated: use `rehype-external-links`
   "remark-external-links", "remark-slug",
   // Requires `node-gyp`
-  "@datadog/pprof"
+  "@datadog/pprof",
+  // removed packages
+  "contenthook"
 ]);
 
 const ignorePrefixes = [

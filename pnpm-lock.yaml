@@ -3108,9 +3108,6 @@ importers:
       content-type:
         specifier: latest
         version: 1.0.5
-      contenthook:
-        specifier: latest
-        version: 1.2.0
       conventional-changelog-angular:
         specifier: latest
         version: 8.0.0
@@ -3732,6 +3729,9 @@ importers:
       elliptic:
         specifier: latest
         version: 6.6.1
+      emitter-listener:
+        specifier: latest
+        version: 1.1.2
       emittery:
         specifier: latest
         version: 1.0.3
@@ -10568,14 +10568,6 @@ packages:
   '@commitlint/types@19.5.0':
     resolution: {integrity: sha512-DSHae2obMSMkAtTBSOulg5X7/z+rGLxcXQIkg3OmWvY6wifojge5uVMydfhUvs7yQj+V7jNmRZ2Xzl8GJyqRgg==}
     engines: {node: '>=v18'}
-
-  '@contenthook/browser@1.4.0':
-    resolution: {integrity: sha512-AkKGlCzHDCq0K9IBOARIqso3LzXjtJxCg/I7u/9f+crvN/WUs1njGAo5DZikvEWeiuw/wXD74t5Setk16ligbw==}
-    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
-
-  '@contenthook/node@1.5.0':
-    resolution: {integrity: sha512-DTnWOhqClvfrRi9lnedPrFTKVd6Kxc/TnID/00+2YKDVMqlGhBY/wfjKASuzSQYe8jHO/OovVp8gdi8fXZFeuQ==}
-    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
   '@conventional-changelog/git-client@1.0.1':
     resolution: {integrity: sha512-PJEqBwAleffCMETaVm/fUgHldzBE35JFk3/9LL6NUA5EXa3qednu+UT6M7E5iBu3zIQZCULYIiZ90fBYHt6xUw==}
@@ -17425,10 +17417,6 @@ packages:
     resolution: {integrity: sha512-nTjqfcBFEipKdXCv4YDQWCfmcLZKm81ldF0pAopTvyrFGVbcR6P/VAAd5G7N+0tTr8QqiU0tFadD6FK4NtJwOA==}
     engines: {node: '>= 0.6'}
 
-  contenthook@1.2.0:
-    resolution: {integrity: sha512-/FIzFt7kSv/NjQ++oZCsj2RUDc4yipAhvyQBX3jPnUbsx7oG1jcKyf11GlK+d+juLHNhbhPP1T+kpAOD8W1YXA==}
-    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
-
   conventional-changelog-angular@7.0.0:
     resolution: {integrity: sha512-ROjNchA9LgfNMTTFSIWPzebCwOGFdgkEq45EnvvrmSLvCtAw0HSmrCs7/ty+wAeYUZyNay0YMUNYFTRL72PkBQ==}
     engines: {node: '>=16'}
@@ -18635,6 +18623,9 @@ packages:
 
   elliptic@6.6.1:
     resolution: {integrity: sha512-RaddvvMatK2LJHqFJ+YA4WysVN5Ita9E35botqIYspQ4TkRAlCicdzKOjlyv/1Za5RyTNn7di//eEV0uTAfe3g==}
+
+  emitter-listener@1.1.2:
+    resolution: {integrity: sha512-Bt1sBAGFHY9DKY+4/2cV6izcKJUf5T7/gkdmkxzX/qv9CcGH8xSwVRW5mtX03SWJtRTWSOpzCuWN9rBFYZepZQ==}
 
   emittery@0.13.1:
     resolution: {integrity: sha512-DeWwawk6r5yR9jFgnDKYt4sLS0LmHJJi3ZOnb5/JdbYwj3nW+FxQnHIjhBKz8YLC7oRNPVM9NQ47I3CVx34eqQ==}
@@ -31811,14 +31802,6 @@ snapshots:
       '@types/conventional-commits-parser': 5.0.0
       chalk: 5.3.0
 
-  '@contenthook/browser@1.4.0':
-    dependencies:
-      dotenv: 16.4.5
-
-  '@contenthook/node@1.5.0':
-    dependencies:
-      dotenv: 16.4.5
-
   '@conventional-changelog/git-client@1.0.1(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)':
     dependencies:
       '@types/semver': 7.5.8
@@ -40033,12 +40016,6 @@ snapshots:
 
   content-type@1.0.5: {}
 
-  contenthook@1.2.0:
-    dependencies:
-      '@contenthook/browser': 1.4.0
-      '@contenthook/node': 1.5.0
-      dotenv: 16.4.5
-
   conventional-changelog-angular@7.0.0:
     dependencies:
       compare-func: 2.0.0
@@ -41372,6 +41349,10 @@ snapshots:
       inherits: 2.0.4
       minimalistic-assert: 1.0.1
       minimalistic-crypto-utils: 1.0.1
+
+  emitter-listener@1.1.2:
+    dependencies:
+      shimmer: 1.2.1
 
   emittery@0.13.1: {}
 
