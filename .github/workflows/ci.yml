@@ -105,31 +105,6 @@ jobs:
         env:
           RUST_BACKTRACE: "1"
 
-  compile-time:
-    name: Compile Time
-    runs-on: ubuntu-latest
-    if: ${{ github.ref_name == 'main' }}
-    outputs:
-      time: ${{ steps.run.outputs.COMPILE_TIME }}
-    steps:
-      - uses: taiki-e/checkout-action@v1
-      - name: Checkout oxc
-        uses: actions/checkout@v4
-        with:
-          repository: oxc-project/oxc
-          ref: main
-          path: oxc
-      - run: mv oxc ../oxc
-      - uses: Boshen/setup-rust@main
-      - run: cargo clean # build from scatch using local system cache to avoid download from crates.io
-      - id: run
-        run: |
-          /usr/bin/time -f "%e" -o output cargo build --release
-          cat output
-          COMPILE_TIME=$(cat output)
-          echo $COMPILE_TIME
-          echo "COMPILE_TIME=$COMPILE_TIME" >> $GITHUB_OUTPUT
-
   isolated_declarations:
     needs: build
     name: Test Isolated Declarations
