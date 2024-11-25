@@ -156,12 +156,23 @@ jobs:
   test262:
     name: Test262
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - node: 22
+          # - node: 20
+          # - node: 18
+          # - node: 16
+          # - node: 14
+          # - node: 12
+          - node: 10
     steps:
       - name: Checkout oxc (${{ inputs.ref }})
         uses: actions/checkout@v4
         with:
           repository: oxc-project/oxc
-          ref: ${{ inputs.ref }}
+          ref: runtime-node-version # ${{ inputs.ref }}
 
       - uses: actions/checkout@v4
         with:
@@ -177,11 +188,11 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22.x
+          node-version: ${{ matrix.node }}
 
-      - run: cargo coverage runtime
+      - run: cargo coverage runtime --target node${{ matrix.os }}
 
-      - run: git diff --exit-code
+      - run: git diff -I"^commit:" --exit-code
 
   comment:
     needs: [test, isolated_declarations, rolldown, test262]
