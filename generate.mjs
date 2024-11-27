@@ -9,18 +9,19 @@ const ignoreList = new Set([
   // CLIs don't work
   "npm", "yarn", "pnpm", "nx", "vitest", "turbo",
   // NO ESM export
-  "@babel/compat-data", "@babel/runtime", "@babel/runtime-corejs3", "@esbuild/linux-x64", "@graphql-typed-document-node/core",
+  "@babel/compat-data", "@babel/runtime", "@babel/runtime-corejs3", "@graphql-typed-document-node/core",
   "@jest/globals", "@octokit/openapi-types", "@rushstack/eslint-patch",
   "@testing-library/jest-dom", "assert", "babel-runtime", "constants-browserify", "csstype", "devtools-protocol",
   "es-iterator-helpers", "eslint-module-utils", "ext", "fbjs", "file-system-cache", "language-subtag-registry",
-  "node-releases", "octokit/types", "readdir-glob", "source-map-support", "spdx-exceptions", "spdx-license-ids",
+  "node-releases", "readdir-glob", "source-map-support", "spdx-exceptions", "spdx-license-ids",
   "@tokenizer/token", "css-color-names", "eslint-config-next", "extract-files", "jest-watch-typeahead",
   "limiter", "react-app-polyfill", "react-dev-utils", "react-error-overlay",
   "timers-ext", "unfetch", "bare-path", "bare-os", "bare-fs",
   "@noble/hashes", "chromium-bidi", "pg-cloudflare", "react-scripts", "sanitize.css", "vue-template-compiler", "@csstools/normalize.css",
+  "@eslint/core", "pn", "dir-glob", "globby", "@backstage/backend-common", "teeny-request",
   // broken in node
-  "bootstrap", "@vitest/expect", "wait-on", "metro-symbolicate", "react-devtools-core",
-  "nice-napi", "envdb", "@babel/cli", "webpack-subresource-integrity", "opencollective-postinstall",
+  "bootstrap", "@vitest/expect", "wait-on", "react-devtools-core",
+  "nice-napi", "@babel/cli", "webpack-subresource-integrity", "opencollective-postinstall",
   "react-dropzone",
   // types
   "type", "type-fest", "types-registry", "undici-types", "@octokit/types", "@schematics/angular",
@@ -35,21 +36,17 @@ const ignoreList = new Set([
   "js-beautify",
   // need transform to cjs
   "fast-json-patch",
-  // Deprecated: use `rehype-external-links`
-  "remark-external-links", "remark-slug",
   // Requires `node-gyp`
-  "@datadog/pprof",
-  // removed packages
-  "contenthook",
-  // transfomer inserts incorrect helper
-  "@azure/core-rest-pipeline"
+  "@datadog/pprof", "cpu-features",
+  // has template files
+  "@nestjs/schematics"
 ]);
 
 const ignorePrefixes = [
   "@types", "@tsconfig", "@tsconfig", "@next", "@esbuild", "@nrwl", "@rollup", "@mui", "workbox",
   "@swc", "esbuild-", "es6-", "es5-", "@nx", "@firebase", "@angular", "turbo-", "@storybook", "metro",
-  // removed packages
-  "@contenthook"
+  "@img", "@parcel",
+  "@smithy", "@aws-sdk", "@google-cloud",
 ];
 
 const vue = [
