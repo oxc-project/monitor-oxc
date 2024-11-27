@@ -42,6 +42,8 @@ const PATH_IGNORES: &[&str] = &[
     "node_modules/.bin/sha.js",
     // not strict mode
     "node_modules/esprima/test/test.js",
+    "node_modules/memjs/test/client_test.js",
+    "node_modules/lunr/test/pipeline_test.js",
     // broken syntax
     "node_modules/eslint-plugin-flowtype/dist/bin/checkDocs.js",
     "node_modules/limiter/test/tokenbucket-test.js",
