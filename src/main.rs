@@ -3,7 +3,7 @@ use std::{path::PathBuf, process::ExitCode};
 use pico_args::Arguments;
 
 use monitor_oxc::{
-    codegen::CodegenRunner, compressor::CompressorRunner, isolated_declarations,
+    codegen::CodegenRunner, compressor::CompressorRunner, dce::DceRunner, isolated_declarations,
     mangler::ManglerRunner, remove_whitespace::RemoveWhitespaceRunner,
     transformer::TransformerRunner, NodeModulesRunner,
 };
@@ -28,6 +28,10 @@ fn main() -> ExitCode {
 
     if matches!(task, "compress" | "compressor" | "default") {
         node_modules_runner.add_case(Box::new(CompressorRunner));
+    }
+
+    if matches!(task, "dce" | "default") {
+        node_modules_runner.add_case(Box::new(DceRunner));
     }
 
     if matches!(task, "transform" | "transformer" | "default") {

@@ -21,7 +21,7 @@ use crate::Diagnostic;
 pub struct Driver {
     // options
     pub transform: Option<TransformOptions>,
-    pub compress: bool,
+    pub compress: Option<CompressOptions>,
     pub mangle: bool,
     pub remove_whitespace: bool,
     // states
@@ -60,7 +60,7 @@ impl CompilerInterface for Driver {
     }
 
     fn compress_options(&self) -> Option<CompressOptions> {
-        self.compress.then(CompressOptions::default)
+        self.compress
     }
 
     fn mangle_options(&self) -> Option<MangleOptions> {
@@ -70,8 +70,8 @@ impl CompilerInterface for Driver {
     fn codegen_options(&self) -> Option<CodegenOptions> {
         Some(CodegenOptions {
             minify: self.remove_whitespace,
-            comments: !self.compress,
-            source_map_path: (!self.compress).then(|| self.path.clone()),
+            comments: self.compress.is_none(),
+            source_map_path: self.compress.is_none().then(|| self.path.clone()),
             ..CodegenOptions::default()
         })
     }

@@ -85,6 +85,7 @@ jobs:
         include:
           - command: codegen
           - command: compressor
+          - command: dce
           - command: transformer
           - command: mangler
           - command: whitespace
