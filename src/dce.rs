@@ -2,11 +2,11 @@ use oxc::minifier::CompressOptions;
 
 use crate::{Case, Driver, Source};
 
-pub struct CompressorRunner;
+pub struct DceRunner;
 
-impl Case for CompressorRunner {
+impl Case for DceRunner {
     fn name(&self) -> &'static str {
-        "Compressor"
+        "DCE"
     }
 
     fn run_test(&self, source: &Source) -> bool {
@@ -14,6 +14,6 @@ impl Case for CompressorRunner {
     }
 
     fn driver(&self) -> Driver {
-        Driver { compress: Some(CompressOptions::default()), ..Driver::default() }
+        Driver { compress: Some(CompressOptions::dead_code_elimination()), ..Driver::default() }
     }
 }
