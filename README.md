@@ -32,7 +32,9 @@
 
 (check out our [package.json](https://github.com/oxc-project/monitor-oxc/blob/main/package.json) 😆)
 
-For all js / ts files in `node_modules`, apply idempotency test:
+For all js / ts files in `node_modules`, apply idempotency test. 
+
+Read more about our [test infrastrucutre](https://oxc.rs/docs/learn/architecture/test.html)
 
 ## Development
 
