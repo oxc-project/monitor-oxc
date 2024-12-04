@@ -1,5 +1,6 @@
 use std::{
     mem,
+    ops::ControlFlow,
     path::{Path, PathBuf},
 };
 
@@ -8,7 +9,7 @@ use oxc::{
     diagnostics::OxcDiagnostic,
     mangler::MangleOptions,
     minifier::CompressOptions,
-    parser::ParseOptions,
+    parser::{ParseOptions, ParserReturn},
     span::SourceType,
     transformer::TransformOptions,
     CompilerInterface,
@@ -39,8 +40,16 @@ impl CompilerInterface for Driver {
             .filter(|d| {
                 !d.message
                     .contains("add @babel/plugin-transform-modules-commonjs to your Babel config")
-            });
+            })
+            .filter(|d| d.message != "The keyword 'await' is reserved");
         self.errors.extend(errors);
+    }
+
+    fn after_parse(&mut self, parser_return: &mut ParserReturn) -> ControlFlow<()> {
+        parser_return.errors = mem::take(&mut parser_return.errors).into_iter().filter(|e| {
+            e.message != "`await` is only allowed within async functions and at the top levels of modules"
+        }).collect::<Vec<_>>();
+        ControlFlow::Continue(())
     }
 
     fn after_codegen(&mut self, ret: CodegenReturn) {
@@ -85,6 +94,10 @@ impl Driver {
         source_type: SourceType,
     ) -> Result<String, Vec<Diagnostic>> {
         self.path = source_path.to_path_buf();
+        let mut source_type = source_type;
+        if source_path.extension().unwrap() == "js" {
+            source_type = source_type.with_unambiguous(true);
+        }
         self.compile(source_text, source_type, source_path);
         if self.errors.is_empty() {
             Ok(mem::take(&mut self.printed))
