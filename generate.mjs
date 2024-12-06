@@ -39,7 +39,9 @@ const ignoreList = new Set([
   // Requires `node-gyp`
   "@datadog/pprof", "cpu-features",
   // has template files
-  "@nestjs/schematics"
+  "@nestjs/schematics",
+  // breaks node.js > v22.7.0
+  "esm"
 ]);
 
 const ignorePrefixes = [
