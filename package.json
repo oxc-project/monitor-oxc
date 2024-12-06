@@ -3,7 +3,7 @@
   "private": true,
   "packageManager": "pnpm@9.14.4",
   "volta": {
-    "node": "22.7.0"
+    "node": "22.12.0"
   },
   "type": "module",
   "scripts": {
@@ -783,6 +783,7 @@
     "base64-arraybuffer": "latest",
     "base64-js": "latest",
     "base64id": "latest",
+    "base64url": "latest",
     "basic-auth": "latest",
     "basic-ftp": "latest",
     "batch": "latest",
@@ -1262,7 +1263,6 @@
     "eslint-utils": "latest",
     "eslint-visitor-keys": "latest",
     "eslint-webpack-plugin": "latest",
-    "esm": "latest",
     "esniff": "latest",
     "espree": "latest",
     "esprima": "latest",

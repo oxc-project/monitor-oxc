@@ -2316,6 +2316,9 @@ importers:
       base64id:
         specifier: latest
         version: 2.0.0
+      base64url:
+        specifier: latest
+        version: 3.0.1
       basic-auth:
         specifier: latest
         version: 2.0.1
@@ -3753,9 +3756,6 @@ importers:
       eslint-webpack-plugin:
         specifier: latest
         version: 4.2.0(eslint@9.15.0(jiti@2.4.1)(supports-color@9.4.0))(webpack@5.96.1)
-      esm:
-        specifier: latest
-        version: 3.2.25
       esniff:
         specifier: latest
         version: 2.0.1
@@ -12201,7 +12201,6 @@ packages:
 
   '@msgpackr-extract/msgpackr-extract-linux-x64@3.0.3':
     resolution: {integrity: sha512-cvwNfbP07pKUfq1uH+S6KJ7dT9K8WOE4ZiAcsrSes+UY55E/0jLYc+vq+DO7jlmqRb5zAggExKm0H7O/CBaesg==}
-    cpu: [x64]
     os: [linux]
 
   '@msgpackr-extract/msgpackr-extract-win32-x64@3.0.3':
@@ -16494,6 +16493,10 @@ packages:
   base64id@2.0.0:
     resolution: {integrity: sha512-lGe34o6EHj9y3Kts9R4ZYs/Gr+6N7MCaMlIFA3F1R2O5/m7K06AxfSeO5530PEERE6/WyEg3lsuyw4GHlPZHog==}
     engines: {node: ^4.5.0 || >= 5.9}
+
+  base64url@3.0.1:
+    resolution: {integrity: sha512-ir1UPr3dkwexU7FdV8qBBbNDRUhMmIekYMFZfi+C/sLNnRESKPl23nB9b2pltqfOQNnGzsDdId90AEtG5tCx4A==}
+    engines: {node: '>=6.0.0'}
 
   base@0.11.2:
     resolution: {integrity: sha512-5T6P4xPgpp0YDFvSWwEZ4NoE3aM4QBQXDzmVbraCkFj8zHM+mba8SyqB5DbZWyR7mYHo6Y7BdQo3MoA4m0TeQg==}
@@ -40161,6 +40164,8 @@ snapshots:
   base64-stream@1.0.0: {}
 
   base64id@2.0.0: {}
+
+  base64url@3.0.1: {}
 
   base@0.11.2:
     dependencies:
