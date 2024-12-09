@@ -1,8 +1,8 @@
-use std::fs;
+use std::{fs, panic::RefUnwindSafe};
 
 use crate::{Diagnostic, Driver, NodeModulesRunner, Source};
 
-pub trait Case {
+pub trait Case: RefUnwindSafe {
     fn name(&self) -> &'static str;
 
     fn run_test(&self, _source: &Source) -> bool {

@@ -9,7 +9,7 @@ pub mod transformer;
 mod case;
 mod driver;
 
-use std::{fs, path::PathBuf, process::Command};
+use std::{fs, panic::catch_unwind, path::PathBuf, process::Command};
 
 use console::Style;
 use similar::{ChangeTag, TextDiff};
@@ -128,7 +128,20 @@ impl NodeModulesRunner {
 
     fn run_case(&self, case: &dyn Case) -> Result<(), Vec<Diagnostic>> {
         println!("Running {}.", case.name());
-        let results = self.files.iter().map(|source| case.test(source)).collect::<Vec<_>>();
+        let results = self
+            .files
+            .iter()
+            .map(|source| {
+                catch_unwind(|| case.test(source)).map_err(|err| {
+                    vec![Diagnostic {
+                        case: case.name(),
+                        path: source.path.clone(),
+                        message: format!("{err:?}"),
+                    }]
+                })
+            })
+            .flatten()
+            .collect::<Vec<_>>();
         println!("Ran {} times.", results.len());
         let diagnostics = results
             .into_iter()
