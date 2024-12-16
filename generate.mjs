@@ -41,7 +41,9 @@ const ignoreList = new Set([
   // has template files
   "@nestjs/schematics",
   // breaks node.js > v22.7.0
-  "esm"
+  "esm",
+  // contains a global `var hasOwnProperty = Object.prototype.hasOwnProperty;` which got polluted from some where.
+  "react-shallow-renderer"
 ]);
 
 const ignorePrefixes = [
