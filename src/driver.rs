@@ -97,7 +97,7 @@ impl Driver {
         source_type: SourceType,
     ) -> Result<String, Vec<Diagnostic>> {
         if self.dce {
-            return self.dce(source_text, source_type);
+            return Ok(Self::dce(source_text, source_type));
         }
         self.path = source_path.to_path_buf();
         let mut source_type = source_type;
@@ -121,15 +121,11 @@ impl Driver {
         }
     }
 
-    pub fn dce(
-        &mut self,
-        source_text: &str,
-        source_type: SourceType,
-    ) -> Result<String, Vec<Diagnostic>> {
+    pub fn dce(source_text: &str, source_type: SourceType) -> String {
         let allocator = Allocator::default();
         let mut ret = Parser::new(&allocator, source_text, source_type).parse();
         let program = &mut ret.program;
         Compressor::new(&allocator, CompressOptions::default()).dead_code_elimination(program);
-        Ok(Codegen::new().build(program).code)
+        Codegen::new().build(program).code
     }
 }
