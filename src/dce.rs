@@ -1,5 +1,3 @@
-use oxc::minifier::CompressOptions;
-
 use crate::{Case, Driver, Source};
 
 pub struct DceRunner;
@@ -14,6 +12,6 @@ impl Case for DceRunner {
     }
 
     fn driver(&self) -> Driver {
-        Driver { compress: Some(CompressOptions::dead_code_elimination()), ..Driver::default() }
+        Driver { dce: true, ..Driver::default() }
     }
 }

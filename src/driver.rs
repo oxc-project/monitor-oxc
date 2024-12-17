@@ -5,11 +5,13 @@ use std::{
 };
 
 use oxc::{
+    allocator::Allocator,
+    codegen::Codegen,
     codegen::{CodegenOptions, CodegenReturn},
     diagnostics::OxcDiagnostic,
     mangler::MangleOptions,
-    minifier::CompressOptions,
-    parser::{ParseOptions, ParserReturn},
+    minifier::{CompressOptions, Compressor},
+    parser::{ParseOptions, Parser, ParserReturn},
     span::SourceType,
     transformer::TransformOptions,
     CompilerInterface,
@@ -23,6 +25,7 @@ pub struct Driver {
     // options
     pub transform: Option<TransformOptions>,
     pub compress: Option<CompressOptions>,
+    pub dce: bool,
     pub mangle: bool,
     pub remove_whitespace: bool,
     // states
@@ -93,6 +96,9 @@ impl Driver {
         source_text: &str,
         source_type: SourceType,
     ) -> Result<String, Vec<Diagnostic>> {
+        if self.dce {
+            return self.dce(source_text, source_type);
+        }
         self.path = source_path.to_path_buf();
         let mut source_type = source_type;
         if source_path.extension().unwrap() == "js" {
@@ -113,5 +119,17 @@ impl Driver {
                 .collect();
             Err(errors)
         }
+    }
+
+    pub fn dce(
+        &mut self,
+        source_text: &str,
+        source_type: SourceType,
+    ) -> Result<String, Vec<Diagnostic>> {
+        let allocator = Allocator::default();
+        let mut ret = Parser::new(&allocator, source_text, source_type).parse();
+        let program = &mut ret.program;
+        Compressor::new(&allocator, CompressOptions::default()).dead_code_elimination(program);
+        Ok(Codegen::new().build(program).code)
     }
 }
