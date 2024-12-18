@@ -5,22 +5,30 @@ use pico_args::Arguments;
 use monitor_oxc::{
     codegen::CodegenRunner, compressor::CompressorRunner, dce::DceRunner, isolated_declarations,
     mangler::ManglerRunner, remove_whitespace::RemoveWhitespaceRunner,
-    transformer::TransformerRunner, NodeModulesRunner,
+    transformer::TransformerRunner, NodeModulesRunner, NodeModulesRunnerOptions,
 };
 
 fn main() -> ExitCode {
     let mut args = Arguments::from_env();
 
-    let command = args.subcommand().expect("subcommand");
-    let task = command.as_deref().unwrap_or("default");
-    let filter: Option<String> = args.opt_value_from_str("--filter").unwrap();
+    let options = NodeModulesRunnerOptions {
+        filter: args.opt_value_from_str("--filter").unwrap(),
+        no_restore: args.contains("--no-restore"),
+    };
+
+    let task = args.free_from_str().unwrap_or_else(|_| "default".to_string());
+    let task = task.as_str();
+
+    println!("Task: {task}");
 
     if matches!(task, "id") {
         let path_to_vue = args.opt_free_from_str::<PathBuf>().unwrap();
         return isolated_declarations::test(path_to_vue);
     }
 
-    let mut node_modules_runner = NodeModulesRunner::new(filter.as_deref());
+    println!("Options: {options:?}");
+
+    let mut node_modules_runner = NodeModulesRunner::new(options);
 
     if matches!(task, "codegen" | "default") {
         node_modules_runner.add_case(Box::new(CodegenRunner));

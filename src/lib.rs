@@ -76,13 +76,20 @@ impl Source {
     }
 }
 
+#[derive(Debug)]
+pub struct NodeModulesRunnerOptions {
+    pub filter: Option<String>,
+    pub no_restore: bool,
+}
+
 pub struct NodeModulesRunner {
+    pub options: NodeModulesRunnerOptions,
     pub files: Vec<Source>,
     pub cases: Vec<Box<dyn Case>>,
 }
 
 impl NodeModulesRunner {
-    pub fn new(filter: Option<&str>) -> Self {
+    pub fn new(options: NodeModulesRunnerOptions) -> Self {
         let mut files = vec![];
         for entry in WalkDir::new("node_modules/.pnpm") {
             let dir_entry = entry.unwrap();
@@ -90,7 +97,7 @@ impl NodeModulesRunner {
             if !path.is_file() {
                 continue;
             }
-            if let Some(filter) = filter.as_ref() {
+            if let Some(filter) = options.filter.as_ref() {
                 let path = path.to_string_lossy();
                 if path.contains(filter) {
                     println!("Filtered {path}");
@@ -112,7 +119,7 @@ impl NodeModulesRunner {
             files.push(Source { path: path.to_path_buf(), source_type, source_text });
         }
         println!("Collected {} files.", files.len());
-        Self { files, cases: vec![] }
+        Self { options, files, cases: vec![] }
     }
 
     pub fn add_case(&mut self, case: Box<dyn Case>) {
@@ -151,7 +158,9 @@ impl NodeModulesRunner {
             return Err(diagnostics);
         }
         let result = Self::runtime_test(case.name());
-        self.restore_files(case.name());
+        if !self.options.no_restore {
+            self.restore_files(case.name());
+        }
         result
     }
 
