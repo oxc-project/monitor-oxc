@@ -169,7 +169,7 @@ jobs:
           show-progress: false
           repository: tc39/test262
           path: tasks/coverage/test262
-          ref: dc0082c5ea347e5ecb585c1d7ebf4555aa429528
+          ref: c4317b0cb578d3fe7940f65b27162638efb9b34d
 
       - uses: Boshen/setup-rust@main
         with:
