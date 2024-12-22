@@ -3602,7 +3602,7 @@ importers:
         version: 2.2.2
       entities:
         specifier: latest
-        version: 5.0.0
+        version: 6.0.0
       env-paths:
         specifier: latest
         version: 3.0.0
@@ -19148,8 +19148,8 @@ packages:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
     engines: {node: '>=0.12'}
 
-  entities@5.0.0:
-    resolution: {integrity: sha512-BeJFvFRJddxobhvEdm5GqHzRV/X+ACeuw0/BuuxsCh1EUZcAIz8+kYmBp/LrQuloy6K1f3a0M7+IhmZ7QnkISA==}
+  entities@6.0.0:
+    resolution: {integrity: sha512-aKstq2TDOndCn4diEyp9Uq/Flu2i1GlLkc6XIDQSDMuaFE3OPW5OphLCyQ5SpSJZTb4reN+kTcYru5yIfXoRPw==}
     engines: {node: '>=0.12'}
 
   env-paths@2.2.1:
@@ -21077,8 +21077,8 @@ packages:
   hookable@5.5.3:
     resolution: {integrity: sha512-Yc+BQe8SvoXH1643Qez1zqLRmbA5rCL+sSmk6TVos0LWVfNIB7PGncdlId77WzLGSIB5KaWgTaNTs2lNVEI6VQ==}
 
-  hookified@1.5.1:
-    resolution: {integrity: sha512-sZQQ5QgNVQUXffNd66qefqOMXA88CXIV0gW8I4bMAJYeu1ZCJsyy7sdchaoHzRyS4o0cXw3krNDXkljZr7uexw==}
+  hookified@1.6.0:
+    resolution: {integrity: sha512-se7cpwTA+iA/eY548Bu03JJqBiEZAqU2jnyKdj5B5qurtBg64CZGHTgqCv4Yh7NWu6FGI09W61MCq+NoPj9GXA==}
 
   hoopy@0.1.4:
     resolution: {integrity: sha512-HRcs+2mr52W0K+x8RzcLzuPPmVIKMSv97RGHy0Ea9y/mpcaK+xTrjICA04KAHi4GRzxliNqNJEFYWHghy3rSfQ==}
@@ -41084,7 +41084,7 @@ snapshots:
 
   cacheable@1.8.6:
     dependencies:
-      hookified: 1.5.1
+      hookified: 1.6.0
       keyv: 5.2.3
 
   cachedir@2.4.0: {}
@@ -43365,7 +43365,7 @@ snapshots:
 
   entities@4.5.0: {}
 
-  entities@5.0.0: {}
+  entities@6.0.0: {}
 
   env-paths@2.2.1: {}
 
@@ -44845,7 +44845,7 @@ snapshots:
     dependencies:
       cacheable: 1.8.6
       flatted: 3.3.2
-      hookified: 1.5.1
+      hookified: 1.6.0
 
   flat@5.0.2: {}
 
@@ -45874,7 +45874,7 @@ snapshots:
 
   hookable@5.5.3: {}
 
-  hookified@1.5.1: {}
+  hookified@1.6.0: {}
 
   hoopy@0.1.4: {}
 
