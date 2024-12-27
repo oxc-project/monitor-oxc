@@ -97,14 +97,6 @@ impl NodeModulesRunner {
             if !path.is_file() {
                 continue;
             }
-            if let Some(filter) = options.filter.as_ref() {
-                let path = path.to_string_lossy();
-                if path.contains(filter) {
-                    println!("Filtered {path}");
-                } else {
-                    continue;
-                }
-            }
             let Ok(source_type) = SourceType::from_path(path) else {
                 continue;
             };
@@ -113,6 +105,14 @@ impl NodeModulesRunner {
             }
             if source_type.is_typescript_definition() {
                 continue;
+            }
+            if let Some(filter) = options.filter.as_ref() {
+                let path = path.to_string_lossy();
+                if path.contains(filter) {
+                    println!("Filtered {path}");
+                } else {
+                    continue;
+                }
             }
             let source_text =
                 fs::read_to_string(path).unwrap_or_else(|e| panic!("{e:?}\n{path:?}"));
