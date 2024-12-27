@@ -107,7 +107,7 @@ jobs:
 
       - run: pnpm install
 
-      - run: ./monitor-oxc --no-restore ${{ matrix.command }}
+      - run: ./monitor-oxc ${{ matrix.command }}
         env:
           RUST_BACKTRACE: "1"
 
