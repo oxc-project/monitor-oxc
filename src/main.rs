@@ -4,7 +4,7 @@ use pico_args::Arguments;
 
 use monitor_oxc::{
     codegen::CodegenRunner, compressor::CompressorRunner, dce::DceRunner, isolated_declarations,
-    mangler::ManglerRunner, remove_whitespace::RemoveWhitespaceRunner,
+    mangler::ManglerRunner, minifier::MinifierRunner, remove_whitespace::RemoveWhitespaceRunner,
     transformer::TransformerRunner, NodeModulesRunner, NodeModulesRunnerOptions,
 };
 
@@ -34,16 +34,16 @@ fn main() -> ExitCode {
         node_modules_runner.add_case(Box::new(CodegenRunner));
     }
 
-    if matches!(task, "compress" | "compressor" | "default") {
-        node_modules_runner.add_case(Box::new(CompressorRunner));
+    if matches!(task, "transform" | "transformer" | "default") {
+        node_modules_runner.add_case(Box::new(TransformerRunner));
     }
 
     if matches!(task, "dce" | "default") {
         node_modules_runner.add_case(Box::new(DceRunner));
     }
 
-    if matches!(task, "transform" | "transformer" | "default") {
-        node_modules_runner.add_case(Box::new(TransformerRunner));
+    if matches!(task, "compress" | "compressor" | "default") {
+        node_modules_runner.add_case(Box::new(CompressorRunner));
     }
 
     if matches!(task, "mangle" | "mangler" | "default") {
@@ -52,6 +52,10 @@ fn main() -> ExitCode {
 
     if matches!(task, "whitespace" | "default") {
         node_modules_runner.add_case(Box::new(RemoveWhitespaceRunner));
+    }
+
+    if matches!(task, "minifier" | "minify" | "default") {
+        node_modules_runner.add_case(Box::new(MinifierRunner));
     }
 
     let result = node_modules_runner.run_all();
