@@ -142,6 +142,7 @@ jobs:
 
   rolldown:
     name: Rolldown
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
       - uses: taiki-e/checkout-action@v1
@@ -156,6 +157,7 @@ jobs:
 
   test262:
     name: Test262
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
       - name: Checkout oxc (${{ inputs.ref }})
