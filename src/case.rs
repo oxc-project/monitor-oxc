@@ -5,6 +5,10 @@ use crate::{Diagnostic, Driver, NodeModulesRunner, Source};
 pub trait Case: RefUnwindSafe {
     fn name(&self) -> &'static str;
 
+    fn enable_runtime_test(&self) -> bool {
+        true
+    }
+
     fn run_test(&self, _source: &Source) -> bool {
         true
     }

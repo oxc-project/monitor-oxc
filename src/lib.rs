@@ -160,6 +160,9 @@ impl NodeModulesRunner {
         if !diagnostics.is_empty() {
             return Err(diagnostics);
         }
+        if !case.enable_runtime_test() {
+            return Ok(());
+        }
         let result = Self::runtime_test(case.name());
         if !self.options.no_restore {
             self.restore_files(case.name());

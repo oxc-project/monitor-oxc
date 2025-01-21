@@ -9,6 +9,13 @@ impl Case for CompressorRunner {
         "Compressor"
     }
 
+    /// The compressor changes cjs module syntaxes,
+    /// which breaks `cjs-module-lexer`.
+    /// e.g. `cjs-module-lexer` cannot detect `enumerable: !0`.
+    fn enable_runtime_test(&self) -> bool {
+        false
+    }
+
     fn run_test(&self, source: &Source) -> bool {
         source.is_js_only()
     }
