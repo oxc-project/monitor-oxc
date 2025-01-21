@@ -55,6 +55,8 @@ const PATH_IGNORES: &[&str] = &[
     "node_modules/comment-parser/tests/e2e/examples.js",
     "node_modules/react-native/Libraries/Utilities/__mocks__/BackHandler.js",
     "node_modules/sass/sass.dart.js",
+    // Stage 3 decorator
+    "node_modules/puppeteer-core/src/bidi/Browser.ts",
 ];
 
 #[derive(Debug)]
