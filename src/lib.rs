@@ -58,6 +58,8 @@ const PATH_IGNORES: &[&str] = &[
     "node_modules/rolldown/dist/cjs/cli.cjs",
     // Stage 3 decorator
     "node_modules/puppeteer-core/src/bidi/Browser.ts",
+    // jsx breaks mangler
+    "node_modules/istanbul-reports/lib/html-spa/src/summaryTableLine.js",
 ];
 
 #[derive(Debug)]
