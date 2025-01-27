@@ -28,7 +28,7 @@ walkdir = "2.5.0"
 similar = "2.5.0"
 console = "0.15.8"
 url     = "2.5.2"
-ureq    = "2.9.7"
+ureq    = "3.0.0"
 pico-args = "0.5.0"
 project-root = "0.2.2"
 
