@@ -43,7 +43,9 @@ const ignoreList = new Set([
   // breaks node.js > v22.7.0
   "esm",
   // contains a global `var hasOwnProperty = Object.prototype.hasOwnProperty;` which got polluted from some where.
-  "react-shallow-renderer"
+  "react-shallow-renderer",
+  // pollutes protytype
+  "pirates", "dd-trace", "harmony-reflect"
 ]);
 
 const ignorePrefixes = [
