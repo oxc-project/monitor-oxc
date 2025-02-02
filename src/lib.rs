@@ -106,7 +106,7 @@ impl NodeModulesRunner {
             let Ok(source_type) = SourceType::from_path(path) else {
                 continue;
             };
-            if PATH_IGNORES.iter().any(|p| path.to_string_lossy().contains(p)) {
+            if PATH_IGNORES.iter().any(|p| path.to_string_lossy().replace('\\', "/").contains(p)) {
                 continue;
             }
             if source_type.is_typescript_definition() {
