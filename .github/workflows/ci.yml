@@ -64,7 +64,7 @@ jobs:
 
       # populate pnpm cache
 
-      - uses: pnpm/action-setup@v4.0.0
+      - uses: pnpm/action-setup@v4.1.0
 
       - uses: actions/setup-node@v4
         with:
@@ -98,7 +98,7 @@ jobs:
 
       - run: chmod +x ./monitor-oxc
 
-      - uses: pnpm/action-setup@v4.0.0
+      - uses: pnpm/action-setup@v4.1.0
 
       - uses: actions/setup-node@v4
         with:
@@ -121,7 +121,7 @@ jobs:
           repository: vuejs/core
           ref: main
 
-      - uses: pnpm/action-setup@v4.0.0
+      - uses: pnpm/action-setup@v4.1.0
 
       - uses: actions/setup-node@v4
         with:
@@ -146,7 +146,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: taiki-e/checkout-action@v1
-      - uses: pnpm/action-setup@v4.0.0
+      - uses: pnpm/action-setup@v4.1.0
       - uses: actions/setup-node@v4
         with:
           node-version-file: .node-version
