@@ -5,6 +5,7 @@ use std::{
 };
 
 use oxc::{
+    CompilerInterface,
     allocator::Allocator,
     codegen::Codegen,
     codegen::{CodegenOptions, CodegenReturn},
@@ -14,7 +15,6 @@ use oxc::{
     parser::{ParseOptions, Parser, ParserReturn},
     span::SourceType,
     transformer::TransformOptions,
-    CompilerInterface,
 };
 
 use crate::Diagnostic;
@@ -102,7 +102,7 @@ impl Driver {
         self.path = source_path.to_path_buf();
         let mut source_type = source_type;
         if source_path.extension().unwrap() == "js" {
-            source_type = source_type.with_unambiguous(true);
+            source_type = source_type.with_jsx(source_type.is_javascript()).with_unambiguous(true);
         }
         self.compile(source_text, source_type, source_path);
         if self.errors.is_empty() {
