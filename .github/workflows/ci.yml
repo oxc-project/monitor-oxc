@@ -170,7 +170,7 @@ jobs:
           show-progress: false
           repository: tc39/test262
           path: tasks/coverage/test262
-          ref: bc5c14176e2b11a78859571eb693f028c8822458
+          ref: 4b5d36ab6ef2f59d0a8902cd383762547a3a74c4
 
       - uses: oxc-project/setup-rust@cd82e1efec7fef815e2c23d296756f31c7cdc03d # v1.0.0
         with:

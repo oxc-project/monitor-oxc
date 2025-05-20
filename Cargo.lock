@@ -699,6 +699,7 @@ dependencies = [
 name = "oxc_ast_macros"
 version = "0.70.0"
 dependencies = [
+ "phf",
  "proc-macro2",
  "quote",
  "syn",
@@ -751,6 +752,7 @@ name = "oxc_data_structures"
 version = "0.70.0"
 dependencies = [
  "ropey",
+ "rustversion",
 ]
 
 [[package]]
@@ -858,6 +860,7 @@ dependencies = [
 name = "oxc_regular_expression"
 version = "0.70.0"
 dependencies = [
+ "bitflags",
  "oxc_allocator",
  "oxc_ast_macros",
  "oxc_diagnostics",
