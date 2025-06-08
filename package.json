@@ -1,7 +1,7 @@
 {
   "name": "monitor-oxc",
   "private": true,
-  "packageManager": "pnpm@10.4.1",
+  "packageManager": "pnpm@10.12.1",
   "volta": {
     "node": "22.12.0"
   },
@@ -13,8 +13,8 @@
     "profile-rolldown": "rm -rf dist && xcrun xctrace record --template 'Time Profile' --output . --launch -- /Users/boshen/.volta/tools/image/node/22.12.0/bin/node /Users/boshen/github/rolldown/packages/rolldown/bin/cli.js -c"
   },
   "dependencies": {
-    "npm-high-impact": "1.9.0",
-    "rolldown": "1.0.0-beta.3",
+    "npm-high-impact": "1.11.0",
+    "rolldown": "1.0.0-beta.13",
     "tsx": "latest"
   },
   "devDependencies": {
