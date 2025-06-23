@@ -72,7 +72,7 @@ impl CompilerInterface for Driver {
     }
 
     fn compress_options(&self) -> Option<CompressOptions> {
-        self.compress
+        self.compress.clone()
     }
 
     fn mangle_options(&self) -> Option<MangleOptions> {
