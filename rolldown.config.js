@@ -12,6 +12,9 @@ export default defineConfig({
     "oxc-resolver",
     "ssh2",
     "@parcel/watcher",
+    "jest-resolve",
+    "@unrs/resolver-binding-linux-x64-musl",
+    "@oxc-parser/binding-linux-x64-musl"
   ],
   resolve: {
     extensions: [".js", ".cjs", ".mjs", ".json"]
