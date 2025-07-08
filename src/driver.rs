@@ -7,8 +7,7 @@ use std::{
 use oxc::{
     CompilerInterface,
     allocator::Allocator,
-    codegen::Codegen,
-    codegen::{CodegenOptions, CodegenReturn},
+    codegen::{Codegen, CodegenOptions, CodegenReturn, CommentOptions},
     diagnostics::OxcDiagnostic,
     mangler::MangleOptions,
     minifier::{CompressOptions, Compressor},
@@ -82,7 +81,11 @@ impl CompilerInterface for Driver {
     fn codegen_options(&self) -> Option<CodegenOptions> {
         Some(CodegenOptions {
             minify: self.remove_whitespace,
-            comments: self.compress.is_none(),
+            comments: if self.compress.is_some() {
+                CommentOptions::disabled()
+            } else {
+                CommentOptions::default()
+            },
             source_map_path: self.compress.is_none().then(|| self.path.clone()),
             ..CodegenOptions::default()
         })
