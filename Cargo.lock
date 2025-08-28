@@ -202,6 +202,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "dragonbox_ecma"
+version = "0.0.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d742b56656e8b14d63e7ea9806597b1849ae25412584c8adf78c0f67bd985e66"
+
+[[package]]
 name = "either"
 version = "1.15.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -482,6 +488,7 @@ version = "0.0.0"
 dependencies = [
  "console",
  "oxc",
+ "oxc_formatter",
  "pico-args",
  "project-root",
  "similar",
@@ -559,7 +566,7 @@ checksum = "48dd4f4a2c8405440fd0462561f0e5806bd0f77e86f51c761481bdd4018b545e"
 
 [[package]]
 name = "oxc"
-version = "0.80.0"
+version = "0.82.3"
 dependencies = [
  "oxc_allocator",
  "oxc_ast",
@@ -622,7 +629,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_allocator"
-version = "0.80.0"
+version = "0.82.3"
 dependencies = [
  "allocator-api2",
  "bumpalo",
@@ -633,7 +640,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_ast"
-version = "0.80.0"
+version = "0.82.3"
 dependencies = [
  "bitflags",
  "oxc_allocator",
@@ -647,7 +654,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_ast_macros"
-version = "0.80.0"
+version = "0.82.3"
 dependencies = [
  "phf",
  "proc-macro2",
@@ -657,7 +664,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_ast_visit"
-version = "0.80.0"
+version = "0.82.3"
 dependencies = [
  "oxc_allocator",
  "oxc_ast",
@@ -667,7 +674,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_cfg"
-version = "0.80.0"
+version = "0.82.3"
 dependencies = [
  "bitflags",
  "itertools",
@@ -680,10 +687,12 @@ dependencies = [
 
 [[package]]
 name = "oxc_codegen"
-version = "0.80.0"
+version = "0.82.3"
 dependencies = [
  "bitflags",
  "cow-utils",
+ "dragonbox_ecma",
+ "itoa",
  "nonmax",
  "oxc_allocator",
  "oxc_ast",
@@ -694,20 +703,18 @@ dependencies = [
  "oxc_span",
  "oxc_syntax",
  "rustc-hash",
- "ryu-js",
 ]
 
 [[package]]
 name = "oxc_data_structures"
-version = "0.80.0"
+version = "0.82.3"
 dependencies = [
  "ropey",
- "rustversion",
 ]
 
 [[package]]
 name = "oxc_diagnostics"
-version = "0.80.0"
+version = "0.82.3"
 dependencies = [
  "cow-utils",
  "oxc-miette",
@@ -716,7 +723,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_ecmascript"
-version = "0.80.0"
+version = "0.82.3"
 dependencies = [
  "cow-utils",
  "num-bigint",
@@ -729,7 +736,21 @@ dependencies = [
 
 [[package]]
 name = "oxc_estree"
-version = "0.80.0"
+version = "0.82.3"
+
+[[package]]
+name = "oxc_formatter"
+version = "0.0.0"
+dependencies = [
+ "cow-utils",
+ "oxc_allocator",
+ "oxc_ast",
+ "oxc_data_structures",
+ "oxc_span",
+ "oxc_syntax",
+ "rustc-hash",
+ "unicode-width",
+]
 
 [[package]]
 name = "oxc_index"
@@ -739,7 +760,7 @@ checksum = "2fa07b0cfa997730afed43705766ef27792873fdf5215b1391949fec678d2392"
 
 [[package]]
 name = "oxc_isolated_declarations"
-version = "0.80.0"
+version = "0.82.3"
 dependencies = [
  "bitflags",
  "oxc_allocator",
@@ -754,7 +775,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_mangler"
-version = "0.80.0"
+version = "0.82.3"
 dependencies = [
  "fixedbitset",
  "itertools",
@@ -769,7 +790,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_minifier"
-version = "0.80.0"
+version = "0.82.3"
 dependencies = [
  "cow-utils",
  "oxc_allocator",
@@ -788,7 +809,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_parser"
-version = "0.80.0"
+version = "0.82.3"
 dependencies = [
  "bitflags",
  "cow-utils",
@@ -809,7 +830,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_regular_expression"
-version = "0.80.0"
+version = "0.82.3"
 dependencies = [
  "bitflags",
  "oxc_allocator",
@@ -823,7 +844,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_semantic"
-version = "0.80.0"
+version = "0.82.3"
 dependencies = [
  "itertools",
  "oxc_allocator",
@@ -855,7 +876,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_span"
-version = "0.80.0"
+version = "0.82.3"
 dependencies = [
  "compact_str",
  "oxc-miette",
@@ -866,10 +887,11 @@ dependencies = [
 
 [[package]]
 name = "oxc_syntax"
-version = "0.80.0"
+version = "0.82.3"
 dependencies = [
  "bitflags",
  "cow-utils",
+ "dragonbox_ecma",
  "nonmax",
  "oxc_allocator",
  "oxc_ast_macros",
@@ -879,13 +901,12 @@ dependencies = [
  "oxc_span",
  "phf",
  "rustc-hash",
- "ryu-js",
  "unicode-id-start",
 ]
 
 [[package]]
 name = "oxc_transformer"
-version = "0.80.0"
+version = "0.82.3"
 dependencies = [
  "base64",
  "compact_str",
@@ -914,7 +935,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_transformer_plugins"
-version = "0.80.0"
+version = "0.82.3"
 dependencies = [
  "cow-utils",
  "itoa",
@@ -934,7 +955,7 @@ dependencies = [
 
 [[package]]
 name = "oxc_traverse"
-version = "0.80.0"
+version = "0.82.3"
 dependencies = [
  "itoa",
  "oxc_allocator",
@@ -968,9 +989,9 @@ dependencies = [
 
 [[package]]
 name = "phf"
-version = "0.12.1"
+version = "0.13.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "913273894cec178f401a31ec4b656318d95473527be05c0752cc41cdc32be8b7"
+checksum = "c1562dc717473dbaa4c1f85a36410e03c047b2e7df7f45ee938fbef64ae7fadf"
 dependencies = [
  "phf_macros",
  "phf_shared",
@@ -979,9 +1000,9 @@ dependencies = [
 
 [[package]]
 name = "phf_generator"
-version = "0.12.1"
+version = "0.13.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2cbb1126afed61dd6368748dae63b1ee7dc480191c6262a3b4ff1e29d86a6c5b"
+checksum = "135ace3a761e564ec88c03a77317a7c6b80bb7f7135ef2544dbe054243b89737"
 dependencies = [
  "fastrand",
  "phf_shared",
@@ -989,9 +1010,9 @@ dependencies = [
 
 [[package]]
 name = "phf_macros"
-version = "0.12.1"
+version = "0.13.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d713258393a82f091ead52047ca779d37e5766226d009de21696c4e667044368"
+checksum = "812f032b54b1e759ccd5f8b6677695d5268c588701effba24601f6932f8269ef"
 dependencies = [
  "phf_generator",
  "phf_shared",
@@ -1002,9 +1023,9 @@ dependencies = [
 
 [[package]]
 name = "phf_shared"
-version = "0.12.1"
+version = "0.13.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "06005508882fb681fd97892ecff4b7fd0fee13ef1aa569f8695dae7ab9099981"
+checksum = "e57fef6bc5981e38c2ce2d63bfa546861309f875b8a75f092d1d54ae2d64f266"
 dependencies = [
  "siphasher",
 ]
@@ -1139,12 +1160,6 @@ name = "ryu"
 version = "1.0.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "28d3b2b1366ec20994f1fd18c3c594f05c5dd4bc44d8bb0c1c632c8d6829481f"
-
-[[package]]
-name = "ryu-js"
-version = "1.0.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dd29631678d6fb0903b69223673e122c32e9ae559d0960a38d574695ebc0ea15"
 
 [[package]]
 name = "same-file"

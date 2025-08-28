@@ -3,9 +3,10 @@ use std::{path::PathBuf, process::ExitCode};
 use pico_args::Arguments;
 
 use monitor_oxc::{
-    codegen::CodegenRunner, compressor::CompressorRunner, dce::DceRunner, isolated_declarations,
-    mangler::ManglerRunner, minifier::MinifierRunner, remove_whitespace::RemoveWhitespaceRunner,
-    transformer::TransformerRunner, NodeModulesRunner, NodeModulesRunnerOptions,
+    NodeModulesRunner, NodeModulesRunnerOptions, codegen::CodegenRunner,
+    compressor::CompressorRunner, dce::DceRunner, formatter::FormatterRunner,
+    isolated_declarations, mangler::ManglerRunner, minifier::MinifierRunner,
+    remove_whitespace::RemoveWhitespaceRunner, transformer::TransformerRunner,
 };
 
 fn main() -> ExitCode {
@@ -56,6 +57,10 @@ fn main() -> ExitCode {
 
     if matches!(task, "minifier" | "minify" | "default") {
         node_modules_runner.add_case(Box::new(MinifierRunner));
+    }
+
+    if matches!(task, "formatter" | "default") {
+        node_modules_runner.add_case(Box::new(FormatterRunner));
     }
 
     let result = node_modules_runner.run_all();
