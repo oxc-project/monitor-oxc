@@ -1,6 +1,7 @@
 pub mod codegen;
 pub mod compressor;
 pub mod dce;
+pub mod formatter;
 pub mod isolated_declarations;
 pub mod mangler;
 pub mod minifier;
