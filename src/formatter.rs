@@ -1,4 +1,7 @@
-use oxc::{allocator::Allocator, parser::Parser};
+use oxc::{
+    allocator::Allocator,
+    parser::{ParseOptions, Parser},
+};
 use oxc_formatter::{FormatOptions, Formatter};
 
 use crate::{Case, Diagnostic, Driver, NodeModulesRunner, Source};
@@ -21,9 +24,16 @@ impl Case for FormatterRunner {
     fn idempotency_test(&self, source: &Source) -> Result<String, Vec<Diagnostic>> {
         let Source { path, source_type, source_text } = source;
         let allocator = Allocator::new();
-        let program = Parser::new(&allocator, source_text, *source_type).parse().program;
+        let options = ParseOptions { preserve_parens: false, ..ParseOptions::default() };
+        let program = Parser::new(&allocator, source_text, *source_type)
+            .with_options(options)
+            .parse()
+            .program;
         let source_text2 = Formatter::new(&allocator, FormatOptions::default()).build(&program);
-        let program = Parser::new(&allocator, &source_text2, *source_type).parse().program;
+        let program = Parser::new(&allocator, &source_text2, *source_type)
+            .with_options(options)
+            .parse()
+            .program;
         let source_text3 = Formatter::new(&allocator, FormatOptions::default()).build(&program);
         if source_text2 != source_text3 {
             return Err(vec![Diagnostic {
