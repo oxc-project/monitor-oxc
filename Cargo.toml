@@ -24,6 +24,7 @@ module_name_repetitions = "allow"
 
 [dependencies]
 oxc = { path = "../oxc/crates/oxc", features = ["full"] }
+oxc_formatter = { path = "../oxc/crates/oxc_formatter" }
 walkdir = "2.5.0"
 similar = "2.5.0"
 console = "0.16.0"
