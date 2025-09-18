@@ -88,7 +88,7 @@ jobs:
 
       - run: chmod +x ./monitor-oxc
 
-      - uses: oxc-project/setup-node@beeabdfbd12652a18a61ff476a59b62518bc1c7b # v1.0.3
+      - uses: oxc-project/setup-node@fdbf0dfd334c4e6d56ceeb77d91c76339c2a0885 # v1.0.4
 
       - run: ./monitor-oxc ${{ matrix.command }}
         env:
@@ -104,7 +104,7 @@ jobs:
           repository: vuejs/core
           ref: main
 
-      - uses: oxc-project/setup-node@beeabdfbd12652a18a61ff476a59b62518bc1c7b # v1.0.3
+      - uses: oxc-project/setup-node@fdbf0dfd334c4e6d56ceeb77d91c76339c2a0885 # v1.0.4
 
       - run: ./node_modules/.bin/tsc -p tsconfig.build.json --noCheck
 
@@ -122,7 +122,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: taiki-e/checkout-action@b13d20b7cda4e2f325ef19895128f7ff735c0b3d # v1.3.1
-      - uses: oxc-project/setup-node@beeabdfbd12652a18a61ff476a59b62518bc1c7b # v1.0.3
+      - uses: oxc-project/setup-node@fdbf0dfd334c4e6d56ceeb77d91c76339c2a0885 # v1.0.4
       - run: ./node_modules/.bin/rolldown --version
       - run: node --run rolldown
 
