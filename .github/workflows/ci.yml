@@ -150,9 +150,7 @@ jobs:
           save-cache: ${{ github.ref_name == 'main' }}
           cache-key: test262
 
-      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
-        with:
-          node-version-file: .node-version
+      - uses: oxc-project/setup-node@fdbf0dfd334c4e6d56ceeb77d91c76339c2a0885 # v1.0.4
 
       - run: cargo coverage runtime
 
