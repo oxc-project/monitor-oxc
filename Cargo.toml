@@ -32,6 +32,7 @@ url     = "2.5.2"
 ureq    = "3.0.0"
 pico-args = "0.5.0"
 project-root = "0.2.2"
+rustc-hash = "2.1.0"
 
 [profile.dev]
 # Disabling debug info reduces stack usage
