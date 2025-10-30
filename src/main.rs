@@ -5,8 +5,9 @@ use pico_args::Arguments;
 use monitor_oxc::{
     NodeModulesRunner, NodeModulesRunnerOptions, codegen::CodegenRunner,
     compressor::CompressorRunner, dce::DceRunner, formatter::FormatterRunner,
-    isolated_declarations, mangler::ManglerRunner, minifier::MinifierRunner,
-    remove_whitespace::RemoveWhitespaceRunner, transformer::TransformerRunner,
+    formatter_dcr::FormatterDCRRunner, isolated_declarations, mangler::ManglerRunner,
+    minifier::MinifierRunner, remove_whitespace::RemoveWhitespaceRunner,
+    transformer::TransformerRunner,
 };
 
 fn main() -> ExitCode {
@@ -61,6 +62,9 @@ fn main() -> ExitCode {
 
     if matches!(task, "formatter" | "default") {
         node_modules_runner.add_case(Box::new(FormatterRunner));
+    }
+    if matches!(task, "formatter_dcr" | "default") {
+        node_modules_runner.add_case(Box::new(FormatterDCRRunner));
     }
 
     let result = node_modules_runner.run_all();
