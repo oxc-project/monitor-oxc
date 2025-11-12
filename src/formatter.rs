@@ -1,8 +1,8 @@
 use oxc::{
     allocator::Allocator,
-    parser::{ParseOptions, Parser, ParserReturn},
+    parser::{Parser, ParserReturn},
 };
-use oxc_formatter::{FormatOptions, Formatter};
+use oxc_formatter::{FormatOptions, Formatter, get_parse_options};
 
 use crate::{Case, Diagnostic, Driver, NodeModulesRunner, Source};
 
@@ -25,12 +25,7 @@ impl Case for FormatterRunner {
         let Source { path, source_type, source_text } = source;
 
         let allocator = Allocator::new();
-        let options = ParseOptions {
-            preserve_parens: false,
-            allow_return_outside_function: true,
-            allow_v8_intrinsics: true,
-            parse_regular_expression: false,
-        };
+        let options = get_parse_options();
 
         let ParserReturn { program: program1, errors: errors1, .. } =
             Parser::new(&allocator, source_text, *source_type).with_options(options).parse();
