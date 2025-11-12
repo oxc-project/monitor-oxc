@@ -2,13 +2,13 @@ use oxc::{
     allocator::Allocator,
     parser::{Parser, ParserReturn},
 };
-use oxc_formatter::{FormatOptions, Formatter, get_parse_options};
+use oxc_formatter::{FormatOptions, Formatter, detect_code_removal, get_parse_options};
 
 use crate::{Case, Diagnostic, Driver, Source};
 
 // Another `FormatterRunner` for detecting code removal.
 //
-// Detection is enabled by the feature flag "detect_code_removal".
+// Detection api is enabled by the feature flag "detect_code_removal".
 // While the main FormatterRunner also has this capability,
 // there are currently many reported idempotency issues.
 // Therefore, for clarity, we separate this test to focus only on detecting code removal.
@@ -29,7 +29,7 @@ impl Case for FormatterDCRRunner {
     }
 
     fn test(&self, source: &Source) -> Result<(), Vec<Diagnostic>> {
-        let Source { source_type, source_text, .. } = source;
+        let Source { path, source_type, source_text, .. } = source;
 
         let allocator = Allocator::new();
         let options = get_parse_options();
@@ -41,8 +41,15 @@ impl Case for FormatterDCRRunner {
             return Ok(());
         }
 
-        // NOTE: This will panic if code removal is detected
-        let _ = Formatter::new(&allocator, FormatOptions::default()).format(&program);
+        let source_text2 = Formatter::new(&allocator, FormatOptions::default()).build(&program);
+
+        if let Some(diff) = detect_code_removal(source_text, &source_text2, *source_type) {
+            return Err(vec![Diagnostic {
+                case: self.name(),
+                path: path.clone(),
+                message: format!("Code removal detected:\n{diff}"),
+            }]);
+        }
 
         Ok(())
     }
