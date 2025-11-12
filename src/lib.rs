@@ -146,7 +146,7 @@ impl NodeModulesRunner {
         let results = self
             .files
             .iter()
-            .flat_map(|source| {
+            .map(|source| {
                 catch_unwind(|| case.test(source)).map_err(|err| {
                     vec![Diagnostic {
                         case: case.name(),
@@ -159,7 +159,11 @@ impl NodeModulesRunner {
         println!("Ran {} times.", results.len());
         let diagnostics = results
             .into_iter()
-            .filter_map(|source| if let Err(d) = source { Some(d) } else { None })
+            .filter_map(|result| match result {
+                Err(panic_diagnostics) => Some(panic_diagnostics),
+                Ok(Err(test_diagnostics)) => Some(test_diagnostics),
+                Ok(Ok(())) => None,
+            })
             .flatten()
             .collect::<Vec<_>>();
         if !diagnostics.is_empty() {
