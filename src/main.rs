@@ -7,7 +7,7 @@ use monitor_oxc::{
     compressor::CompressorRunner, dce::DceRunner, formatter::FormatterRunner,
     formatter_dcr::FormatterDCRRunner, isolated_declarations, mangler::ManglerRunner,
     minifier::MinifierRunner, remove_whitespace::RemoveWhitespaceRunner,
-    transformer::TransformerRunner,
+    semantic_ids::SemanticSymbolIdsRunner, transformer::TransformerRunner,
 };
 
 fn main() -> ExitCode {
@@ -65,6 +65,10 @@ fn main() -> ExitCode {
     }
     if matches!(task, "formatter_dcr" | "default") {
         node_modules_runner.add_case(Box::new(FormatterDCRRunner));
+    }
+
+    if matches!(task, "semantic_symbol_ids") {
+        node_modules_runner.add_case(Box::new(SemanticSymbolIdsRunner));
     }
 
     let result = node_modules_runner.run_all();
