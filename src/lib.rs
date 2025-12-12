@@ -7,6 +7,7 @@ pub mod isolated_declarations;
 pub mod mangler;
 pub mod minifier;
 pub mod remove_whitespace;
+pub mod semantic_ids;
 pub mod transformer;
 
 mod case;
