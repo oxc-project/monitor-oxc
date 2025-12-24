@@ -8,13 +8,10 @@
   "type": "module",
   "scripts": {
     "generate": "node generate.mjs && pnpm i",
-    "test": "node --experimental-require-module src/static.test.mjs",
-    "rolldown": "rm -rf dist && rolldown -c",
-    "profile-rolldown": "rm -rf dist && xcrun xctrace record --template 'Time Profile' --output . --launch -- /Users/boshen/.volta/tools/image/node/22.12.0/bin/node /Users/boshen/github/rolldown/packages/rolldown/bin/cli.js -c"
+    "test": "node --experimental-require-module src/static.test.mjs"
   },
   "dependencies": {
     "npm-high-impact": "1.12.0",
-    "rolldown": "1.0.0-beta.46",
     "tsx": "latest"
   },
   "devDependencies": {
