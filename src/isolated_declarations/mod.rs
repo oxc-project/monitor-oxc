@@ -64,7 +64,13 @@ pub fn test(path_to_vue: Option<PathBuf>) -> ExitCode {
                 IsolatedDeclarationsOptions { strip_internal: true },
             )
             .build(&ret.program);
-            Codegen::new().build(&id.program).code
+            Codegen::new()
+                .with_options(CodegenOptions {
+                    comments: CommentOptions { jsdoc: true, ..CommentOptions::disabled() },
+                    ..CodegenOptions::default()
+                })
+                .build(&id.program)
+                .code
         };
 
         let root_str = root.to_string_lossy();
