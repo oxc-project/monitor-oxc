@@ -57,7 +57,7 @@ const ignoreList = new Set([
 ]);
 
 const ignorePrefixes = [
-  "@types", "@tsconfig", "@tsconfig", "@next", "@esbuild", "@nrwl", "@rollup", "@mui", "workbox",
+  "@types", "@tsconfig", "@tsconfig", "@next", "@esbuild", "@nrwl", "@rollup", "@mui", "workbox", "@react-native",
   "@swc", "esbuild-", "es6-", "es5-", "@nx", "@firebase", "@angular", "turbo-", "@storybook", "metro",
   "@img", "@parcel",
   "@smithy", "@aws-sdk", "@google-cloud",
