@@ -18,7 +18,7 @@ const ignoreList = new Set([
   "limiter", "react-app-polyfill", "react-dev-utils", "react-error-overlay",
   "timers-ext", "unfetch", "bare-path", "bare-os", "bare-fs",
   "@noble/hashes", "chromium-bidi", "pg-cloudflare", "react-scripts", "sanitize.css", "vue-template-compiler", "@csstools/normalize.css",
-  "@eslint/core", "pn", "dir-glob", "globby", "@backstage/backend-common", "teeny-request",
+  "@eslint/core", "pn", "dir-glob", "globby", "teeny-request",
   "@babel/helper-globals",
   // broken in node
   "bootstrap", "@vitest/expect", "wait-on", "react-devtools-core",
@@ -48,9 +48,9 @@ const ignoreList = new Set([
   // pollutes protytype
   "pirates", "dd-trace", "harmony-reflect",
   // No versions available
-  "contenthook", "@react-native/assets-registry",
+  "contenthook",
   // broken
-  "@react-native/codegen", "@react-native/gradle-plugin", "@sentry/cli-linux-x64",
+  "@sentry/cli-linux-x64",
   "@tailwindcss/oxide-linux-x64-gnu", "dunder-proto", "html-tags", "hyperdyperid",
   "math-intrinsics", "storybook", "victory-vendor", "@noble/curves", "canvas",
   "http-deceiver", "pdfjs-dist", "spdy"
