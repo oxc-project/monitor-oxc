@@ -7,7 +7,7 @@ const COUNT = 3000;
 
 const ignoreList = new Set([
   // CLIs don't work
-  "npm", "yarn", "pnpm", "nx", "vitest", "turbo",
+  "npm", "yarn", "pnpm", "nx", "vitest", "turbo", "@anthropic-ai/claude-code",
   // NO ESM export
   "@babel/compat-data", "@babel/runtime", "@babel/runtime-corejs3", "@graphql-typed-document-node/core",
   "@jest/globals", "@octokit/openapi-types", "@rushstack/eslint-patch",
@@ -19,6 +19,7 @@ const ignoreList = new Set([
   "timers-ext", "unfetch", "bare-path", "bare-os", "bare-fs",
   "@noble/hashes", "chromium-bidi", "pg-cloudflare", "react-scripts", "sanitize.css", "vue-template-compiler", "@csstools/normalize.css",
   "@eslint/core", "pn", "dir-glob", "globby", "@backstage/backend-common", "teeny-request",
+  "@babel/helper-globals",
   // broken in node
   "bootstrap", "@vitest/expect", "wait-on", "react-devtools-core",
   "nice-napi", "@babel/cli", "webpack-subresource-integrity", "opencollective-postinstall",
@@ -45,7 +46,14 @@ const ignoreList = new Set([
   // contains a global `var hasOwnProperty = Object.prototype.hasOwnProperty;` which got polluted from some where.
   "react-shallow-renderer",
   // pollutes protytype
-  "pirates", "dd-trace", "harmony-reflect"
+  "pirates", "dd-trace", "harmony-reflect",
+  // No versions available
+  "contenthook", "@react-native/assets-registry",
+  // broken
+  "@react-native/codegen", "@react-native/gradle-plugin", "@sentry/cli-linux-x64",
+  "@tailwindcss/oxide-linux-x64-gnu", "dunder-proto", "html-tags", "hyperdyperid",
+  "math-intrinsics", "storybook", "victory-vendor", "@noble/curves", "canvas",
+  "http-deceiver", "pdfjs-dist", "spdy"
 ]);
 
 const ignorePrefixes = [
@@ -53,6 +61,11 @@ const ignorePrefixes = [
   "@swc", "esbuild-", "es6-", "es5-", "@nx", "@firebase", "@angular", "turbo-", "@storybook", "metro",
   "@img", "@parcel",
   "@smithy", "@aws-sdk", "@google-cloud",
+  "@contenthook",
+  "@modelcontextprotocol",
+  "@tailwindcss/oxide-linux",
+  "@unrs/resolver-binding-linux",
+  "lightningcss-linux"
 ];
 
 const vue = [

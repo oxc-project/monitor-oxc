@@ -62,6 +62,9 @@ const PATH_IGNORES: &[&str] = &[
     "node_modules/puppeteer-core/src/bidi/Browser.ts",
     // jsx breaks mangler
     "node_modules/istanbul-reports/lib/html-spa/src/summaryTableLine.js",
+    // TS(1015): A parameter cannot have a question mark and an initializer.
+    "node_modules/react-redux/src/hooks/useDispatch.ts",
+    "node_modules/react-redux/src/hooks/useStore.ts",
 ];
 
 #[derive(Debug)]
