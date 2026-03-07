@@ -48,7 +48,7 @@ jobs:
 
       - run: mv oxc ../oxc
 
-      - uses: oxc-project/setup-rust@c8224157c0bf235aabc633e8cd50d344f087a7de # v1.0.12
+      - uses: oxc-project/setup-rust@704e1648ce532a12b4d6fb98db0ba10afa3ae879 # v1.0.13
         with:
           save-cache: ${{ github.ref_name == 'main' }}
 
@@ -136,7 +136,7 @@ jobs:
           path: tasks/coverage/test262
           ref: 4b5d36ab6ef2f59d0a8902cd383762547a3a74c4
 
-      - uses: oxc-project/setup-rust@c8224157c0bf235aabc633e8cd50d344f087a7de # v1.0.12
+      - uses: oxc-project/setup-rust@704e1648ce532a12b4d6fb98db0ba10afa3ae879 # v1.0.13
         with:
           save-cache: ${{ github.ref_name == 'main' }}
           cache-key: test262
