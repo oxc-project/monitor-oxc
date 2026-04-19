@@ -156,11 +156,21 @@ jobs:
       pull-requests: write
       contents: write
     steps:
+      - uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3 # v3
+        id: app-token
+        with:
+          client-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: oxc-project
+          repositories: |
+            ${{ github.event.repository.name }}
+            oxc
+
       - uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
         id: script
         if: ${{ inputs.issue-number }}
         with:
-          github-token: ${{ secrets.OXC_BOT_PAT }}
+          github-token: ${{ steps.app-token.outputs.token }}
           result-encoding: string
           script: |
             const {
@@ -195,7 +205,7 @@ jobs:
       - uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5.0.0
         if: ${{ inputs.issue-number && inputs.comment-id }}
         with:
-          token: ${{ secrets.OXC_BOT_PAT }}
+          token: ${{ steps.app-token.outputs.token }}
           repository: oxc-project/oxc
           issue-number: ${{ inputs.issue-number }}
           comment-id: ${{ inputs.comment-id }}
