@@ -5,7 +5,6 @@ use std::{
 };
 
 use oxc::{
-    CompilerInterface,
     allocator::Allocator,
     codegen::{Codegen, CodegenOptions, CodegenReturn, CommentOptions},
     diagnostics::OxcDiagnostic,
@@ -14,6 +13,7 @@ use oxc::{
     parser::{ParseOptions, Parser, ParserReturn},
     span::SourceType,
     transformer::TransformOptions,
+    CompilerInterface,
 };
 
 use crate::Diagnostic;
@@ -79,16 +79,18 @@ impl CompilerInterface for Driver {
     }
 
     fn codegen_options(&self) -> Option<CodegenOptions> {
-        Some(CodegenOptions {
-            minify: self.remove_whitespace,
-            comments: if self.compress.is_some() {
-                CommentOptions::disabled()
-            } else {
-                CommentOptions::default()
-            },
-            source_map_path: self.compress.is_none().then(|| self.path.clone()),
-            ..CodegenOptions::default()
-        })
+        let mut options = if self.remove_whitespace {
+            CodegenOptions::minify()
+        } else {
+            CodegenOptions::default()
+        };
+        if self.compress.is_some() {
+            options.comments = CommentOptions::disabled();
+        }
+        if self.compress.is_none() && !self.remove_whitespace {
+            options.source_map_path = Some(self.path.clone());
+        }
+        Some(options)
     }
 }
 
