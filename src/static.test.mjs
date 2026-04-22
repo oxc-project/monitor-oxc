@@ -2592,9 +2592,10 @@ import * as _1294 from "eslint-plugin-es";
 test("eslint-plugin-es", () => assert.ok(_1294));
 import * as _1295 from "eslint-plugin-flowtype";
 test("eslint-plugin-flowtype", () => assert.ok(_1295));
-// Skipped eslint-plugin-jest: Currently pulls @typescript-eslint/utils with an ESLint 10-incompatible FlatESLint import chain.
-// import * as _1296 from "eslint-plugin-jest";
-// test("eslint-plugin-jest", () => assert.ok(_1296));
+// Expected failure eslint-plugin-jest: Currently pulls @typescript-eslint/utils with an ESLint 10-incompatible FlatESLint import chain.
+test("eslint-plugin-jest", async () => {
+  await assert.rejects(import("eslint-plugin-jest"), new RegExp("Class extends value undefined is not a constructor or null"));
+});
 import * as _1297 from "eslint-plugin-jsx-a11y";
 test("eslint-plugin-jsx-a11y", () => assert.ok(_1297));
 import * as _1298 from "eslint-plugin-n";
@@ -3533,9 +3534,10 @@ import * as _1764 from "joycon";
 test("joycon", () => assert.ok(_1764));
 import * as _1765 from "jpeg-js";
 test("jpeg-js", () => assert.ok(_1765));
-// Skipped jquery: jQuery 4 requires a window with a document and throws on plain Node.js imports.
-// import * as _1766 from "jquery";
-// test("jquery", () => assert.ok(_1766));
+// Expected failure jquery: jQuery 4 requires a window with a document and throws on plain Node.js imports.
+test("jquery", async () => {
+  await assert.rejects(import("jquery"), new RegExp("jQuery requires a window with a document"));
+});
 import * as _1767 from "js-base64";
 test("js-base64", () => assert.ok(_1767));
 import * as _1768 from "js-cookie";

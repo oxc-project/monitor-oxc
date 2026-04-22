@@ -5,14 +5,21 @@ import { npmHighImpact } from "npm-high-impact";
 
 const COUNT = 3000;
 
-const skippedPackages = new Map([
+const expectedFailures = new Map([
   [
     "jquery",
-    "jQuery 4 requires a window with a document and throws on plain Node.js imports.",
+    {
+      reason: "jQuery 4 requires a window with a document and throws on plain Node.js imports.",
+      message: "jQuery requires a window with a document",
+    },
   ],
   [
     "eslint-plugin-jest",
-    "Currently pulls @typescript-eslint/utils with an ESLint 10-incompatible FlatESLint import chain.",
+    {
+      reason:
+        "Currently pulls @typescript-eslint/utils with an ESLint 10-incompatible FlatESLint import chain.",
+      message: "Class extends value undefined is not a constructor or null",
+    },
   ],
 ]);
 
@@ -104,16 +111,15 @@ const data = [
     npmHighImpact
       .filter((key) => !ignorePrefixes.some((p) => key.startsWith(p)))
       .filter((key) => !ignoreList.has(key))
-      .filter((key) => !skippedPackages.has(key))
       .slice(0, COUNT)
       .concat(vue),
   ),
 ].sort();
 
-const testEntries = [
-  ...data.map((name) => ({ name })),
-  ...[...skippedPackages.entries()].map(([name, reason]) => ({ name, reason })),
-].sort((a, b) => a.name.localeCompare(b.name));
+const testEntries = data.map((name) => ({
+  name,
+  expectedFailure: expectedFailures.get(name) ?? null,
+}));
 
 packageJson.devDependencies = {};
 data.map((name) => {
@@ -123,10 +129,12 @@ data.map((name) => {
 fs.writeFileSync("./package.json", JSON.stringify(packageJson, null, 2));
 
 let dynamicTestFile = 'import test from "node:test"\nimport assert from "node:assert";\n';
-testEntries.forEach(({ name, reason }) => {
-  if (reason) {
-    dynamicTestFile += `// Skipped ${name}: ${reason}\n`;
-    dynamicTestFile += `// test("${name}", () => import("${name}").then(assert.ok));\n`;
+testEntries.forEach(({ name, expectedFailure }) => {
+  if (expectedFailure) {
+    dynamicTestFile += `// Expected failure ${name}: ${expectedFailure.reason}\n`;
+    dynamicTestFile += `test("${name}", async () => {\n`;
+    dynamicTestFile += `  await assert.rejects(import("${name}"), new RegExp(${JSON.stringify(expectedFailure.message)}));\n`;
+    dynamicTestFile += `});\n`;
     return;
   }
   dynamicTestFile += `test("${name}", () => import("${name}").then(assert.ok));\n`;
@@ -135,12 +143,12 @@ fs.writeFileSync("./src/dynamic.test.mjs", dynamicTestFile);
 
 let staticTestFile = 'import test from "node:test"\nimport assert from "node:assert";\n';
 let staticIndex = 0;
-testEntries.forEach(({ name, reason }) => {
-  if (reason) {
-    const identifier = `_${staticIndex}`;
-    staticTestFile += `// Skipped ${name}: ${reason}\n`;
-    staticTestFile += `// import * as ${identifier} from "${name}";\n`;
-    staticTestFile += `// test("${name}", () => assert.ok(${identifier}));\n`;
+testEntries.forEach(({ name, expectedFailure }) => {
+  if (expectedFailure) {
+    staticTestFile += `// Expected failure ${name}: ${expectedFailure.reason}\n`;
+    staticTestFile += `test("${name}", async () => {\n`;
+    staticTestFile += `  await assert.rejects(import("${name}"), new RegExp(${JSON.stringify(expectedFailure.message)}));\n`;
+    staticTestFile += `});\n`;
     staticIndex += 1;
     return;
   }

@@ -1296,8 +1296,10 @@ test("eslint-import-resolver-node", () => import("eslint-import-resolver-node").
 test("eslint-import-resolver-typescript", () => import("eslint-import-resolver-typescript").then(assert.ok));
 test("eslint-plugin-es", () => import("eslint-plugin-es").then(assert.ok));
 test("eslint-plugin-flowtype", () => import("eslint-plugin-flowtype").then(assert.ok));
-// Skipped eslint-plugin-jest: Currently pulls @typescript-eslint/utils with an ESLint 10-incompatible FlatESLint import chain.
-// test("eslint-plugin-jest", () => import("eslint-plugin-jest").then(assert.ok));
+// Expected failure eslint-plugin-jest: Currently pulls @typescript-eslint/utils with an ESLint 10-incompatible FlatESLint import chain.
+test("eslint-plugin-jest", async () => {
+  await assert.rejects(import("eslint-plugin-jest"), new RegExp("Class extends value undefined is not a constructor or null"));
+});
 test("eslint-plugin-jsx-a11y", () => import("eslint-plugin-jsx-a11y").then(assert.ok));
 test("eslint-plugin-n", () => import("eslint-plugin-n").then(assert.ok));
 test("eslint-plugin-prettier", () => import("eslint-plugin-prettier").then(assert.ok));
@@ -1767,8 +1769,10 @@ test("joi", () => import("joi").then(assert.ok));
 test("jose", () => import("jose").then(assert.ok));
 test("joycon", () => import("joycon").then(assert.ok));
 test("jpeg-js", () => import("jpeg-js").then(assert.ok));
-// Skipped jquery: jQuery 4 requires a window with a document and throws on plain Node.js imports.
-// test("jquery", () => import("jquery").then(assert.ok));
+// Expected failure jquery: jQuery 4 requires a window with a document and throws on plain Node.js imports.
+test("jquery", async () => {
+  await assert.rejects(import("jquery"), new RegExp("jQuery requires a window with a document"));
+});
 test("js-base64", () => import("js-base64").then(assert.ok));
 test("js-cookie", () => import("js-cookie").then(assert.ok));
 test("js-levenshtein", () => import("js-levenshtein").then(assert.ok));

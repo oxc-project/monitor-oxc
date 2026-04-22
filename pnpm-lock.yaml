@@ -3906,6 +3906,9 @@ importers:
       eslint-plugin-flowtype:
         specifier: latest
         version: 8.0.3(@babel/plugin-syntax-flow@7.28.6(@babel/core@7.29.0(supports-color@10.2.2)))(@babel/plugin-transform-react-jsx@7.28.6(@babel/core@7.29.0(supports-color@10.2.2))(supports-color@10.2.2))(eslint@10.0.1(jiti@2.6.1)(supports-color@10.2.2))
+      eslint-plugin-jest:
+        specifier: latest
+        version: 29.15.0(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@10.0.1(jiti@2.6.1)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3))(eslint@10.0.1(jiti@2.6.1)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3))(eslint@10.0.1(jiti@2.6.1)(supports-color@10.2.2))(jest@30.2.0(@types/node@24.10.0)(babel-plugin-macros@3.1.0)(node-notifier@10.0.1)(supports-color@10.2.2)(ts-node@10.9.2(@types/node@24.10.0)(typescript@5.9.3)))(supports-color@10.2.2)(typescript@5.9.3)
       eslint-plugin-jsx-a11y:
         specifier: latest
         version: 6.10.2(eslint@10.0.1(jiti@2.6.1)(supports-color@10.2.2))
@@ -5313,6 +5316,9 @@ importers:
       jpeg-js:
         specifier: latest
         version: 0.4.4
+      jquery:
+        specifier: latest
+        version: 4.0.0
       js-base64:
         specifier: latest
         version: 3.7.8
