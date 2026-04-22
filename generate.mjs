@@ -5,6 +5,13 @@ import { npmHighImpact } from "npm-high-impact";
 
 const COUNT = 3000;
 
+const skippedPackages = new Map([
+  [
+    "eslint-plugin-jest",
+    "Currently pulls @typescript-eslint/utils with an ESLint 10-incompatible FlatESLint import chain.",
+  ],
+]);
+
 const ignoreList = new Set([
   // CLIs don't work
   "npm", "yarn", "pnpm", "nx", "vitest", "turbo", "@anthropic-ai/claude-code",
@@ -53,8 +60,6 @@ const ignoreList = new Set([
   "@sentry/cli-linux-x64",
   "@tailwindcss/oxide-linux-x64-gnu", "dunder-proto", "html-tags", "hyperdyperid",
   "math-intrinsics", "storybook", "victory-vendor", "@noble/curves", "canvas",
-  // eslint-plugin-jest currently pulls @typescript-eslint/utils with an ESLint 10-incompatible FlatESLint import chain.
-  "eslint-plugin-jest",
   "http-deceiver", "pdfjs-dist", "spdy"
 ]);
 
@@ -95,10 +100,16 @@ const data = [
     npmHighImpact
       .filter((key) => !ignorePrefixes.some((p) => key.startsWith(p)))
       .filter((key) => !ignoreList.has(key))
+      .filter((key) => !skippedPackages.has(key))
       .slice(0, COUNT)
       .concat(vue),
   ),
 ].sort();
+
+const testEntries = [
+  ...data.map((name) => ({ name })),
+  ...[...skippedPackages.entries()].map(([name, reason]) => ({ name, reason })),
+].sort((a, b) => a.name.localeCompare(b.name));
 
 packageJson.devDependencies = {};
 data.map((name) => {
@@ -108,13 +119,29 @@ data.map((name) => {
 fs.writeFileSync("./package.json", JSON.stringify(packageJson, null, 2));
 
 let dynamicTestFile = 'import test from "node:test"\nimport assert from "node:assert";\n';
-data.forEach((key) => {
-  dynamicTestFile += `test("${key}", () => import("${key}").then(assert.ok));\n`;
+testEntries.forEach(({ name, reason }) => {
+  if (reason) {
+    dynamicTestFile += `// Skipped ${name}: ${reason}\n`;
+    dynamicTestFile += `// test("${name}", () => import("${name}").then(assert.ok));\n`;
+    return;
+  }
+  dynamicTestFile += `test("${name}", () => import("${name}").then(assert.ok));\n`;
 });
 fs.writeFileSync("./src/dynamic.test.mjs", dynamicTestFile);
 
 let staticTestFile = 'import test from "node:test"\nimport assert from "node:assert";\n';
-data.forEach((key, i) => {
-  staticTestFile += `import * as _${i} from "${key}";\ntest("${key}", () => assert.ok(_${i}));\n`;
+let staticIndex = 0;
+testEntries.forEach(({ name, reason }) => {
+  if (reason) {
+    const identifier = `_${staticIndex}`;
+    staticTestFile += `// Skipped ${name}: ${reason}\n`;
+    staticTestFile += `// import * as ${identifier} from "${name}";\n`;
+    staticTestFile += `// test("${name}", () => assert.ok(${identifier}));\n`;
+    staticIndex += 1;
+    return;
+  }
+  staticTestFile += `import * as _${staticIndex} from "${name}";\n`;
+  staticTestFile += `test("${name}", () => assert.ok(_${staticIndex}));\n`;
+  staticIndex += 1;
 });
 fs.writeFileSync("./src/static.test.mjs", staticTestFile);
