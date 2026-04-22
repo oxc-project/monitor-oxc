@@ -7,6 +7,10 @@ const COUNT = 3000;
 
 const skippedPackages = new Map([
   [
+    "jquery",
+    "jQuery 4 requires a window with a document and throws on plain Node.js imports.",
+  ],
+  [
     "eslint-plugin-jest",
     "Currently pulls @typescript-eslint/utils with an ESLint 10-incompatible FlatESLint import chain.",
   ],
