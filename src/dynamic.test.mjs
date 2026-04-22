@@ -1296,7 +1296,6 @@ test("eslint-import-resolver-node", () => import("eslint-import-resolver-node").
 test("eslint-import-resolver-typescript", () => import("eslint-import-resolver-typescript").then(assert.ok));
 test("eslint-plugin-es", () => import("eslint-plugin-es").then(assert.ok));
 test("eslint-plugin-flowtype", () => import("eslint-plugin-flowtype").then(assert.ok));
-test("eslint-plugin-jest", () => import("eslint-plugin-jest").then(assert.ok));
 test("eslint-plugin-jsx-a11y", () => import("eslint-plugin-jsx-a11y").then(assert.ok));
 test("eslint-plugin-n", () => import("eslint-plugin-n").then(assert.ok));
 test("eslint-plugin-prettier", () => import("eslint-plugin-prettier").then(assert.ok));

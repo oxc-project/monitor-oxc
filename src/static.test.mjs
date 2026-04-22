@@ -2592,8 +2592,6 @@ import * as _1294 from "eslint-plugin-es";
 test("eslint-plugin-es", () => assert.ok(_1294));
 import * as _1295 from "eslint-plugin-flowtype";
 test("eslint-plugin-flowtype", () => assert.ok(_1295));
-import * as _1296 from "eslint-plugin-jest";
-test("eslint-plugin-jest", () => assert.ok(_1296));
 import * as _1297 from "eslint-plugin-jsx-a11y";
 test("eslint-plugin-jsx-a11y", () => assert.ok(_1297));
 import * as _1298 from "eslint-plugin-n";

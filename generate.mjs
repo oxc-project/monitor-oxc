@@ -53,6 +53,8 @@ const ignoreList = new Set([
   "@sentry/cli-linux-x64",
   "@tailwindcss/oxide-linux-x64-gnu", "dunder-proto", "html-tags", "hyperdyperid",
   "math-intrinsics", "storybook", "victory-vendor", "@noble/curves", "canvas",
+  // eslint-plugin-jest currently pulls @typescript-eslint/utils with an ESLint 10-incompatible FlatESLint import chain.
+  "eslint-plugin-jest",
   "http-deceiver", "pdfjs-dist", "spdy"
 ]);
 
