@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@oxc-project/runtime':
+        specifier: latest
+        version: 0.127.0
       npm-high-impact:
         specifier: 1.12.0
         version: 1.12.0
@@ -13775,6 +13778,10 @@ packages:
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [win32]
+
+  '@oxc-project/runtime@0.127.0':
+    resolution: {integrity: sha512-UQYLxAhDDPHm++szfa4z0RTdcPq5vaywrAoEA2n1YaAKeanXQdjHsoT6x1gP3U97RN8LZ7yHsSOrKPCcA6mCqw==}
+    engines: {node: ^20.19.0 || >=22.12.0}
 
   '@oxc-project/types@0.112.0':
     resolution: {integrity: sha512-m6RebKHIRsax2iCwVpYW2ErQwa4ywHJrE4sCK3/8JK8ZZAWOKXaRJFl/uP51gaVyyXlaS4+chU1nSCdzYf6QqQ==}
@@ -37208,6 +37215,8 @@ snapshots:
 
   '@oxc-parser/binding-win32-x64-msvc@0.112.0':
     optional: true
+
+  '@oxc-project/runtime@0.127.0': {}
 
   '@oxc-project/types@0.112.0': {}
 
