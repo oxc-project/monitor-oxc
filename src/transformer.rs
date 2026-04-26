@@ -17,7 +17,11 @@ impl Case for TransformerRunner {
         // Write js files for runtime test
         let new_extension = path.extension().unwrap().to_string_lossy().replace('t', "j");
         let new_path = path.with_extension(new_extension);
-        fs::write(new_path, source_text).unwrap();
+        // Some packages ship TS sources beside compiled JS. Do not clobber the
+        // shipped JS entry used by the runtime import test.
+        if &new_path == path || !new_path.exists() {
+            fs::write(new_path, source_text).unwrap();
+        }
         Ok(())
     }
 
