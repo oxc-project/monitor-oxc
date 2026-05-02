@@ -53,15 +53,11 @@ const PATH_IGNORES: &[&str] = &[
     "node_modules/limiter/test/tokenbucket-test.js",
     "node_modules/fast-json-patch/webpack.config.js",
     "node_modules/cardinal/test/fixtures/foo-with-errors.js",
-    "node_modules/infinispan/documentation/asciidoc/topics/code_examples",
     "node_modules/js-beautify/js/src/unpackers/p_a_c_k_e_r_unpacker.js",
     "node_modules/comment-parser/tests/e2e/examples.js",
     "node_modules/react-native/Libraries/Utilities/__mocks__/BackHandler.js",
     "node_modules/sass/sass.dart.js",
     "node_modules/rolldown/dist/cjs/cli.cjs",
-    // generated lexer fixtures intentionally preserve compact comment/brace layout
-    "node_modules/cjs-module-lexer/lexer.js",
-    "node_modules/es-module-lexer/lexer.js",
     // Stage 3 decorator
     "node_modules/puppeteer-core/src/bidi/Browser.ts",
     // jsx breaks mangler
