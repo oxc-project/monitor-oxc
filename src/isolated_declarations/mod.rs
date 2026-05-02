@@ -82,8 +82,8 @@ pub fn test(path_to_vue: Option<PathBuf>) -> ExitCode {
         let tsc_output = {
             let allocator = Allocator::default();
             let source_type = SourceType::d_ts();
-            let source_text =
-                fs::read_to_string(&read_path).unwrap_or_else(|e| panic!("{e}\n{read_path:?}"));
+            let source_text = fs::read_to_string(&read_path)
+                .unwrap_or_else(|e| panic!("{e}\n{}", read_path.display()));
             let ret = Parser::new(&allocator, &source_text, source_type).parse();
             Codegen::new()
                 .with_options(CodegenOptions {

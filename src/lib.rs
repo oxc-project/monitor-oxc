@@ -12,7 +12,7 @@ pub mod transformer;
 mod case;
 mod driver;
 
-use std::{fs, panic::catch_unwind, path::PathBuf, process::Command};
+use std::{fmt::Write as _, fs, panic::catch_unwind, path::PathBuf, process::Command};
 
 use console::Style;
 use similar::{ChangeTag, TextDiff};
@@ -126,7 +126,7 @@ impl NodeModulesRunner {
                 }
             }
             let source_text =
-                fs::read_to_string(path).unwrap_or_else(|e| panic!("{e:?}\n{path:?}"));
+                fs::read_to_string(path).unwrap_or_else(|e| panic!("{e:?}\n{}", path.display()));
             files.push(Source { path: path.to_path_buf(), source_type, source_text });
         }
         println!("Collected {} files.", files.len());
@@ -222,7 +222,7 @@ impl NodeModulesRunner {
                 ChangeTag::Equal if print_all => (" ", Style::new()),
                 ChangeTag::Equal => continue,
             };
-            output.push_str(&format!("{}{}", style.apply_to(sign).bold(), style.apply_to(change)));
+            write!(output, "{}{}", style.apply_to(sign).bold(), style.apply_to(change)).unwrap();
         }
         output
     }
