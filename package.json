@@ -1,7 +1,7 @@
 {
   "name": "monitor-oxc",
   "private": true,
-  "packageManager": "pnpm@11.0.5",
+  "packageManager": "pnpm@11.0.6",
   "volta": {
     "node": "22.12.0"
   },
