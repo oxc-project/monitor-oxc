@@ -11,7 +11,10 @@ test("@alloc/quick-lru", () => import("@alloc/quick-lru").then(assert.ok));
 test("@ampproject/remapping", () => import("@ampproject/remapping").then(assert.ok));
 test("@apideck/better-ajv-errors", () => import("@apideck/better-ajv-errors").then(assert.ok));
 test("@apidevtools/json-schema-ref-parser", () => import("@apidevtools/json-schema-ref-parser").then(assert.ok));
-test("@ardatan/relay-compiler", () => import("@ardatan/relay-compiler").then(assert.ok));
+// Expected failure @ardatan/relay-compiler: @ardatan/relay-compiler@13.0.1 has a broken internal require path (./util/nullthrowsOSS from lib/runner/).
+test("@ardatan/relay-compiler", async () => {
+  await assert.rejects(import("@ardatan/relay-compiler"), new RegExp("Cannot find module './util/nullthrowsOSS'"));
+});
 test("@asamuzakjp/css-color", () => import("@asamuzakjp/css-color").then(assert.ok));
 test("@asamuzakjp/dom-selector", () => import("@asamuzakjp/dom-selector").then(assert.ok));
 test("@aws-crypto/crc32", () => import("@aws-crypto/crc32").then(assert.ok));
@@ -1296,10 +1299,7 @@ test("eslint-import-resolver-node", () => import("eslint-import-resolver-node").
 test("eslint-import-resolver-typescript", () => import("eslint-import-resolver-typescript").then(assert.ok));
 test("eslint-plugin-es", () => import("eslint-plugin-es").then(assert.ok));
 test("eslint-plugin-flowtype", () => import("eslint-plugin-flowtype").then(assert.ok));
-// Expected failure eslint-plugin-jest: Currently pulls @typescript-eslint/utils with an ESLint 10-incompatible FlatESLint import chain.
-test("eslint-plugin-jest", async () => {
-  await assert.rejects(import("eslint-plugin-jest"), new RegExp("Class extends value undefined is not a constructor or null"));
-});
+test("eslint-plugin-jest", () => import("eslint-plugin-jest").then(assert.ok));
 test("eslint-plugin-jsx-a11y", () => import("eslint-plugin-jsx-a11y").then(assert.ok));
 test("eslint-plugin-n", () => import("eslint-plugin-n").then(assert.ok));
 test("eslint-plugin-prettier", () => import("eslint-plugin-prettier").then(assert.ok));
@@ -2006,8 +2006,14 @@ test("minimist-options", () => import("minimist-options").then(assert.ok));
 test("minipass", () => import("minipass").then(assert.ok));
 test("minipass-collect", () => import("minipass-collect").then(assert.ok));
 test("minipass-fetch", () => import("minipass-fetch").then(assert.ok));
-test("minipass-flush", () => import("minipass-flush").then(assert.ok));
-test("minipass-pipeline", () => import("minipass-pipeline").then(assert.ok));
+// Expected failure minipass-flush: minipass-flush@2.0.0 was published with an empty tarball; the exports field points to a missing dist/.
+test("minipass-flush", async () => {
+  await assert.rejects(import("minipass-flush"), new RegExp("minipass-flush/dist/esm/index.js"));
+});
+// Expected failure minipass-pipeline: minipass-pipeline@3.0.0 was published with an empty tarball; the exports field points to a missing dist/.
+test("minipass-pipeline", async () => {
+  await assert.rejects(import("minipass-pipeline"), new RegExp("minipass-pipeline/dist/esm/index.js"));
+});
 test("minipass-sized", () => import("minipass-sized").then(assert.ok));
 test("minizlib", () => import("minizlib").then(assert.ok));
 test("mississippi", () => import("mississippi").then(assert.ok));
@@ -2373,7 +2379,10 @@ test("punycode.js", () => import("punycode.js").then(assert.ok));
 test("pupa", () => import("pupa").then(assert.ok));
 test("puppeteer", () => import("puppeteer").then(assert.ok));
 test("puppeteer-core", () => import("puppeteer-core").then(assert.ok));
-test("pure-rand", () => import("pure-rand").then(assert.ok));
+// Expected failure pure-rand: pure-rand@8.x removed the `.` (main) entry from its exports map and only ships subpath imports.
+test("pure-rand", async () => {
+  await assert.rejects(import("pure-rand"), new RegExp("No \"exports\" main defined"));
+});
 test("pvtsutils", () => import("pvtsutils").then(assert.ok));
 test("q", () => import("q").then(assert.ok));
 test("qrcode", () => import("qrcode").then(assert.ok));

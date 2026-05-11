@@ -14,11 +14,31 @@ const expectedFailures = new Map([
     },
   ],
   [
-    "eslint-plugin-jest",
+    "minipass-flush",
     {
-      reason:
-        "Currently pulls @typescript-eslint/utils with an ESLint 10-incompatible FlatESLint import chain.",
-      message: "Class extends value undefined is not a constructor or null",
+      reason: "minipass-flush@2.0.0 was published with an empty tarball; the exports field points to a missing dist/.",
+      message: "minipass-flush/dist/esm/index.js",
+    },
+  ],
+  [
+    "minipass-pipeline",
+    {
+      reason: "minipass-pipeline@3.0.0 was published with an empty tarball; the exports field points to a missing dist/.",
+      message: "minipass-pipeline/dist/esm/index.js",
+    },
+  ],
+  [
+    "pure-rand",
+    {
+      reason: "pure-rand@8.x removed the `.` (main) entry from its exports map and only ships subpath imports.",
+      message: 'No "exports" main defined',
+    },
+  ],
+  [
+    "@ardatan/relay-compiler",
+    {
+      reason: "@ardatan/relay-compiler@13.0.1 has a broken internal require path (./util/nullthrowsOSS from lib/runner/).",
+      message: "Cannot find module './util/nullthrowsOSS'",
     },
   ],
 ]);
