@@ -22,8 +22,10 @@ import * as _9 from "@apideck/better-ajv-errors";
 test("@apideck/better-ajv-errors", () => assert.ok(_9));
 import * as _10 from "@apidevtools/json-schema-ref-parser";
 test("@apidevtools/json-schema-ref-parser", () => assert.ok(_10));
-import * as _11 from "@ardatan/relay-compiler";
-test("@ardatan/relay-compiler", () => assert.ok(_11));
+// Expected failure @ardatan/relay-compiler: @ardatan/relay-compiler@13.0.1 has a broken internal require path (./util/nullthrowsOSS from lib/runner/).
+test("@ardatan/relay-compiler", async () => {
+  await assert.rejects(import("@ardatan/relay-compiler"), new RegExp("Cannot find module './util/nullthrowsOSS'"));
+});
 import * as _12 from "@asamuzakjp/css-color";
 test("@asamuzakjp/css-color", () => assert.ok(_12));
 import * as _13 from "@asamuzakjp/dom-selector";
@@ -2592,10 +2594,8 @@ import * as _1294 from "eslint-plugin-es";
 test("eslint-plugin-es", () => assert.ok(_1294));
 import * as _1295 from "eslint-plugin-flowtype";
 test("eslint-plugin-flowtype", () => assert.ok(_1295));
-// Expected failure eslint-plugin-jest: Currently pulls @typescript-eslint/utils with an ESLint 10-incompatible FlatESLint import chain.
-test("eslint-plugin-jest", async () => {
-  await assert.rejects(import("eslint-plugin-jest"), new RegExp("Class extends value undefined is not a constructor or null"));
-});
+import * as _1296 from "eslint-plugin-jest";
+test("eslint-plugin-jest", () => assert.ok(_1296));
 import * as _1297 from "eslint-plugin-jsx-a11y";
 test("eslint-plugin-jsx-a11y", () => assert.ok(_1297));
 import * as _1298 from "eslint-plugin-n";
@@ -4004,10 +4004,14 @@ import * as _1998 from "minipass-collect";
 test("minipass-collect", () => assert.ok(_1998));
 import * as _1999 from "minipass-fetch";
 test("minipass-fetch", () => assert.ok(_1999));
-import * as _2000 from "minipass-flush";
-test("minipass-flush", () => assert.ok(_2000));
-import * as _2001 from "minipass-pipeline";
-test("minipass-pipeline", () => assert.ok(_2001));
+// Expected failure minipass-flush: minipass-flush@2.0.0 was published with an empty tarball; the exports field points to a missing dist/.
+test("minipass-flush", async () => {
+  await assert.rejects(import("minipass-flush"), new RegExp("minipass-flush/dist/esm/index.js"));
+});
+// Expected failure minipass-pipeline: minipass-pipeline@3.0.0 was published with an empty tarball; the exports field points to a missing dist/.
+test("minipass-pipeline", async () => {
+  await assert.rejects(import("minipass-pipeline"), new RegExp("minipass-pipeline/dist/esm/index.js"));
+});
 import * as _2002 from "minipass-sized";
 test("minipass-sized", () => assert.ok(_2002));
 import * as _2003 from "minizlib";
@@ -4738,8 +4742,10 @@ import * as _2365 from "puppeteer";
 test("puppeteer", () => assert.ok(_2365));
 import * as _2366 from "puppeteer-core";
 test("puppeteer-core", () => assert.ok(_2366));
-import * as _2367 from "pure-rand";
-test("pure-rand", () => assert.ok(_2367));
+// Expected failure pure-rand: pure-rand@8.x removed the `.` (main) entry from its exports map and only ships subpath imports.
+test("pure-rand", async () => {
+  await assert.rejects(import("pure-rand"), new RegExp("No \"exports\" main defined"));
+});
 import * as _2368 from "pvtsutils";
 test("pvtsutils", () => assert.ok(_2368));
 import * as _2369 from "q";
