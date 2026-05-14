@@ -65,6 +65,10 @@ const PATH_IGNORES: &[&str] = &[
     // TS(1015): A parameter cannot have a question mark and an initializer.
     "node_modules/react-redux/src/hooks/useDispatch.ts",
     "node_modules/react-redux/src/hooks/useStore.ts",
+    // compressor non-idempotent merge of adjacent ifs returning `{ body }`
+    "node_modules/@typespec/ts-http-runtime/dist/react-native/client/sendRequest.js",
+    "node_modules/@typespec/ts-http-runtime/dist/esm/client/sendRequest.js",
+    "node_modules/@typespec/ts-http-runtime/dist/browser/client/sendRequest.js",
 ];
 
 #[derive(Debug)]
