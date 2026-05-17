@@ -90,7 +90,7 @@ jobs:
 
       - run: chmod +x ./monitor-oxc
 
-      - uses: oxc-project/setup-node@4c26e7cb3605b6bdef5450dacd02c434b10fd8ba # v1.2.0
+      - uses: oxc-project/setup-node@ab97f03642370d79a7e96dd286bd02a1be40e0ba # v1.3.0
 
       - run: ./monitor-oxc ${{ matrix.command }}
         env:
@@ -107,7 +107,7 @@ jobs:
           repository: vuejs/core
           ref: main
 
-      - uses: oxc-project/setup-node@4c26e7cb3605b6bdef5450dacd02c434b10fd8ba # v1.2.0
+      - uses: oxc-project/setup-node@ab97f03642370d79a7e96dd286bd02a1be40e0ba # v1.3.0
 
       - run: ./node_modules/.bin/tsc -p tsconfig.build.json --noCheck
 
@@ -145,7 +145,7 @@ jobs:
           save-cache: ${{ github.ref_name == 'main' }}
           cache-key: test262
 
-      - uses: oxc-project/setup-node@4c26e7cb3605b6bdef5450dacd02c434b10fd8ba # v1.2.0
+      - uses: oxc-project/setup-node@ab97f03642370d79a7e96dd286bd02a1be40e0ba # v1.3.0
 
       - run: cargo coverage runtime
 
