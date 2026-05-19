@@ -128,7 +128,7 @@ impl Driver {
         let allocator = Allocator::default();
         let mut ret = Parser::new(&allocator, source_text, source_type).parse();
         let program = &mut ret.program;
-        Compressor::new(&allocator).dead_code_elimination(program, CompressOptions::default());
+        Compressor::new(&allocator).dead_code_elimination(program, CompressOptions::dce());
         Codegen::new().build(program).code
     }
 }
