@@ -32,10 +32,11 @@ concurrency:
   cancel-in-progress: ${{ github.ref_name != 'main' }}
 
 jobs:
-  start:
+  status:
     if: ${{ inputs.issue-number && inputs.comment-id }}
-    name: Update Comment with Run URL
+    name: Status
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     permissions: {}
     steps:
       - uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3 # v3.1.1
@@ -48,17 +49,62 @@ jobs:
             ${{ github.event.repository.name }}
             oxc
 
-      - uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5.0.0
+      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          COMMENT_ID: ${{ inputs.comment-id }}
         with:
-          token: ${{ steps.app-token.outputs.token }}
-          repository: oxc-project/oxc
-          issue-number: ${{ inputs.issue-number }}
-          comment-id: ${{ inputs.comment-id }}
-          edit-mode: replace
-          body: |
-            ## [Monitor Oxc](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+          github-token: ${{ steps.app-token.outputs.token }}
+          script: |
+            const commentId = Number(process.env.COMMENT_ID);
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
 
-            Running…
+            const emojiFor = (state) => ({
+              success: ':white_check_mark:',
+              failure: ':x:',
+              cancelled: ':stop_button:',
+              skipped: ':next_track_button:',
+              in_progress: ':arrows_counterclockwise:',
+              queued: ':hourglass:',
+              waiting: ':hourglass:',
+              pending: ':hourglass:',
+            }[state] || ':hourglass:');
+
+            const render = (jobs) => {
+              const rows = jobs.map((j) => {
+                const state = j.conclusion || j.status;
+                const suite = j.name.replace(/^Test /, '');
+                return `| [${suite}](${j.html_url}) | ${emojiFor(state)} |`;
+              }).join('\n');
+              return `## [Monitor Oxc](${runUrl})\n\n| suite | result |\n|-------|--------|\n${rows}`;
+            };
+
+            for (let i = 0; i < 60; i++) {
+              const { data: { jobs } } = await github.rest.actions.listJobsForWorkflowRun({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                run_id: context.runId,
+                per_page: 100,
+              });
+              const tracked = jobs.filter((j) =>
+                j.name === 'Build' || j.name.startsWith('Test ')
+              );
+
+              if (tracked.length > 0) {
+                await github.rest.issues.updateComment({
+                  owner: 'oxc-project',
+                  repo: 'oxc',
+                  comment_id: commentId,
+                  body: render(tracked),
+                });
+
+                const build = tracked.find((j) => j.name === 'Build');
+                const buildFailed = build && build.status === 'completed' && build.conclusion !== 'success';
+                const allDone = tracked.every((j) => j.status === 'completed');
+                if (allDone || buildFailed) break;
+              }
+
+              await new Promise((r) => setTimeout(r, 30000));
+            }
 
   build:
     name: Build
@@ -178,68 +224,3 @@ jobs:
       - run: cargo coverage runtime
 
       - run: git diff --exit-code
-
-  comment:
-    needs: [test, isolated_declarations, test262]
-    if: ${{ always() }}
-    runs-on: ubuntu-latest
-    name: Reply Comment
-    permissions:
-      pull-requests: write
-      contents: write
-    steps:
-      - uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3 # v3.1.1
-        id: app-token
-        with:
-          client-id: ${{ secrets.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
-          owner: oxc-project
-          repositories: |
-            ${{ github.event.repository.name }}
-            oxc
-
-      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
-        id: script
-        if: ${{ inputs.issue-number }}
-        with:
-          github-token: ${{ steps.app-token.outputs.token }}
-          result-encoding: string
-          script: |
-            const {
-              data: { jobs },
-            } = await github.rest.actions.listJobsForWorkflowRun({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              run_id: context.runId,
-              per_page: 100,
-            });
-            let result = jobs
-              .filter((job) => job.name.startsWith("Test "))
-              .map((job) => {
-                const suite = job.name.slice(5);
-                return { suite, conclusion: job.conclusion, link: job.html_url };
-              });
-            const url = `${context.serverUrl}//${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
-            const urlLink = `[Open](${url})`;
-            const conclusionEmoji = {
-              success: ":white_check_mark:",
-              failure: ":x:",
-              cancelled: ":stop_button:",
-            };
-            const body = `
-            ## [Monitor Oxc](${urlLink})
-            | suite | result |
-            |-------|--------|
-            ${result.map((r) => `| [${r.suite}](${r.link}) | ${conclusionEmoji[r.conclusion]} |`).join("\n")}
-            `;
-            return body;
-
-      - uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5.0.0
-        if: ${{ inputs.issue-number && inputs.comment-id }}
-        with:
-          token: ${{ steps.app-token.outputs.token }}
-          repository: oxc-project/oxc
-          issue-number: ${{ inputs.issue-number }}
-          comment-id: ${{ inputs.comment-id }}
-          body: ${{ steps.script.outputs.result }}
-          edit-mode: replace
