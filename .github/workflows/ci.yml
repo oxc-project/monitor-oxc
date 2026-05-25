@@ -32,6 +32,34 @@ concurrency:
   cancel-in-progress: ${{ github.ref_name != 'main' }}
 
 jobs:
+  start:
+    if: ${{ inputs.issue-number && inputs.comment-id }}
+    name: Update Comment with Run URL
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3 # v3.1.1
+        id: app-token
+        with:
+          client-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: oxc-project
+          repositories: |
+            ${{ github.event.repository.name }}
+            oxc
+
+      - uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5.0.0
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          repository: oxc-project/oxc
+          issue-number: ${{ inputs.issue-number }}
+          comment-id: ${{ inputs.comment-id }}
+          edit-mode: replace
+          body: |
+            ## [Monitor Oxc](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+
+            Running…
+
   build:
     name: Build
     timeout-minutes: 30
