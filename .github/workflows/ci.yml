@@ -99,8 +99,9 @@ jobs:
 
                 const build = tracked.find((j) => j.name === 'Build');
                 const buildFailed = build && build.status === 'completed' && build.conclusion !== 'success';
+                const hasTests = tracked.some((j) => j.name.startsWith('Test '));
                 const allDone = tracked.every((j) => j.status === 'completed');
-                if (allDone || buildFailed) break;
+                if ((hasTests && allDone) || buildFailed) break;
               }
 
               await new Promise((r) => setTimeout(r, 30000));
