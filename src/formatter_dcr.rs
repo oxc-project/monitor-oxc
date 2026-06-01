@@ -1,8 +1,5 @@
-use oxc::{
-    allocator::Allocator,
-    parser::{Parser, ParserReturn},
-};
-use oxc_formatter::{FormatOptions, Formatter, detect_code_removal, get_parse_options};
+use oxc::allocator::Allocator;
+use oxc_formatter::{detect_code_removal, format_program, parse_for_format, JsFormatOptions};
 
 use crate::{Case, Diagnostic, Driver, Source};
 
@@ -32,16 +29,24 @@ impl Case for FormatterDCRRunner {
         let Source { path, source_type, source_text, .. } = source;
 
         let allocator = Allocator::new();
-        let options = get_parse_options();
-
-        let ParserReturn { program, errors, .. } =
-            Parser::new(&allocator, source_text, *source_type).with_options(options).parse();
+        let parsed = parse_for_format(&allocator, source_text, *source_type);
+        let errors = parsed.errors;
         if !errors.is_empty() {
             // Skip files that fail to parse, already reported in `FormatterRunner`
             return Ok(());
         }
 
-        let source_text2 = Formatter::new(&allocator, FormatOptions::default()).build(&program);
+        let source_text2 =
+            format_program(&allocator, &parsed.program, JsFormatOptions::default(), None)
+                .print()
+                .map_err(|err| {
+                    vec![Diagnostic {
+                        case: self.name(),
+                        path: path.clone(),
+                        message: format!("Format error: {err:?}"),
+                    }]
+                })?
+                .into_code();
 
         if let Some(diff) = detect_code_removal(source_text, &source_text2, *source_type) {
             return Err(vec![Diagnostic {
