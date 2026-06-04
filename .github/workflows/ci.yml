@@ -59,13 +59,19 @@ jobs:
             const commentId = Number(process.env.COMMENT_ID);
             const oxcRef = process.env.OXC_REF || 'main';
             const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
-            const { data: commit } = await github.rest.repos.getCommit({
-              owner: 'oxc-project',
-              repo: 'oxc',
-              ref: oxcRef,
-            });
-            const commitUrl = `${context.serverUrl}/oxc-project/oxc/commit/${commit.sha}`;
-            const shortSha = commit.sha.slice(0, 12);
+            let commitUrl = `${context.serverUrl}/oxc-project/oxc/tree/${oxcRef}`;
+            let shortSha = oxcRef;
+            try {
+              const { data: commit } = await github.rest.repos.getCommit({
+                owner: 'oxc-project',
+                repo: 'oxc',
+                ref: oxcRef,
+              });
+              commitUrl = `${context.serverUrl}/oxc-project/oxc/commit/${commit.sha}`;
+              shortSha = commit.sha.slice(0, 12);
+            } catch (error) {
+              console.warn(`Failed to resolve oxc ref "${oxcRef}": ${String(error)}`);
+            }
 
             const emojiFor = (state) => ({
               success: ':white_check_mark:',
