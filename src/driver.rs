@@ -8,7 +8,7 @@ use oxc::{
     CompilerInterface,
     allocator::Allocator,
     codegen::{Codegen, CodegenOptions, CodegenReturn, CommentOptions},
-    diagnostics::OxcDiagnostic,
+    diagnostics::{Diagnostics, OxcDiagnostic},
     mangler::MangleOptions,
     minifier::{CompressOptions, Compressor},
     parser::{ParseOptions, Parser, ParserReturn},
@@ -34,7 +34,7 @@ pub struct Driver {
 }
 
 impl CompilerInterface for Driver {
-    fn handle_errors(&mut self, errors: Vec<OxcDiagnostic>) {
+    fn handle_errors(&mut self, errors: Diagnostics) {
         let errors = errors
             .into_iter()
             .filter(|d| !d.message.starts_with("Flow is not supported"))
@@ -48,9 +48,13 @@ impl CompilerInterface for Driver {
     }
 
     fn after_parse(&mut self, parser_return: &mut ParserReturn) -> ControlFlow<()> {
-        parser_return.errors = mem::take(&mut parser_return.errors).into_iter().filter(|e| {
-            e.message != "`await` is only allowed within async functions and at the top levels of modules"
-        }).collect::<Vec<_>>();
+        parser_return.diagnostics = mem::take(&mut parser_return.diagnostics)
+            .into_iter()
+            .filter(|e| {
+                e.message
+                    != "`await` is only allowed within async functions and at the top levels of modules"
+            })
+            .collect();
         ControlFlow::Continue(())
     }
 
