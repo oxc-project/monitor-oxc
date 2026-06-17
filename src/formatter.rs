@@ -39,6 +39,12 @@ impl Case for FormatterRunner {
         ) {
             Ok(formatted) => formatted.print().unwrap().into_code(),
             Err(error) => {
+                // oxc does not support Flow syntax, so Flow files can't be
+                // formatted. Skip them instead of reporting a failure (the
+                // transformer driver filters the same diagnostic).
+                if error.message.starts_with("Flow is not supported") {
+                    return Ok(source_text.to_string());
+                }
                 return Err(vec![Diagnostic {
                     case: self.name(),
                     path: path.clone(),
