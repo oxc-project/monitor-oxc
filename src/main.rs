@@ -11,6 +11,14 @@ use monitor_oxc::{
 };
 
 fn main() -> ExitCode {
+    // Rayon workers default to 2 MiB stacks, which deeply nested expressions
+    // in node_modules overflow (an abort, not a catchable panic). Match the
+    // main thread's 8 MiB, as oxc's coverage runner does.
+    rayon::ThreadPoolBuilder::new()
+        .stack_size(8 * 1024 * 1024)
+        .build_global()
+        .unwrap();
+
     let mut args = Arguments::from_env();
 
     let options = NodeModulesRunnerOptions {
