@@ -101,7 +101,7 @@ jobs:
                 per_page: 100,
               });
               const tracked = jobs.filter((j) =>
-                j.name === 'Build' || j.name.startsWith('Test ')
+                j.name === 'Build' || j.name.startsWith('Test')
               );
 
               if (tracked.length > 0) {
@@ -213,7 +213,6 @@ jobs:
     name: Test262
     timeout-minutes: 30
     runs-on: ubuntu-latest
-    if: false # TODO: FIXME
     steps:
       - name: Checkout oxc (${{ inputs.ref }})
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -222,13 +221,25 @@ jobs:
           repository: oxc-project/oxc
           ref: ${{ inputs.ref }}
 
+      - name: Get test262 SHA pinned by oxc
+        id: test262
+        # Fail loudly if extraction breaks (e.g. oxc renames the constant) —
+        # an empty ref would silently check out test262's default branch.
+        run: |
+          sha=$(grep 'const TEST262_SHA' .github/scripts/clone-parallel.mjs | cut -d'"' -f2)
+          if [[ ! "$sha" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "Failed to extract test262 SHA from clone-parallel.mjs (got: '$sha')"
+            exit 1
+          fi
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
           show-progress: false
           repository: tc39/test262
           path: tasks/coverage/test262
-          ref: 4b5d36ab6ef2f59d0a8902cd383762547a3a74c4
+          ref: ${{ steps.test262.outputs.sha }}
 
       - uses: oxc-project/setup-rust@23f38cfb0c04af97a055f76acee94d5be71c7c82 # v1.0.16
         with:
