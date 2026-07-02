@@ -212,6 +212,11 @@ jobs:
   test:
     name: Test
     needs: build
+    # GitHub skips a job when anything in its needs CHAIN was skipped unless it
+    # overrides the check itself: the guard (skipped on non-schedule events)
+    # would otherwise propagate through build and skip this job even after
+    # build ran and succeeded.
+    if: ${{ !cancelled() && needs.build.result == 'success' }}
     timeout-minutes: 30
     runs-on: ubuntu-latest
     strategy:
@@ -244,6 +249,8 @@ jobs:
   isolated_declarations:
     needs: build
     name: Test Isolated Declarations
+    # See `test` — break the transitive skip from the guard.
+    if: ${{ !cancelled() && needs.build.result == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
