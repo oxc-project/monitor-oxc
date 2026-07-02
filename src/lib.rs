@@ -15,6 +15,7 @@ mod driver;
 use std::{fmt::Write as _, fs, panic::catch_unwind, path::PathBuf, process::Command};
 
 use console::Style;
+use rayon::prelude::*;
 use similar::{ChangeTag, TextDiff};
 use walkdir::WalkDir;
 
@@ -101,34 +102,49 @@ pub struct NodeModulesRunner {
 
 impl NodeModulesRunner {
     pub fn new(options: NodeModulesRunnerOptions) -> Self {
-        let mut files = vec![];
-        for entry in WalkDir::new("node_modules/.pnpm") {
-            let dir_entry = entry.unwrap();
-            let path = dir_entry.path();
-            if !path.is_file() {
-                continue;
-            }
-            let Ok(source_type) = SourceType::from_path(path) else {
-                continue;
-            };
-            if PATH_IGNORES.iter().any(|p| path.to_string_lossy().replace('\\', "/").contains(p)) {
-                continue;
-            }
-            if source_type.is_typescript_definition() {
-                continue;
-            }
-            if let Some(filter) = options.filter.as_ref() {
-                let path = path.to_string_lossy();
-                if path.contains(filter) {
-                    println!("Filtered {path}");
-                } else {
-                    continue;
+        // Walk sequentially to collect the eligible paths (directory traversal is
+        // cheap and its order must stay deterministic), then read the files in
+        // parallel — reading ~100k files is the expensive, I/O-bound part.
+        let paths = WalkDir::new("node_modules/.pnpm")
+            .into_iter()
+            .filter_map(|entry| {
+                let dir_entry = entry.unwrap();
+                let path = dir_entry.path();
+                if !path.is_file() {
+                    return None;
                 }
-            }
-            let source_text =
-                fs::read_to_string(path).unwrap_or_else(|e| panic!("{e:?}\n{}", path.display()));
-            files.push(Source { path: path.to_path_buf(), source_type, source_text });
-        }
+                let source_type = SourceType::from_path(path).ok()?;
+                if PATH_IGNORES
+                    .iter()
+                    .any(|p| path.to_string_lossy().replace('\\', "/").contains(p))
+                {
+                    return None;
+                }
+                if source_type.is_typescript_definition() {
+                    return None;
+                }
+                if let Some(filter) = options.filter.as_ref() {
+                    let path = path.to_string_lossy();
+                    if path.contains(filter) {
+                        println!("Filtered {path}");
+                    } else {
+                        return None;
+                    }
+                }
+                Some((path.to_path_buf(), source_type))
+            })
+            .collect::<Vec<_>>();
+
+        // `into_par_iter().collect()` preserves input order, so `files` keeps the
+        // deterministic walk order.
+        let files = paths
+            .into_par_iter()
+            .map(|(path, source_type)| {
+                let source_text = fs::read_to_string(&path)
+                    .unwrap_or_else(|e| panic!("{e:?}\n{}", path.display()));
+                Source { path, source_type, source_text }
+            })
+            .collect::<Vec<_>>();
         println!("Collected {} files.", files.len());
         Self { options, files, cases: vec![] }
     }
@@ -146,9 +162,12 @@ impl NodeModulesRunner {
 
     fn run_case(&self, case: &dyn Case) -> Result<(), Vec<Diagnostic>> {
         println!("Running {}.", case.name());
+        // `par_iter().map(...).collect::<Vec<_>>()` preserves input order, so the
+        // diagnostics below stay in deterministic (file) order regardless of the
+        // order rayon workers finish in.
         let results = self
             .files
-            .iter()
+            .par_iter()
             .map(|source| {
                 catch_unwind(|| case.test(source)).map_err(|err| {
                     vec![Diagnostic {
@@ -159,13 +178,23 @@ impl NodeModulesRunner {
                 })
             })
             .collect::<Vec<_>>();
+        // Emit per-file notes in deterministic (file) order. The sequential runner
+        // printed these inline during the loop; since nothing else is printed there,
+        // emitting them here (in input order) reproduces that output exactly.
+        for result in &results {
+            if let Ok(Ok(notes)) = result {
+                for note in notes {
+                    println!("{note}");
+                }
+            }
+        }
         println!("Ran {} times.", results.len());
         let diagnostics = results
             .into_iter()
             .filter_map(|result| match result {
                 Err(panic_diagnostics) => Some(panic_diagnostics),
                 Ok(Err(test_diagnostics)) => Some(test_diagnostics),
-                Ok(Ok(())) => None,
+                Ok(Ok(_notes)) => None,
             })
             .flatten()
             .collect::<Vec<_>>();

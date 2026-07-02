@@ -25,7 +25,7 @@ impl Case for FormatterDCRRunner {
         unreachable!()
     }
 
-    fn test(&self, source: &Source) -> Result<(), Vec<Diagnostic>> {
+    fn test(&self, source: &Source) -> Result<Vec<String>, Vec<Diagnostic>> {
         let Source { path, source_type, source_text, .. } = source;
 
         let allocator = Allocator::new();
@@ -39,7 +39,7 @@ impl Case for FormatterDCRRunner {
         ) {
             Ok(formatted) => formatted.print().unwrap().into_code(),
             // Skip files that fail to parse, already reported in `FormatterRunner`
-            Err(_) => return Ok(()),
+            Err(_) => return Ok(Vec::new()),
         };
 
         if let Some(diff) = detect_code_removal(source_text, &source_text2, *source_type) {
@@ -50,6 +50,6 @@ impl Case for FormatterDCRRunner {
             }]);
         }
 
-        Ok(())
+        Ok(Vec::new())
     }
 }

@@ -25,7 +25,7 @@ impl Case for FormatterRunner {
         unreachable!()
     }
 
-    fn idempotency_test(&self, source: &Source) -> Result<String, Vec<Diagnostic>> {
+    fn idempotency_test(&self, source: &Source) -> Result<(String, Vec<String>), Vec<Diagnostic>> {
         let Source { path, source_type, source_text } = source;
 
         let allocator = Allocator::new();
@@ -43,7 +43,7 @@ impl Case for FormatterRunner {
                 // formatted. Skip them instead of reporting a failure (the
                 // transformer driver filters the same diagnostic).
                 if error.message.starts_with("Flow is not supported") {
-                    return Ok(source_text.to_string());
+                    return Ok((source_text.clone(), Vec::new()));
                 }
                 return Err(vec![Diagnostic {
                     case: self.name(),
@@ -76,19 +76,19 @@ impl Case for FormatterRunner {
                 // oxfmt agrees with Prettier on one pass: a real idempotency bug, but
                 // not a Prettier-conformance gap. Report it as a warning, don't fail.
                 Verdict::Matched(message) => {
-                    println!("{}\n{}\n{message}\n", self.name(), path.to_string_lossy());
-                    Ok(source_text3)
+                    // Return the note instead of printing it here, so the runner can
+                    // emit it in deterministic order after the parallel phase.
+                    let note = format!("{}\n{}\n{message}\n", self.name(), path.to_string_lossy());
+                    Ok((source_text3, vec![note]))
                 }
                 // oxfmt diverges from Prettier (or Prettier could not classify it): fail.
-                Verdict::Mismatch(message) => Err(vec![Diagnostic {
-                    case: self.name(),
-                    path: path.clone(),
-                    message,
-                }]),
+                Verdict::Mismatch(message) => {
+                    Err(vec![Diagnostic { case: self.name(), path: path.clone(), message }])
+                }
             };
         }
 
-        Ok(source_text3)
+        Ok((source_text3, Vec::new()))
     }
 }
 
