@@ -25,7 +25,10 @@ impl Case for FormatterRunner {
         unreachable!()
     }
 
-    fn idempotency_test(&self, source: &Source) -> Result<(String, Vec<String>), Vec<Diagnostic>> {
+    fn idempotency_test(
+        &self,
+        source: &Source,
+    ) -> Result<(String, Option<String>), Vec<Diagnostic>> {
         let Source { path, source_type, source_text } = source;
 
         let allocator = Allocator::new();
@@ -43,7 +46,7 @@ impl Case for FormatterRunner {
                 // formatted. Skip them instead of reporting a failure (the
                 // transformer driver filters the same diagnostic).
                 if error.message.starts_with("Flow is not supported") {
-                    return Ok((source_text.clone(), Vec::new()));
+                    return Ok((source_text.clone(), None));
                 }
                 return Err(vec![Diagnostic {
                     case: self.name(),
@@ -79,7 +82,7 @@ impl Case for FormatterRunner {
                     // Return the note instead of printing it here, so the runner can
                     // emit it in deterministic order after the parallel phase.
                     let note = format!("{}\n{}\n{message}\n", self.name(), path.to_string_lossy());
-                    Ok((source_text3, vec![note]))
+                    Ok((source_text3, Some(note)))
                 }
                 // oxfmt diverges from Prettier (or Prettier could not classify it): fail.
                 Verdict::Mismatch(message) => {
@@ -88,7 +91,7 @@ impl Case for FormatterRunner {
             };
         }
 
-        Ok((source_text3, Vec::new()))
+        Ok((source_text3, None))
     }
 }
 

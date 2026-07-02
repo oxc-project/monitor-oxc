@@ -114,19 +114,16 @@ impl NodeModulesRunner {
                     return None;
                 }
                 let source_type = SourceType::from_path(path).ok()?;
-                if PATH_IGNORES
-                    .iter()
-                    .any(|p| path.to_string_lossy().replace('\\', "/").contains(p))
-                {
+                let path_str = path.to_string_lossy().replace('\\', "/");
+                if PATH_IGNORES.iter().any(|p| path_str.contains(p)) {
                     return None;
                 }
                 if source_type.is_typescript_definition() {
                     return None;
                 }
                 if let Some(filter) = options.filter.as_ref() {
-                    let path = path.to_string_lossy();
-                    if path.contains(filter) {
-                        println!("Filtered {path}");
+                    if path_str.contains(filter) {
+                        println!("Filtered {path_str}");
                     } else {
                         return None;
                     }
@@ -182,10 +179,8 @@ impl NodeModulesRunner {
         // printed these inline during the loop; since nothing else is printed there,
         // emitting them here (in input order) reproduces that output exactly.
         for result in &results {
-            if let Ok(Ok(notes)) = result {
-                for note in notes {
-                    println!("{note}");
-                }
+            if let Ok(Ok(Some(note))) = result {
+                println!("{note}");
             }
         }
         println!("Ran {} times.", results.len());
@@ -194,7 +189,7 @@ impl NodeModulesRunner {
             .filter_map(|result| match result {
                 Err(panic_diagnostics) => Some(panic_diagnostics),
                 Ok(Err(test_diagnostics)) => Some(test_diagnostics),
-                Ok(Ok(_notes)) => None,
+                Ok(Ok(_note)) => None,
             })
             .flatten()
             .collect::<Vec<_>>();

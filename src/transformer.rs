@@ -11,9 +11,9 @@ impl Case for TransformerRunner {
         "Transformer"
     }
 
-    fn test(&self, source: &Source) -> Result<Vec<String>, Vec<Diagnostic>> {
+    fn test(&self, source: &Source) -> Result<Option<String>, Vec<Diagnostic>> {
         let path = &source.path;
-        let (source_text, notes) = self.idempotency_test(source)?;
+        let (source_text, note) = self.idempotency_test(source)?;
         // Write js files for runtime test
         let new_extension = path.extension().unwrap().to_string_lossy().replace('t', "j");
         let new_path = path.with_extension(new_extension);
@@ -22,7 +22,7 @@ impl Case for TransformerRunner {
         if &new_path == path || !new_path.exists() {
             fs::write(new_path, source_text).unwrap();
         }
-        Ok(notes)
+        Ok(note)
     }
 
     fn driver(&self) -> Driver {
