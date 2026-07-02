@@ -139,13 +139,38 @@ jobs:
 
       - run: mv oxc ../oxc
 
+      - name: Get oxc commit
+        id: oxc
+        run: echo "sha=$(git -C ../oxc rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      # Reuse the binary when neither oxc nor our sources changed (common for
+      # the 3-hourly scheduled runs), skipping the ~2 minute build.
+      - name: Restore binary cache
+        id: binary-cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ./target/release/monitor-oxc
+          key: binary-${{ runner.os }}-${{ steps.oxc.outputs.sha }}-${{ hashFiles('Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml', 'src/**') }}
+
       - uses: oxc-project/setup-rust@23f38cfb0c04af97a055f76acee94d5be71c7c82 # v1.0.16
+        if: steps.binary-cache.outputs.cache-hit != 'true'
         with:
           save-cache: ${{ github.ref_name == 'main' }}
 
       - run: cargo build --release
+        if: steps.binary-cache.outputs.cache-hit != 'true'
         env:
           RUSTFLAGS: "-C debug-assertions=true"
+
+      # Explicit save right after the build: the combined actions/cache form
+      # only saves when the whole job succeeds, so red periods — when
+      # identical reruns are most frequent — would never populate the cache.
+      - name: Save binary cache
+        if: steps.binary-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ./target/release/monitor-oxc
+          key: binary-${{ runner.os }}-${{ steps.oxc.outputs.sha }}-${{ hashFiles('Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml', 'src/**') }}
 
       - name: Upload Binary
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
@@ -241,7 +266,22 @@ jobs:
           path: tasks/coverage/test262
           ref: ${{ steps.test262.outputs.sha }}
 
+      - name: Get oxc commit
+        id: oxc
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      # Reuse the compiled coverage runner when oxc is unchanged, skipping the
+      # ~2 minute build. The binary locates the repo from the working directory
+      # (project-root crate), so on a hit it runs without cargo.
+      - name: Restore oxc_coverage cache
+        id: coverage-cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: target/coverage/oxc_coverage
+          key: oxc-coverage-${{ runner.os }}-${{ steps.oxc.outputs.sha }}
+
       - uses: oxc-project/setup-rust@23f38cfb0c04af97a055f76acee94d5be71c7c82 # v1.0.16
+        if: steps.coverage-cache.outputs.cache-hit != 'true'
         with:
           save-cache: ${{ github.ref_name == 'main' }}
           cache-key: test262
@@ -249,5 +289,19 @@ jobs:
       - uses: oxc-project/setup-node@ab97f03642370d79a7e96dd286bd02a1be40e0ba # v1.3.0
 
       - run: cargo coverage runtime
+        if: steps.coverage-cache.outputs.cache-hit != 'true'
+
+      # Save before `git diff` so snapshot drift (a red run) doesn't discard
+      # the compiled binary — red periods are exactly when identical 3-hourly
+      # reruns pile up.
+      - name: Save oxc_coverage cache
+        if: steps.coverage-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: target/coverage/oxc_coverage
+          key: oxc-coverage-${{ runner.os }}-${{ steps.oxc.outputs.sha }}
+
+      - run: ./target/coverage/oxc_coverage runtime
+        if: steps.coverage-cache.outputs.cache-hit == 'true'
 
       - run: git diff --exit-code
