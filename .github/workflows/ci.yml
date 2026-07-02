@@ -147,7 +147,7 @@ jobs:
       # the 3-hourly scheduled runs), skipping the ~2 minute build.
       - name: Restore binary cache
         id: binary-cache
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ./target/release/monitor-oxc
           key: binary-${{ runner.os }}-${{ steps.oxc.outputs.sha }}-${{ hashFiles('Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml', 'src/**') }}
@@ -161,6 +161,16 @@ jobs:
         if: steps.binary-cache.outputs.cache-hit != 'true'
         env:
           RUSTFLAGS: "-C debug-assertions=true"
+
+      # Explicit save right after the build: the combined actions/cache form
+      # only saves when the whole job succeeds, so red periods — when
+      # identical reruns are most frequent — would never populate the cache.
+      - name: Save binary cache
+        if: steps.binary-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ./target/release/monitor-oxc
+          key: binary-${{ runner.os }}-${{ steps.oxc.outputs.sha }}-${{ hashFiles('Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml', 'src/**') }}
 
       - name: Upload Binary
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
@@ -265,7 +275,7 @@ jobs:
       # (project-root crate), so on a hit it runs without cargo.
       - name: Restore oxc_coverage cache
         id: coverage-cache
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: target/coverage/oxc_coverage
           key: oxc-coverage-${{ runner.os }}-${{ steps.oxc.outputs.sha }}
@@ -280,6 +290,16 @@ jobs:
 
       - run: cargo coverage runtime
         if: steps.coverage-cache.outputs.cache-hit != 'true'
+
+      # Save before `git diff` so snapshot drift (a red run) doesn't discard
+      # the compiled binary — red periods are exactly when identical 3-hourly
+      # reruns pile up.
+      - name: Save oxc_coverage cache
+        if: steps.coverage-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: target/coverage/oxc_coverage
+          key: oxc-coverage-${{ runner.os }}-${{ steps.oxc.outputs.sha }}
 
       - run: ./target/coverage/oxc_coverage runtime
         if: steps.coverage-cache.outputs.cache-hit == 'true'
