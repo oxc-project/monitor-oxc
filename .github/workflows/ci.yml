@@ -134,9 +134,11 @@ jobs:
     outputs:
       unchanged: ${{ steps.marker.outputs.cache-hit }}
     steps:
-      - name: Resolve oxc main commit
-        id: oxc
-        run: echo "sha=$(gh api repos/oxc-project/oxc/commits/main --jq .sha)" >> "$GITHUB_OUTPUT"
+      - name: Resolve oxc and vuejs/core main commits
+        id: heads
+        run: |
+          echo "oxc=$(gh api repos/oxc-project/oxc/commits/main --jq .sha)" >> "$GITHUB_OUTPUT"
+          echo "vue=$(gh api repos/vuejs/core/commits/main --jq .sha)" >> "$GITHUB_OUTPUT"
         env:
           GH_TOKEN: ${{ github.token }}
 
@@ -145,7 +147,7 @@ jobs:
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: .green-marker
-          key: green-${{ github.sha }}-${{ steps.oxc.outputs.sha }}
+          key: green-${{ github.sha }}-${{ steps.heads.outputs.oxc }}-${{ steps.heads.outputs.vue }}
           lookup-only: true
 
   build:
@@ -249,8 +251,12 @@ jobs:
     # See `test` — break the transitive skip from the guard.
     if: ${{ !cancelled() && needs.build.result == 'success' }}
     runs-on: ubuntu-latest
+    outputs:
+      vue-sha: ${{ steps.vue.outputs.commit }}
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Checkout vuejs/core
+        id: vue
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
           repository: vuejs/core
@@ -274,6 +280,8 @@ jobs:
     if: ${{ !cancelled() && needs.guard.outputs.unchanged != 'true' }}
     timeout-minutes: 30
     runs-on: ubuntu-latest
+    outputs:
+      oxc-sha: ${{ steps.oxc.outputs.commit }}
     steps:
       - name: Checkout oxc (${{ inputs.ref }})
         id: oxc
@@ -347,12 +355,15 @@ jobs:
   record:
     name: Record green run
     needs: [build, test, isolated_declarations, test262]
+    # success() = every needed job succeeded (false if any failed OR was
+    # skipped on the guard-hit path). The oxc SHA agreement check guards the
+    # race where oxc main advances between Build's and Test262's independent
+    # checkouts — recording then would certify a commit Test262 never tested;
+    # skipping the record just means one extra run.
     if: >-
       github.event_name == 'schedule' &&
-      needs.build.result == 'success' &&
-      needs.test.result == 'success' &&
-      needs.isolated_declarations.result == 'success' &&
-      needs.test262.result == 'success'
+      success() &&
+      needs.build.outputs.oxc-sha == needs.test262.outputs.oxc-sha
     runs-on: ubuntu-latest
     steps:
       - run: touch .green-marker
@@ -360,4 +371,4 @@ jobs:
       - uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: .green-marker
-          key: green-${{ github.sha }}-${{ needs.build.outputs.oxc-sha }}
+          key: green-${{ github.sha }}-${{ needs.build.outputs.oxc-sha }}-${{ needs.isolated_declarations.outputs.vue-sha }}
