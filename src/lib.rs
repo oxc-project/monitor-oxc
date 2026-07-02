@@ -75,6 +75,7 @@ pub struct Diagnostic {
     pub message: String,
 }
 
+#[allow(clippy::struct_field_names)]
 pub struct Source {
     pub path: PathBuf,
     pub source_type: SourceType,
