@@ -2,6 +2,7 @@
 name = "monitor-oxc"
 version = "0.0.0"
 edition = "2024"
+license = "MIT"
 publish = false
 
 [[bin]]
@@ -29,8 +30,6 @@ walkdir = "2.5.0"
 rayon = "1.10"
 similar = "3.0.0"
 console = "0.16.0"
-url     = "2.5.2"
-ureq    = "3.0.0"
 pico-args = "0.5.0"
 project-root = "0.2.2"
 
