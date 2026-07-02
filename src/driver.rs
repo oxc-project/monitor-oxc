@@ -79,7 +79,13 @@ impl CompilerInterface for Driver {
     }
 
     fn mangle_options(&self) -> Option<MangleOptions> {
-        self.mangle.then(MangleOptions::default)
+        self.mangle.then(|| MangleOptions {
+            // Keep `exports` / `module` wrapper bindings so Node's cjs-module-lexer
+            // still detects named exports of mangled CommonJS / UMD packages
+            // (`import { queue } from "async"`). See oxc-project/oxc#24041.
+            reserved: ["exports", "module"].into_iter().map(Into::into).collect(),
+            ..MangleOptions::default()
+        })
     }
 
     fn codegen_options(&self) -> Option<CodegenOptions> {
