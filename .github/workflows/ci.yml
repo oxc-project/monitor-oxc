@@ -256,7 +256,22 @@ jobs:
           path: tasks/coverage/test262
           ref: ${{ steps.test262.outputs.sha }}
 
+      - name: Get oxc commit
+        id: oxc
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      # Reuse the compiled coverage runner when oxc is unchanged, skipping the
+      # ~2 minute build. The binary locates the repo from the working directory
+      # (project-root crate), so on a hit it runs without cargo.
+      - name: Restore oxc_coverage cache
+        id: coverage-cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: target/coverage/oxc_coverage
+          key: oxc-coverage-${{ runner.os }}-${{ steps.oxc.outputs.sha }}
+
       - uses: oxc-project/setup-rust@23f38cfb0c04af97a055f76acee94d5be71c7c82 # v1.0.16
+        if: steps.coverage-cache.outputs.cache-hit != 'true'
         with:
           save-cache: ${{ github.ref_name == 'main' }}
           cache-key: test262
@@ -264,5 +279,9 @@ jobs:
       - uses: oxc-project/setup-node@ab97f03642370d79a7e96dd286bd02a1be40e0ba # v1.3.0
 
       - run: cargo coverage runtime
+        if: steps.coverage-cache.outputs.cache-hit != 'true'
+
+      - run: ./target/coverage/oxc_coverage runtime
+        if: steps.coverage-cache.outputs.cache-hit == 'true'
 
       - run: git diff --exit-code
