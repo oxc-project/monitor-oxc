@@ -139,11 +139,26 @@ jobs:
 
       - run: mv oxc ../oxc
 
+      - name: Get oxc commit
+        id: oxc
+        run: echo "sha=$(git -C ../oxc rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      # Reuse the binary when neither oxc nor our sources changed (common for
+      # the 3-hourly scheduled runs), skipping the ~2 minute build.
+      - name: Restore binary cache
+        id: binary-cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ./target/release/monitor-oxc
+          key: binary-${{ runner.os }}-${{ steps.oxc.outputs.sha }}-${{ hashFiles('Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml', 'src/**') }}
+
       - uses: oxc-project/setup-rust@23f38cfb0c04af97a055f76acee94d5be71c7c82 # v1.0.16
+        if: steps.binary-cache.outputs.cache-hit != 'true'
         with:
           save-cache: ${{ github.ref_name == 'main' }}
 
       - run: cargo build --release
+        if: steps.binary-cache.outputs.cache-hit != 'true'
         env:
           RUSTFLAGS: "-C debug-assertions=true"
 
