@@ -101,7 +101,7 @@ jobs:
                 per_page: 100,
               });
               const tracked = jobs.filter((j) =>
-                j.name === 'Build' || j.name.startsWith('Test ')
+                j.name === 'Build' || j.name.startsWith('Test')
               );
 
               if (tracked.length > 0) {
@@ -223,7 +223,15 @@ jobs:
 
       - name: Get test262 SHA pinned by oxc
         id: test262
-        run: echo "sha=$(grep 'const TEST262_SHA' .github/scripts/clone-parallel.mjs | cut -d'"' -f2)" >> "$GITHUB_OUTPUT"
+        # Fail loudly if extraction breaks (e.g. oxc renames the constant) —
+        # an empty ref would silently check out test262's default branch.
+        run: |
+          sha=$(grep 'const TEST262_SHA' .github/scripts/clone-parallel.mjs | cut -d'"' -f2)
+          if [[ ! "$sha" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "Failed to extract test262 SHA from clone-parallel.mjs (got: '$sha')"
+            exit 1
+          fi
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
 
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
