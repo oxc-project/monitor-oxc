@@ -122,10 +122,40 @@ jobs:
               await new Promise((r) => setTimeout(r, 30000));
             }
 
+  # Scheduled runs fire every 3 hours whether or not anything moved. Skip the
+  # whole workflow when the exact (monitor-oxc, oxc) commit pair already has a
+  # green run recorded by the `record` job below. PR / push / dispatch runs are
+  # never skipped: the guard only runs on `schedule`, and the jobs treat a
+  # skipped guard as "changed".
+  guard:
+    name: Guard
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    outputs:
+      unchanged: ${{ steps.marker.outputs.cache-hit }}
+    steps:
+      - name: Resolve oxc main commit
+        id: oxc
+        run: echo "sha=$(gh api repos/oxc-project/oxc/commits/main --jq .sha)" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Check for a green run with identical inputs
+        id: marker
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .green-marker
+          key: green-${{ github.sha }}-${{ steps.oxc.outputs.sha }}
+          lookup-only: true
+
   build:
     name: Build
+    needs: guard
+    if: ${{ !cancelled() && needs.guard.outputs.unchanged != 'true' }}
     timeout-minutes: 30
     runs-on: ubuntu-latest
+    outputs:
+      oxc-sha: ${{ steps.oxc.outputs.sha }}
     steps:
       - uses: taiki-e/checkout-action@7d1e50e93dc4fb3bba58f85018fadf77898aee8b # v1.4.2
 
@@ -236,6 +266,8 @@ jobs:
 
   test262:
     name: Test262
+    needs: guard
+    if: ${{ !cancelled() && needs.guard.outputs.unchanged != 'true' }}
     timeout-minutes: 30
     runs-on: ubuntu-latest
     steps:
@@ -305,3 +337,26 @@ jobs:
         if: steps.coverage-cache.outputs.cache-hit == 'true'
 
       - run: git diff --exit-code
+
+  # Remember which (monitor-oxc, oxc) commit pair last passed on a scheduled
+  # run, so the guard can skip identical future runs. Keyed on the oxc commit
+  # the Build job actually tested, not the one the guard resolved — if oxc main
+  # moves mid-run they differ, and the safe outcome is an extra run, not a
+  # wrong skip.
+  record:
+    name: Record green run
+    needs: [build, test, isolated_declarations, test262]
+    if: >-
+      github.event_name == 'schedule' &&
+      needs.build.result == 'success' &&
+      needs.test.result == 'success' &&
+      needs.isolated_declarations.result == 'success' &&
+      needs.test262.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - run: touch .green-marker
+
+      - uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .green-marker
+          key: green-${{ github.sha }}-${{ needs.build.outputs.oxc-sha }}
