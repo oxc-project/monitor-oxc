@@ -80,7 +80,10 @@ jobs:
   bump:
     name: Open bump PR
     needs: check
-    if: ${{ !cancelled() }}
+    # Run when check actually executed — including partial leg failures (their
+    # repos simply aren't bumped) — but not when it was skipped or cancelled,
+    # so an upstream failure can't masquerade as a quiet "no bumps" week.
+    if: ${{ !cancelled() && contains(fromJSON('["success", "failure"]'), needs.check.result) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3 # v3.1.1
@@ -126,7 +129,7 @@ jobs:
             echo "No green bumps this week."
             exit 0
           fi
-          branch="bump-runtime-repos-${{ github.run_id }}"
+          branch="bump-runtime-repos-${{ github.run_id }}-${{ github.run_attempt }}"
           git config user.name "oxc-project[bot]"
           git config user.email "oxc-project[bot]@users.noreply.github.com"
           git checkout -b "$branch"
