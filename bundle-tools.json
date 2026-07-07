@@ -5,5 +5,26 @@
     "sources": ["lib/_tsc.js"],
     "run": "node node_modules/typescript/lib/_tsc.js -p fixtures/bundle/ts-project --outDir OUTDIR",
     "notes": "lib/_tsc.js is the ~9MB single-scope tsc bundle; lib/tsc.js is just a wrapper. Compares emitted .js/.d.ts plus diagnostics stdout."
+  },
+  {
+    "name": "prettier",
+    "dir": "node_modules/prettier",
+    "sources": ["index.mjs", "doc.mjs", "internal/legacy-cli.mjs", "plugins/typescript.mjs", "plugins/estree.mjs", "plugins/postcss.mjs"],
+    "run": "node node_modules/prettier/bin/prettier.cjs --no-config --no-color fixtures/bundle/prettier/input.ts fixtures/bundle/prettier/input.css",
+    "notes": "v3.8.3. bin/prettier.cjs is a tiny (~4KB) boilerplate wrapper that dynamically `import()`s internal/legacy-cli.mjs (not PRETTIER_EXPERIMENTAL_CLI, so legacy CLI path), which statically imports index.mjs (the ~600KB main entry), which statically imports doc.mjs and dynamically imports plugins/*.mjs (ESM) based on file extension -- NOT the sibling plugins/*.js (CJS) or *.cjs files, which are unused by this invocation (those are for require()-based / experimental-cli consumers) and were excluded from sources. For our .ts + .css fixtures only plugins/typescript.mjs, plugins/estree.mjs (printer for both babel/typescript ASTs), and plugins/postcss.mjs (css/less/scss) are ever loaded, so those are the only plugin bundles included. bin/prettier.cjs itself is left out of sources (stays unminified) since it's boilerplate, not a bundled parser/printer."
+  },
+  {
+    "name": "sass",
+    "dir": "node_modules/sass",
+    "sources": ["sass.dart.js"],
+    "run": "node node_modules/sass/sass.js --no-color --no-source-map fixtures/bundle/sass/main.scss",
+    "notes": "v1.100.0. sass.js is a tiny wrapper requiring sass.dart.js, the actual dart2js-compiled compiler bundle (the only large file); --no-source-map removes a nondeterministic absolute-path source-map comment from stdout."
+  },
+  {
+    "name": "rollup",
+    "dir": "node_modules/rollup",
+    "sources": ["dist/*.js", "dist/**/*.js"],
+    "run": "node node_modules/rollup/dist/bin/rollup --input fixtures/bundle/rollup/main.js --format es --silent",
+    "notes": "v4.60.4. dist/bin/rollup (no .js extension) is the CLI entry and requires ../shared/rollup.js, ../shared/parseAst.js, ../fsevents-importer.js, ../native.js, ../getLogFilter.js, ../loadConfigFile.js -- all matched by dist/**/*.js. dist/es/** (ESM build for `import` consumers) is also matched by the globs but is never require()'d by the CJS bin entry, so minifying it has no effect on the diff either way. --silent suppresses per-run banner/timing noise; -f es --input avoids writing files (stdout-only) which keeps OUTDIR empty and comparison simple."
   }
 ]

@@ -1,0 +1,19 @@
+@use "mixins";
+
+$base: 8px;
+
+.card {
+  padding: $base;
+  margin: mixins.double($base);
+  @include mixins.elevated(2);
+
+  &__title {
+    font-weight: bold;
+  }
+}
+
+@each $name, $size in (small: 4px, large: 16px) {
+  .gap-#{$name} {
+    gap: $size;
+  }
+}
