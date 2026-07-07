@@ -30,7 +30,13 @@ function usage() {
 }
 
 const bin = process.env.MONITOR_OXC_BIN ?? "./monitor-oxc";
-const tools = JSON.parse(fs.readFileSync(configPath, "utf8"));
+let tools;
+try {
+  tools = JSON.parse(fs.readFileSync(configPath, "utf8"));
+} catch (err) {
+  console.error(`failed to read ${configPath}: ${err.message}`);
+  process.exit(2);
+}
 const selected = names.length === 0 ? tools : names.map((name) => {
   const tool = tools.find((t) => t.name === name);
   if (!tool) {
@@ -70,6 +76,10 @@ function listFiles(dir) {
 }
 
 function bundleFiles(tool) {
+  if (!fs.existsSync(tool.dir)) {
+    console.error(`${tool.name}: dir not found: ${tool.dir}`);
+    process.exit(2);
+  }
   const rels = listFiles(tool.dir).filter((rel) =>
     tool.sources.some((pattern) => globMatch(pattern, rel.replaceAll("\\", "/"))),
   );
@@ -133,6 +143,7 @@ function compare(expected, actual) {
 
 function saveArtifacts(tool, expected, actual, minifiedPaths) {
   const dir = path.join("bundle-diff-artifacts", tool.name);
+  fs.rmSync(dir, { recursive: true, force: true });
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, "expected-stdout.txt"), expected.stdout);
   fs.writeFileSync(path.join(dir, "actual-stdout.txt"), actual.stdout);
