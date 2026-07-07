@@ -2,6 +2,9 @@ name: Bump Runtime Repos
 
 permissions: {}
 
+concurrency:
+  group: ${{ github.workflow }}
+
 on:
   workflow_dispatch:
   schedule:
@@ -33,7 +36,13 @@ jobs:
 
       - name: Resolve HEAD of ${{ matrix.repo }}
         id: head
-        run: echo "sha=$(gh api repos/${{ matrix.repo }}/commits/HEAD --jq .sha)" >> "$GITHUB_OUTPUT"
+        # Fail loudly on a bad resolve — an empty sha would skip the
+        # unchanged-check, silently check out the default branch, and could
+        # end up written into runtime-repos.json by the bump job.
+        run: |
+          sha=$(gh api "repos/${{ matrix.repo }}/commits/HEAD" --jq .sha)
+          [[ "$sha" =~ ^[0-9a-f]{40}$ ]]
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
         env:
           GH_TOKEN: ${{ github.token }}
 
