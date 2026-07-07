@@ -1,0 +1,9 @@
+[
+  {
+    "name": "typescript",
+    "dir": "node_modules/typescript",
+    "sources": ["lib/_tsc.js"],
+    "run": "node node_modules/typescript/lib/_tsc.js -p fixtures/bundle/ts-project --outDir OUTDIR",
+    "notes": "lib/_tsc.js is the ~9MB single-scope tsc bundle; lib/tsc.js is just a wrapper. Compares emitted .js/.d.ts plus diagnostics stdout."
+  }
+]
