@@ -37,6 +37,10 @@ try {
   console.error(`failed to read ${configPath}: ${err.message}`);
   process.exit(2);
 }
+if (!Array.isArray(tools)) {
+  console.error(`${configPath} must contain a JSON array of tool entries`);
+  process.exit(2);
+}
 const selected = names.length === 0 ? tools : names.map((name) => {
   const tool = tools.find((t) => t.name === name);
   if (!tool) {
@@ -160,7 +164,7 @@ function saveArtifacts(tool, expected, actual, minifiedPaths) {
     fs.writeFileSync(p, content);
   }
   for (const file of minifiedPaths) {
-    const p = path.join(dir, "minified", path.basename(file));
+    const p = path.join(dir, "minified", path.relative(tool.dir, file));
     fs.mkdirSync(path.dirname(p), { recursive: true });
     fs.copyFileSync(file, p);
   }
@@ -197,7 +201,9 @@ for (const tool of selected) {
       stdio: "inherit",
     });
     if (minify.status !== 0) {
-      console.error(`${tool.name}: runtime-minify failed (exit ${minify.status})`);
+      console.error(
+        `${tool.name}: runtime-minify failed (exit ${minify.status}${minify.error ? `, ${minify.error.message}` : ""})`,
+      );
       failed = true;
       continue;
     }
