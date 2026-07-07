@@ -67,9 +67,10 @@ One script drives all tools:
 5. Restore the backup (always, success or failure, so later tools and cases
    see pristine node_modules).
 
-`bundle-tools.json` holds per-tool config: `name`, `sources` (bundle globs,
-consumed by runtime-minify), `run` (command array), `outputs` (files/dirs to
-diff in addition to stdout), optional `normalize` notes.
+`bundle-tools.json` holds per-tool config: `name`, `dir` (package dir),
+`sources` (bundle globs, consumed by both the script's backup and
+runtime-minify), `run` (shell command; the literal token `OUTDIR` is replaced
+with a fresh temp dir whose contents are diffed), optional `notes`.
 
 ### 3. CI: one `Test Runtime Bundles` job in ci.yml
 
