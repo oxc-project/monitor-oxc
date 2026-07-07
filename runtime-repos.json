@@ -1,0 +1,99 @@
+[
+  {
+    "name": "es-toolkit",
+    "repo": "toss/es-toolkit",
+    "sha": "c3d530a31be5b696317b49384257811f9d767118",
+    "sources": [
+      "src/**/*.ts"
+    ],
+    "ignore": [
+      "**/*.spec.ts",
+      "src/compat/array/find.ts",
+      "src/compat/array/findLast.ts"
+    ],
+    "install": "yarn install && yarn add @oxc-project/runtime",
+    "test": "yarn vitest run --coverage=false --exclude '**/check-dist.spec.ts'",
+    "notes": "yarn 4 (PnP) via corepack; install adds @oxc-project/runtime so the transformer's lowered helper imports resolve. find.ts/findLast.ts ignored: their tests assert the runtime TypeError text 'doesMatch is not a function', which mangling renames (name-sensitivity, not a semantic bug). tests/check-dist.spec.ts excluded: it runs `yarn pack`->build (tsdown dts bundle) which fails on minified .ts because type-only exports are stripped -- a build/dts-tooling gate, not a runtime bug."
+  },
+  {
+    "name": "zod",
+    "repo": "colinhacks/zod",
+    "sha": "912f0f51b0ced654d0069741e7160834dca742ee",
+    "sources": [
+      "packages/zod/src/**/*.ts"
+    ],
+    "ignore": [
+      "**/*.test.ts",
+      "**/tests/**"
+    ],
+    "install": "pnpm install --frozen-lockfile && pnpm --filter zod add @oxc-project/runtime && node -e \"require('fs').writeFileSync('vitest.minified.mjs',Buffer.from('aW1wb3J0IHsgcmVzb2x2ZSB9IGZyb20gIm5vZGU6cGF0aCI7CmltcG9ydCB7IGRlZmluZUNvbmZpZyB9IGZyb20gInZpdGVzdC9jb25maWciOwpjb25zdCBjID0gWyJAem9kL3NvdXJjZSIsICJkZWZhdWx0Il07CmV4cG9ydCBkZWZhdWx0IGRlZmluZUNvbmZpZyh7CiAgcmVzb2x2ZTogeyBjb25kaXRpb25zOiBjLCBleHRlcm5hbENvbmRpdGlvbnM6IGMgfSwKICBzc3I6IHsgcmVzb2x2ZTogeyBjb25kaXRpb25zOiBjLCBleHRlcm5hbENvbmRpdGlvbnM6IGMgfSB9LAogIHRlc3Q6IHsKICAgIG5hbWU6ICJ6b2QiLAogICAgcm9vdDogcmVzb2x2ZShwcm9jZXNzLmN3ZCgpLCAicGFja2FnZXMvem9kIiksCiAgICBpbmNsdWRlOiBbInNyYy8qKi8qLnRlc3QudHMiXSwKICAgIHdhdGNoOiBmYWxzZSwKICAgIGlzb2xhdGU6IHRydWUsCiAgICBzZXR1cEZpbGVzOiBbcmVzb2x2ZShwcm9jZXNzLmN3ZCgpLCAic2NyaXB0cy9mYWlsLW9uLWNvbnNvbGUudHMiKV0sCiAgICB0eXBlY2hlY2s6IHsgZW5hYmxlZDogZmFsc2UgfSwKICAgIHNpbGVudDogdHJ1ZSwKICB9LAp9KTsK','base64').toString())\"",
+    "test": "pnpm vitest run --config vitest.minified.mjs",
+    "notes": "pnpm monorepo. The zod vitest project hard-enables tsc typecheck (checker:tsc, projects:['packages/*']), which cannot be disabled via CLI and legitimately fails on minified .ts (types are stripped) -- a static type gate, not a runtime bug. install writes vitest.minified.mjs, a standalone config that keeps zod's resolve conditions (@zod/source -> src), the fail-on-console setup, and all src/**/*.test.ts runtime tests, but sets typecheck.enabled=false. install also adds @oxc-project/runtime so the transformer's lowered helper imports resolve. All 168 runtime test files / 1959 runtime tests pass on minified source."
+  },
+  {
+    "name": "dayjs",
+    "repo": "iamkun/dayjs",
+    "sha": "98364bcebc047529345cc8c2bbcc44a6a8c18e79",
+    "sources": [
+      "src/**/*.js"
+    ],
+    "ignore": [],
+    "install": "npm install && npm install --no-save @oxc-project/runtime && node -e \"require('fs').writeFileSync('jest.minified.config.json',Buffer.from('ewogICJyb290cyI6IFsidGVzdCJdLAogICJ0ZXN0UmVnZXgiOiAidGVzdC8oLio/Lyk/Lip0ZXN0LmpzJCIsCiAgInRlc3RVUkwiOiAiaHR0cDovL2xvY2FsaG9zdCIsCiAgIm1vZHVsZU5hbWVNYXBwZXIiOiB7CiAgICAiXkBveGMtcHJvamVjdC9ydW50aW1lLyguKikkIjogIjxyb290RGlyPi9ub2RlX21vZHVsZXMvQG94Yy1wcm9qZWN0L3J1bnRpbWUvc3JjLyQxIgogIH0sCiAgInRlc3RQYXRoSWdub3JlUGF0dGVybnMiOiBbIi9ub2RlX21vZHVsZXMvIiwgIjxyb290RGlyPi90ZXN0L2xvY2FsZS9rZXlzLnRlc3QuanMiXQp9Cg==','base64').toString())\"",
+    "test": "npx jest --config jest.minified.config.json --coverage=false",
+    "notes": "npm; jest 22 (pinned by repo). install adds @oxc-project/runtime and writes jest.minified.config.json. That config (a) adds a moduleNameMapper so jest 22 -- which predates the package `exports` field -- resolves the transformer's lowered helper imports to node_modules/@oxc-project/runtime/src/*, and (b) excludes test/locale/keys.test.js, which asserts on source-file comment text (locale.file.match(/\\/\\/ (.*) \\[/)) that minification strips -- a source-text/lint gate, not a runtime bug. test bypasses the package.json `test` script's TZ wrappers and 100% coverage threshold. 92 suites / 630 tests pass on minified source."
+  },
+  {
+    "name": "js-yaml",
+    "repo": "nodeca/js-yaml",
+    "sha": "ac16b42c46c11c5c7f66062bfc78b168b5f07ecd",
+    "sources": [
+      "src/**/*.ts"
+    ],
+    "ignore": [],
+    "install": "npm install && npm install --no-save @oxc-project/runtime && npm run spec:get && npm run build && node -e \"const f='package.json',p=require('./'+f);p.exports['.'].import='./src/index.ts';p.exports['.'].require='./src/index.ts';require('fs').writeFileSync(f,JSON.stringify(p,null,2))\"",
+    "test": "node --test 'test/core/**/*.test.mjs' 'test/spec/*.test.mjs'",
+    "notes": "Repo was restructured since the brief's stale config (no lib/index.js/mocha): sources are now src/**/*.ts, tests run via node --test (Node 24 strips TS types natively) and import the package by name ('js-yaml'), which self-references to the built dist bundle. install repoints the package `exports['.']` to ./src/index.ts so 'js-yaml' resolves to the minified source at runtime instead of a rebuilt bundle -- otherwise the minifier output would be laundered through vite. install also runs `npm run build` (so test/core/dist.test.mjs, which imports the built dist, still passes) and `spec:get` (downloads the yaml-test-suite for test/spec), and adds @oxc-project/runtime for the lowered helper imports. Bypasses the package.json `test` script's eslint + tsc --noEmit gates (both reject minified .ts non-semantically). 1611 tests / 1598 pass / 13 skipped on minified source."
+  },
+  {
+    "name": "ms",
+    "repo": "vercel/ms",
+    "sha": "4ff48cec099f0514c3e9bbca18706c9c21122bfb",
+    "sources": [
+      "src/**/*.ts"
+    ],
+    "ignore": [
+      "**/*.test.ts"
+    ],
+    "install": "pnpm install --frozen-lockfile",
+    "test": "pnpm exec jest --env node --coverage=false",
+    "notes": "pnpm; single source file src/index.ts, tests import './index' via ts-jest. `--coverage=false` bypasses jest.config.ts's 100% coverage threshold (minification legitimately drops branches/dead code); `--env node` runs the nodejs suite and skips the edge-runtime env. 4 suites / 167 tests pass on minified source."
+  },
+  {
+    "name": "debug",
+    "repo": "debug-js/debug",
+    "sha": "f405ade8a4b7a0dc353e0f7390c1be90060f3621",
+    "sources": [
+      "src/**/*.js"
+    ],
+    "ignore": [],
+    "install": "npm install",
+    "test": "npx mocha test.js test.node.js",
+    "notes": "npm; CommonJS, src/*.js required via ./src. Runs the package.json `test:node` mocha suite directly, skipping `test:browser` (karma/headless-chrome, not a runtime-semantics gate) and `lint` (xo, rejects minified style). 16 tests pass on minified source."
+  },
+  {
+    "name": "semver",
+    "repo": "npm/node-semver",
+    "sha": "6e05b7637396ac66522cff8731f07cfe0ef49a29",
+    "sources": [
+      "classes/**/*.js",
+      "functions/**/*.js",
+      "internal/**/*.js",
+      "ranges/**/*.js",
+      "index.js"
+    ],
+    "ignore": [],
+    "install": "npm install",
+    "test": "npx tap --no-coverage",
+    "notes": "npm; CommonJS. Repo moved from npm/semver to npm/node-semver (package name still `semver`). tap 16: `--no-coverage` (the brief's `--disable-coverage` is not a valid tap 16 flag) bypasses tap's coverage enforcement, which minification legitimately fails; also skips the `posttest` eslint. 51 test files pass on minified source."
+  }
+]
