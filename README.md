@@ -28,6 +28,13 @@
 
 * Test against vue
 
+### Runtime Correctness
+
+* clone pinned popular repos ([runtime-repos.json](./runtime-repos.json))
+* minify their sources in place (transform + compress + mangle + whitespace)
+* run each repo's own test suite against the minified sources
+* a failure with a green unminified baseline = real minifier/transformer bug
+
 ## Top 3000 npm packages from [npm-high-impact](https://github.com/wooorm/npm-high-impact)
 
 (check out our [package.json](https://github.com/oxc-project/monitor-oxc/blob/main/package.json) 😆)
