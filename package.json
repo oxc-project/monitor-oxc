@@ -13,7 +13,8 @@
   "dependencies": {
     "@oxc-project/runtime": "latest",
     "npm-high-impact": "1.12.0",
-    "tsx": "latest"
+    "tsx": "latest",
+    "vitest": "latest"
   },
   "devDependencies": {
     "@aashutoshrathi/word-wrap": "latest",

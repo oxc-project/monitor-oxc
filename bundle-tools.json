@@ -54,5 +54,40 @@
     "sources": ["dist/bundle.min.js"],
     "run": "node node_modules/terser/bin/terser fixtures/bundle/terser/input.js --compress --mangle",
     "notes": "v5.48.0. bin/terser (tiny wrapper, stays unminified) does require(\"..\") which resolves via package.json exports' `require` condition to dist/bundle.min.js -- confirmed with NODE_V8_COVERAGE that this is the only file under node_modules/terser ever loaded (lib/*.js and main.js are the ESM/source entry, unused by this CJS invocation). Output is minified JS on stdout, no OUTDIR files, deterministic across runs."
+  },
+  {
+    "name": "webpack",
+    "dir": "node_modules/webpack",
+    "sources": ["lib/**/*.js"],
+    "run": "node fixtures/bundle/webpack/build.cjs OUTDIR",
+    "notes": "v5.107.2 (webpack-cli 7.0.2 installed but unused -- the wrapper drives webpack's Node API directly, since the CLI prints compile timing). sources is ~593 files / 6.2MB of per-file CJS -- webpack's lib/ ships unbundled, unlike most other entries here (deliberately different input shape at scale). fixtures/bundle/webpack/build.cjs sets optimization.minimize:false (keeps terser out of the loop) and stats:'none', printing only the sorted asset name+size list and errors (no timing) to stdout; the emitted bundle itself is the OUTDIR-diffed artifact. Verified byte-identical output across two unminified runs before relying on the runner's determinism gate."
+  },
+  {
+    "name": "vitest",
+    "dir": "node_modules/vitest",
+    "sources": ["dist/*.js", "dist/**/*.js"],
+    "run": "node fixtures/bundle/vitest/run.mjs",
+    "notes": "v4.1.10 (newly added to package.json dependencies -- not previously installed; see repo notes on why `dependencies` not `devDependencies`). fixtures/bundle/vitest/run.mjs uses the brief's startVitest('test', ...) Node API verbatim (no API adjustment needed for v4) but replaces the flat file.tasks walk with a recursive walk: file.tasks is [describe-suite], not [test] directly, so a naive one-level loop silently printed nothing per-test; collect() recurses to type==='test' leaves and sorts the flattened lines for determinism. fileParallelism:false and coverage.enabled:false are set in vitest.config.mjs to avoid worker-order/coverage-instrumentation noise. Load trace via NODE_V8_COVERAGE captured dist/config.js, dist/module-evaluator.js, dist/node.js, dist/path.js, and 15 dist/chunks/*.js files loaded directly in the main process; dist/workers/forks.js (referenced by string from dist/chunks/cli-api.BK8pd4xc.js) is the tinypool worker entry for the default `forks` pool and runs in a forked child process whose coverage wasn't captured by this tracing method (env-var coverage collection didn't surface for the fork in this environment) but is unambiguously loaded and is covered by the dist/**/*.js glob regardless. dist/config.cjs (the only .cjs file) and dist/browser.js are CJS/browser entry points not reachable from this ESM Node-API invocation and are left unminified by the glob (no .cjs/.mjs pattern needed -- this version ships zero .mjs files). vitest is in generate.mjs's smoke-test ignoreList (line ~48) and the smoke tests import from that generated list, not package.json, so this new dependency is never bare-imported by other CI jobs. Running vitest via its Node API creates a fixtures/bundle/vitest/node_modules/{.vite,.vite-temp}/ config-cache/results-cache as a side effect; gitignored (fixtures/bundle/vitest/node_modules/) since it's regenerated per-run and outside the diffed dir."
+  },
+  {
+    "name": "jest-core",
+    "dir": "node_modules/@jest/core",
+    "sources": ["build/**/*.js"],
+    "run": "node fixtures/bundle/jest/run.cjs",
+    "notes": "v30.4.2. jest's code is spread across sibling npm packages (jest-core, jest-runtime, jest-circus, jest-config, jest-resolve, expect, ...) and the runner's walker can't cross package roots, so this is one of three entries sharing the same fixture run -- a diff here attributes the bug to @jest/core's minified code specifically. Unlike webpack, @jest/core ships pre-bundled (build/index.js, ~139KB single file), so build/**/*.js matches exactly one file. require(\"jest\") re-exports runCLI from @jest/core (verified via Object.keys(require('jest')) -- brief's require(\"jest\") worked as-is, no fallback to jest-cli/@jest/core needed). Load trace (NODE_V8_COVERAGE): @jest/core/build/index.js is loaded, confirming it's exercised by the fixture run."
+  },
+  {
+    "name": "jest-runtime",
+    "dir": "node_modules/jest-runtime",
+    "sources": ["build/**/*.js"],
+    "run": "node fixtures/bundle/jest/run.cjs",
+    "notes": "v30.4.2. See jest-core's notes for the shared-fixture rationale. build/index.js (~148KB) is the only file under build/; confirmed loaded via NODE_V8_COVERAGE (jest-runtime evaluates each test file's module graph, so it's exercised on every run)."
+  },
+  {
+    "name": "jest-circus",
+    "dir": "node_modules/jest-circus",
+    "sources": ["build/**/*.js"],
+    "run": "node fixtures/bundle/jest/run.cjs",
+    "notes": "v30.4.2. See jest-core's notes for the shared-fixture rationale. jest-circus is jest 30's default test runner (describe/test/expect scheduling). Load trace: build/jestAdapterInit.js and build/runner.js are loaded by this run; build/index.js (the package's public API for consumers who drive circus directly) is not exercised by the runCLI path but is left matched by build/**/*.js anyway (over-inclusion is harmless, same precedent as rollup's dist/es/** note)."
   }
 ]

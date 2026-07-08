@@ -37,7 +37,7 @@
 
 ### Runtime Bundles
 
-* minify production mega-bundles already in node_modules ([bundle-tools.json](./bundle-tools.json): tsc, prettier, sass, rollup, vite, vue-compiler-sfc, jiti, terser)
+* minify production mega-bundles already in node_modules ([bundle-tools.json](./bundle-tools.json): tsc, prettier, sass, rollup, vite, vue-compiler-sfc, jiti, terser, webpack, vitest, jest-core, jest-runtime, jest-circus)
 * run each tool on fixed fixtures before and after minification
 * byte-diff the outputs — differential by construction, so no pins or baselines needed
 

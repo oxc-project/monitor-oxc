@@ -6,3 +6,4 @@
 
 /dist
 bundle-diff-artifacts/
+fixtures/bundle/vitest/node_modules/
