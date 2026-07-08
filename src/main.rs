@@ -33,6 +33,16 @@ fn main() -> ExitCode {
         return isolated_declarations::test(path_to_vue);
     }
 
+    if matches!(task, "runtime-minify") {
+        let config: PathBuf = args
+            .opt_value_from_str("--config")
+            .unwrap()
+            .unwrap_or_else(|| PathBuf::from("runtime-repos.json"));
+        let name: String = args.value_from_str("--name").unwrap();
+        let dir: PathBuf = args.value_from_str("--dir").unwrap();
+        return monitor_oxc::runtime::run(&config, &name, &dir);
+    }
+
     println!("Options: {options:?}");
 
     let mut node_modules_runner = NodeModulesRunner::new(options);
