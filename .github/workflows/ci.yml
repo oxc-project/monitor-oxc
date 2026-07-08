@@ -286,8 +286,10 @@ jobs:
           ref: ${{ matrix.sha }}
           path: target-repo
 
-      - uses: oxc-project/setup-node@ab97f03642370d79a7e96dd286bd02a1be40e0ba # v1.3.0
-
+      # No oxc-project/setup-node here: it installs monitor-oxc's ~3000
+      # node_modules (~40s), which this job never touches — the classifier is
+      # node-builtins-only and the target repo installs its own dependencies.
+      # The runner image's preinstalled node + corepack are sufficient.
       - run: corepack enable
 
       - name: Cache target repo node_modules
