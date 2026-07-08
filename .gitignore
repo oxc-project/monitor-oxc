@@ -5,3 +5,5 @@
 !**/isolated_declarations/tsc.ts
 
 /dist
+bundle-diff-artifacts/
+fixtures/bundle/vitest/node_modules/

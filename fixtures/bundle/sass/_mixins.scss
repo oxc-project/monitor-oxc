@@ -1,0 +1,7 @@
+@mixin elevated($level: 1) {
+  box-shadow: 0 #{$level}px #{$level * 2}px rgba(0, 0, 0, 0.2);
+}
+
+@function double($n) {
+  @return $n * 2;
+}
