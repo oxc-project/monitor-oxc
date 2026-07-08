@@ -26,5 +26,33 @@
     "sources": ["dist/*.js", "dist/**/*.js"],
     "run": "node node_modules/rollup/dist/bin/rollup --input fixtures/bundle/rollup/main.js --format es --silent",
     "notes": "v4.60.4. dist/bin/rollup (no .js extension) is the CLI entry and requires ../shared/rollup.js, ../shared/parseAst.js, ../fsevents-importer.js, ../native.js, ../getLogFilter.js, ../loadConfigFile.js -- all matched by dist/**/*.js. dist/es/** (ESM build for `import` consumers) is also matched by the globs but is never require()'d by the CJS bin entry, so minifying it has no effect on the diff either way. --silent suppresses per-run banner/timing noise; -f es --input avoids writing files (stdout-only) which keeps OUTDIR empty and comparison simple."
+  },
+  {
+    "name": "vite",
+    "dir": "node_modules/vite",
+    "sources": ["dist/node/*.js", "dist/node/**/*.js"],
+    "run": "node node_modules/vite/bin/vite.js build fixtures/bundle/vite --outDir OUTDIR --logLevel silent",
+    "notes": "v8.0.14 (rolldown-vite: vite now uses the `rolldown` npm package -- an oxc-adjacent Rust bundler shipped as a native N-API addon -- instead of classic rollup/esbuild). Traced with NODE_V8_COVERAGE over the fixture build: bin/vite.js (stays unminified, same convention as rollup's dist/bin/rollup and prettier's bin/prettier.cjs) dynamically imports dist/node/cli.js, which pulls in dist/node/chunks/{dist,logger,node}.js and dist/node/index.js and dist/node/module-runner.js -- all matched by dist/node/*.js + dist/node/**/*.js. dist/node/chunks/{build,lib,postcss-import}.js and dist/client/** are present under dir but not exercised by this simple build (no lib-mode, no @import in the CSS, no dev/HMR); left matched by the glob anyway since over-inclusion is harmless (same rationale as rollup's dist/es/** note) -- minifying an unexecuted file can't change the diff. misc/true.js (a 1-line `export default true` sentinel outside dist/node) is loaded but excluded from sources as trivial non-bundle boilerplate, like the CLI wrappers. The actual rolldown bundler (JS wrapper + native .node addon) lives in a sibling pnpm-hoisted package outside node_modules/vite and is out of scope for this entry by construction (dir-scoped sources can't reach it), same situation as vue-compiler-sfc's external @vue/compiler-core etc. Build output includes content-hashed asset filenames (e.g. assets/index-<hash>.js); verified byte-identical (including the hash) across repeated unminified runs before relying on the runner's determinism gate."
+  },
+  {
+    "name": "vue-compiler-sfc",
+    "dir": "node_modules/@vue/compiler-sfc",
+    "sources": ["dist/compiler-sfc.cjs.js"],
+    "run": "node fixtures/bundle/vue/compile.cjs",
+    "notes": "v3.5.34. dist/compiler-sfc.cjs.js is the only file under node_modules/@vue/compiler-sfc that's ever loaded (traced with NODE_V8_COVERAGE): dist/compiler-sfc.esm-browser.js (browser build) is unused by this require()-based CJS invocation. Internally compiler-sfc.cjs.js requires several sibling npm packages -- @vue/compiler-core, @vue/compiler-dom, @vue/compiler-ssr, @vue/shared, plus @babel/parser, postcss, magic-string, entities, source-map-js, etc. -- all of which live outside node_modules/@vue/compiler-sfc and so are out of scope for dir-scoped sources (same situation as vite's external rolldown dependency); only compiler-sfc.cjs.js itself is the minification target. compileTemplate() on a template-only SFC (no <script>/<style>) is deterministic stdout-only output, no OUTDIR files."
+  },
+  {
+    "name": "jiti",
+    "dir": "node_modules/jiti",
+    "sources": ["dist/*.cjs", "dist/*.mjs"],
+    "run": "node node_modules/jiti/lib/jiti-cli.mjs fixtures/bundle/jiti/main.ts",
+    "notes": "v2.7.0. bin field in package.json points to lib/jiti-cli.mjs. Traced with NODE_V8_COVERAGE: jiti-cli.mjs dynamically imports lib/jiti.cjs (a tiny ~25-line shim, stays unminified like other entries' wrappers), which eagerly requires dist/jiti.cjs (the actual jiti resolver/loader bundle) and lazily requires dist/babel.cjs (Babel-based TS-stripping transform) the first time a non-JS file needs transforming -- our .ts fixture (enum/interface/type annotations) triggers that lazy load, so both dist/*.cjs bundles are exercised. dist has no .mjs files currently (pattern matches zero, harmless) -- kept per the starting spec in case a future version ships one. Output `total=3` to stdout, no OUTDIR files, deterministic across runs."
+  },
+  {
+    "name": "terser",
+    "dir": "node_modules/terser",
+    "sources": ["dist/bundle.min.js"],
+    "run": "node node_modules/terser/bin/terser fixtures/bundle/terser/input.js --compress --mangle",
+    "notes": "v5.48.0. bin/terser (tiny wrapper, stays unminified) does require(\"..\") which resolves via package.json exports' `require` condition to dist/bundle.min.js -- confirmed with NODE_V8_COVERAGE that this is the only file under node_modules/terser ever loaded (lib/*.js and main.js are the ESM/source entry, unused by this CJS invocation). Output is minified JS on stdout, no OUTDIR files, deterministic across runs."
   }
 ]
