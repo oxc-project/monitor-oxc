@@ -89,5 +89,26 @@
     "sources": ["build/**/*.js"],
     "run": "node fixtures/bundle/jest/run.cjs",
     "notes": "v30.4.2. See jest-core's notes for the shared-fixture rationale. jest-circus is jest 30's default test runner (describe/test/expect scheduling). Load trace: build/jestAdapterInit.js and build/runner.js are loaded by this run; build/index.js (the package's public API for consumers who drive circus directly) is not exercised by the runCLI path but is left matched by build/**/*.js anyway (over-inclusion is harmless, same precedent as rollup's dist/es/** note)."
+  },
+  {
+    "name": "babel-standalone",
+    "dir": "node_modules/@babel/standalone",
+    "sources": ["babel.js"],
+    "run": "node fixtures/bundle/babel/standalone.cjs",
+    "notes": "v8.0.3 (newly added to package.json dependencies -- not previously installed; same rationale as vitest: generate.mjs wipes only devDependencies, and this package is never bare-imported by other CI jobs since it's absent from the generated top-npm-packages devDependencies list). babel.js is the ~4.4MB unminified UMD bundle (main entry); babel.min.js (~2.5MB) ships alongside but is never require()'d by this invocation -- confirmed via NODE_V8_COVERAGE that only babel.js is loaded -- and is excluded from sources per the brief. Babel.transform() with presets: [[\"env\", {...}]] uses the short-name preset-resolution table baked into the standalone bundle itself (the string \"env\" form -- @babel/core's require.resolve(\"@babel/preset-env\") form throws inside standalone since there's no real module resolution). Deterministic across two unminified runs (byte-identical stdout)."
+  },
+  {
+    "name": "babel-parser",
+    "dir": "node_modules/@babel/parser",
+    "sources": ["lib/**/*.js"],
+    "run": "node fixtures/bundle/babel/transform.cjs",
+    "notes": "v7.29.7 (already present -- part of the generated top-npm-packages devDependencies set, not newly added). lib/index.js (~500KB) is the only file under lib/ (lib/index.js.map is the sourcemap, not code); confirmed loaded via NODE_V8_COVERAGE -- @babel/core's parser/index.js requires @babel/parser to produce the AST that preset-env's plugins transform. Shares fixtures/bundle/babel/transform.cjs with babel-core (same fixture run, same rationale as jest-core/jest-runtime/jest-circus sharing fixtures/bundle/jest/run.cjs): a diff here attributes the bug to @babel/parser's code specifically, isolated from @babel/core's own lib/. Deterministic across two unminified runs."
+  },
+  {
+    "name": "babel-core",
+    "dir": "node_modules/@babel/core",
+    "sources": ["lib/**/*.js", "lib/**/*.cjs"],
+    "run": "node fixtures/bundle/babel/transform.cjs",
+    "notes": "v7.29.7 (already present -- part of the generated top-npm-packages devDependencies set, not newly added). See babel-parser's notes for the shared-fixture rationale. lib/**/*.js matches 55 files; NODE_V8_COVERAGE also showed two small executed .cjs shims -- lib/config/files/import.cjs (dynamic import() wrapper, used because import() can't appear directly in a CJS file targeting older Node) and lib/transformation/file/babel-7-helpers.cjs (a one-line re-export shim for babel 7 back-compat helpers) -- both real, loaded, in-dir code (not boilerplate CLI wrappers like other entries' unminified bin/* files), so lib/**/*.cjs was added to sources to cover them rather than leaving them out. babel.transformSync's configFile:false/babelrc:false plus require.resolve(\"@babel/preset-env\") avoids filesystem config resolution and browserslist auto-detection noise. Sibling npm packages actually loaded by this run -- @babel/generator, @babel/template, @babel/types, @babel/helpers, @babel/code-frame, @babel/helper-*, @babel/compat-data, @babel/plugin-transform-*, @babel/plugin-bugfix-*, @babel/preset-env, @babel/preset-modules, babel-plugin-polyfill-corejs3, and more -- all live outside node_modules/@babel/core and are out of scope for dir-scoped sources by construction (same situation as vite's external rolldown dependency and vue-compiler-sfc's external @vue/compiler-core). Deterministic across two unminified runs."
   }
 ]

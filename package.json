@@ -11,6 +11,7 @@
     "test": "node --experimental-require-module src/static.test.mjs"
   },
   "dependencies": {
+    "@babel/standalone": "latest",
     "@oxc-project/runtime": "latest",
     "npm-high-impact": "1.12.0",
     "tsx": "latest",
