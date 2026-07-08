@@ -11,6 +11,7 @@ import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import zlib from "node:zlib";
 
 const args = process.argv.slice(2);
 let configPath = "bundle-tools.json";
@@ -145,6 +146,26 @@ function compare(expected, actual) {
   return diffs;
 }
 
+function bundleSizes(files) {
+  let raw = 0;
+  let gzip = 0;
+  for (const file of files) {
+    const buf = fs.readFileSync(file);
+    raw += buf.length;
+    gzip += zlib.gzipSync(buf, { level: 9 }).length;
+  }
+  return { raw, gzip };
+}
+
+function sizeLine(before, after) {
+  const n = (v) => v.toLocaleString("en-US");
+  const pct = (a, b) => `${(((b - a) / a) * 100).toFixed(1)}%`;
+  return (
+    `raw ${n(before.raw)} -> ${n(after.raw)} bytes (${pct(before.raw, after.raw)}), ` +
+    `gzip ${n(before.gzip)} -> ${n(after.gzip)} bytes (${pct(before.gzip, after.gzip)})`
+  );
+}
+
 function saveArtifacts(tool, expected, actual, minifiedPaths) {
   const dir = path.join("bundle-diff-artifacts", tool.name);
   fs.rmSync(dir, { recursive: true, force: true });
@@ -207,6 +228,10 @@ for (const tool of selected) {
       failed = true;
       continue;
     }
+    // Originals are already overwritten; measure "before" from the backups.
+    console.log(
+      `${tool.name}: ${sizeLine(bundleSizes(backups.map(([, backup]) => backup)), bundleSizes(files))}`,
+    );
     const actual = runTool(tool);
     const diffs = compare(expected, actual);
     if (diffs.length > 0) {
