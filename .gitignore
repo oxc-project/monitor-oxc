@@ -6,4 +6,5 @@
 
 /dist
 bundle-diff-artifacts/
+uglify-corpus-artifacts/
 fixtures/bundle/vitest/node_modules/

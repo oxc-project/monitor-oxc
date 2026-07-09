@@ -1,0 +1,541 @@
+{
+  "repo": "mishoo/UglifyJS",
+  "sha": "111746bbae5f55c88e3b82b42f14fd0f3129ea53",
+  "skips": [
+    {
+      "file": "compress/arrows.js",
+      "name": "for_statement_parentheses_init",
+      "reason": "REAL OXC BUG (parser): oxc rejects `for (a => { a in a; }; ...)` \u2014 the for-init no-in restriction leaks into the arrow's block body; Node/V8 accept it. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt (uglify-bug-evidence/README.md)"
+    },
+    {
+      "file": "compress/classes.js",
+      "name": "keep_instanceof_1",
+      "reason": "deliberate SyntaxError: duplicate declaration (var/let/const/class collision); not valid as a script (Node rejects it too)"
+    },
+    {
+      "file": "compress/classes.js",
+      "name": "keep_instanceof_2",
+      "reason": "deliberate SyntaxError: duplicate declaration (var/let/const/class collision); not valid as a script (Node rejects it too)"
+    },
+    {
+      "file": "compress/const.js",
+      "name": "issue_4290_1",
+      "reason": "deliberate SyntaxError: duplicate declaration (var/let/const/class collision); not valid as a script (Node rejects it too)"
+    },
+    {
+      "file": "compress/const.js",
+      "name": "issue_4305_2",
+      "reason": "deliberate SyntaxError: duplicate declaration (var/let/const/class collision); not valid as a script (Node rejects it too)"
+    },
+    {
+      "file": "compress/const.js",
+      "name": "retain_catch",
+      "reason": "deliberate SyntaxError: duplicate declaration (var/let/const/class collision); not valid as a script (Node rejects it too)"
+    },
+    {
+      "file": "compress/const.js",
+      "name": "skip_braces",
+      "reason": "deliberate SyntaxError: lexical `const` declaration in a single-statement context (Node rejects it too)"
+    },
+    {
+      "file": "compress/let.js",
+      "name": "issue_4290_1",
+      "reason": "deliberate SyntaxError: duplicate declaration (var/let/const/class collision); not valid as a script (Node rejects it too)"
+    },
+    {
+      "file": "compress/let.js",
+      "name": "issue_4305_2",
+      "reason": "deliberate SyntaxError: duplicate declaration (var/let/const/class collision); not valid as a script (Node rejects it too)"
+    },
+    {
+      "file": "compress/let.js",
+      "name": "retain_block_2",
+      "reason": "deliberate SyntaxError: duplicate declaration (var/let/const/class collision); not valid as a script (Node rejects it too)"
+    },
+    {
+      "file": "compress/let.js",
+      "name": "retain_block_3",
+      "reason": "deliberate SyntaxError: duplicate declaration (var/let/const/class collision); not valid as a script (Node rejects it too)"
+    },
+    {
+      "file": "compress/let.js",
+      "name": "retain_catch",
+      "reason": "deliberate SyntaxError: duplicate declaration (var/let/const/class collision); not valid as a script (Node rejects it too)"
+    },
+    {
+      "file": "compress/let.js",
+      "name": "skip_braces",
+      "reason": "deliberate SyntaxError: lexical `let` declaration in a single-statement context (Node rejects it too)"
+    },
+    {
+      "file": "compress/reduce_vars.js",
+      "name": "defun_catch_4",
+      "reason": "deliberate SyntaxError: duplicate declaration (var/let/const/class collision); not valid as a script (Node rejects it too)"
+    },
+    {
+      "file": "compress/reduce_vars.js",
+      "name": "defun_catch_5",
+      "reason": "deliberate SyntaxError: duplicate declaration (var/let/const/class collision); not valid as a script (Node rejects it too)"
+    },
+    {
+      "file": "compress/varify.js",
+      "name": "issue_4290_1_const",
+      "reason": "deliberate SyntaxError: duplicate declaration (var/let/const/class collision); not valid as a script (Node rejects it too)"
+    },
+    {
+      "file": "compress/varify.js",
+      "name": "issue_4290_1_let",
+      "reason": "deliberate SyntaxError: duplicate declaration (var/let/const/class collision); not valid as a script (Node rejects it too)"
+    },
+    {
+      "file": "compress/exponentiation.js",
+      "name": "await",
+      "reason": "deliberate SyntaxError: unary op immediately before `**` without parens (Node rejects it too)"
+    },
+    {
+      "file": "compress/exponentiation.js",
+      "name": "precedence_1",
+      "reason": "deliberate SyntaxError: unary op immediately before `**` without parens (Node rejects it too)"
+    },
+    {
+      "file": "compress/exponentiation.js",
+      "name": "precedence_2",
+      "reason": "deliberate SyntaxError: unary op immediately before `**` without parens (Node rejects it too)"
+    },
+    {
+      "file": "compress/exponentiation.js",
+      "name": "precedence_3",
+      "reason": "deliberate SyntaxError: unary op immediately before `**` without parens (Node rejects it too)"
+    },
+    {
+      "file": "compress/exponentiation.js",
+      "name": "precedence_4",
+      "reason": "deliberate SyntaxError: unary op immediately before `**` without parens (Node rejects it too)"
+    },
+    {
+      "file": "compress/nullish.js",
+      "name": "parentheses",
+      "reason": "deliberate SyntaxError: `??` mixed with `||`/`&&` without parentheses (Node rejects it too)"
+    },
+    {
+      "file": "compress/templates.js",
+      "name": "malformed_evaluate_1",
+      "reason": "deliberate SyntaxError: octal escape in untagged template literal (Node rejects it too)"
+    },
+    {
+      "file": "compress/templates.js",
+      "name": "malformed_evaluate_2",
+      "reason": "deliberate SyntaxError: invalid unicode escape in untagged template literal (Node rejects it too)"
+    },
+    {
+      "file": "compress/templates.js",
+      "name": "malformed_evaluate_3",
+      "reason": "deliberate SyntaxError: invalid unicode escape in untagged template literal (Node rejects it too)"
+    },
+    {
+      "file": "compress/booleans.js",
+      "name": "de_morgan_1c",
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/conditionals.js",
+      "name": "delete_conditional_1",
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/conditionals.js",
+      "name": "delete_conditional_2",
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/evaluate.js",
+      "name": "delete_expr_1",
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/evaluate.js",
+      "name": "delete_expr_2",
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/evaluate.js",
+      "name": "delete_binary_1",
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/evaluate.js",
+      "name": "delete_binary_2",
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/sequences.js",
+      "name": "delete_seq_1",
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/sequences.js",
+      "name": "delete_seq_2",
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/sequences.js",
+      "name": "delete_seq_3",
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/sequences.js",
+      "name": "delete_seq_4",
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/sequences.js",
+      "name": "delete_seq_4_evaluate",
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/sequences.js",
+      "name": "delete_seq_5",
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/sequences.js",
+      "name": "delete_seq_5_evaluate",
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/arrows.js",
+      "name": "issue_5495",
+      "reason": "REAL OXC BUG (compressor): eliminating a strict-mode IIFE/arrow drops its `\"use strict\"`, so `this` inside a nested plain call changes from undefined to the global object. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/exponentiation.js",
+      "name": "assignment_2",
+      "reason": "REAL OXC BUG (compressor): rewrites BigInt `a **= a` to `a **= +a`, and `+bigint` throws TypeError. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/numbers.js",
+      "name": "issue_4137",
+      "reason": "REAL OXC BUG (compressor): drops the unary `+` in `+(A=[])*(A[0]=1)`, changing numeric-coercion timing (0 becomes 1). evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/optional-chains.js",
+      "name": "call_parentheses",
+      "reason": "REAL OXC BUG (compressor): optional-chain call parenthesization changes the `this` binding of `(0, o?.f)(42)`. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/dead-code.js",
+      "name": "dead_code_2_should_warn",
+      "reason": "REAL OXC BUG (DCE): drops a throwing call (`g()`) that precedes an explicit `throw`, changing which error is observed. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/collapse_vars.js",
+      "name": "collapse_vars_arguments_1",
+      "reason": "REAL OXC BUG (collapse_vars/drop-unused): breaks sloppy-mode `arguments`<->parameter linkage, so a reassigned/renamed param no longer reflects in `arguments`. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/collapse_vars.js",
+      "name": "issue_4586_1",
+      "reason": "REAL OXC BUG (collapse_vars/drop-unused): breaks sloppy-mode `arguments`<->parameter linkage, so a reassigned/renamed param no longer reflects in `arguments`. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/drop-unused.js",
+      "name": "issue_4464_2",
+      "reason": "REAL OXC BUG (collapse_vars/drop-unused): breaks sloppy-mode `arguments`<->parameter linkage, so a reassigned/renamed param no longer reflects in `arguments`. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/drop-unused.js",
+      "name": "issue_4464_3",
+      "reason": "REAL OXC BUG (collapse_vars/drop-unused): breaks sloppy-mode `arguments`<->parameter linkage, so a reassigned/renamed param no longer reflects in `arguments`. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/collapse_vars.js",
+      "name": "issue_1666",
+      "reason": "REAL OXC BUG (mangler/reduce_vars): Annex B block-scoped function / catch-var hoisting broken by renaming or DCE. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/reduce_vars.js",
+      "name": "issue_1666",
+      "reason": "REAL OXC BUG (mangler/reduce_vars): Annex B block-scoped function / catch-var hoisting broken by renaming or DCE. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/ie.js",
+      "name": "issue_3999",
+      "reason": "REAL OXC BUG (mangler/reduce_vars): Annex B block-scoped function / catch-var hoisting broken by renaming or DCE. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/destructured.js",
+      "name": "funarg_side_effects_2",
+      "reason": "REAL OXC BUG (compressor/DCE): drops observable side effects evaluated by parameter destructuring, computed keys, or rest-parameter defaults. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/destructured.js",
+      "name": "funarg_side_effects_3",
+      "reason": "REAL OXC BUG (compressor/DCE): drops observable side effects evaluated by parameter destructuring, computed keys, or rest-parameter defaults. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/destructured.js",
+      "name": "issue_4436_Infinity",
+      "reason": "REAL OXC BUG (compressor/DCE): drops observable side effects evaluated by parameter destructuring, computed keys, or rest-parameter defaults. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/destructured.js",
+      "name": "issue_4436_NaN",
+      "reason": "REAL OXC BUG (compressor/DCE): drops observable side effects evaluated by parameter destructuring, computed keys, or rest-parameter defaults. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/destructured.js",
+      "name": "issue_4436_undefined",
+      "reason": "REAL OXC BUG (compressor/DCE): drops observable side effects evaluated by parameter destructuring, computed keys, or rest-parameter defaults. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/rests.js",
+      "name": "issue_4544_1",
+      "reason": "REAL OXC BUG (compressor/DCE): drops observable side effects evaluated by parameter destructuring, computed keys, or rest-parameter defaults. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/rests.js",
+      "name": "issue_5552_1",
+      "reason": "REAL OXC BUG (compressor/DCE): drops observable side effects evaluated by parameter destructuring, computed keys, or rest-parameter defaults. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/rests.js",
+      "name": "issue_5552_2",
+      "reason": "REAL OXC BUG (compressor/DCE): drops observable side effects evaluated by parameter destructuring, computed keys, or rest-parameter defaults. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/destructured.js",
+      "name": "issue_4420",
+      "reason": "REAL OXC BUG (mangler): collapses distinct catch/let bindings to one name, creating a spurious TDZ ReferenceError. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/yields.js",
+      "name": "issue_5679_1",
+      "reason": "REAL OXC BUG (compressor): async-generator `try { return } finally { ... }` compression skips the finally side effect. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/yields.js",
+      "name": "issue_5679_2",
+      "reason": "REAL OXC BUG (compressor): async-generator `try { return } finally { ... }` compression skips the finally side effect. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/yields.js",
+      "name": "issue_5679_3",
+      "reason": "REAL OXC BUG (compressor): async-generator `try { return } finally { ... }` compression skips the finally side effect. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/yields.js",
+      "name": "issue_5679_5",
+      "reason": "REAL OXC BUG (compressor): async-generator `try { return } finally { ... }` compression skips the finally side effect. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+    },
+    {
+      "file": "compress/const.js",
+      "name": "issue_4225",
+      "reason": "known divergence (TDZ): compressor removes/reorders let/const so the temporal-dead-zone ReferenceError no longer occurs (esbuild documents the same class)"
+    },
+    {
+      "file": "compress/const.js",
+      "name": "issue_4229",
+      "reason": "known divergence (TDZ): compressor removes/reorders let/const so the temporal-dead-zone ReferenceError no longer occurs (esbuild documents the same class)"
+    },
+    {
+      "file": "compress/const.js",
+      "name": "issue_4245",
+      "reason": "known divergence (TDZ): compressor removes/reorders let/const so the temporal-dead-zone ReferenceError no longer occurs (esbuild documents the same class)"
+    },
+    {
+      "file": "compress/const.js",
+      "name": "use_before_init_3",
+      "reason": "known divergence (TDZ): compressor removes/reorders let/const so the temporal-dead-zone ReferenceError no longer occurs (esbuild documents the same class)"
+    },
+    {
+      "file": "compress/let.js",
+      "name": "issue_4225",
+      "reason": "known divergence (TDZ): compressor removes/reorders let/const so the temporal-dead-zone ReferenceError no longer occurs (esbuild documents the same class)"
+    },
+    {
+      "file": "compress/let.js",
+      "name": "issue_4229",
+      "reason": "known divergence (TDZ): compressor removes/reorders let/const so the temporal-dead-zone ReferenceError no longer occurs (esbuild documents the same class)"
+    },
+    {
+      "file": "compress/let.js",
+      "name": "issue_4245",
+      "reason": "known divergence (TDZ): compressor removes/reorders let/const so the temporal-dead-zone ReferenceError no longer occurs (esbuild documents the same class)"
+    },
+    {
+      "file": "compress/let.js",
+      "name": "use_before_init_3",
+      "reason": "known divergence (TDZ): compressor removes/reorders let/const so the temporal-dead-zone ReferenceError no longer occurs (esbuild documents the same class)"
+    },
+    {
+      "file": "compress/let.js",
+      "name": "issue_4276_1",
+      "reason": "known divergence (TDZ): compressor removes/reorders let/const so the temporal-dead-zone ReferenceError no longer occurs (esbuild documents the same class)"
+    },
+    {
+      "file": "compress/let.js",
+      "name": "issue_4276_2",
+      "reason": "known divergence (TDZ): compressor removes/reorders let/const so the temporal-dead-zone ReferenceError no longer occurs (esbuild documents the same class)"
+    },
+    {
+      "file": "compress/classes.js",
+      "name": "keep_extends_1",
+      "reason": "known divergence (class-extends / class-eval side effects): compressor drops an unused class whose heritage, computed key, or name-binding TDZ is observable (esbuild documents the same class)"
+    },
+    {
+      "file": "compress/classes.js",
+      "name": "issue_4721",
+      "reason": "known divergence (class-extends / class-eval side effects): compressor drops an unused class whose heritage, computed key, or name-binding TDZ is observable (esbuild documents the same class)"
+    },
+    {
+      "file": "compress/classes.js",
+      "name": "issue_4722_1",
+      "reason": "known divergence (class-extends / class-eval side effects): compressor drops an unused class whose heritage, computed key, or name-binding TDZ is observable (esbuild documents the same class)"
+    },
+    {
+      "file": "compress/classes.js",
+      "name": "issue_4722_2",
+      "reason": "known divergence (class-extends / class-eval side effects): compressor drops an unused class whose heritage, computed key, or name-binding TDZ is observable (esbuild documents the same class)"
+    },
+    {
+      "file": "compress/classes.js",
+      "name": "issue_4722_3",
+      "reason": "known divergence (class-extends / class-eval side effects): compressor drops an unused class whose heritage, computed key, or name-binding TDZ is observable (esbuild documents the same class)"
+    },
+    {
+      "file": "compress/classes.js",
+      "name": "issue_4829_1",
+      "reason": "known divergence (class-extends / class-eval side effects): compressor drops an unused class whose heritage, computed key, or name-binding TDZ is observable (esbuild documents the same class)"
+    },
+    {
+      "file": "compress/classes.js",
+      "name": "issue_4829_2",
+      "reason": "known divergence (class-extends / class-eval side effects): compressor drops an unused class whose heritage, computed key, or name-binding TDZ is observable (esbuild documents the same class)"
+    },
+    {
+      "file": "compress/classes.js",
+      "name": "issue_5015_1",
+      "reason": "known divergence (class-extends / class-eval side effects): compressor drops an unused class whose heritage, computed key, or name-binding TDZ is observable (esbuild documents the same class)"
+    },
+    {
+      "file": "compress/classes.js",
+      "name": "issue_5015_2",
+      "reason": "known divergence (class-extends / class-eval side effects): compressor drops an unused class whose heritage, computed key, or name-binding TDZ is observable (esbuild documents the same class)"
+    },
+    {
+      "file": "compress/classes.js",
+      "name": "issue_5387",
+      "reason": "known divergence (class-extends / class-eval side effects): compressor drops an unused class whose heritage, computed key, or name-binding TDZ is observable (esbuild documents the same class)"
+    },
+    {
+      "file": "compress/classes.js",
+      "name": "issue_5481",
+      "reason": "known divergence (class-extends / class-eval side effects): compressor drops an unused class whose heritage, computed key, or name-binding TDZ is observable (esbuild documents the same class)"
+    },
+    {
+      "file": "compress/classes.js",
+      "name": "retain_declaration",
+      "reason": "known divergence (class-extends / class-eval side effects): compressor drops an unused class whose heritage, computed key, or name-binding TDZ is observable (esbuild documents the same class)"
+    },
+    {
+      "file": "compress/collapse_vars.js",
+      "name": "collapse_vars_eval_and_with",
+      "reason": "REAL OXC BUG (with-scope soundness): compressor substitutes global identifiers (Infinity -> 1/0) that a `with` object shadows at runtime; terser/esbuild guard this. Plain-node reproducible; see uglify-bug-evidence"
+    },
+    {
+      "file": "compress/issue-1105.js",
+      "name": "Infinity_in_with_scope",
+      "reason": "REAL OXC BUG (with-scope soundness): compressor substitutes global identifiers (Infinity -> 1/0) that a `with` object shadows at runtime; terser/esbuild guard this. Plain-node reproducible; see uglify-bug-evidence"
+    },
+    {
+      "file": "compress/issue-1105.js",
+      "name": "assorted_Infinity_NaN_undefined_in_with_scope",
+      "reason": "REAL OXC BUG (with-scope soundness): compressor substitutes global identifiers (Infinity -> 1/0) that a `with` object shadows at runtime; terser/esbuild guard this. Plain-node reproducible; see uglify-bug-evidence"
+    },
+    {
+      "file": "compress/issue-1105.js",
+      "name": "assorted_Infinity_NaN_undefined_in_with_scope_keep_infinity",
+      "reason": "REAL OXC BUG (with-scope soundness): compressor substitutes global identifiers (Infinity -> 1/0) that a `with` object shadows at runtime; terser/esbuild guard this. Plain-node reproducible; see uglify-bug-evidence"
+    },
+    {
+      "file": "compress/annotations.js",
+      "name": "issue_3858",
+      "reason": "known divergence (@__PURE__ annotation): compressor honors the pure annotation and drops the annotated call; the input deliberately hides a side effect inside it"
+    },
+    {
+      "file": "compress/evaluate.js",
+      "name": "unsafe_array",
+      "reason": "known divergence (unsafe array folding): constant-folds array holes/length while the case pollutes Array.prototype with index properties"
+    },
+    {
+      "file": "compress/properties.js",
+      "name": "array_hole",
+      "reason": "known divergence (unsafe array folding): constant-folds array holes/length while the case pollutes Array.prototype with index properties"
+    },
+    {
+      "file": "compress/templates.js",
+      "name": "ascii_only",
+      "reason": "REAL OXC BUG (codegen lone-surrogate): lone surrogates in strings/templates emitted lossily as U+FFFD instead of \\uXXXX escapes \u2014 plain-node-visible data loss; see uglify-bug-evidence"
+    },
+    {
+      "file": "compress/templates.js",
+      "name": "ascii_only_ecma",
+      "reason": "REAL OXC BUG (codegen lone-surrogate): lone surrogates in strings/templates emitted lossily as U+FFFD instead of \\uXXXX escapes \u2014 plain-node-visible data loss; see uglify-bug-evidence"
+    },
+    {
+      "file": "compress/templates.js",
+      "name": "ascii_only_templates",
+      "reason": "REAL OXC BUG (codegen lone-surrogate): lone surrogates in strings/templates emitted lossily as U+FFFD instead of \\uXXXX escapes \u2014 plain-node-visible data loss; see uglify-bug-evidence"
+    },
+    {
+      "file": "compress/templates.js",
+      "name": "ascii_only_templates_ecma",
+      "reason": "REAL OXC BUG (codegen lone-surrogate): lone surrogates in strings/templates emitted lossily as U+FFFD instead of \\uXXXX escapes \u2014 plain-node-visible data loss; see uglify-bug-evidence"
+    },
+    {
+      "file": "compress/templates.js",
+      "name": "unicode",
+      "reason": "REAL OXC BUG (codegen lone-surrogate): lone surrogates in strings/templates emitted lossily as U+FFFD instead of \\uXXXX escapes \u2014 plain-node-visible data loss; see uglify-bug-evidence"
+    },
+    {
+      "file": "compress/templates.js",
+      "name": "unicode_ecma",
+      "reason": "REAL OXC BUG (codegen lone-surrogate): lone surrogates in strings/templates emitted lossily as U+FFFD instead of \\uXXXX escapes \u2014 plain-node-visible data loss; see uglify-bug-evidence"
+    },
+    {
+      "file": "compress/templates.js",
+      "name": "unicode_templates",
+      "reason": "REAL OXC BUG (codegen lone-surrogate): lone surrogates in strings/templates emitted lossily as U+FFFD instead of \\uXXXX escapes \u2014 plain-node-visible data loss; see uglify-bug-evidence"
+    },
+    {
+      "file": "compress/templates.js",
+      "name": "unicode_templates_ecma",
+      "reason": "REAL OXC BUG (codegen lone-surrogate): lone surrogates in strings/templates emitted lossily as U+FFFD instead of \\uXXXX escapes \u2014 plain-node-visible data loss; see uglify-bug-evidence"
+    },
+    {
+      "file": "compress/unicode.js",
+      "name": "issue_2242_3",
+      "reason": "REAL OXC BUG (codegen lone-surrogate): lone surrogates in strings/templates emitted lossily as U+FFFD instead of \\uXXXX escapes \u2014 plain-node-visible data loss; see uglify-bug-evidence"
+    },
+    {
+      "file": "compress/unicode.js",
+      "name": "issue_2242_4",
+      "reason": "REAL OXC BUG (codegen lone-surrogate): lone surrogates in strings/templates emitted lossily as U+FFFD instead of \\uXXXX escapes \u2014 plain-node-visible data loss; see uglify-bug-evidence"
+    },
+    {
+      "file": "compress/classes.js",
+      "name": "keep_fnames",
+      "reason": "expected pipeline behavior: standard minify drops unreferenced named function/class expression names, observed via `.name` (the case needs the keep_fnames/keep_classnames option we intentionally ignore, like esbuild)"
+    },
+    {
+      "file": "compress/functions.js",
+      "name": "functions_keep_fnames",
+      "reason": "expected pipeline behavior: standard minify drops unreferenced named function/class expression names, observed via `.name` (the case needs the keep_fnames/keep_classnames option we intentionally ignore, like esbuild)"
+    },
+    {
+      "file": "compress/awaits.js",
+      "name": "issue_4974",
+      "reason": "not a useful differential case: runaway async self-recursion (`42 in f()`) overflows the promise machinery, emitting V8-level 'Exception in PromiseRejectCallback' stderr that JavaScript cannot trap; identical before/after minify anyway"
+    }
+  ]
+}

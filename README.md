@@ -34,6 +34,12 @@
 * run each tool on fixed fixtures before and after minification
 * byte-diff the outputs — differential by construction, so no pins or baselines needed
 
+### Uglify Corpus
+
+* run UglifyJS's `test/compress` cases ([uglify-corpus.json](./uglify-corpus.json) pins the corpus)
+* execute each tiny case before and after minification in a vm sandbox
+* diff the output — failures are pre-minimized compressor-semantics repros
+
 ## Top 3000 npm packages from [npm-high-impact](https://github.com/wooorm/npm-high-impact)
 
 (check out our [package.json](https://github.com/oxc-project/monitor-oxc/blob/main/package.json) 😆)
