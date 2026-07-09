@@ -245,6 +245,67 @@ jobs:
         env:
           RUST_BACKTRACE: "1"
 
+  runtime-setup:
+    name: Runtime Setup
+    needs: build
+    # See `test` — break the transitive skip from the guard.
+    if: ${{ !cancelled() && needs.build.result == 'success' }}
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.repos.outputs.matrix }}
+    steps:
+      - uses: taiki-e/checkout-action@7d1e50e93dc4fb3bba58f85018fadf77898aee8b # v1.4.2
+
+      - id: repos
+        run: echo "matrix=$(jq -c 'map({name, repo, sha})' runtime-repos.json)" >> "$GITHUB_OUTPUT"
+
+  runtime:
+    name: Test Runtime (${{ matrix.name }})
+    needs: [build, runtime-setup]
+    if: ${{ !cancelled() && needs.build.result == 'success' && needs.runtime-setup.result == 'success' }}
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJSON(needs.runtime-setup.outputs.matrix) }}
+    steps:
+      - uses: taiki-e/checkout-action@7d1e50e93dc4fb3bba58f85018fadf77898aee8b # v1.4.2
+
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: monitor-oxc
+
+      - run: chmod +x ./monitor-oxc
+
+      - name: Checkout ${{ matrix.repo }}
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+          repository: ${{ matrix.repo }}
+          ref: ${{ matrix.sha }}
+          path: target-repo
+
+      # No oxc-project/setup-node here: it installs monitor-oxc's ~3000
+      # node_modules (~40s), which this job never touches — the classifier is
+      # node-builtins-only and the target repo installs its own dependencies.
+      # The runner image's preinstalled node + corepack are sufficient.
+      - run: corepack enable
+
+      - name: Cache target repo node_modules
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: target-repo/node_modules
+          key: runtime-${{ matrix.name }}-${{ matrix.sha }}
+
+      - run: node scripts/runtime-test.mjs install ${{ matrix.name }} target-repo
+
+      - run: ./monitor-oxc runtime-minify --name ${{ matrix.name }} --dir target-repo
+
+      - run: node scripts/runtime-test.mjs test ${{ matrix.name }} target-repo
+        env:
+          RUST_BACKTRACE: "1"
+
   runtime-bundles:
     name: Test Runtime Bundles
     needs: build
@@ -423,7 +484,7 @@ jobs:
   # wrong skip.
   record:
     name: Record green run
-    needs: [build, test, isolated_declarations, test262, runtime-bundles, uglify-corpus]
+    needs: [build, test, isolated_declarations, test262, runtime, runtime-bundles, uglify-corpus]
     # success() = every needed job succeeded (false if any failed OR was
     # skipped on the guard-hit path). The oxc SHA agreement check guards the
     # race where oxc main advances between Build's and Test262's independent
