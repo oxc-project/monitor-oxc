@@ -519,21 +519,25 @@ function runVm(prelude, code, timeout = 5000) {
   let stdout = "";
   const originalWrite = process.stdout.write;
   process.stdout.write = (chunk) => { stdout += chunk; return true; };
+  let result;
   try {
     const ctx = vm.createContext({ console });
     if (prelude) vm.runInContext(prelude, ctx);
     vm.runInContext(code, ctx, { timeout });
-    return {
-      stdout: stripColorCodes(stdout.replace(/\b(Array \[|Object {)/g, (m) => m.slice(-1))),
-    };
+    result = {};
   } catch (ex) {
     if (ex && (ex.code === "ERR_SCRIPT_EXECUTION_TIMEOUT" || /timed out/i.test(ex.message ?? ""))) {
-      return { timeout: true };
+      result = { timeout: true };
+    } else {
+      result = { error: { name: ex && ex.name, message: ex && ex.message } };
     }
-    return { error: { name: ex && ex.name, message: ex && ex.message } };
   } finally {
     process.stdout.write = originalWrite;
   }
+  // Keep stdout on error results too: output produced before a throw is
+  // oracle-relevant (a dropped/reordered log ahead of the same throw is a bug).
+  result.stdout = stripColorCodes(stdout.replace(/\b(Array \[|Object {)/g, (m) => m.slice(-1)));
+  return result;
 }
 
 const builtinsLiteral = (runVm("", "console.log(Object.keys(this));").stdout ?? "[]").trim();
@@ -544,8 +548,9 @@ function runCase(code, timeout) {
   return runVm(setupCode, code, timeout);
 }
 
-// uglify same_stdout: string/string compare after id stripping; error/error
-// compare name + last message line.
+// uglify same_stdout compares errors by name + last message line only; we are
+// stricter and additionally require identical pre-throw stdout, so a minifier
+// bug that drops/reorders logs ahead of an identical final throw still fails.
 function sameResult(a, b) {
   if (a.timeout || b.timeout) return a.timeout && b.timeout;
   const aErr = a.error && isError(a.error);
@@ -554,15 +559,21 @@ function sameResult(a, b) {
   if (aErr) {
     if (a.error.name !== b.error.name) return false;
     const lastLine = (m) => m.slice(m.lastIndexOf("\n") + 1);
-    return stripFuncIds(lastLine(a.error.message)) === stripFuncIds(lastLine(b.error.message));
+    if (stripFuncIds(lastLine(a.error.message)) !== stripFuncIds(lastLine(b.error.message))) {
+      return false;
+    }
+  } else if (a.error || b.error) {
+    return false; // a non-Error throw
   }
-  if (a.error || b.error) return false; // a non-Error throw on one side only
   return stripFuncIds(a.stdout) === stripFuncIds(b.stdout);
 }
 
 function describe(r) {
   if (r.timeout) return "<timeout>";
-  if (r.error) return `${r.error.name}: ${r.error.message}`;
+  if (r.error) {
+    const error = `${r.error.name}: ${r.error.message}`;
+    return r.stdout ? `${JSON.stringify(r.stdout)} then ${error}` : error;
+  }
   return JSON.stringify(r.stdout);
 }
 
