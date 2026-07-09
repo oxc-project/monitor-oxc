@@ -275,6 +275,45 @@ jobs:
           name: bundle-diff-artifacts
           path: bundle-diff-artifacts/
 
+  uglify-corpus:
+    name: Test Uglify Corpus
+    needs: build
+    # See `test` — break the transitive skip from the guard.
+    if: ${{ !cancelled() && needs.build.result == 'success' }}
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    steps:
+      - uses: taiki-e/checkout-action@7d1e50e93dc4fb3bba58f85018fadf77898aee8b # v1.4.2
+
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: monitor-oxc
+
+      - run: chmod +x ./monitor-oxc
+
+      - id: pin
+        run: echo "sha=$(jq -r .sha uglify-corpus.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout mishoo/UglifyJS
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+          repository: mishoo/UglifyJS
+          ref: ${{ steps.pin.outputs.sha }}
+          path: uglify-corpus-clone
+
+      - run: node scripts/uglify-corpus-test.mjs uglify-corpus-clone
+        env:
+          RUST_BACKTRACE: "1"
+
+      - name: Upload mismatch artifacts
+        if: failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          if-no-files-found: ignore
+          name: uglify-corpus-artifacts
+          path: uglify-corpus-artifacts/
+
   isolated_declarations:
     needs: build
     name: Test Isolated Declarations
@@ -384,7 +423,7 @@ jobs:
   # wrong skip.
   record:
     name: Record green run
-    needs: [build, test, isolated_declarations, test262, runtime-bundles]
+    needs: [build, test, isolated_declarations, test262, runtime-bundles, uglify-corpus]
     # success() = every needed job succeeded (false if any failed OR was
     # skipped on the guard-hit path). The oxc SHA agreement check guards the
     # race where oxc main advances between Build's and Test262's independent
