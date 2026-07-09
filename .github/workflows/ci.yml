@@ -28,8 +28,13 @@ on:
         default: 'main'
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
-  cancel-in-progress: ${{ github.ref_name != 'main' }}
+  # Pushes to main share one group (`github.ref`) and cancel the superseded
+  # in-progress run, so back-to-back merges don't stack full CI runs. PR runs
+  # keep their per-PR group; schedule/dispatch runs keep the per-sha group
+  # with no cancellation (concurrent oxc-PR dispatches must queue, not cancel
+  # each other).
+  group: ${{ github.workflow }}-${{ github.event_name == 'push' && github.ref || github.event.pull_request.number || github.sha }}
+  cancel-in-progress: ${{ github.ref_name != 'main' || github.event_name == 'push' }}
 
 jobs:
   status:
