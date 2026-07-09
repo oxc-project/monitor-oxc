@@ -31,6 +31,9 @@ pub fn run(config_path: &Path, name: &str, dir: &Path) -> ExitCode {
 
     let paths = WalkDir::new(dir)
         .into_iter()
+        // Prune instead of post-filtering: installed dependency trees hold tens
+        // of thousands of files that would otherwise be walked just to discard.
+        .filter_entry(|entry| entry.file_name() != "node_modules")
         .filter_map(|entry| {
             let entry = entry.unwrap();
             let path = entry.path();
@@ -38,7 +41,7 @@ pub fn run(config_path: &Path, name: &str, dir: &Path) -> ExitCode {
                 return None;
             }
             let rel = path.strip_prefix(dir).unwrap().to_string_lossy().replace('\\', "/");
-            if rel.contains("node_modules") || !sources.is_match(&rel) || ignore.is_match(&rel) {
+            if !sources.is_match(&rel) || ignore.is_match(&rel) {
                 return None;
             }
             let source_type = SourceType::from_path(path).ok()?;
@@ -76,20 +79,7 @@ pub fn run(config_path: &Path, name: &str, dir: &Path) -> ExitCode {
         .collect::<Vec<_>>();
 
     println!("Processed {} files.", paths.len());
-    if diagnostics.is_empty() {
-        ExitCode::SUCCESS
-    } else {
-        for diagnostic in &diagnostics {
-            println!(
-                "{}\n{}\n{}",
-                diagnostic.case,
-                diagnostic.path.to_string_lossy(),
-                diagnostic.message
-            );
-        }
-        println!("{} Failed.", diagnostics.len());
-        ExitCode::FAILURE
-    }
+    Diagnostic::report(&diagnostics)
 }
 
 fn load_config(path: &Path, name: &str) -> RepoConfig {

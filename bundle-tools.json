@@ -2,112 +2,151 @@
   {
     "name": "typescript",
     "dir": "node_modules/typescript",
-    "sources": ["lib/_tsc.js"],
+    "sources": [
+      "lib/_tsc.js"
+    ],
     "run": "node node_modules/typescript/lib/_tsc.js -p fixtures/bundle/ts-project --outDir OUTDIR",
     "notes": "lib/_tsc.js is the ~9MB single-scope tsc bundle; lib/tsc.js is just a wrapper. Compares emitted .js/.d.ts plus diagnostics stdout."
   },
   {
     "name": "prettier",
     "dir": "node_modules/prettier",
-    "sources": ["index.mjs", "doc.mjs", "internal/legacy-cli.mjs", "plugins/typescript.mjs", "plugins/estree.mjs", "plugins/postcss.mjs"],
+    "sources": [
+      "index.mjs",
+      "doc.mjs",
+      "internal/legacy-cli.mjs",
+      "plugins/typescript.mjs",
+      "plugins/estree.mjs",
+      "plugins/postcss.mjs"
+    ],
     "run": "node node_modules/prettier/bin/prettier.cjs --no-config --no-color fixtures/bundle/prettier/input.ts fixtures/bundle/prettier/input.css",
     "notes": "v3.8.3. bin/prettier.cjs is a tiny (~4KB) boilerplate wrapper that dynamically `import()`s internal/legacy-cli.mjs (not PRETTIER_EXPERIMENTAL_CLI, so legacy CLI path), which statically imports index.mjs (the ~600KB main entry), which statically imports doc.mjs and dynamically imports plugins/*.mjs (ESM) based on file extension -- NOT the sibling plugins/*.js (CJS) or *.cjs files, which are unused by this invocation (those are for require()-based / experimental-cli consumers) and were excluded from sources. For our .ts + .css fixtures only plugins/typescript.mjs, plugins/estree.mjs (printer for both babel/typescript ASTs), and plugins/postcss.mjs (css/less/scss) are ever loaded, so those are the only plugin bundles included. bin/prettier.cjs itself is left out of sources (stays unminified) since it's boilerplate, not a bundled parser/printer."
   },
   {
     "name": "sass",
     "dir": "node_modules/sass",
-    "sources": ["sass.dart.js"],
+    "sources": [
+      "sass.dart.js"
+    ],
     "run": "node node_modules/sass/sass.js --no-color --no-source-map fixtures/bundle/sass/main.scss",
     "notes": "v1.100.0. sass.js is a tiny wrapper requiring sass.dart.js, the actual dart2js-compiled compiler bundle (the only large file); --no-source-map removes a nondeterministic absolute-path source-map comment from stdout."
   },
   {
     "name": "rollup",
     "dir": "node_modules/rollup",
-    "sources": ["dist/*.js", "dist/**/*.js"],
+    "sources": [
+      "dist/**/*.js"
+    ],
     "run": "node node_modules/rollup/dist/bin/rollup --input fixtures/bundle/rollup/main.js --format es --silent",
     "notes": "v4.60.4. dist/bin/rollup (no .js extension) is the CLI entry and requires ../shared/rollup.js, ../shared/parseAst.js, ../fsevents-importer.js, ../native.js, ../getLogFilter.js, ../loadConfigFile.js -- all matched by dist/**/*.js. dist/es/** (ESM build for `import` consumers) is also matched by the globs but is never require()'d by the CJS bin entry, so minifying it has no effect on the diff either way. --silent suppresses per-run banner/timing noise; -f es --input avoids writing files (stdout-only) which keeps OUTDIR empty and comparison simple."
   },
   {
     "name": "vite",
     "dir": "node_modules/vite",
-    "sources": ["dist/node/*.js", "dist/node/**/*.js"],
+    "sources": [
+      "dist/node/**/*.js"
+    ],
     "run": "node node_modules/vite/bin/vite.js build fixtures/bundle/vite --outDir OUTDIR --logLevel silent",
     "notes": "v8.0.14 (rolldown-vite: vite now uses the `rolldown` npm package -- an oxc-adjacent Rust bundler shipped as a native N-API addon -- instead of classic rollup/esbuild). Traced with NODE_V8_COVERAGE over the fixture build: bin/vite.js (stays unminified, same convention as rollup's dist/bin/rollup and prettier's bin/prettier.cjs) dynamically imports dist/node/cli.js, which pulls in dist/node/chunks/{dist,logger,node}.js and dist/node/index.js and dist/node/module-runner.js -- all matched by dist/node/*.js + dist/node/**/*.js. dist/node/chunks/{build,lib,postcss-import}.js and dist/client/** are present under dir but not exercised by this simple build (no lib-mode, no @import in the CSS, no dev/HMR); left matched by the glob anyway since over-inclusion is harmless (same rationale as rollup's dist/es/** note) -- minifying an unexecuted file can't change the diff. misc/true.js (a 1-line `export default true` sentinel outside dist/node) is loaded but excluded from sources as trivial non-bundle boilerplate, like the CLI wrappers. The actual rolldown bundler (JS wrapper + native .node addon) lives in a sibling pnpm-hoisted package outside node_modules/vite and is out of scope for this entry by construction (dir-scoped sources can't reach it), same situation as vue-compiler-sfc's external @vue/compiler-core etc. Build output includes content-hashed asset filenames (e.g. assets/index-<hash>.js); verified byte-identical (including the hash) across repeated unminified runs before relying on the runner's determinism gate."
   },
   {
     "name": "vue-compiler-sfc",
     "dir": "node_modules/@vue/compiler-sfc",
-    "sources": ["dist/compiler-sfc.cjs.js"],
+    "sources": [
+      "dist/compiler-sfc.cjs.js"
+    ],
     "run": "node fixtures/bundle/vue/compile.cjs",
     "notes": "v3.5.34. dist/compiler-sfc.cjs.js is the only file under node_modules/@vue/compiler-sfc that's ever loaded (traced with NODE_V8_COVERAGE): dist/compiler-sfc.esm-browser.js (browser build) is unused by this require()-based CJS invocation. Internally compiler-sfc.cjs.js requires several sibling npm packages -- @vue/compiler-core, @vue/compiler-dom, @vue/compiler-ssr, @vue/shared, plus @babel/parser, postcss, magic-string, entities, source-map-js, etc. -- all of which live outside node_modules/@vue/compiler-sfc and so are out of scope for dir-scoped sources (same situation as vite's external rolldown dependency); only compiler-sfc.cjs.js itself is the minification target. compileTemplate() on a template-only SFC (no <script>/<style>) is deterministic stdout-only output, no OUTDIR files."
   },
   {
     "name": "jiti",
     "dir": "node_modules/jiti",
-    "sources": ["dist/*.cjs", "dist/*.mjs"],
+    "sources": [
+      "dist/*.cjs",
+      "dist/*.mjs"
+    ],
     "run": "node node_modules/jiti/lib/jiti-cli.mjs fixtures/bundle/jiti/main.ts",
     "notes": "v2.7.0. bin field in package.json points to lib/jiti-cli.mjs. Traced with NODE_V8_COVERAGE: jiti-cli.mjs dynamically imports lib/jiti.cjs (a tiny ~25-line shim, stays unminified like other entries' wrappers), which eagerly requires dist/jiti.cjs (the actual jiti resolver/loader bundle) and lazily requires dist/babel.cjs (Babel-based TS-stripping transform) the first time a non-JS file needs transforming -- our .ts fixture (enum/interface/type annotations) triggers that lazy load, so both dist/*.cjs bundles are exercised. dist has no .mjs files currently (pattern matches zero, harmless) -- kept per the starting spec in case a future version ships one. Output `total=3` to stdout, no OUTDIR files, deterministic across runs."
   },
   {
     "name": "terser",
     "dir": "node_modules/terser",
-    "sources": ["dist/bundle.min.js"],
+    "sources": [
+      "dist/bundle.min.js"
+    ],
     "run": "node node_modules/terser/bin/terser fixtures/bundle/terser/input.js --compress --mangle",
     "notes": "v5.48.0. bin/terser (tiny wrapper, stays unminified) does require(\"..\") which resolves via package.json exports' `require` condition to dist/bundle.min.js -- confirmed with NODE_V8_COVERAGE that this is the only file under node_modules/terser ever loaded (lib/*.js and main.js are the ESM/source entry, unused by this CJS invocation). Output is minified JS on stdout, no OUTDIR files, deterministic across runs."
   },
   {
     "name": "webpack",
     "dir": "node_modules/webpack",
-    "sources": ["lib/**/*.js"],
+    "sources": [
+      "lib/**/*.js"
+    ],
     "run": "node fixtures/bundle/webpack/build.cjs OUTDIR",
     "notes": "v5.107.2 (webpack-cli 7.0.2 installed but unused -- the wrapper drives webpack's Node API directly, since the CLI prints compile timing). sources is ~593 files / 6.2MB of per-file CJS -- webpack's lib/ ships unbundled, unlike most other entries here (deliberately different input shape at scale). fixtures/bundle/webpack/build.cjs sets optimization.minimize:false (keeps terser out of the loop) and stats:'none', printing only the sorted asset name+size list and errors (no timing) to stdout; the emitted bundle itself is the OUTDIR-diffed artifact. Verified byte-identical output across two unminified runs before relying on the runner's determinism gate."
   },
   {
     "name": "vitest",
     "dir": "node_modules/vitest",
-    "sources": ["dist/*.js", "dist/**/*.js"],
+    "sources": [
+      "dist/**/*.js"
+    ],
     "run": "node fixtures/bundle/vitest/run.mjs",
     "notes": "v4.1.10 (newly added to package.json dependencies -- not previously installed; see repo notes on why `dependencies` not `devDependencies`). fixtures/bundle/vitest/run.mjs uses the brief's startVitest('test', ...) Node API verbatim (no API adjustment needed for v4) but replaces the flat file.tasks walk with a recursive walk: file.tasks is [describe-suite], not [test] directly, so a naive one-level loop silently printed nothing per-test; collect() recurses to type==='test' leaves and sorts the flattened lines for determinism. fileParallelism:false and coverage.enabled:false are set in vitest.config.mjs to avoid worker-order/coverage-instrumentation noise. Load trace via NODE_V8_COVERAGE captured dist/config.js, dist/module-evaluator.js, dist/node.js, dist/path.js, and 15 dist/chunks/*.js files loaded directly in the main process; dist/workers/forks.js (referenced by string from dist/chunks/cli-api.BK8pd4xc.js) is the tinypool worker entry for the default `forks` pool and runs in a forked child process whose coverage wasn't captured by this tracing method (env-var coverage collection didn't surface for the fork in this environment) but is unambiguously loaded and is covered by the dist/**/*.js glob regardless. dist/config.cjs (the only .cjs file) and dist/browser.js are CJS/browser entry points not reachable from this ESM Node-API invocation and are left unminified by the glob (no .cjs/.mjs pattern needed -- this version ships zero .mjs files). vitest is in generate.mjs's smoke-test ignoreList (line ~48) and the smoke tests import from that generated list, not package.json, so this new dependency is never bare-imported by other CI jobs. Running vitest via its Node API creates a fixtures/bundle/vitest/node_modules/{.vite,.vite-temp}/ config-cache/results-cache as a side effect; gitignored (fixtures/bundle/vitest/node_modules/) since it's regenerated per-run and outside the diffed dir."
   },
   {
     "name": "jest-core",
     "dir": "node_modules/@jest/core",
-    "sources": ["build/**/*.js"],
+    "sources": [
+      "build/**/*.js"
+    ],
     "run": "node fixtures/bundle/jest/run.cjs",
     "notes": "v30.4.2. jest's code is spread across sibling npm packages (jest-core, jest-runtime, jest-circus, jest-config, jest-resolve, expect, ...) and the runner's walker can't cross package roots, so this is one of three entries sharing the same fixture run -- a diff here attributes the bug to @jest/core's minified code specifically. Unlike webpack, @jest/core ships pre-bundled (build/index.js, ~139KB single file), so build/**/*.js matches exactly one file. require(\"jest\") re-exports runCLI from @jest/core (verified via Object.keys(require('jest')) -- brief's require(\"jest\") worked as-is, no fallback to jest-cli/@jest/core needed). Load trace (NODE_V8_COVERAGE): @jest/core/build/index.js is loaded, confirming it's exercised by the fixture run."
   },
   {
     "name": "jest-runtime",
     "dir": "node_modules/jest-runtime",
-    "sources": ["build/**/*.js"],
+    "sources": [
+      "build/**/*.js"
+    ],
     "run": "node fixtures/bundle/jest/run.cjs",
     "notes": "v30.4.2. See jest-core's notes for the shared-fixture rationale. build/index.js (~148KB) is the only file under build/; confirmed loaded via NODE_V8_COVERAGE (jest-runtime evaluates each test file's module graph, so it's exercised on every run)."
   },
   {
     "name": "jest-circus",
     "dir": "node_modules/jest-circus",
-    "sources": ["build/**/*.js"],
+    "sources": [
+      "build/**/*.js"
+    ],
     "run": "node fixtures/bundle/jest/run.cjs",
     "notes": "v30.4.2. See jest-core's notes for the shared-fixture rationale. jest-circus is jest 30's default test runner (describe/test/expect scheduling). Load trace: build/jestAdapterInit.js and build/runner.js are loaded by this run; build/index.js (the package's public API for consumers who drive circus directly) is not exercised by the runCLI path but is left matched by build/**/*.js anyway (over-inclusion is harmless, same precedent as rollup's dist/es/** note)."
   },
   {
     "name": "babel-standalone",
     "dir": "node_modules/@babel/standalone",
-    "sources": ["babel.js"],
+    "sources": [
+      "babel.js"
+    ],
     "run": "node fixtures/bundle/babel/standalone.cjs",
     "notes": "v8.0.3 (newly added to package.json dependencies -- not previously installed; same rationale as vitest: generate.mjs wipes only devDependencies, and this package is never bare-imported by other CI jobs since it's absent from the generated top-npm-packages devDependencies list). babel.js is the ~4.4MB unminified UMD bundle (main entry); babel.min.js (~2.5MB) ships alongside but is never require()'d by this invocation -- confirmed via NODE_V8_COVERAGE that only babel.js is loaded -- and is excluded from sources per the brief. Babel.transform() with presets: [[\"env\", {...}]] uses the short-name preset-resolution table baked into the standalone bundle itself (the string \"env\" form -- @babel/core's require.resolve(\"@babel/preset-env\") form throws inside standalone since there's no real module resolution). Deterministic across two unminified runs (byte-identical stdout)."
   },
   {
     "name": "babel-parser",
     "dir": "node_modules/@babel/parser",
-    "sources": ["lib/**/*.js"],
+    "sources": [
+      "lib/**/*.js"
+    ],
     "run": "node fixtures/bundle/babel/transform.cjs",
     "notes": "v7.29.7 (already present -- part of the generated top-npm-packages devDependencies set, not newly added). lib/index.js (~500KB) is the only file under lib/ (lib/index.js.map is the sourcemap, not code); confirmed loaded via NODE_V8_COVERAGE -- @babel/core's parser/index.js requires @babel/parser to produce the AST that preset-env's plugins transform. Shares fixtures/bundle/babel/transform.cjs with babel-core (same fixture run, same rationale as jest-core/jest-runtime/jest-circus sharing fixtures/bundle/jest/run.cjs): a diff here attributes the bug to @babel/parser's code specifically, isolated from @babel/core's own lib/. Deterministic across two unminified runs."
   },
   {
     "name": "babel-core",
     "dir": "node_modules/@babel/core",
-    "sources": ["lib/**/*.js", "lib/**/*.cjs"],
+    "sources": [
+      "lib/**/*.js",
+      "lib/**/*.cjs"
+    ],
     "run": "node fixtures/bundle/babel/transform.cjs",
     "notes": "v7.29.7 (already present -- part of the generated top-npm-packages devDependencies set, not newly added). See babel-parser's notes for the shared-fixture rationale. lib/**/*.js matches 55 files; NODE_V8_COVERAGE also showed two small executed .cjs shims -- lib/config/files/import.cjs (dynamic import() wrapper, used because import() can't appear directly in a CJS file targeting older Node) and lib/transformation/file/babel-7-helpers.cjs (a one-line re-export shim for babel 7 back-compat helpers) -- both real, loaded, in-dir code (not boilerplate CLI wrappers like other entries' unminified bin/* files), so lib/**/*.cjs was added to sources to cover them rather than leaving them out. babel.transformSync's configFile:false/babelrc:false plus require.resolve(\"@babel/preset-env\") avoids filesystem config resolution and browserslist auto-detection noise. Sibling npm packages actually loaded by this run -- @babel/generator, @babel/template, @babel/types, @babel/helpers, @babel/code-frame, @babel/helper-*, @babel/compat-data, @babel/plugin-transform-*, @babel/plugin-bugfix-*, @babel/preset-env, @babel/preset-modules, babel-plugin-polyfill-corejs3, and more -- all live outside node_modules/@babel/core and are out of scope for dir-scoped sources by construction (same situation as vite's external rolldown dependency and vue-compiler-sfc's external @vue/compiler-core). Deterministic across two unminified runs."
   }

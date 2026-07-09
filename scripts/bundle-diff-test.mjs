@@ -152,7 +152,7 @@ function bundleSizes(files) {
   for (const file of files) {
     const buf = fs.readFileSync(file);
     raw += buf.length;
-    gzip += zlib.gzipSync(buf, { level: 9 }).length;
+    gzip += zlib.gzipSync(buf).length;
   }
   return { raw, gzip };
 }

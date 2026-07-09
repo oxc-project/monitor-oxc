@@ -3,7 +3,7 @@ use std::{path::PathBuf, process::ExitCode};
 use pico_args::Arguments;
 
 use monitor_oxc::{
-    NodeModulesRunner, NodeModulesRunnerOptions, codegen::CodegenRunner,
+    Diagnostic, NodeModulesRunner, NodeModulesRunnerOptions, codegen::CodegenRunner,
     compressor::CompressorRunner, dce::DceRunner, formatter::FormatterRunner,
     formatter_dcr::FormatterDCRRunner, isolated_declarations, mangler::ManglerRunner,
     minifier::MinifierRunner, remove_whitespace::RemoveWhitespaceRunner,
@@ -84,18 +84,8 @@ fn main() -> ExitCode {
 
     let result = node_modules_runner.run_all();
 
-    if let Err(diagnostics) = result {
-        for diagnostic in &diagnostics {
-            println!(
-                "{}\n{}\n{}",
-                diagnostic.case,
-                diagnostic.path.to_string_lossy(),
-                diagnostic.message
-            );
-        }
-        println!("{} Failed.", diagnostics.len());
-        ExitCode::FAILURE
-    } else {
-        ExitCode::SUCCESS
+    match result {
+        Err(diagnostics) => Diagnostic::report(&diagnostics),
+        Ok(()) => ExitCode::SUCCESS,
     }
 }
