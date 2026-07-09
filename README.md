@@ -28,6 +28,12 @@
 
 * Test against vue
 
+### Runtime Bundles
+
+* minify production mega-bundles already in node_modules ([bundle-tools.json](./bundle-tools.json): tsc, prettier, sass, rollup, vite, vue-compiler-sfc, jiti, terser, webpack, vitest, jest-core, jest-runtime, jest-circus, babel-standalone, babel-parser, babel-core)
+* run each tool on fixed fixtures before and after minification
+* byte-diff the outputs — differential by construction, so no pins or baselines needed
+
 ## Top 3000 npm packages from [npm-high-impact](https://github.com/wooorm/npm-high-impact)
 
 (check out our [package.json](https://github.com/oxc-project/monitor-oxc/blob/main/package.json) 😆)
