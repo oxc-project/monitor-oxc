@@ -7,12 +7,19 @@ pub mod isolated_declarations;
 pub mod mangler;
 pub mod minifier;
 pub mod remove_whitespace;
+pub mod runtime;
 pub mod transformer;
 
 mod case;
 mod driver;
 
-use std::{fmt::Write as _, fs, panic::catch_unwind, path::PathBuf, process::Command};
+use std::{
+    fmt::Write as _,
+    fs,
+    panic::catch_unwind,
+    path::PathBuf,
+    process::{Command, ExitCode},
+};
 
 use console::Style;
 use rayon::prelude::*;
@@ -73,6 +80,25 @@ pub struct Diagnostic {
     pub case: &'static str,
     pub path: PathBuf,
     pub message: String,
+}
+
+impl Diagnostic {
+    /// Print diagnostics in the runner's standard format and return the exit code.
+    pub fn report(diagnostics: &[Diagnostic]) -> ExitCode {
+        if diagnostics.is_empty() {
+            return ExitCode::SUCCESS;
+        }
+        for diagnostic in diagnostics {
+            println!(
+                "{}\n{}\n{}",
+                diagnostic.case,
+                diagnostic.path.to_string_lossy(),
+                diagnostic.message
+            );
+        }
+        println!("{} Failed.", diagnostics.len());
+        ExitCode::FAILURE
+    }
 }
 
 #[allow(clippy::struct_field_names)]

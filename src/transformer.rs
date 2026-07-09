@@ -26,16 +26,22 @@ impl Case for TransformerRunner {
     }
 
     fn driver(&self) -> Driver {
-        let mut options = TransformOptions::enable_all();
-        // Turns off the refresh plugin because it is never idempotent
-        options.jsx.refresh = None;
-        // Enables `only_remove_type_imports` avoiding removing all unused imports
-        options.typescript.only_remove_type_imports = true;
-
-        // These two injects helper in esm format, which breaks cjs files.
-        options.env.es2018.async_generator_functions = false;
-        options.env.es2017.async_to_generator = false;
-
-        Driver { transform: Some(options), ..Driver::default() }
+        Driver { transform: Some(transform_options()), ..Driver::default() }
     }
+}
+
+/// Transform options shared by the transformer case and the `runtime-minify`
+/// command.
+pub fn transform_options() -> TransformOptions {
+    let mut options = TransformOptions::enable_all();
+    // Turns off the refresh plugin because it is never idempotent
+    options.jsx.refresh = None;
+    // Enables `only_remove_type_imports` avoiding removing all unused imports
+    options.typescript.only_remove_type_imports = true;
+
+    // These two injects helper in esm format, which breaks cjs files.
+    options.env.es2018.async_generator_functions = false;
+    options.env.es2017.async_to_generator = false;
+
+    options
 }

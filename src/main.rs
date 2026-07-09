@@ -3,7 +3,7 @@ use std::{path::PathBuf, process::ExitCode};
 use pico_args::Arguments;
 
 use monitor_oxc::{
-    NodeModulesRunner, NodeModulesRunnerOptions, codegen::CodegenRunner,
+    Diagnostic, NodeModulesRunner, NodeModulesRunnerOptions, codegen::CodegenRunner,
     compressor::CompressorRunner, dce::DceRunner, formatter::FormatterRunner,
     formatter_dcr::FormatterDCRRunner, isolated_declarations, mangler::ManglerRunner,
     minifier::MinifierRunner, remove_whitespace::RemoveWhitespaceRunner,
@@ -31,6 +31,16 @@ fn main() -> ExitCode {
     if matches!(task, "id") {
         let path_to_vue = args.opt_free_from_str::<PathBuf>().unwrap();
         return isolated_declarations::test(path_to_vue);
+    }
+
+    if matches!(task, "runtime-minify") {
+        let config: PathBuf = args
+            .opt_value_from_str("--config")
+            .unwrap()
+            .unwrap_or_else(|| PathBuf::from("runtime-repos.json"));
+        let name: String = args.value_from_str("--name").unwrap();
+        let dir: PathBuf = args.value_from_str("--dir").unwrap();
+        return monitor_oxc::runtime::run(&config, &name, &dir);
     }
 
     println!("Options: {options:?}");
@@ -74,18 +84,8 @@ fn main() -> ExitCode {
 
     let result = node_modules_runner.run_all();
 
-    if let Err(diagnostics) = result {
-        for diagnostic in &diagnostics {
-            println!(
-                "{}\n{}\n{}",
-                diagnostic.case,
-                diagnostic.path.to_string_lossy(),
-                diagnostic.message
-            );
-        }
-        println!("{} Failed.", diagnostics.len());
-        ExitCode::FAILURE
-    } else {
-        ExitCode::SUCCESS
+    match result {
+        Err(diagnostics) => Diagnostic::report(&diagnostics),
+        Ok(()) => ExitCode::SUCCESS,
     }
 }
