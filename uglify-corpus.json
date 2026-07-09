@@ -5,7 +5,7 @@
     {
       "file": "compress/arrows.js",
       "name": "for_statement_parentheses_init",
-      "reason": "REAL OXC BUG (parser): oxc rejects `for (a => { a in a; }; ...)` — the for-init no-in restriction leaks into the arrow's block body; Node/V8 accept it. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt (uglify-bug-evidence/README.md)"
+      "reason": "REAL OXC BUG (parser): oxc rejects `for (a => { a in a; }; ...)` \u2014 the for-init no-in restriction leaks into the arrow's block body; Node/V8 accept it. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt (uglify-bug-evidence/README.md)"
     },
     {
       "file": "compress/classes.js",
@@ -135,72 +135,72 @@
     {
       "file": "compress/booleans.js",
       "name": "de_morgan_1c",
-      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) — `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
     },
     {
       "file": "compress/conditionals.js",
       "name": "delete_conditional_1",
-      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) — `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
     },
     {
       "file": "compress/conditionals.js",
       "name": "delete_conditional_2",
-      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) — `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
     },
     {
       "file": "compress/evaluate.js",
       "name": "delete_expr_1",
-      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) — `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
     },
     {
       "file": "compress/evaluate.js",
       "name": "delete_expr_2",
-      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) — `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
     },
     {
       "file": "compress/evaluate.js",
       "name": "delete_binary_1",
-      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) — `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
     },
     {
       "file": "compress/evaluate.js",
       "name": "delete_binary_2",
-      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) — `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
     },
     {
       "file": "compress/sequences.js",
       "name": "delete_seq_1",
-      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) — `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
     },
     {
       "file": "compress/sequences.js",
       "name": "delete_seq_2",
-      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) — `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
     },
     {
       "file": "compress/sequences.js",
       "name": "delete_seq_3",
-      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) — `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
     },
     {
       "file": "compress/sequences.js",
       "name": "delete_seq_4",
-      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) — `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
     },
     {
       "file": "compress/sequences.js",
       "name": "delete_seq_4_evaluate",
-      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) — `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
     },
     {
       "file": "compress/sequences.js",
       "name": "delete_seq_5",
-      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) — `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
     },
     {
       "file": "compress/sequences.js",
       "name": "delete_seq_5_evaluate",
-      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) — `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
+      "reason": "REAL OXC BUG (compressor): `delete (expr)` whose operand the minifier evaluates to a bare global reference (`NaN`/`Infinity`) \u2014 `delete NaN` returns false where `delete (0, NaN)` returns true, so stdout flips. evidence: .superpowers/sdd/uglify-bug-evidence/triage.txt"
     },
     {
       "file": "compress/arrows.js",
@@ -440,22 +440,22 @@
     {
       "file": "compress/collapse_vars.js",
       "name": "collapse_vars_eval_and_with",
-      "reason": "known divergence (`with` dynamic scope): compressor substitutes global identifiers that a `with` block could shadow — universally unsafe, deprecated construct"
+      "reason": "REAL OXC BUG (with-scope soundness): compressor substitutes global identifiers (Infinity -> 1/0) that a `with` object shadows at runtime; terser/esbuild guard this. Plain-node reproducible; see uglify-bug-evidence"
     },
     {
       "file": "compress/issue-1105.js",
       "name": "Infinity_in_with_scope",
-      "reason": "known divergence (`with` dynamic scope): compressor substitutes global identifiers that a `with` block could shadow — universally unsafe, deprecated construct"
+      "reason": "REAL OXC BUG (with-scope soundness): compressor substitutes global identifiers (Infinity -> 1/0) that a `with` object shadows at runtime; terser/esbuild guard this. Plain-node reproducible; see uglify-bug-evidence"
     },
     {
       "file": "compress/issue-1105.js",
       "name": "assorted_Infinity_NaN_undefined_in_with_scope",
-      "reason": "known divergence (`with` dynamic scope): compressor substitutes global identifiers that a `with` block could shadow — universally unsafe, deprecated construct"
+      "reason": "REAL OXC BUG (with-scope soundness): compressor substitutes global identifiers (Infinity -> 1/0) that a `with` object shadows at runtime; terser/esbuild guard this. Plain-node reproducible; see uglify-bug-evidence"
     },
     {
       "file": "compress/issue-1105.js",
       "name": "assorted_Infinity_NaN_undefined_in_with_scope_keep_infinity",
-      "reason": "known divergence (`with` dynamic scope): compressor substitutes global identifiers that a `with` block could shadow — universally unsafe, deprecated construct"
+      "reason": "REAL OXC BUG (with-scope soundness): compressor substitutes global identifiers (Infinity -> 1/0) that a `with` object shadows at runtime; terser/esbuild guard this. Plain-node reproducible; see uglify-bug-evidence"
     },
     {
       "file": "compress/annotations.js",
@@ -475,52 +475,52 @@
     {
       "file": "compress/templates.js",
       "name": "ascii_only",
-      "reason": "known divergence (codegen): a lone surrogate in a string/template is emitted lossily (U+FFFD) instead of as a \\uXXXX escape; not a compressor-semantics issue"
+      "reason": "REAL OXC BUG (codegen lone-surrogate): lone surrogates in strings/templates emitted lossily as U+FFFD instead of \\uXXXX escapes \u2014 plain-node-visible data loss; see uglify-bug-evidence"
     },
     {
       "file": "compress/templates.js",
       "name": "ascii_only_ecma",
-      "reason": "known divergence (codegen): a lone surrogate in a string/template is emitted lossily (U+FFFD) instead of as a \\uXXXX escape; not a compressor-semantics issue"
+      "reason": "REAL OXC BUG (codegen lone-surrogate): lone surrogates in strings/templates emitted lossily as U+FFFD instead of \\uXXXX escapes \u2014 plain-node-visible data loss; see uglify-bug-evidence"
     },
     {
       "file": "compress/templates.js",
       "name": "ascii_only_templates",
-      "reason": "known divergence (codegen): a lone surrogate in a string/template is emitted lossily (U+FFFD) instead of as a \\uXXXX escape; not a compressor-semantics issue"
+      "reason": "REAL OXC BUG (codegen lone-surrogate): lone surrogates in strings/templates emitted lossily as U+FFFD instead of \\uXXXX escapes \u2014 plain-node-visible data loss; see uglify-bug-evidence"
     },
     {
       "file": "compress/templates.js",
       "name": "ascii_only_templates_ecma",
-      "reason": "known divergence (codegen): a lone surrogate in a string/template is emitted lossily (U+FFFD) instead of as a \\uXXXX escape; not a compressor-semantics issue"
+      "reason": "REAL OXC BUG (codegen lone-surrogate): lone surrogates in strings/templates emitted lossily as U+FFFD instead of \\uXXXX escapes \u2014 plain-node-visible data loss; see uglify-bug-evidence"
     },
     {
       "file": "compress/templates.js",
       "name": "unicode",
-      "reason": "known divergence (codegen): a lone surrogate in a string/template is emitted lossily (U+FFFD) instead of as a \\uXXXX escape; not a compressor-semantics issue"
+      "reason": "REAL OXC BUG (codegen lone-surrogate): lone surrogates in strings/templates emitted lossily as U+FFFD instead of \\uXXXX escapes \u2014 plain-node-visible data loss; see uglify-bug-evidence"
     },
     {
       "file": "compress/templates.js",
       "name": "unicode_ecma",
-      "reason": "known divergence (codegen): a lone surrogate in a string/template is emitted lossily (U+FFFD) instead of as a \\uXXXX escape; not a compressor-semantics issue"
+      "reason": "REAL OXC BUG (codegen lone-surrogate): lone surrogates in strings/templates emitted lossily as U+FFFD instead of \\uXXXX escapes \u2014 plain-node-visible data loss; see uglify-bug-evidence"
     },
     {
       "file": "compress/templates.js",
       "name": "unicode_templates",
-      "reason": "known divergence (codegen): a lone surrogate in a string/template is emitted lossily (U+FFFD) instead of as a \\uXXXX escape; not a compressor-semantics issue"
+      "reason": "REAL OXC BUG (codegen lone-surrogate): lone surrogates in strings/templates emitted lossily as U+FFFD instead of \\uXXXX escapes \u2014 plain-node-visible data loss; see uglify-bug-evidence"
     },
     {
       "file": "compress/templates.js",
       "name": "unicode_templates_ecma",
-      "reason": "known divergence (codegen): a lone surrogate in a string/template is emitted lossily (U+FFFD) instead of as a \\uXXXX escape; not a compressor-semantics issue"
+      "reason": "REAL OXC BUG (codegen lone-surrogate): lone surrogates in strings/templates emitted lossily as U+FFFD instead of \\uXXXX escapes \u2014 plain-node-visible data loss; see uglify-bug-evidence"
     },
     {
       "file": "compress/unicode.js",
       "name": "issue_2242_3",
-      "reason": "known divergence (codegen): a lone surrogate in a string/template is emitted lossily (U+FFFD) instead of as a \\uXXXX escape; not a compressor-semantics issue"
+      "reason": "REAL OXC BUG (codegen lone-surrogate): lone surrogates in strings/templates emitted lossily as U+FFFD instead of \\uXXXX escapes \u2014 plain-node-visible data loss; see uglify-bug-evidence"
     },
     {
       "file": "compress/unicode.js",
       "name": "issue_2242_4",
-      "reason": "known divergence (codegen): a lone surrogate in a string/template is emitted lossily (U+FFFD) instead of as a \\uXXXX escape; not a compressor-semantics issue"
+      "reason": "REAL OXC BUG (codegen lone-surrogate): lone surrogates in strings/templates emitted lossily as U+FFFD instead of \\uXXXX escapes \u2014 plain-node-visible data loss; see uglify-bug-evidence"
     },
     {
       "file": "compress/classes.js",
