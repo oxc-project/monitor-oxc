@@ -14,6 +14,7 @@
     "@babel/standalone": "latest",
     "@oxc-project/runtime": "latest",
     "npm-high-impact": "1.12.0",
+    "prettier": "3.9.5",
     "tsx": "latest",
     "vitest": "latest"
   },
@@ -2342,7 +2343,6 @@
     "prebuild-install": "latest",
     "prelude-ls": "latest",
     "prepend-http": "latest",
-    "prettier": "latest",
     "prettier-linter-helpers": "latest",
     "pretty-bytes": "latest",
     "pretty-error": "latest",

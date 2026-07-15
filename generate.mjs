@@ -143,6 +143,10 @@ const testEntries = data.map((name) => ({
 
 packageJson.devDependencies = {};
 data.map((name) => {
+  // Packages in `dependencies` are version-managed explicitly (e.g. prettier, the formatter oracle);
+  // don't shadow them with a corpus `latest` entry.
+  if (name in packageJson.dependencies) return;
+  
   packageJson.devDependencies[name] = "latest";
 });
 
