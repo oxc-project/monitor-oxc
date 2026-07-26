@@ -24,7 +24,7 @@ jobs:
       # The action runs `cargo metadata` when Cargo.lock changed, which needs
       # the `oxc` path dependency (`../oxc`) to exist — same as the Build job.
       - name: Checkout oxc
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           repository: oxc-project/oxc
