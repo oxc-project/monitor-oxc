@@ -168,7 +168,7 @@ jobs:
 
       - name: Checkout oxc (${{ inputs.ref }})
         id: oxc
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           repository: oxc-project/oxc
@@ -284,7 +284,7 @@ jobs:
       - run: chmod +x ./monitor-oxc
 
       - name: Checkout ${{ matrix.repo }}
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           repository: ${{ matrix.repo }}
@@ -361,7 +361,7 @@ jobs:
         run: echo "sha=$(jq -r .sha uglify-corpus.json)" >> "$GITHUB_OUTPUT"
 
       - name: Checkout mishoo/UglifyJS
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           repository: mishoo/UglifyJS
@@ -391,7 +391,7 @@ jobs:
     steps:
       - name: Checkout vuejs/core
         id: vue
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           repository: vuejs/core
@@ -420,7 +420,7 @@ jobs:
     steps:
       - name: Checkout oxc (${{ inputs.ref }})
         id: oxc
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           repository: oxc-project/oxc
@@ -438,7 +438,7 @@ jobs:
           fi
           echo "sha=$sha" >> "$GITHUB_OUTPUT"
 
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           show-progress: false
