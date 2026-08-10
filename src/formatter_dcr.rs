@@ -35,7 +35,6 @@ impl Case for FormatterDCRRunner {
             source_text,
             *source_type,
             JsFormatOptions::default(),
-            None,
         ) {
             Ok(formatted) => formatted.print().unwrap().into_code(),
             // Skip files that fail to parse, already reported in `FormatterRunner`

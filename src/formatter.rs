@@ -38,7 +38,6 @@ impl Case for FormatterRunner {
             source_text,
             *source_type,
             JsFormatOptions::default(),
-            None,
         ) {
             Ok(formatted) => formatted.print().unwrap().into_code(),
             Err(error) => {
@@ -62,7 +61,6 @@ impl Case for FormatterRunner {
             &source_text2,
             *source_type,
             JsFormatOptions::default(),
-            None,
         ) {
             Ok(formatted) => formatted.print().unwrap().into_code(),
             Err(error) => {
