@@ -2,7 +2,7 @@
   {
     "name": "es-toolkit",
     "repo": "toss/es-toolkit",
-    "sha": "ca9ef72a8df4ef67250af2f7784fd7f2c8f3370c",
+    "sha": "2c4c047810492bf43facf2f1a85419bffb08ddbb",
     "sources": [
       "src/**/*.ts"
     ],
@@ -18,7 +18,7 @@
   {
     "name": "zod",
     "repo": "colinhacks/zod",
-    "sha": "912f0f51b0ced654d0069741e7160834dca742ee",
+    "sha": "ead9fcb310bf65a70427f92ca76545efe954037e",
     "sources": [
       "packages/zod/src/**/*.ts"
     ],
@@ -33,7 +33,7 @@
   {
     "name": "vue",
     "repo": "vuejs/core",
-    "sha": "9e03beb6b4c85a9d5b49b731c08263aa648e2a2a",
+    "sha": "40423896796ff7438a1aa70ee3cf22fe5b0ac224",
     "sources": [
       "packages/*/src/**/*.ts"
     ],
@@ -47,7 +47,7 @@
   {
     "name": "svelte",
     "repo": "sveltejs/svelte",
-    "sha": "b4d1583ae20f3869a88a731d9a265c546c099f66",
+    "sha": "26786e92985842a6d563c67049a43bc5857bf792",
     "sources": [
       "packages/svelte/src/**/*.js"
     ],
