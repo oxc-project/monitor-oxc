@@ -1,7 +1,7 @@
 {
   "name": "monitor-oxc",
   "private": true,
-  "packageManager": "pnpm@11.0.4",
+  "packageManager": "pnpm@11.20.0",
   "volta": {
     "node": "22.12.0"
   },
@@ -13,8 +13,8 @@
   "dependencies": {
     "@babel/standalone": "latest",
     "@oxc-project/runtime": "latest",
-    "npm-high-impact": "1.12.0",
-    "prettier": "3.9.5",
+    "npm-high-impact": "1.13.0",
+    "prettier": "3.9.6",
     "tsx": "latest",
     "vitest": "latest"
   },
