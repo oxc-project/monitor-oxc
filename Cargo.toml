@@ -40,6 +40,9 @@ globset = "0.4"
 # Disabling debug info reduces stack usage
 debug = false
 
+[profile.dev.package."*"]
+debug = false
+
 [profile.release]
 strip = false # "symbols" # Set to `false` for debug information
 debug = true # Set to `true` for debug information
