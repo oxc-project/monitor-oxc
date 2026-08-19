@@ -1,0 +1,21 @@
+src/codegen-conformance.ts
+  s_1a3c47d53bfe91::t_b073b1417b1dbe 9,48,54
+src/codegen_conformance.rs
+  s_1a3c47d53bfe91::t_4b75706448ce1a 107
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "242056e7e1e73dd9d549dc84fa4e74c4c109e37b",
+  "prompts": {},
+  "sessions": {
+    "s_1a3c47d53bfe91": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a01951-d5f6-7c51-b441-1ba6a0694e08",
+        "model": "unknown"
+      },
+      "human_author": "Cameron <cclark@cloudflare.com>"
+    }
+  }
+}
