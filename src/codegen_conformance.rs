@@ -2,7 +2,7 @@
 //!
 //! Rust parses each monitored source and sends its ESTree representation to one persistent Node
 //! process. That process prints with `oxc-codegen`; Rust prints the equivalent normalized AST and
-//! compares the generated source byte-for-byte.
+//! compares both generated source and complete Source Map v3 output.
 
 use std::{
     io::{BufRead, BufReader, Read as _, Write as _},
@@ -17,7 +17,7 @@ use oxc::{
         ArrowFunctionExpression, ExportAllDeclaration, ExportFromDeclaration, Function,
         ImportDeclaration, WithClause, WithClauseKeyword,
     },
-    ast_visit::{VisitMut, walk_mut},
+    ast_visit::{VisitMut, utf8_to_utf16::Utf8ToUtf16, walk_mut},
     codegen::{Codegen, CodegenOptions, CommentOptions},
     parser::{ParseOptions, Parser},
     span::SourceType,
@@ -146,30 +146,71 @@ impl JsCodegen {
         // before printing Rust so both generators receive precisely the same information.
         Normalize { preserve_parens: true }.visit_program(&mut parsed.program);
 
+        let source_filename = source.path.to_string_lossy();
         let rust_output = Codegen::new()
             .with_options(CodegenOptions {
                 // `oxc-codegen` receives an ESTree AST without comment data and does not print
                 // comments, so comments must be disabled on the Rust side too.
                 comments: CommentOptions::disabled(),
+                source_map_path: Some(source.path.clone()),
                 ..CodegenOptions::default()
             })
-            .build(&parsed.program)
-            .code;
-        let program = parsed.program.to_estree_json(source_type.is_typescript(), false);
-        let js_output = self.print(&program, source_type.is_typescript(), source_type.is_jsx())?;
+            .build(&parsed.program);
+        let rust_map = rust_output
+            .map
+            .expect("source maps are enabled for codegen conformance")
+            .to_json_string();
 
-        if rust_output == js_output {
+        // JavaScript AST offsets are UTF-16 code units. Rust codegen has already consumed the
+        // byte offsets above, so convert only before serializing the AST for the JS printer.
+        Utf8ToUtf16::new(&source.source_text).convert_program(&mut parsed.program);
+        let program = parsed.program.to_estree_json(source_type.is_typescript(), false);
+        let js_output = self.print(
+            &program,
+            source_type.is_typescript(),
+            source_type.is_jsx(),
+            &source_filename,
+            &source.source_text,
+        )?;
+
+        if rust_output.code != js_output.code {
+            return Err(format!(
+                "Rust and JavaScript codegen outputs differ.\nDiff (`-` Rust, `+` JS):\n{}",
+                NodeModulesRunner::get_diff(&js_output.code, &rust_output.code, false)
+            ));
+        }
+
+        let rust_map: serde_json::Value = serde_json::from_str(&rust_map)
+            .map_err(|error| format!("Rust codegen returned an invalid source map: {error}"))?;
+        let js_map: serde_json::Value = serde_json::from_str(&js_output.map)
+            .map_err(|error| format!("JS codegen returned an invalid source map: {error}"))?;
+        if rust_map == js_map {
             return Ok(());
         }
 
+        let rust_map = serde_json::to_string_pretty(&rust_map).unwrap();
+        let js_map = serde_json::to_string_pretty(&js_map).unwrap();
         Err(format!(
-            "Rust and JavaScript codegen outputs differ.\nDiff (`-` Rust, `+` JS):\n{}",
-            NodeModulesRunner::get_diff(&js_output, &rust_output, false)
+            "Rust and JavaScript source maps differ.\nDiff (`-` Rust, `+` JS):\n{}",
+            NodeModulesRunner::get_diff(&js_map, &rust_map, false)
         ))
     }
 
-    fn print(&mut self, program: &str, ts: bool, jsx: bool) -> Result<String, String> {
-        let request = format!(r#"{{"program":{program},"ts":{ts},"jsx":{jsx}}}"#);
+    fn print(
+        &mut self,
+        program: &str,
+        ts: bool,
+        jsx: bool,
+        source_filename: &str,
+        source_text: &str,
+    ) -> Result<JsCodegenOutput, String> {
+        let source_filename = serde_json::to_string(source_filename)
+            .map_err(|error| format!("failed to encode source filename: {error}"))?;
+        let source_text = serde_json::to_string(source_text)
+            .map_err(|error| format!("failed to encode source text: {error}"))?;
+        let request = format!(
+            r#"{{"program":{program},"ts":{ts},"jsx":{jsx},"sourceFilename":{source_filename},"sourceText":{source_text}}}"#
+        );
         // AST `raw` fields can contain physical line breaks, so requests cannot be separated by
         // newlines. Send an ASCII byte length followed by the exact UTF-8 JSON payload instead.
         writeln!(self.stdin, "{}", request.len()).map_err(|error| {
@@ -200,6 +241,11 @@ impl JsCodegen {
             .ok_or_else(|| format!("invalid JS code generator response: {header:?}"))?
             .parse::<usize>()
             .map_err(|error| format!("invalid JS code generator response length: {error}"))?;
+        let map_length = fields
+            .next()
+            .ok_or_else(|| format!("invalid JS code generator response: {header:?}"))?
+            .parse::<usize>()
+            .map_err(|error| format!("invalid JS source map response length: {error}"))?;
         if fields.next().is_some() {
             return Err(format!("invalid JS code generator response: {header:?}"));
         }
@@ -208,12 +254,20 @@ impl JsCodegen {
         self.stdout
             .read_exact(&mut bytes)
             .map_err(|error| format!("failed to read JS code generator output: {error}"))?;
-        let output = String::from_utf8(bytes)
+        let code = String::from_utf8(bytes)
             .map_err(|error| format!("JS code generator returned non-UTF-8 output: {error}"))?;
 
+        let mut map_bytes = vec![0; map_length];
+        self.stdout
+            .read_exact(&mut map_bytes)
+            .map_err(|error| format!("failed to read JS source map output: {error}"))?;
+        let map = String::from_utf8(map_bytes).map_err(|error| {
+            format!("JS code generator returned a non-UTF-8 source map: {error}")
+        })?;
+
         match status {
-            "OK" => Ok(output),
-            "ERROR" => Err(format!("the JS code generator failed:\n{output}")),
+            "OK" => Ok(JsCodegenOutput { code, map }),
+            "ERROR" => Err(format!("the JS code generator failed:\n{code}")),
             _ => Err(format!("invalid JS code generator response: {header:?}")),
         }
     }
@@ -231,6 +285,11 @@ impl JsCodegen {
             Err(format!("the JS code generator exited with {status}"))
         }
     }
+}
+
+struct JsCodegenOutput {
+    code: String,
+    map: String,
 }
 
 fn source_type_for_codegen(source: &Source) -> SourceType {

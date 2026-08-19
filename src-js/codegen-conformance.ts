@@ -33,8 +33,16 @@ for await (const chunk of process.stdin) {
     input = input.subarray(payloadEnd);
 
     try {
-      const { program, ts, jsx } = JSON.parse(payload.toString("utf8"));
-      await send("OK", printSync(program, { ts, jsx }).code);
+      const { program, ts, jsx, sourceFilename, sourceText } = JSON.parse(payload.toString("utf8"));
+      const { code, map } = printSync(program, {
+        ts,
+        jsx,
+        sourcemap: true,
+        sourceFilename,
+        sourceText,
+      });
+      if (map === null) throw new Error("JS codegen did not return a source map");
+      await send("OK", code, JSON.stringify(map));
     } catch (error) {
       await send("ERROR", error instanceof Error ? error.stack ?? error.message : String(error));
     }
@@ -45,10 +53,12 @@ if (input.length !== 0) {
   throw new Error("Incomplete codegen request at end of input");
 }
 
-async function send(status: "OK" | "ERROR", output: string): Promise<void> {
-  const bytes = Buffer.from(output);
-  await write(`${status} ${bytes.byteLength}\n`);
-  await write(bytes);
+async function send(status: "OK" | "ERROR", code: string, map = ""): Promise<void> {
+  const codeBytes = Buffer.from(code);
+  const mapBytes = Buffer.from(map);
+  await write(`${status} ${codeBytes.byteLength} ${mapBytes.byteLength}\n`);
+  await write(codeBytes);
+  await write(mapBytes);
 }
 
 async function write(output: string | Uint8Array): Promise<void> {
