@@ -219,12 +219,14 @@ jobs:
           name: monitor-oxc
           path: ./target/release/monitor-oxc
 
-      - name: Upload Oxc Codegen
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+      - name: Archive Oxc Codegen
+        run: tar -C ../oxc/packages/codegen -czf oxc-codegen.tar.gz dist
+
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           if-no-files-found: error
           name: oxc-codegen
-          path: ../oxc/packages/codegen/dist
+          path: oxc-codegen.tar.gz
 
   test:
     name: Test
@@ -260,7 +262,11 @@ jobs:
         if: matrix.command == 'codegen_conformance'
         with:
           name: oxc-codegen
-          path: ../oxc/packages/codegen/dist
+          path: .
+
+      - name: Unpack Oxc Codegen
+        if: matrix.command == 'codegen_conformance'
+        run: mkdir -p ../oxc/packages/codegen && tar -xzf oxc-codegen.tar.gz -C ../oxc/packages/codegen
 
       - run: chmod +x ./monitor-oxc
 
