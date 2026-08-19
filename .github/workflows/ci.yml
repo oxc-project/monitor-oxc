@@ -177,6 +177,12 @@ jobs:
 
       - run: mv oxc ../oxc
 
+      - uses: oxc-project/setup-node@d59b270414aa7d0eed947eed4eb5b0b8a675f01d # v1.4.0
+
+      - run: pnpm --dir ../oxc install --frozen-lockfile
+
+      - run: pnpm --dir ../oxc --filter oxc-codegen run build
+
       # Reuse the binary when neither oxc nor our sources changed (common for
       # the 3-hourly scheduled runs), skipping the ~2 minute build.
       - name: Restore binary cache
@@ -213,6 +219,13 @@ jobs:
           name: monitor-oxc
           path: ./target/release/monitor-oxc
 
+      - name: Upload Oxc Codegen
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          if-no-files-found: error
+          name: oxc-codegen
+          path: ../oxc/packages/codegen/dist
+
   test:
     name: Test
     needs: build
@@ -228,6 +241,7 @@ jobs:
       matrix:
         include:
           - command: codegen
+          - command: codegen_conformance
           - command: compressor
           - command: dce
           - command: transformer
@@ -241,6 +255,12 @@ jobs:
       - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: monitor-oxc
+
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        if: matrix.command == 'codegen_conformance'
+        with:
+          name: oxc-codegen
+          path: ../oxc/packages/codegen/dist
 
       - run: chmod +x ./monitor-oxc
 
