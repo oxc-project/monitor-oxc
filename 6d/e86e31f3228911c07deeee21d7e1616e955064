@@ -1,0 +1,29 @@
+src/main.rs
+  s_1a3c47d53bfe91::t_d88f207ca3803f 6,10,33-50
+.github/workflows/ci.yml
+  s_1a3c47d53bfe91::t_b85a363b657d12 142-147,163-169,180,195-200
+Cargo.toml
+  s_1a3c47d53bfe91::t_5acf1beeb49e52 26
+src/codegen-conformance.mjs
+  s_1a3c47d53bfe91::t_982635e1ee6bec 1-24
+src/codegen_conformance.rs
+  s_1a3c47d53bfe91::t_d68d8e813e70b4 1-276
+src/lib.rs
+  s_1a3c47d53bfe91::t_a47a0d5b4daef5 2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "6de86e31f3228911c07deeee21d7e1616e955064",
+  "prompts": {},
+  "sessions": {
+    "s_1a3c47d53bfe91": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a01951-d5f6-7c51-b441-1ba6a0694e08",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "Cameron <cclark@cloudflare.com>"
+    }
+  }
+}
