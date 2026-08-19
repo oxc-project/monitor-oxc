@@ -1,0 +1,19 @@
+src/codegen_conformance.rs
+  s_1a3c47d53bfe91::t_db1b93e1be0413 107
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "01696645d3d7974003ed89726d00710c5b181e33",
+  "prompts": {},
+  "sessions": {
+    "s_1a3c47d53bfe91": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a01951-d5f6-7c51-b441-1ba6a0694e08",
+        "model": "unknown"
+      },
+      "human_author": "Cameron <cclark@cloudflare.com>"
+    }
+  }
+}
