@@ -104,7 +104,7 @@ impl JsCodegen {
         }
 
         let mut child = Command::new("node")
-            .arg("src/codegen-conformance.mjs")
+            .arg("src/codegen-conformance.ts")
             .stdin(Stdio::piped())
             .stdout(Stdio::piped())
             .stderr(Stdio::inherit())

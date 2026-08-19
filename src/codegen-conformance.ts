@@ -6,7 +6,7 @@ import { printSync } from "../../oxc/packages/codegen/dist/index.js";
 
 let input = Buffer.alloc(0);
 
-process.stdout.on("error", (error) => {
+process.stdout.on("error", (error: Error & { code?: string }) => {
   // The Rust parent can close the read end while a CI job is being cancelled. Do not turn that
   // expected teardown into an unhandled Node exception which obscures the parent failure.
   if (error.code === "EPIPE") process.exit(0);
@@ -45,13 +45,13 @@ if (input.length !== 0) {
   throw new Error("Incomplete codegen request at end of input");
 }
 
-async function send(status, output) {
+async function send(status: "OK" | "ERROR", output: string): Promise<void> {
   const bytes = Buffer.from(output);
   await write(`${status} ${bytes.byteLength}\n`);
   await write(bytes);
 }
 
-async function write(output) {
+async function write(output: string | Uint8Array): Promise<void> {
   if (!process.stdout.write(output)) {
     await once(process.stdout, "drain");
   }
