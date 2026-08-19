@@ -8,7 +8,7 @@ use monitor_oxc::{
     compressor::CompressorRunner, dce::DceRunner, formatter::FormatterRunner,
     formatter_dcr::FormatterDCRRunner, isolated_declarations, mangler::ManglerRunner,
     minifier::MinifierRunner, remove_whitespace::RemoveWhitespaceRunner,
-    transformer::TransformerRunner, NodeModulesRunner, NodeModulesRunnerOptions,
+    transformer::TransformerRunner,
 };
 
 fn main() -> ExitCode {
