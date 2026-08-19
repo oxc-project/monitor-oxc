@@ -169,8 +169,14 @@ impl JsCodegen {
     }
 
     fn print(&mut self, program: &str, ts: bool, jsx: bool) -> Result<String, String> {
-        // `to_estree_json` emits compact, one-line JSON, so newline-delimited requests are safe.
-        writeln!(self.stdin, r#"{{"program":{program},"ts":{ts},"jsx":{jsx}}}"#)
+        let request = format!(r#"{{"program":{program},"ts":{ts},"jsx":{jsx}}}"#);
+        // AST `raw` fields can contain physical line breaks, so requests cannot be separated by
+        // newlines. Send an ASCII byte length followed by the exact UTF-8 JSON payload instead.
+        writeln!(self.stdin, "{}", request.len()).map_err(|error| {
+            format!("failed to send AST length to the JS code generator: {error}")
+        })?;
+        self.stdin
+            .write_all(request.as_bytes())
             .map_err(|error| format!("failed to send AST to the JS code generator: {error}"))?;
         self.stdin
             .flush()
