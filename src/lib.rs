@@ -1,4 +1,5 @@
 pub mod codegen;
+pub mod codegen_conformance;
 pub mod compressor;
 pub mod dce;
 pub mod formatter;
