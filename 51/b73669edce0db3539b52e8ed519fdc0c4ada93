@@ -1,0 +1,21 @@
+src/codegen_conformance.rs
+  s_1a3c47d53bfe91::t_37f6459cce9bd3 172-179
+src/codegen-conformance.mjs
+  s_1a3c47d53bfe91::t_6c558e33899513 1,7,9-14,16-40,44-48,50-57
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "51b73669edce0db3539b52e8ed519fdc0c4ada93",
+  "prompts": {},
+  "sessions": {
+    "s_1a3c47d53bfe91": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a01951-d5f6-7c51-b441-1ba6a0694e08",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "Cameron <cclark@cloudflare.com>"
+    }
+  }
+}
