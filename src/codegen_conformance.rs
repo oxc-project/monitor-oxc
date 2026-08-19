@@ -6,7 +6,7 @@
 
 use std::{
     io::{BufRead, BufReader, Read as _, Write as _},
-    panic::{catch_unwind, AssertUnwindSafe},
+    panic::{AssertUnwindSafe, catch_unwind},
     path::{Path, PathBuf},
     process::{Child, ChildStdin, ChildStdout, Command, Stdio},
 };
@@ -17,12 +17,13 @@ use oxc::{
         ArrowFunctionExpression, ExportAllDeclaration, ExportFromDeclaration, Function,
         ImportDeclaration, WithClause, WithClauseKeyword,
     },
-    ast_visit::{walk_mut, VisitMut},
+    ast_visit::{VisitMut, walk_mut},
     codegen::{Codegen, CodegenOptions, CommentOptions},
     parser::{ParseOptions, Parser},
     span::SourceType,
     syntax::scope::ScopeFlags,
 };
+use rayon::prelude::*;
 
 use crate::{Diagnostic, NodeModulesRunner, NodeModulesRunnerOptions, Source};
 
@@ -33,41 +34,57 @@ pub struct CodegenConformanceRunner;
 impl CodegenConformanceRunner {
     pub fn run(options: NodeModulesRunnerOptions) -> Result<(), Vec<Diagnostic>> {
         let node_modules_runner = NodeModulesRunner::new(options);
-        println!("Running {CASE_NAME}.");
+        let file_count = node_modules_runner.files.len();
+        let worker_count = rayon::current_num_threads().min(file_count);
+        println!("Running {CASE_NAME} across {worker_count} JS processes.");
 
-        let mut js_codegen = JsCodegen::spawn().map_err(|message| {
-            vec![Diagnostic { case: CASE_NAME, path: PathBuf::new(), message }]
-        })?;
-        let mut diagnostics = Vec::new();
+        // Split the files into exactly one contiguous shard per Rayon worker. Every worker owns
+        // one persistent JS process, avoiding per-file Node startup while printing and parsing in
+        // parallel across all configured CPU threads.
+        let diagnostics = (0..worker_count)
+            .into_par_iter()
+            .map(|worker| {
+                let start = worker * file_count / worker_count;
+                let end = (worker + 1) * file_count / worker_count;
+                test_sources(&node_modules_runner.files[start..end])
+            })
+            .collect::<Vec<_>>()
+            .into_iter()
+            .flatten()
+            .collect::<Vec<_>>();
 
-        for source in &node_modules_runner.files {
-            match catch_unwind(AssertUnwindSafe(|| js_codegen.test(source))) {
-                Ok(Ok(())) => {}
-                Ok(Err(message)) => diagnostics.push(Diagnostic {
-                    case: CASE_NAME,
-                    path: source.path.clone(),
-                    message,
-                }),
-                Err(panic) => diagnostics.push(Diagnostic {
-                    case: CASE_NAME,
-                    path: source.path.clone(),
-                    message: format!("Rust codegen panicked: {panic:?}"),
-                }),
+        println!("Ran {file_count} times.");
+
+        if diagnostics.is_empty() { Ok(()) } else { Err(diagnostics) }
+    }
+}
+
+fn test_sources(sources: &[Source]) -> Vec<Diagnostic> {
+    let mut js_codegen = match JsCodegen::spawn() {
+        Ok(js_codegen) => js_codegen,
+        Err(message) => return vec![Diagnostic { case: CASE_NAME, path: PathBuf::new(), message }],
+    };
+    let mut diagnostics = Vec::new();
+
+    for source in sources {
+        match catch_unwind(AssertUnwindSafe(|| js_codegen.test(source))) {
+            Ok(Ok(())) => {}
+            Ok(Err(message)) => {
+                diagnostics.push(Diagnostic { case: CASE_NAME, path: source.path.clone(), message })
             }
-        }
-
-        println!("Ran {} times.", node_modules_runner.files.len());
-
-        if let Err(message) = js_codegen.finish() {
-            diagnostics.push(Diagnostic { case: CASE_NAME, path: PathBuf::new(), message });
-        }
-
-        if diagnostics.is_empty() {
-            Ok(())
-        } else {
-            Err(diagnostics)
+            Err(panic) => diagnostics.push(Diagnostic {
+                case: CASE_NAME,
+                path: source.path.clone(),
+                message: format!("Rust codegen panicked: {panic:?}"),
+            }),
         }
     }
+
+    if let Err(message) = js_codegen.finish() {
+        diagnostics.push(Diagnostic { case: CASE_NAME, path: PathBuf::new(), message });
+    }
+
+    diagnostics
 }
 
 struct JsCodegen {
