@@ -24,7 +24,7 @@ must_use_candidate = "allow"
 module_name_repetitions = "allow"
 
 [dependencies]
-oxc = { path = "../oxc/crates/oxc", features = ["full"] }
+oxc = { path = "../oxc/crates/oxc", features = ["full", "serialize"] }
 oxc_formatter = { path = "../oxc/crates/oxc_formatter", features = ["detect_code_removal"] }
 walkdir = "2.5.0"
 rayon = "1.10"
