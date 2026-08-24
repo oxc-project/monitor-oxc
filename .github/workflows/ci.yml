@@ -193,8 +193,8 @@ jobs:
 
       - run: cargo build --release
         if: steps.binary-cache.outputs.cache-hit != 'true'
-        env:
-          RUSTFLAGS: "-C debug-assertions=true"
+        # env:
+        #   RUSTFLAGS: "-C debug-assertions=true"
 
       # Explicit save right after the build: the combined actions/cache form
       # only saves when the whole job succeeds, so red periods — when
