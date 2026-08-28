@@ -27,6 +27,7 @@ pub struct Driver {
     pub dce: bool,
     pub mangle: bool,
     pub remove_whitespace: bool,
+    pub preserve_annotations: bool,
     // states
     pub printed: String,
     pub path: PathBuf,
@@ -92,7 +93,10 @@ impl CompilerInterface for Driver {
         Some(CodegenOptions {
             minify: self.remove_whitespace,
             comments: if self.compress.is_some() {
-                CommentOptions { annotation: true, ..CommentOptions::disabled() }
+                CommentOptions {
+                    annotation: self.preserve_annotations,
+                    ..CommentOptions::disabled()
+                }
             } else {
                 CommentOptions::default()
             },
@@ -151,20 +155,33 @@ mod tests {
 
     use super::Driver;
 
-    #[test]
-    fn compression_preserves_annotation_comments_only() {
+    fn compress(preserve_annotations: bool) -> String {
         let mut driver = Driver {
             compress: Some(CompressOptions::default()),
             remove_whitespace: true,
+            preserve_annotations,
             ..Driver::default()
         };
-        let output = driver
+        driver
             .run(
                 Path::new("fixture.js"),
                 "export const value = /* @__PURE__ */ Symbol('value'); /* ordinary */",
                 SourceType::default(),
             )
-            .unwrap();
+            .unwrap()
+    }
+
+    #[test]
+    fn compression_strips_comments_by_default() {
+        let output = compress(false);
+
+        assert!(!output.contains("@__PURE__"));
+        assert!(!output.contains("ordinary"));
+    }
+
+    #[test]
+    fn compression_can_preserve_annotation_comments_only() {
+        let output = compress(true);
 
         assert!(output.contains("@__PURE__"));
         assert!(!output.contains("ordinary"));
