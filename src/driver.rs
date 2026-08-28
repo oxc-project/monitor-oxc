@@ -92,7 +92,7 @@ impl CompilerInterface for Driver {
         Some(CodegenOptions {
             minify: self.remove_whitespace,
             comments: if self.compress.is_some() {
-                CommentOptions::disabled()
+                CommentOptions { annotation: true, ..CommentOptions::disabled() }
             } else {
                 CommentOptions::default()
             },
@@ -140,5 +140,33 @@ impl Driver {
         let program = &mut ret.program;
         Compressor::new(&allocator).dead_code_elimination(program, CompressOptions::dce());
         Codegen::new().build(program).code
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use std::path::Path;
+
+    use oxc::{minifier::CompressOptions, span::SourceType};
+
+    use super::Driver;
+
+    #[test]
+    fn compression_preserves_annotation_comments_only() {
+        let mut driver = Driver {
+            compress: Some(CompressOptions::default()),
+            remove_whitespace: true,
+            ..Driver::default()
+        };
+        let output = driver
+            .run(
+                Path::new("fixture.js"),
+                "export const value = /* @__PURE__ */ Symbol('value'); /* ordinary */",
+                SourceType::default(),
+            )
+            .unwrap();
+
+        assert!(output.contains("@__PURE__"));
+        assert!(!output.contains("ordinary"));
     }
 }

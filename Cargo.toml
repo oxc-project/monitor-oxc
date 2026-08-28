@@ -12,7 +12,6 @@ test = false
 doctest = false
 
 [lib]
-test = false
 doctest = false
 
 [lints.clippy]

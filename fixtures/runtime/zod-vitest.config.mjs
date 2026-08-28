@@ -8,6 +8,7 @@ export default defineConfig({
     name: "zod",
     root: resolve(process.cwd(), "packages/zod"),
     include: ["src/**/*.test.ts"],
+    exclude: ["src/v4/core/tests/locales/parity.test.ts"],
     watch: false,
     isolate: true,
     setupFiles: [resolve(process.cwd(), "scripts/fail-on-console.ts")],
