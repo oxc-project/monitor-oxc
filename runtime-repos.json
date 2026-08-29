@@ -2,7 +2,7 @@
   {
     "name": "es-toolkit",
     "repo": "toss/es-toolkit",
-    "sha": "5dc4477f838b8cee2b6b09af4f373be2b3aaaa54",
+    "sha": "f4e087941d403ff8f8c4608e38199ffbf43a26b7",
     "sources": [
       "src/**/*.ts"
     ],
@@ -18,7 +18,7 @@
   {
     "name": "zod",
     "repo": "colinhacks/zod",
-    "sha": "9f0a3d81221e3ab7c09ca4911ef35b54817869a4",
+    "sha": "e516c3baf22615e20934116abebfed6c000222c2",
     "sources": [
       "packages/zod/src/**/*.ts"
     ],
@@ -33,7 +33,7 @@
   {
     "name": "vue",
     "repo": "vuejs/core",
-    "sha": "a2b40db9a83b36ed9da3a16403cf8f040262d73f",
+    "sha": "e2bede96134f757aad5c5b33ac9be055022dbfc8",
     "sources": [
       "packages/*/src/**/*.ts"
     ],
@@ -47,7 +47,7 @@
   {
     "name": "svelte",
     "repo": "sveltejs/svelte",
-    "sha": "c0987c09f816b5d7dcb5564d19c849f7e28b9e7a",
+    "sha": "15720b16a5ef33e3e1f4301c77b94ec375070e73",
     "sources": [
       "packages/svelte/src/**/*.js"
     ],
@@ -59,7 +59,7 @@
   {
     "name": "solid",
     "repo": "solidjs/solid",
-    "sha": "d2f81d546d5dff37aa25e4fa224e2192efec8c1a",
+    "sha": "f47845f9cc16ecbb316aa6560c7161f45af9a3d8",
     "sources": [
       "packages/solid/src/**/*.ts",
       "packages/solid/store/src/**/*.ts",
