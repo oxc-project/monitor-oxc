@@ -138,7 +138,7 @@ impl JsCodegen {
 
         // The package test suite only compares ASTs which parsed cleanly. Oxc can recover from a
         // parse error, but comparing its recovered Rust AST with the package is not meaningful.
-        if parsed.panicked || !parsed.diagnostics.is_empty() {
+        if parsed.fatal_error || !parsed.diagnostics.is_empty() {
             return Ok(());
         }
 
