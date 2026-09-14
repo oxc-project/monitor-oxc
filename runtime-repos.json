@@ -2,7 +2,7 @@
   {
     "name": "es-toolkit",
     "repo": "toss/es-toolkit",
-    "sha": "5dc4477f838b8cee2b6b09af4f373be2b3aaaa54",
+    "sha": "0d288f69839a145efcda264fce819d8c8a451b9b",
     "sources": [
       "src/**/*.ts"
     ],
@@ -33,7 +33,7 @@
   {
     "name": "vue",
     "repo": "vuejs/core",
-    "sha": "a2b40db9a83b36ed9da3a16403cf8f040262d73f",
+    "sha": "54097087a0918b98f16c84599b1a6d654e952ca7",
     "sources": [
       "packages/*/src/**/*.ts"
     ],
@@ -47,7 +47,7 @@
   {
     "name": "svelte",
     "repo": "sveltejs/svelte",
-    "sha": "c0987c09f816b5d7dcb5564d19c849f7e28b9e7a",
+    "sha": "6eb720a1b7cafca3ebe0ab5c76674272cd3044f9",
     "sources": [
       "packages/svelte/src/**/*.js"
     ],
@@ -59,7 +59,7 @@
   {
     "name": "solid",
     "repo": "solidjs/solid",
-    "sha": "d2f81d546d5dff37aa25e4fa224e2192efec8c1a",
+    "sha": "b25c557754f2ced0d86490e6dbfded9b1745b663",
     "sources": [
       "packages/solid/src/**/*.ts",
       "packages/solid/store/src/**/*.ts",
