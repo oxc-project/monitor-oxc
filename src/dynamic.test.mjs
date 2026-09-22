@@ -2006,14 +2006,8 @@ test("minimist-options", () => import("minimist-options").then(assert.ok));
 test("minipass", () => import("minipass").then(assert.ok));
 test("minipass-collect", () => import("minipass-collect").then(assert.ok));
 test("minipass-fetch", () => import("minipass-fetch").then(assert.ok));
-// Expected failure minipass-flush: minipass-flush@2.0.0 was published with an empty tarball; the exports field points to a missing dist/.
-test("minipass-flush", async () => {
-  await assert.rejects(import("minipass-flush"), new RegExp("minipass-flush/dist/esm/index.js"));
-});
-// Expected failure minipass-pipeline: minipass-pipeline@3.0.0 was published with an empty tarball; the exports field points to a missing dist/.
-test("minipass-pipeline", async () => {
-  await assert.rejects(import("minipass-pipeline"), new RegExp("minipass-pipeline/dist/esm/index.js"));
-});
+test("minipass-flush", () => import("minipass-flush").then(assert.ok));
+test("minipass-pipeline", () => import("minipass-pipeline").then(assert.ok));
 test("minipass-sized", () => import("minipass-sized").then(assert.ok));
 test("minizlib", () => import("minizlib").then(assert.ok));
 test("mississippi", () => import("mississippi").then(assert.ok));

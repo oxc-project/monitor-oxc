@@ -14,20 +14,6 @@ const expectedFailures = new Map([
     },
   ],
   [
-    "minipass-flush",
-    {
-      reason: "minipass-flush@2.0.0 was published with an empty tarball; the exports field points to a missing dist/.",
-      message: "minipass-flush/dist/esm/index.js",
-    },
-  ],
-  [
-    "minipass-pipeline",
-    {
-      reason: "minipass-pipeline@3.0.0 was published with an empty tarball; the exports field points to a missing dist/.",
-      message: "minipass-pipeline/dist/esm/index.js",
-    },
-  ],
-  [
     "pure-rand",
     {
       reason: "pure-rand@8.x removed the `.` (main) entry from its exports map and only ships subpath imports.",

@@ -4004,14 +4004,10 @@ import * as _1998 from "minipass-collect";
 test("minipass-collect", () => assert.ok(_1998));
 import * as _1999 from "minipass-fetch";
 test("minipass-fetch", () => assert.ok(_1999));
-// Expected failure minipass-flush: minipass-flush@2.0.0 was published with an empty tarball; the exports field points to a missing dist/.
-test("minipass-flush", async () => {
-  await assert.rejects(import("minipass-flush"), new RegExp("minipass-flush/dist/esm/index.js"));
-});
-// Expected failure minipass-pipeline: minipass-pipeline@3.0.0 was published with an empty tarball; the exports field points to a missing dist/.
-test("minipass-pipeline", async () => {
-  await assert.rejects(import("minipass-pipeline"), new RegExp("minipass-pipeline/dist/esm/index.js"));
-});
+import * as _2000 from "minipass-flush";
+test("minipass-flush", () => assert.ok(_2000));
+import * as _2001 from "minipass-pipeline";
+test("minipass-pipeline", () => assert.ok(_2001));
 import * as _2002 from "minipass-sized";
 test("minipass-sized", () => assert.ok(_2002));
 import * as _2003 from "minizlib";
