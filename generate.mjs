@@ -143,7 +143,8 @@ const testEntries = data.map((name) => ({
 
 packageJson.devDependencies = {};
 data.map((name) => {
-  // Packages in `dependencies` are version-managed explicitly (e.g. prettier, the formatter oracle);
+  // Packages in `dependencies` are version-managed explicitly (e.g. prettier, the formatter oracle,
+  // and TypeScript 6, whose compiler API is required by corpus packages);
   // don't shadow them with a corpus `latest` entry.
   if (name in packageJson.dependencies) return;
   
