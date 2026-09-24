@@ -4,6 +4,7 @@ use pico_args::Arguments;
 
 use monitor_oxc::{
     Diagnostic, NodeModulesRunner, NodeModulesRunnerOptions, codegen::CodegenRunner,
+    codegen_conformance::CodegenConformanceRunner,
     compressor::CompressorRunner, dce::DceRunner, formatter::FormatterRunner,
     formatter_dcr::FormatterDCRRunner, isolated_declarations, mangler::ManglerRunner,
     minifier::MinifierRunner, remove_whitespace::RemoveWhitespaceRunner,
@@ -44,6 +45,24 @@ fn main() -> ExitCode {
     }
 
     println!("Options: {options:?}");
+
+    if matches!(task, "codegen_conformance" | "conformance") {
+        return match CodegenConformanceRunner::run(options) {
+            Ok(()) => ExitCode::SUCCESS,
+            Err(diagnostics) => {
+                for diagnostic in &diagnostics {
+                    println!(
+                        "{}\n{}\n{}",
+                        diagnostic.case,
+                        diagnostic.path.to_string_lossy(),
+                        diagnostic.message
+                    );
+                }
+                println!("{} Failed.", diagnostics.len());
+                ExitCode::FAILURE
+            }
+        };
+    }
 
     let mut node_modules_runner = NodeModulesRunner::new(options);
 
