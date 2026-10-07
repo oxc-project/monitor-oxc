@@ -7,7 +7,7 @@ use monitor_oxc::{
     compressor::CompressorRunner, dce::DceRunner, formatter::FormatterRunner,
     formatter_dcr::FormatterDCRRunner, isolated_declarations, mangler::ManglerRunner,
     minifier::MinifierRunner, remove_whitespace::RemoveWhitespaceRunner,
-    transformer::TransformerRunner,
+    transformer::TransformerRunner, variants,
 };
 
 fn main() -> ExitCode {
@@ -46,6 +46,15 @@ fn main() -> ExitCode {
     println!("Options: {options:?}");
 
     let mut node_modules_runner = NodeModulesRunner::new(options);
+
+    if let Some((name, cases)) = match task {
+        "codegen-variants" => Some(("Codegen variants", variants::codegen())),
+        "transformer-variants" => Some(("Transformer variants", variants::transformer())),
+        "minifier-variants" => Some(("Minifier variants", variants::minifier())),
+        _ => None,
+    } {
+        node_modules_runner.add_case(Box::new(variants::Suite::new(name, cases)));
+    }
 
     if matches!(task, "codegen" | "default") {
         node_modules_runner.add_case(Box::new(CodegenRunner));

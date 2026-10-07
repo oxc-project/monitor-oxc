@@ -9,6 +9,7 @@ pub mod minifier;
 pub mod remove_whitespace;
 pub mod runtime;
 pub mod transformer;
+pub mod variants;
 
 mod case;
 mod driver;
