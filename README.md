@@ -1,32 +1,40 @@
 # Monitor Oxc
 
-### Transformer
+### Coverage matrix
 
-* Parse + transform idempotency test
-* transform and override all `j|tsx?` files
-* run `./src/main.test.mjs`
+The npm corpus covers source extensions inferred by Oxc, excluding declaration files,
+Flow and the known incompatible paths in `src/lib.rs`. Each variant checks generated
+syntax and idempotency; transformer output is reparsed as JavaScript. Variant suites
+report every failing configuration and never rewrite dependency files. Target presets
+accept Oxc's expected warnings for unsupported BigInt, arbitrary namespace exports
+and top-level await; parse errors and other diagnostics still fail.
 
-### Codegen
+| Command | Configurations / oracle |
+| --- | --- |
+| `codegen` | Default codegen, idempotency and package imports after rewriting JS |
+| `codegen-variants` | 16 combinations of quote style, whitespace, ASCII escaping and source maps; seven comment policies; space indentation with an initial indent |
+| `transformer` | Existing enable-all preset, idempotency and package imports; async lowering and Refresh disabled |
+| `transformer-variants` | ES2015/2018/2020/2022/next targets; automatic/classic JSX in production/development; preserved JSX; TS import removal, enum optimization and assignment fields; all transforms with external helpers (including async lowering); import-extension rewrite/remove; custom JSX pragmas; decorators without metadata; Fast Refresh (reparse only) |
+| `compressor`, `dce`, `mangler`, `whitespace`, `minifier` | Existing individual passes and full minifier; idempotency and package imports except compressor |
+| `minifier-variants` | All eight compress/mangle/whitespace combinations; safest compressor; mangler keep-names, disabled top-level mangling and debug names |
+| `formatter`, `formatter_dcr` | Default formatting idempotency (classified against Prettier) and code-removal detection |
+| `id` | Isolated declarations against Vue |
 
-* Parse + codegen idempotency test
-* codegen and override all js files
-* run `./src/main.test.mjs`
+CI runs all these corpus commands. On a binary-cache miss, `cargo test --lib` also
+runs focused fixtures for JS, ESM, CommonJS, JSX, TS, TSX, MTS, CTS and declaration
+syntax. They check source-map contents and legal-comment outputs, assert that async
+lowering and Refresh actually run, and compare original/generated stdout in Node for
+codegen, minifier combinations, and transformer targets with and without minification.
+The fixtures need Node but no installed npm packages.
 
-### Mangler
-
-* Parse + mangle idempotency test
-* mangle and override all js files
-* run `./src/main.test.mjs`
-
-### Compressor
-
-* Parse + compress idempotency test
-* compress and override all js files
-* run `./src/main.test.mjs`
-
-### Isolated Declarations
-
-* Test against vue
+This is a matrix of supported modes, not the Cartesian product of every Oxc option.
+Browser-specific target combinations, arbitrary compiler assumptions, destructive
+compressor settings (such as dropping console calls), formatter options and isolated
+declaration options are not exhaustively crossed. Inline helper loading is not
+implemented by Oxc. External-helper and preserved-JSX corpus output gets syntax checks;
+runtime-helper semantics for async lowering and JSX runtimes are not compared by
+these dependency-free fixtures. The existing runtime suites exercise the shared
+runtime preset, which still disables async lowering.
 
 ### Runtime Correctness
 
@@ -59,7 +67,11 @@ Read more about our [test infrastrucutre](https://oxc.rs/docs/learn/architecture
 
 ```
 rm -rf node_modules && pnpm i
+cargo test --lib
 cargo run --release
+cargo run --release -- codegen-variants
+cargo run --release -- transformer-variants
+cargo run --release -- minifier-variants
 ```
 
 ### Generate packages

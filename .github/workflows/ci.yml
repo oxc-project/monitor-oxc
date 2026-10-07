@@ -191,6 +191,11 @@ jobs:
         with:
           save-cache: ${{ github.ref_name == 'main' }}
 
+      # Cache hits reuse a binary whose source/configuration key already passed
+      # these fixtures. Node is preinstalled; no npm packages are needed.
+      - run: cargo test --lib
+        if: steps.binary-cache.outputs.cache-hit != 'true'
+
       - run: cargo build --release
         if: steps.binary-cache.outputs.cache-hit != 'true'
         env:
@@ -228,11 +233,15 @@ jobs:
       matrix:
         include:
           - command: codegen
+          - command: codegen-variants
           - command: compressor
           - command: dce
           - command: transformer
+          - command: transformer-variants
           - command: mangler
           - command: whitespace
+          - command: minifier
+          - command: minifier-variants
           - command: formatter
           - command: formatter_dcr
     steps:
