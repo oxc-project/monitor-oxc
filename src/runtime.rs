@@ -108,6 +108,7 @@ fn minify_driver() -> Driver {
         compress: Some(CompressOptions::default()),
         mangle: true,
         remove_whitespace: true,
+        preserve_annotations: true,
         ..Driver::default()
     }
 }
