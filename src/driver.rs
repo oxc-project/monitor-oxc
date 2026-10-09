@@ -7,6 +7,7 @@ use std::{
 use oxc::{
     CompilerInterface,
     allocator::Allocator,
+    ast::ast::Comment,
     codegen::{Codegen, CodegenOptions, CodegenReturn, CommentOptions},
     diagnostics::{Diagnostics, OxcDiagnostic},
     mangler::MangleOptions,
@@ -27,10 +28,13 @@ pub struct Driver {
     pub dce: bool,
     pub mangle: bool,
     pub remove_whitespace: bool,
+    pub preserve_parens: Option<bool>,
     // states
     pub printed: String,
     pub path: PathBuf,
     pub errors: Vec<OxcDiagnostic>,
+    // Only collected by the codegen case, which checks comment preservation.
+    pub comments: Option<Vec<Comment>>,
 }
 
 impl CompilerInterface for Driver {
@@ -48,6 +52,10 @@ impl CompilerInterface for Driver {
     }
 
     fn after_parse(&mut self, parser_return: &mut ParserReturn) -> ControlFlow<()> {
+        if let Some(comments) = &mut self.comments {
+            comments.clear();
+            comments.extend_from_slice(&parser_return.program.comments);
+        }
         parser_return.diagnostics = mem::take(&mut parser_return.diagnostics)
             .into_iter()
             .filter(|e| {
@@ -58,7 +66,7 @@ impl CompilerInterface for Driver {
         ControlFlow::Continue(())
     }
 
-    fn after_codegen(&mut self, ret: CodegenReturn) {
+    fn after_codegen(&mut self, ret: CodegenReturn<'_>) {
         self.printed = ret.code;
     }
 
@@ -66,6 +74,9 @@ impl CompilerInterface for Driver {
         ParseOptions {
             parse_regular_expression: true,
             allow_return_outside_function: true,
+            preserve_parens: self
+                .preserve_parens
+                .unwrap_or(ParseOptions::default().preserve_parens),
             ..ParseOptions::default()
         }
     }
@@ -147,9 +158,90 @@ impl Driver {
 mod tests {
     use std::path::Path;
 
-    use oxc::{minifier::CompressOptions, span::SourceType};
+    use oxc::{
+        allocator::Allocator, minifier::CompressOptions, parser::Parser, span::SourceType,
+        transformer::TransformOptions,
+    };
 
     use super::Driver;
+
+    #[test]
+    fn parser_assigns_comment_owners() {
+        let allocator = Allocator::default();
+        let parsed = Parser::new(
+            &allocator,
+            "/* leading */ consume(/* argument */ 1); // trailing",
+            SourceType::mjs(),
+        )
+        .parse();
+        assert_eq!(parsed.program.comments.len(), 3);
+        assert!(parsed.program.comments.iter().all(|comment| comment.attachment.is_some()));
+    }
+
+    #[test]
+    fn comment_printing_is_idempotent_through_transform_and_mangle() {
+        let source = "/* leading */ export function value(input) {\n\
+            const values = [/* element */ input];\n\
+            consume(/* argument */ values); // trailing\n\
+            return { /* property */ value: input };\n\
+            }";
+        for transform in [false, true] {
+            for mangle in [false, true] {
+                let mut driver = Driver {
+                    transform: transform.then(TransformOptions::default),
+                    mangle,
+                    ..Driver::default()
+                };
+                let output =
+                    driver.run(Path::new("fixture.js"), source, SourceType::mjs()).unwrap();
+                for comment in ["leading", "element", "argument", "trailing", "property"] {
+                    assert_eq!(output.matches(comment).count(), 1, "{output}");
+                }
+                let second =
+                    driver.run(Path::new("fixture.js"), &output, SourceType::mjs()).unwrap();
+                assert_eq!(output, second);
+            }
+        }
+    }
+
+    #[test]
+    fn dce_preserves_live_and_orphaned_comments() {
+        let output = Driver::dce(
+            "/* removed */ if (false) gone();\n/* live */ consume(/* argument */ 1);",
+            SourceType::mjs(),
+        );
+        assert!(!output.contains("gone()"), "{output}");
+        for comment in ["removed", "live", "argument"] {
+            assert_eq!(output.matches(comment).count(), 1, "{output}");
+        }
+        assert!(output.find("/* live */").unwrap() < output.find("consume(").unwrap());
+        assert!(output.find("consume(").unwrap() < output.find("/* argument */").unwrap());
+    }
+
+    #[test]
+    fn pure_annotations_inside_generated_parentheses_are_idempotent() {
+        for source in [
+            "class C extends /*#__PURE__*/ factory().annotations({}) {}",
+            "class C extends (/*#__PURE__*/ factory().annotations({})) {}",
+            "class C extends // #__PURE__\nfactory() {}",
+            "const x = /*#__PURE__*/ factory().value;",
+            "const x = /*#__PURE__*/ factory()();",
+            "const x = /*#__PURE__*/ new Factory().value;",
+            "const x = /*#__PURE__*/ new Factory(arg).value;",
+            "const x = new (/*#__PURE__*/ factory())();",
+            "function f() { return /*#__PURE__*/ factory().value; }",
+        ] {
+            for remove_whitespace in [false, true] {
+                let mut driver = Driver { remove_whitespace, ..Driver::default() };
+                let output =
+                    driver.run(Path::new("fixture.js"), source, SourceType::mjs()).unwrap();
+                assert_eq!(output.matches("#__PURE__").count(), 1, "{output}");
+                let second =
+                    driver.run(Path::new("fixture.js"), &output, SourceType::mjs()).unwrap();
+                assert_eq!(output, second, "{source}");
+            }
+        }
+    }
 
     #[test]
     fn compression_preserves_annotation_comments_only() {

@@ -23,8 +23,9 @@ must_use_candidate = "allow"
 module_name_repetitions = "allow"
 
 [dependencies]
-oxc = { path = "../oxc/crates/oxc", features = ["full"] }
-oxc_formatter = { path = "../oxc/crates/oxc_formatter", features = ["detect_code_removal"] }
+# https://github.com/oxc-project/oxc/pull/27397
+oxc = { git = "https://github.com/oxc-project/oxc", rev = "9ec357d0856bf3c131d2965fee1e2156ab2be42a", features = ["full"] }
+oxc_formatter = { git = "https://github.com/oxc-project/oxc", rev = "9ec357d0856bf3c131d2965fee1e2156ab2be42a", features = ["detect_code_removal"] }
 walkdir = "2.5.0"
 rayon = "1.10"
 similar = "3.0.0"

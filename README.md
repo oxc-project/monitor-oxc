@@ -8,7 +8,8 @@
 
 ### Codegen
 
-* Parse + codegen idempotency test
+* Parse + codegen idempotency test with `preserve_parens` on and off
+* Check every parsed comment is printed, including duplicate comments
 * codegen and override all js files
 * run `./src/main.test.mjs`
 
