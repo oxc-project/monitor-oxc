@@ -7,6 +7,7 @@ use std::{
 use oxc::{
     CompilerInterface,
     allocator::Allocator,
+    ast::ast::Comment,
     codegen::{Codegen, CodegenOptions, CodegenReturn, CommentOptions},
     diagnostics::{Diagnostics, OxcDiagnostic},
     mangler::MangleOptions,
@@ -27,10 +28,13 @@ pub struct Driver {
     pub dce: bool,
     pub mangle: bool,
     pub remove_whitespace: bool,
+    pub preserve_parens: Option<bool>,
     // states
     pub printed: String,
     pub path: PathBuf,
     pub errors: Vec<OxcDiagnostic>,
+    // Only collected by the codegen case, which checks comment preservation.
+    pub comments: Option<Vec<Comment>>,
 }
 
 impl CompilerInterface for Driver {
@@ -48,6 +52,10 @@ impl CompilerInterface for Driver {
     }
 
     fn after_parse(&mut self, parser_return: &mut ParserReturn) -> ControlFlow<()> {
+        if let Some(comments) = &mut self.comments {
+            comments.clear();
+            comments.extend_from_slice(&parser_return.program.comments);
+        }
         parser_return.diagnostics = mem::take(&mut parser_return.diagnostics)
             .into_iter()
             .filter(|e| {
@@ -66,6 +74,9 @@ impl CompilerInterface for Driver {
         ParseOptions {
             parse_regular_expression: true,
             allow_return_outside_function: true,
+            preserve_parens: self
+                .preserve_parens
+                .unwrap_or(ParseOptions::default().preserve_parens),
             ..ParseOptions::default()
         }
     }
