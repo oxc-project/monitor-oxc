@@ -199,12 +199,16 @@ jobs:
       # Explicit save right after the build: the combined actions/cache form
       # only saves when the whole job succeeds, so red periods — when
       # identical reruns are most frequent — would never populate the cache.
+      # Reuse the key computed at restore time rather than re-evaluating
+      # hashFiles: `cargo build` rewrites Cargo.lock whenever oxc's path
+      # crates have bumped versions past the committed lock, so a re-hash here
+      # would save under a key the next restore never looks up.
       - name: Save binary cache
         if: steps.binary-cache.outputs.cache-hit != 'true'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ./target/release/monitor-oxc
-          key: binary-${{ runner.os }}-${{ steps.oxc.outputs.commit }}-${{ hashFiles('Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml', 'src/**') }}
+          key: ${{ steps.binary-cache.outputs.cache-primary-key }}
 
       - name: Upload Binary
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
