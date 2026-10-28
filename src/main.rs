@@ -43,6 +43,17 @@ fn main() -> ExitCode {
         return monitor_oxc::runtime::run(&config, &name, &dir);
     }
 
+    if matches!(task, "size") {
+        let out: PathBuf = args.value_from_str("--out").unwrap();
+        return monitor_oxc::size::run(&NodeModulesRunner::new(options), &out);
+    }
+
+    if matches!(task, "size-emit") {
+        let paths: PathBuf = args.value_from_str("--paths").unwrap();
+        let out: PathBuf = args.value_from_str("--out").unwrap();
+        return monitor_oxc::size::emit(&paths, &out);
+    }
+
     println!("Options: {options:?}");
 
     let mut node_modules_runner = NodeModulesRunner::new(options);
