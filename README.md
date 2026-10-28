@@ -41,6 +41,15 @@
 * run each tool on fixed fixtures before and after minification
 * byte-diff the outputs — differential by construction, so no pins or baselines needed
 
+### Minify Size
+
+* only for oxc PRs that change `crates/oxc_minifier`, `oxc_mangler`, `oxc_codegen` or `oxc_ecmascript` (the `Minify Size Gate` job checks the PR's diff against its merge-base)
+* build monitor-oxc twice, against the PR head and its merge-base, and run `monitor-oxc size --out <file>.tsv` with each: one full minify (compress + mangle + whitespace) of every JS file in `node_modules`, writing input, output, gzip (-9) and brotli (quality 5) bytes per file without touching the files
+* `scripts/size-compare.mjs` diffs the two TSVs: raw, gzip and brotli totals, top files and packages each way, `*.min.js` reported separately, and files that minified on base but fail on head; file and package names link to their source on [npmx.dev](https://npmx.dev)
+* for the 20 files that shrank most and the 20 that grew most, `monitor-oxc size-emit` writes readable outputs from both binaries (compressor output pretty-printed and unmangled, then the full minify output); the full report inlines diffs of the top 5 each way and links the full diffs (`minify-size-diffs` artifact)
+* the oxc PR gets a single `## Minify Size` comment with the summary (totals and new failures), updated in place on later runs; it links the run, whose summary page holds the full report (top files and packages, output diffs)
+* output is deterministic, so every byte of difference comes from the PR
+
 ### Uglify Corpus
 
 * run UglifyJS's `test/compress` cases ([uglify-corpus.json](./uglify-corpus.json) pins the corpus)
