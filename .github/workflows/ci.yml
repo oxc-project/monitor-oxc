@@ -178,13 +178,15 @@ jobs:
       - run: mv oxc ../oxc
 
       # Reuse the binary when neither oxc nor our sources changed (common for
-      # the 3-hourly scheduled runs), skipping the ~2 minute build.
+      # the 3-hourly scheduled runs), skipping the ~2 minute build. Cargo.lock
+      # is not committed (each build resolves it against the oxc checkout), so
+      # it isn't part of the key.
       - name: Restore binary cache
         id: binary-cache
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ./target/release/monitor-oxc
-          key: binary-${{ runner.os }}-${{ steps.oxc.outputs.commit }}-${{ hashFiles('Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml', 'src/**') }}
+          key: binary-${{ runner.os }}-${{ steps.oxc.outputs.commit }}-${{ hashFiles('Cargo.toml', 'rust-toolchain.toml', 'src/**') }}
 
       - uses: oxc-project/setup-rust@3d6fb132fbe7cdcb66bf8ec193911c2945369d12 # v1.0.17
         if: steps.binary-cache.outputs.cache-hit != 'true'
@@ -200,9 +202,8 @@ jobs:
       # only saves when the whole job succeeds, so red periods — when
       # identical reruns are most frequent — would never populate the cache.
       # Reuse the key computed at restore time rather than re-evaluating
-      # hashFiles: `cargo build` rewrites Cargo.lock whenever oxc's path
-      # crates have bumped versions past the committed lock, so a re-hash here
-      # would save under a key the next restore never looks up.
+      # hashFiles, so nothing the build writes can make save and restore
+      # disagree (a committed, hashed Cargo.lock that cargo rewrote once did).
       - name: Save binary cache
         if: steps.binary-cache.outputs.cache-hit != 'true'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
