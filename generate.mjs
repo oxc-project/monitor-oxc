@@ -7,6 +7,13 @@ const COUNT = 3000;
 
 const expectedFailures = new Map([
   [
+    "buffer-equal-constant-time",
+    {
+      reason: "buffer-equal-constant-time@1.0.1 uses buffer.SlowBuffer, removed in Node.js 25+.",
+      message: String.raw`Cannot read properties of undefined \(reading 'prototype'\)`,
+    },
+  ],
+  [
     "jquery",
     {
       reason: "jQuery 4 requires a window with a document and throws on plain Node.js imports.",
