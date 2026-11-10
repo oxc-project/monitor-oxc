@@ -898,7 +898,10 @@ test("buffer", () => import("buffer").then(assert.ok));
 test("buffer-alloc", () => import("buffer-alloc").then(assert.ok));
 test("buffer-alloc-unsafe", () => import("buffer-alloc-unsafe").then(assert.ok));
 test("buffer-crc32", () => import("buffer-crc32").then(assert.ok));
-test("buffer-equal-constant-time", () => import("buffer-equal-constant-time").then(assert.ok));
+// Expected failure buffer-equal-constant-time: buffer-equal-constant-time@1.0.1 uses buffer.SlowBuffer, removed in Node.js 25+.
+test("buffer-equal-constant-time", async () => {
+  await assert.rejects(import("buffer-equal-constant-time"), new RegExp("Cannot read properties of undefined \\(reading 'prototype'\\)"));
+});
 test("buffer-fill", () => import("buffer-fill").then(assert.ok));
 test("buffer-from", () => import("buffer-from").then(assert.ok));
 test("buffer-indexof-polyfill", () => import("buffer-indexof-polyfill").then(assert.ok));
