@@ -8,7 +8,7 @@ use oxc::{
     CompilerInterface,
     allocator::Allocator,
     codegen::{Codegen, CodegenOptions, CodegenReturn, CommentOptions},
-    diagnostics::{Diagnostics, OxcDiagnostic},
+    diagnostics::{Diagnostics, OxcDiagnostic, Severity},
     mangler::MangleOptions,
     minifier::{CompressOptions, Compressor},
     parser::{ParseOptions, Parser, ParserReturn},
@@ -19,14 +19,17 @@ use oxc::{
 use crate::Diagnostic;
 
 #[allow(clippy::struct_excessive_bools)]
-#[derive(Default)]
+#[derive(Default, Clone)]
 pub struct Driver {
     // options
     pub transform: Option<TransformOptions>,
     pub compress: Option<CompressOptions>,
     pub dce: bool,
     pub mangle: bool,
+    pub mangle_options: Option<MangleOptions>,
     pub remove_whitespace: bool,
+    pub codegen: Option<CodegenOptions>,
+    pub ignore_target_warnings: bool,
     // states
     pub printed: String,
     pub path: PathBuf,
@@ -37,6 +40,16 @@ impl CompilerInterface for Driver {
     fn handle_errors(&mut self, errors: Diagnostics) {
         let errors = errors
             .into_iter()
+            // Target suites intentionally feed modern syntax to old targets.
+            // These features cannot be lowered; Oxc warns and preserves them.
+            .filter(|d| {
+                !(self.ignore_target_warnings
+                    && d.severity == Severity::Warning
+                    && matches!(d.message.as_ref(),
+                        "Big integer literals are not available in the configured target environment."
+                        | "Arbitrary module namespace identifier names are not available in the configured target environment."
+                        | "Top-level await is not available in the configured target environment."))
+            })
             .filter(|d| !d.message.starts_with("Flow is not supported"))
             // ignore `import lib = require(...);` syntax errors for transforms
             .filter(|d| {
@@ -79,6 +92,9 @@ impl CompilerInterface for Driver {
     }
 
     fn mangle_options(&self) -> Option<MangleOptions> {
+        if let Some(options) = &self.mangle_options {
+            return Some(options.clone());
+        }
         self.mangle.then(|| MangleOptions {
             // Keep `exports` / `module` wrapper bindings so Node's cjs-module-lexer
             // still detects named exports of mangled CommonJS / UMD packages
@@ -89,6 +105,9 @@ impl CompilerInterface for Driver {
     }
 
     fn codegen_options(&self) -> Option<CodegenOptions> {
+        if let Some(options) = &self.codegen {
+            return Some(options.clone());
+        }
         Some(CodegenOptions {
             minify: self.remove_whitespace,
             comments: if self.compress.is_some() {
