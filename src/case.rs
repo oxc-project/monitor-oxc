@@ -39,16 +39,40 @@ pub trait Case: RefUnwindSafe + Sync {
         &self,
         source: &Source,
     ) -> Result<(String, Option<String>), Vec<Diagnostic>> {
-        let Source { path, source_type, source_text } = source;
-        let source_text2 = self.driver().run(path, source_text, *source_type)?;
-        let source_text3 = self.driver().run(path, &source_text2, *source_type)?;
-        if source_text2 != source_text3 {
-            return Err(vec![Diagnostic {
-                case: self.name(),
-                path: path.clone(),
-                message: NodeModulesRunner::get_diff(&source_text2, &source_text3, false),
-            }]);
-        }
-        Ok((source_text3, None))
+        let source_text = check_idempotency(self.name(), &|| self.driver(), source)?;
+        Ok((source_text, None))
     }
+}
+
+/// Runs `driver` twice and returns the output if the second run doesn't change it.
+pub fn check_idempotency(
+    case: &'static str,
+    driver: &dyn Fn() -> Driver,
+    source: &Source,
+) -> Result<String, Vec<Diagnostic>> {
+    let Source { path, source_type, source_text } = source;
+    let source_text2 = driver().run(path, source_text, *source_type)?;
+    let source_text3 = driver().run(path, &source_text2, *source_type)?;
+    if source_text2 != source_text3 {
+        return Err(vec![Diagnostic {
+            case,
+            path: path.clone(),
+            message: NodeModulesRunner::get_diff(&source_text2, &source_text3, false),
+        }]);
+    }
+    Ok(source_text3)
+}
+
+/// Variable merging removes the declarations it made redundant, so mangling its output again
+/// can pick different names. Checks the fixed point without merging and returns the merged
+/// output for the runtime tests.
+pub fn check_mangle_idempotency(
+    case: &'static str,
+    driver: &dyn Fn() -> Driver,
+    source: &Source,
+) -> Result<(String, Option<String>), Vec<Diagnostic>> {
+    check_idempotency(case, &|| Driver { no_merge_vars: true, ..driver() }, source)?;
+    let Source { path, source_type, source_text } = source;
+    let source_text = driver().run(path, source_text, *source_type)?;
+    Ok((source_text, None))
 }

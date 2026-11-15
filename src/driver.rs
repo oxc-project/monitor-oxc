@@ -26,6 +26,7 @@ pub struct Driver {
     pub compress: Option<CompressOptions>,
     pub dce: bool,
     pub mangle: bool,
+    pub no_merge_vars: bool,
     pub remove_whitespace: bool,
     // states
     pub printed: String,
@@ -84,6 +85,7 @@ impl CompilerInterface for Driver {
             // still detects named exports of mangled CommonJS / UMD packages
             // (`import { queue } from "async"`). See oxc-project/oxc#24041.
             reserved: ["exports", "module"].into_iter().map(Into::into).collect(),
+            merge_vars: !self.no_merge_vars,
             ..MangleOptions::default()
         })
     }
