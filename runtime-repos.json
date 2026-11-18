@@ -2,7 +2,7 @@
   {
     "name": "es-toolkit",
     "repo": "toss/es-toolkit",
-    "sha": "ff8b9c0aaa21ec7759b59dbd6cc33f7c3b1986c7",
+    "sha": "24e7a7b8cb8035fae1ea2e7b507aab96698a38b9",
     "sources": [
       "src/**/*.ts"
     ],
@@ -33,7 +33,7 @@
   {
     "name": "vue",
     "repo": "vuejs/core",
-    "sha": "8b479a89445868d474f17e2d837765e7c9ece5e4",
+    "sha": "cbd95955a5362b44060908f6e28ad447c3031b8a",
     "sources": [
       "packages/*/src/**/*.ts"
     ],
@@ -59,7 +59,7 @@
   {
     "name": "solid",
     "repo": "solidjs/solid",
-    "sha": "bc50fe5649ba4fb1ef33f26643dba56c1c002b56",
+    "sha": "e2a181dc4e51945ff5f309917cfb59e510400d2f",
     "sources": [
       "packages/solid/src/**/*.ts",
       "packages/solid/store/src/**/*.ts",
