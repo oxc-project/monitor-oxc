@@ -119,8 +119,8 @@ importers:
         specifier: 1.12.0
         version: 1.12.0
       prettier:
-        specifier: 3.9.5
-        version: 3.9.5
+        specifier: 3.10.1
+        version: 3.10.1
       tsx:
         specifier: latest
         version: 4.23.13
@@ -4030,7 +4030,7 @@ importers:
         version: 18.3.0(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0))(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: latest
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0)))(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0))(prettier@3.9.5)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0)))(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0))(prettier@3.10.1)
       eslint-plugin-promise:
         specifier: latest
         version: 7.3.0(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0))
@@ -29135,8 +29135,8 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
-  prettier@3.9.5:
-    resolution: {integrity: sha512-/FVl766LpUfB5vXgCYOYa0MeV/441Ia99AeICQIQFTY/Nw0roZwULcXpku5i1/m5kt/baz+s4Zogspd839HSMg==}
+  prettier@3.10.1:
+    resolution: {integrity: sha512-70vp3ZUYoPlFbF9uiTdXHUUCGEIp7d4+6p+8DYbkm2jP7x/3i/paXVF6dopSI3zd/CEitrZN1rc4i85xWmmXlg==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -48908,10 +48908,10 @@ snapshots:
     optionalDependencies:
       typescript: 6.0.3
 
-  eslint-plugin-prettier@5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0)))(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0))(prettier@3.9.5):
+  eslint-plugin-prettier@5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0)))(eslint@10.10.0(jiti@2.7.0)(supports-color@11.0.0))(prettier@3.10.1):
     dependencies:
       eslint: 10.10.0(jiti@2.7.0)(supports-color@11.0.0)
-      prettier: 3.9.5
+      prettier: 3.10.1
       prettier-linter-helpers: 1.0.1
       synckit: 0.11.13
     optionalDependencies:
@@ -56675,7 +56675,7 @@ snapshots:
 
   prettier@2.8.8: {}
 
-  prettier@3.9.5: {}
+  prettier@3.10.1: {}
 
   pretty-bytes@5.6.0: {}
 
