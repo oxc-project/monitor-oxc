@@ -2,7 +2,7 @@
   {
     "name": "es-toolkit",
     "repo": "toss/es-toolkit",
-    "sha": "ff8b9c0aaa21ec7759b59dbd6cc33f7c3b1986c7",
+    "sha": "24e7a7b8cb8035fae1ea2e7b507aab96698a38b9",
     "sources": [
       "src/**/*.ts"
     ],
@@ -33,7 +33,7 @@
   {
     "name": "vue",
     "repo": "vuejs/core",
-    "sha": "8b479a89445868d474f17e2d837765e7c9ece5e4",
+    "sha": "44234e82bf4fcb234968061d7a51e37ea9f39e71",
     "sources": [
       "packages/*/src/**/*.ts"
     ],
